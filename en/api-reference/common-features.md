@@ -144,6 +144,52 @@ Example variables:
 
 At pre-alpha stage, there are no rate limits applied yet.
 
+## Data Validation
+
+Cosmos APIs employ strict validation for all data inputs to ensure consistency, security, and data integrity. Understanding these validation rules helps you build more robust integrations.
+
+### Common Types and Validation Rules
+
+The system enforces specific validation rules for different types of data:
+
+#### Identifiers
+
+- **Account IDs, Workspace IDs**: Must be exactly the specified length, containing only alphanumeric characters, underscores, and hyphens
+- **User IDs, Principal IDs**: Must be valid nanoid format
+- **Client IDs**: Non-empty string identifiers
+
+#### String Data
+
+- **Names**: 
+  - Must be 2-50 characters
+  - Can contain letters from multiple scripts (Latin, Chinese, Arabic, etc.)
+  - May include hyphens, apostrophes, and spaces
+  - Cannot contain consecutive spaces
+
+#### Timestamps
+
+- **Created/Updated At**: Must be valid ISO datetime strings
+
+#### Language Codes
+
+- Language codes follow IETF language tags
+- Typically simple codes like "en" or "fr" 
+- Some exceptions like Chinese which uses "zh-TW" and "zh-CN"
+
+#### Timezones
+
+- All timezone values must be valid IANA timezone identifiers (e.g., "Europe/Rome", "America/New_York")
+
+### Validation Behavior
+
+When validation fails, the API returns appropriate error responses with details about the validation failure. These responses include:
+
+- The field that failed validation
+- A description of why the validation failed
+- Any constraints or expected formats
+
+This information helps you quickly identify and fix data issues in your requests.
+
 ## Language Selection
 
 For user-facing APIs (like the App context), entities will return data and metadata in a single language. The language selection mechanism works as follows:

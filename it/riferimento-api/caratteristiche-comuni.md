@@ -144,6 +144,52 @@ Esempio di variabili:
 
 Nella fase pre-alpha, non sono ancora applicati limiti di frequenza.
 
+## Validazione dei Dati
+
+Le API Cosmos impiegano una rigorosa validazione per tutti gli input di dati per garantire coerenza, sicurezza e integrità dei dati. Comprendere queste regole di validazione ti aiuta a costruire integrazioni più robuste.
+
+### Tipi Comuni e Regole di Validazione
+
+Il sistema applica regole di validazione specifiche per diversi tipi di dati:
+
+#### Identificatori
+
+- **Account ID, Workspace ID**: Devono essere esattamente della lunghezza specificata, contenendo solo caratteri alfanumerici, underscore e trattini
+- **User ID, Principal ID**: Devono essere in formato nanoid valido
+- **Client ID**: Identificatori di stringa non vuoti
+
+#### Dati di tipo Stringa
+
+- **Nomi**: 
+  - Devono essere da 2 a 50 caratteri
+  - Possono contenere lettere da più script (Latino, Cinese, Arabo, ecc.)
+  - Possono includere trattini, apostrofi e spazi
+  - Non possono contenere spazi consecutivi
+
+#### Timestamp
+
+- **Created/Updated At**: Devono essere stringhe datetime ISO valide
+
+#### Codici Lingua
+
+- I codici lingua seguono i tag linguistici IETF
+- Tipicamente codici semplici come "it" o "fr"
+- Alcune eccezioni come il Cinese che usa "zh-TW" e "zh-CN"
+
+#### Fusi Orari
+
+- Tutti i valori di fuso orario devono essere identificatori di fuso orario IANA validi (es., "Europe/Rome", "America/New_York")
+
+### Comportamento della Validazione
+
+Quando la validazione fallisce, l'API restituisce appropriate risposte di errore con dettagli sul fallimento della validazione. Queste risposte includono:
+
+- Il campo che ha fallito la validazione
+- Una descrizione del motivo per cui la validazione è fallita
+- Eventuali vincoli o formati previsti
+
+Queste informazioni ti aiutano a identificare e risolvere rapidamente i problemi di dati nelle tue richieste.
+
 ## Selezione della Lingua
 
 Per le API rivolte all'utente (come il contesto App), le entità restituiranno dati e metadati in una singola lingua. Il meccanismo di selezione della lingua funziona come segue:
