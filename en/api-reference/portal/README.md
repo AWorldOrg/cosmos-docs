@@ -18,10 +18,10 @@ For information on obtaining access tokens, see the [Authentication Guide](../..
 
 ### Custom Claims
 
-The Portal context APIs use custom claims in the access token to enforce permissions and operations. The required custom claims for the Portal context are:
+The Portal context APIs use custom claims in the access token to enforce permissions and operations. Some of the common custom claims include (but are not limited to):
 - `principalId`
 
-When performing a sign-in as a principal, this custom claim is automatically included in the access token.
+This list is non-exhaustive and additional claims may be required depending on the specific operation. When performing a sign-in as a principal, all necessary custom claims are automatically included in the access token.
 
 ### Machine-to-Machine (M2M) Flows
 

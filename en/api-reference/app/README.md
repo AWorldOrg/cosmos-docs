@@ -18,13 +18,13 @@ For information on obtaining access tokens, see the [Authentication Guide](../..
 
 ### Custom Claims
 
-The App context APIs use custom claims in the access token to enforce permissions and operations. The required custom claims for the App context are:
+The App context APIs use custom claims in the access token to enforce permissions and operations. Some of the common custom claims include (but are not limited to):
 - `accountId`
 - `workspaceId`
 - `principalId`
 - `userId`
 
-When performing a sign-in as a normal user, all these custom claims are automatically included in the access token.
+This list is non-exhaustive and additional claims may be required depending on the specific operation. When performing a sign-in as a normal user, all necessary custom claims are automatically included in the access token.
 
 ### Machine-to-Machine (M2M) Flows
 

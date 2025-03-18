@@ -18,10 +18,10 @@ Per informazioni su come ottenere i token di accesso, consultare la [Guida all'A
 
 ### Claim Personalizzati
 
-Le API del contesto Portal utilizzano claim personalizzati nel token di accesso per applicare permessi e operazioni. I claim personalizzati richiesti per il contesto Portal sono:
+Le API del contesto Portal utilizzano claim personalizzati nel token di accesso per applicare permessi e operazioni. Alcuni dei claim personalizzati comuni includono (ma non sono limitati a):
 - `principalId`
 
-Quando si esegue l'accesso come principal, questo claim personalizzato è automaticamente incluso nel token di accesso.
+Questa lista non è esaustiva e potrebbero essere richiesti claim aggiuntivi a seconda dell'operazione specifica. Quando si esegue l'accesso come principal, tutti i claim personalizzati necessari sono automaticamente inclusi nel token di accesso.
 
 ### Flussi Machine-to-Machine (M2M)
 

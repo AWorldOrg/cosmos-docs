@@ -18,13 +18,13 @@ Per informazioni su come ottenere i token di accesso, consultare la [Guida all'A
 
 ### Claim Personalizzati
 
-Le API del contesto Dashboard utilizzano claim personalizzati nel token di accesso per applicare permessi e operazioni. I claim personalizzati richiesti per il contesto Dashboard sono:
+Le API del contesto Dashboard utilizzano claim personalizzati nel token di accesso per applicare permessi e operazioni. Alcuni dei claim personalizzati comuni includono (ma non sono limitati a):
 - `accountId`
 - `workspaceId`
 - `principalId`
 - `userId`
 
-Quando si esegue l'accesso come utente normale, tutti questi claim personalizzati sono automaticamente inclusi nel token di accesso.
+Questa lista non è esaustiva e potrebbero essere richiesti claim aggiuntivi a seconda dell'operazione specifica. Quando si esegue l'accesso come utente normale, tutti i claim personalizzati necessari sono automaticamente inclusi nel token di accesso.
 
 ### Flussi Machine-to-Machine (M2M)
 
