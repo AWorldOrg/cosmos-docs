@@ -267,6 +267,8 @@ Esempio di variabili:
 }
 ```
 
+> **Importante**: Si raccomanda vivamente di impostare sempre un `externalId` quando si creano utenti. Questo identificatore collega l'utente in Cosmos al tuo sistema esterno. Senza un `externalId`, potrebbe diventare impossibile tracciare quale utente in Cosmos corrisponde a quale utente nella tua piattaforma, specialmente in scenari che coinvolgono operazioni di gestione utenti. L'`externalId` dovrebbe essere un identificatore stabile e univoco proveniente dal tuo sistema.
+
 ## Funzionalità API
 
 Il contesto Dashboard implementa le funzionalità API comuni descritte nelle [Caratteristiche API Comuni](../caratteristiche-comuni.md). Si prega di consultare quel documento per informazioni dettagliate su:
