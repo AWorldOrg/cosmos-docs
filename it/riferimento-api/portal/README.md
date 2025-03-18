@@ -32,10 +32,41 @@ Le API REST avranno parità di funzionalità con le API GraphQL ma non sono anco
 
 ## Schema GraphQL
 
-L'API GraphQL del contesto Portal fornisce i seguenti tipi principali di operazioni:
+L'API GraphQL del contesto Portal fornisce il seguente tipo di operazioni:
 
-1. **Query**: Per recuperare dati su più Account
-2. **Mutation**: Per creare, aggiornare o eliminare risorse a livello di piattaforma
+1. **Mutation**: Per creare risorse a livello di piattaforma
+
+Attualmente, non sono implementate operazioni di Query nel contesto Portal.
+
+### Dettagli Schema
+
+```graphql
+type Account {
+  accountId: ID!
+  name: String!
+  adminEmail: AWSEmail!
+  billingEmail: AWSEmail!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input CreateAccountInput {
+  name: String!
+  adminEmail: String!
+  billingEmail: String!
+}
+
+type Query {} 
+
+type Mutation {
+  createAccount(input: CreateAccountInput!): Account!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+```
 
 ### Contesto Principal
 
@@ -44,76 +75,6 @@ Quando autenticato, le tue richieste API operano nel contesto di:
 - Il **Principal** autenticato (utente a livello di piattaforma)
 - La configurazione e le impostazioni della **Piattaforma**
 - Gli **Account** che hai accesso a gestire
-
-## Query Comuni
-
-### Lista Account
-
-Recupera una lista di Account disponibili per il Principal autenticato:
-
-```graphql
-query ListAccounts {
-  accounts {
-    id
-    name
-    status
-    createdAt
-    updatedAt
-    workspaceCount
-  }
-}
-```
-
-### Profilo Principal
-
-Recupera informazioni sul Principal attualmente autenticato:
-
-```graphql
-query GetPrincipalProfile {
-  me {
-    id
-    email
-    firstName
-    lastName
-    roles {
-      id
-      name
-    }
-    permissions
-  }
-}
-```
-
-### Dettagli Account
-
-Recupera informazioni dettagliate su uno specifico Account:
-
-```graphql
-query GetAccountDetails($id: ID!) {
-  account(id: $id) {
-    id
-    name
-    status
-    createdAt
-    updatedAt
-    settings {
-      allowUserRegistration
-      requireMfa
-      sessionTimeout
-    }
-    workspaces {
-      id
-      name
-      environment
-      status
-    }
-    users {
-      totalCount
-      activeCount
-    }
-  }
-}
-```
 
 ## Mutation Comuni
 
@@ -124,10 +85,12 @@ Crea un nuovo Account:
 ```graphql
 mutation CreateAccount($input: CreateAccountInput!) {
   createAccount(input: $input) {
-    id
+    accountId
     name
-    status
+    adminEmail
+    billingEmail
     createdAt
+    updatedAt
   }
 }
 ```
@@ -139,53 +102,7 @@ Esempio di variabili:
   "input": {
     "name": "Organizzazione Esempio",
     "adminEmail": "admin@esempio.com",
-    "settings": {
-      "allowUserRegistration": true,
-      "requireMfa": false,
-      "sessionTimeout": 3600
-    }
-  }
-}
-```
-
-### Aggiorna Ruolo Principal
-
-Aggiorna il ruolo di un Principal:
-
-```graphql
-mutation UpdatePrincipalRole($id: ID!, $input: UpdatePrincipalRoleInput!) {
-  updatePrincipalRole(id: $id, input: $input) {
-    id
-    email
-    roles {
-      id
-      name
-    }
-  }
-}
-```
-
-Esempio di variabili:
-
-```json
-{
-  "id": "principal-123",
-  "input": {
-    "roleIds": ["role-admin"]
-  }
-}
-```
-
-### Sospendi Account
-
-Sospendi un Account:
-
-```graphql
-mutation SuspendAccount($id: ID!) {
-  suspendAccount(id: $id) {
-    id
-    name
-    status
+    "billingEmail": "fatturazione@esempio.com"
   }
 }
 ```
