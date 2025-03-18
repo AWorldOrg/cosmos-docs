@@ -14,6 +14,8 @@ Welcome to the official documentation for the Cosmos SaaS platform.
 
 Cosmos is a multi-tenant SaaS platform that offers a suite of APIs across three distinct contexts: App, Dashboard, and Portal. The platform is designed with a user-centric approach while also supporting machine-to-machine (M2M) interactions through client credentials.
 
+> **Important**: Cosmos APIs are currently in **pre-alpha stage** and are being heavily developed. New updates are released on a daily basis, which may introduce changes to the APIs. Please check the documentation regularly for the latest information.
+
 ## API Reference
 
 Detailed documentation for all available APIs:

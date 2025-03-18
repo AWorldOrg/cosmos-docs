@@ -14,6 +14,8 @@ Benvenuti alla documentazione ufficiale della piattaforma SaaS Cosmos.
 
 Cosmos è una piattaforma SaaS multi-tenant che offre una suite di API in tre contesti distinti: App, Dashboard e Portal. La piattaforma è progettata con un approccio incentrato sull'utente, supportando anche interazioni machine-to-machine (M2M) attraverso client credentials.
 
+> **Importante**: Le API Cosmos sono attualmente in **fase pre-alpha** e sono in fase di intenso sviluppo. Nuovi aggiornamenti vengono rilasciati quotidianamente, il che potrebbe introdurre modifiche alle API. Si prega di consultare regolarmente la documentazione per le informazioni più recenti.
+
 ## Riferimento API
 
 Documentazione dettagliata per tutte le API disponibili:

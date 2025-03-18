@@ -107,32 +107,38 @@ Esempio di variabili:
 }
 ```
 
-## Gestione degli Errori
+## Funzionalità API
 
-Le risposte GraphQL possono includere errori all'interno dell'array `errors`:
+### Caching
 
-```json
-{
-  "errors": [
-    {
-      "message": "Non autorizzato ad accedere a questa risorsa",
-      "locations": [{ "line": 2, "column": 3 }],
-      "path": ["me"],
-      "extensions": {
-        "code": "FORBIDDEN"
-      }
+Le Query (operazioni di sola lettura) nel contesto App sfruttano un meccanismo di caching interno per migliorare le prestazioni. Questo significa che query identiche ripetute possono essere restituite più velocemente poiché potrebbero essere servite dalla cache.
+
+### Compressione delle Risposte
+
+Per ridurre le dimensioni del payload e migliorare i tempi di trasferimento, è possibile abilitare la compressione includendo il seguente header nelle richieste:
+
+```
+Accept-Encoding: gzip
+```
+
+### Introspezione dello Schema
+
+GraphQL fornisce capacità di introspezione che consentono di esplorare le operazioni, i tipi e i campi disponibili. È possibile utilizzare le query di introspezione standard di GraphQL per scoprire i dettagli dello schema:
+
+```graphql
+query {
+  __schema {
+    types {
+      name
+      description
     }
-  ],
-  "data": null
+  }
 }
 ```
 
-Codici di errore comuni:
+Molti client GraphQL (per esempio Postman) forniscono automaticamente funzionalità di introspezione, permettendo di navigare lo schema e le operazioni disponibili.
 
-- `UNAUTHENTICATED`: Autenticazione mancante o non valida
-- `FORBIDDEN`: Autenticazione valida ma permessi insufficienti
-- `BAD_USER_INPUT`: Parametri di input non validi
-- `NOT_FOUND`: Risorsa richiesta non trovata
+> **Nota**: L'API Cosmos è in fase pre-alpha e subisce frequenti aggiornamenti. L'introspezione dello schema è un ottimo modo per scoprire le operazioni più recenti disponibili.
 
 ## Paginazione
 

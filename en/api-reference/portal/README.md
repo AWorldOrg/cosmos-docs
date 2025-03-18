@@ -190,32 +190,38 @@ mutation SuspendAccount($id: ID!) {
 }
 ```
 
-## Error Handling
+## API Features
 
-GraphQL responses may include errors within the `errors` array:
+### Caching
 
-```json
-{
-  "errors": [
-    {
-      "message": "Not authorized to access this resource",
-      "locations": [{ "line": 2, "column": 3 }],
-      "path": ["accounts"],
-      "extensions": {
-        "code": "FORBIDDEN"
-      }
+Queries (read-only operations) in the Portal context leverage an internal caching mechanism to improve performance. This means that repeated identical queries may return faster as they might be served from cache.
+
+### Response Compression
+
+To reduce payload size and improve transfer times, you can enable compression by including the following header in your requests:
+
+```
+Accept-Encoding: gzip
+```
+
+### Schema Introspection
+
+GraphQL provides introspection capabilities that allow you to explore available operations, types, and fields. You can use standard GraphQL introspection queries to discover the schema details:
+
+```graphql
+query {
+  __schema {
+    types {
+      name
+      description
     }
-  ],
-  "data": null
+  }
 }
 ```
 
-Common error codes:
+Many GraphQL clients (for example Postman) automatically provide introspection features, allowing you to browse the schema and available operations.
 
-- `UNAUTHENTICATED`: Missing or invalid authentication
-- `FORBIDDEN`: Authentication valid but insufficient permissions
-- `BAD_USER_INPUT`: Invalid input parameters
-- `NOT_FOUND`: Requested resource not found
+> **Note**: The Cosmos API is in pre-alpha stage and undergoes frequent updates. Schema introspection is a great way to discover the latest available operations.
 
 ## Pagination
 
