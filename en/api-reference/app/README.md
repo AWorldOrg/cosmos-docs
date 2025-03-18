@@ -141,6 +141,18 @@ Example variables:
 
 Queries (read-only operations) in the App context leverage an internal caching mechanism to improve performance. This means that repeated identical queries may return faster as they might be served from cache.
 
+### Idempotency
+
+Most operations that cause side effects (like creating resources) are idempotent, and their results are cached temporarily for up to 5 minutes. This provides several benefits:
+
+- If you submit the same mutation multiple times concurrently or within a short time window, only the first request will be fully processed.
+- Subsequent identical requests within the cache period will return the same payload as the first successful call, with an additional `x-idempotency-key` header in the response.
+- This prevents duplicate resource creation and helps maintain data consistency during network issues or retries.
+
+For example, if you attempt to create the same user twice with concurrent requests or within the 5-minute window, only the first API call would succeed. Other calls would return the same payload with the added idempotency header.
+
+After the cache expires, further identical requests will be executed again, and the business logic will determine the response. For instance, attempts to create a user after the cache has expired will likely fail because the user already exists.
+
 ### Response Compression
 
 To reduce payload size and improve transfer times, you can enable compression by including the following header in your requests:

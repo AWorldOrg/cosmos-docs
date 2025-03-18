@@ -134,6 +134,18 @@ Esempio di variabili:
 
 Le Query (operazioni di sola lettura) nel contesto Portal sfruttano un meccanismo di caching interno per migliorare le prestazioni. Questo significa che query identiche ripetute possono essere restituite più velocemente poiché potrebbero essere servite dalla cache.
 
+### Idempotenza
+
+La maggior parte delle operazioni che causano effetti collaterali (come la creazione di risorse) sono idempotenti e i loro risultati vengono memorizzati temporaneamente nella cache per un massimo di 5 minuti. Questo offre diversi vantaggi:
+
+- Se invii la stessa mutation più volte contemporaneamente o in un breve intervallo di tempo, solo la prima richiesta verrà elaborata completamente.
+- Le successive richieste identiche entro il periodo di cache restituiranno lo stesso payload della prima chiamata riuscita, con un header aggiuntivo `x-idempotency-key` nella risposta.
+- Questo impedisce la creazione di risorse duplicate e aiuta a mantenere la coerenza dei dati durante problemi di rete o tentativi di ripetizione.
+
+Per esempio, se tenti di creare lo stesso account due volte con richieste concorrenti o all'interno della finestra di 5 minuti, solo la prima chiamata API avrà successo. Le altre chiamate restituiranno lo stesso payload con l'header di idempotenza aggiunto.
+
+Dopo la scadenza della cache, ulteriori richieste identiche verranno eseguite nuovamente e la logica di business determinerà la risposta. Ad esempio, i tentativi di creare un account dopo la scadenza della cache probabilmente falliranno perché l'account esiste già.
+
 ### Compressione delle Risposte
 
 Per ridurre le dimensioni del payload e migliorare i tempi di trasferimento, è possibile abilitare la compressione includendo il seguente header nelle richieste:
