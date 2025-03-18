@@ -8,26 +8,17 @@ Il contesto Portal fornisce API per operazioni a livello di piattaforma che i Pr
 
 ## Autenticazione
 
-Tutte le API del contesto Portal richiedono autenticazione con permessi a livello di Principal. Le richieste devono includere un token di accesso valido nell'header Authorization:
+Il contesto Portal utilizza i meccanismi di autenticazione comuni descritti nelle [Caratteristiche API Comuni](../caratteristiche-comuni.md#nozioni-di-base-sullautenticazione). Le API del contesto Portal richiedono specificamente permessi a livello di principal.
 
-```
-Authorization: Bearer YOUR_ACCESS_TOKEN
-```
+### Dettagli Implementazione M2M
 
-Per informazioni su come ottenere i token di accesso, consultare la [Guida all'Autenticazione](../../guide/autenticazione.md).
+A differenza dei contesti App e Dashboard che richiedono l'impersonificazione dell'utente, le API del contesto Portal sono progettate per operare a livello di piattaforma. Quando si utilizzano flussi M2M con le API Portal:
 
-### Claim Personalizzati
+- Assicurati che le credenziali del client abbiano i permessi appropriati a livello di piattaforma
+- Non è necessaria l'impersonificazione dell'utente poiché le operazioni vengono eseguite a livello di principal
+- Questo approccio è ideale per strumenti di automazione a livello di piattaforma e servizi amministrativi
 
-Le API del contesto Portal utilizzano claim personalizzati nel token di accesso per applicare permessi e operazioni. Alcuni dei claim personalizzati comuni includono (ma non sono limitati a):
-- `principalId`
-
-Questa lista non è esaustiva e potrebbero essere richiesti claim aggiuntivi a seconda dell'operazione specifica. Quando si esegue l'accesso come principal, tutti i claim personalizzati necessari sono automaticamente inclusi nel token di accesso.
-
-### Flussi Machine-to-Machine (M2M)
-
-Le API del contesto Portal possono essere invocate nei flussi machine-to-machine (M2M) utilizzando client credentials. A differenza dei contesti App e Dashboard che operano all'interno di un contesto utente, il contesto Portal opera a livello di piattaforma, tipicamente con permessi a livello di principal.
-
-Quando si utilizzano flussi M2M con l'API Portal, assicurarsi che le credenziali del client abbiano i permessi appropriati a livello di piattaforma. Questo approccio è particolarmente utile per strumenti di automazione e amministrazione a livello di piattaforma che devono gestire gli account in modo programmatico.
+I flussi M2M del Portal sono particolarmente utili per la gestione degli account, le operazioni cross-account e le attività di amministrazione a livello di piattaforma.
 
 ## Endpoint API
 

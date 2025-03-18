@@ -8,33 +8,17 @@ The App context provides APIs for integrating with and extending applications bu
 
 ## Authentication
 
-All App context APIs require authentication. Requests must include a valid access token in the Authorization header:
+The App context uses the common authentication mechanisms described in [Common API Features](../common-features.md#authentication-basics).
 
-```
-Authorization: Bearer YOUR_ACCESS_TOKEN
-```
+### M2M Implementation Details
 
-For information on obtaining access tokens, see the [Authentication Guide](../../guides/authentication.md).
-
-### Custom Claims
-
-The App context APIs use custom claims in the access token to enforce permissions and operations. Some of the common custom claims include (but are not limited to):
-- `accountId`
-- `workspaceId`
-- `principalId`
-- `userId`
-
-This list is non-exhaustive and additional claims may be required depending on the specific operation. When performing a sign-in as a normal user, all necessary custom claims are automatically included in the access token.
-
-### Machine-to-Machine (M2M) Flows
-
-APIs that require "user level" access can also be invoked in machine-to-machine (M2M) flows using client credentials. When using M2M flows, the caller must include the userId of the user to impersonate in a header with every call:
+For App context APIs that require "user level" access in machine-to-machine (M2M) flows, you must include the userId of the user to impersonate in a header with every call:
 
 ```
 x-user-id: USER_ID_TO_IMPERSONATE
 ```
 
-This allows the correct execution of "user level" APIs even in M2M implementations, where your service may need to perform actions on behalf of users. This approach is particularly useful for backend services that need to interact with the API programmatically while preserving the user context.
+This allows your service to perform actions on behalf of specific users while using client credentials for authentication.
 
 ## API Endpoints
 
@@ -137,52 +121,20 @@ Example variables:
 
 ## API Features
 
-### Caching
+The App context implements the common API features described in [Common API Features](../common-features.md). Please refer to that document for detailed information about:
 
-Queries (read-only operations) in the App context leverage an internal caching mechanism to improve performance. This means that repeated identical queries may return faster as they might be served from cache.
+- [Caching](../common-features.md#caching)
+- [Idempotency](../common-features.md#idempotency)
+- [Response Compression](../common-features.md#response-compression)
+- [Schema Introspection](../common-features.md#schema-introspection)
 
-### Idempotency
-
-Most operations that cause side effects (like creating resources) are idempotent, and their results are cached temporarily for up to 5 minutes. This provides several benefits:
-
-- If you submit the same mutation multiple times concurrently or within a short time window, only the first request will be fully processed.
-- Subsequent identical requests within the cache period will return the same payload as the first successful call, with an additional `x-idempotency-key` header in the response.
-- This prevents duplicate resource creation and helps maintain data consistency during network issues or retries.
-
-For example, if you attempt to create the same user twice with concurrent requests or within the 5-minute window, only the first API call would succeed. Other calls would return the same payload with the added idempotency header.
-
-After the cache expires, further identical requests will be executed again, and the business logic will determine the response. For instance, attempts to create a user after the cache has expired will likely fail because the user already exists.
-
-### Response Compression
-
-To reduce payload size and improve transfer times, you can enable compression by including the following header in your requests:
-
-```
-Accept-Encoding: gzip
-```
-
-### Schema Introspection
-
-GraphQL provides introspection capabilities that allow you to explore available operations, types, and fields. You can use standard GraphQL introspection queries to discover the schema details:
-
-```graphql
-query {
-  __schema {
-    types {
-      name
-      description
-    }
-  }
-}
-```
-
-Many GraphQL clients (for example Postman) automatically provide introspection features, allowing you to browse the schema and available operations.
-
-> **Note**: The Cosmos API is in pre-alpha stage and undergoes frequent updates. Schema introspection is a great way to discover the latest available operations.
+For the App context, idempotency is particularly important when creating or updating user data. For example, if you attempt to create the same user twice with concurrent requests or within the 5-minute idempotency window, only the first API call would succeed. Other calls would return the same payload with the added idempotency header.
 
 ## Pagination
 
-List queries in Cosmos support pagination through a Connection pattern with the following structure:
+The App context follows the standard pagination approach described in [Common API Features](../common-features.md#pagination).
+
+For App-specific resources, the pagination pattern is implemented as follows:
 
 ```graphql
 type QuizConnection {
@@ -191,9 +143,7 @@ type QuizConnection {
 }
 ```
 
-All operations that return paginated lists return a "Connection" that contains a list of items of the relevant type and an optional `nextToken` for requesting the next page.
-
-Example query with pagination:
+Example query for listing quizzes with pagination:
 
 ```graphql
 query ListQuizzes($input: ListQuizzesInput) {
@@ -210,7 +160,7 @@ query ListQuizzes($input: ListQuizzesInput) {
 }
 ```
 
-The pagination input typically follows this structure:
+With input structure:
 
 ```graphql
 input ListQuizzesInput {
@@ -219,35 +169,12 @@ input ListQuizzesInput {
 }
 ```
 
-Example variables:
-
-```json
-{
-  "input": {
-    "limit": 10,
-    "nextToken": "eyJsYXN0SXRlbUlkIjoiMTIzNDUiLCJsYXN0SXRlbVZhbHVlIjoidGVzdCJ9"
-  }
-}
-```
-
-### Pagination Guidelines
-
-- You can specify an optional `limit` to control the number of items returned per page
-- If no limit is provided, the system will use a default value
-- To retrieve the next page, pass the `nextToken` from the previous response
-- **Important**: A `nextToken` is only valid when used with the same `limit` that was used in the original request. You should not mix tokens returned from calls with different limit values
+For pagination guidelines and best practices, refer to the [Common API Features](../common-features.md#pagination-guidelines) documentation.
 
 ## Rate Limiting
 
-At pre-alpha stage, there are not rate limits applied yet.
+Please refer to the [Common API Features](../common-features.md#rate-limiting) documentation for information about rate limiting.
 
-## Best Practices
-
-1. **Use GraphQL variables** for dynamic values rather than string interpolation
-2. **Request only the fields you need** to minimize response size and processing time
-3. **Implement error handling** to gracefully handle different error scenarios
-4. **Use pagination** for large result sets to improve performance
-5. **Cache responses** where appropriate to reduce API calls
 
 ## Example Integration
 

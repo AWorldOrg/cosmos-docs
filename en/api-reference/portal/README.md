@@ -8,26 +8,17 @@ The Portal context provides APIs for platform-level operations that principals (
 
 ## Authentication
 
-All Portal context APIs require authentication with principal-level permissions. Requests must include a valid access token in the Authorization header:
+The Portal context uses the common authentication mechanisms described in [Common API Features](../common-features.md#authentication-basics). Portal APIs specifically require principal-level permissions.
 
-```
-Authorization: Bearer YOUR_ACCESS_TOKEN
-```
+### M2M Implementation Details
 
-For information on obtaining access tokens, see the [Authentication Guide](../../guides/authentication.md).
+Unlike the App and Dashboard contexts which require user impersonation, Portal context APIs are designed to operate at the platform level. When using M2M flows with Portal APIs:
 
-### Custom Claims
+- Ensure your client credentials have the appropriate platform-level permissions
+- No user impersonation is needed since operations are performed at the principal level
+- This approach is ideal for platform-level automation tools and administrative services
 
-The Portal context APIs use custom claims in the access token to enforce permissions and operations. Some of the common custom claims include (but are not limited to):
-- `principalId`
-
-This list is non-exhaustive and additional claims may be required depending on the specific operation. When performing a sign-in as a principal, all necessary custom claims are automatically included in the access token.
-
-### Machine-to-Machine (M2M) Flows
-
-Portal context APIs can be invoked in machine-to-machine (M2M) flows using client credentials. Unlike the App and Dashboard contexts which operate within a user context, the Portal context operates at the platform level, typically with principal-level permissions.
-
-When using M2M flows with the Portal API, ensure your client credentials have the appropriate platform-level permissions. This approach is particularly useful for platform-level automation and administration tools that need to manage accounts programmatically.
+Portal M2M flows are particularly useful for account management, cross-account operations, and platform-level administration tasks.
 
 ## API Endpoints
 
