@@ -25,7 +25,7 @@ Piattaforma
 - **Account**: Un tenant con i propri dati e configurazione isolati
 - **Workspace**: Un ambiente all'interno di un account (es. sviluppo, staging, produzione)
 - **User**: Un utente a livello di workspace con permessi specifici
-- **Principal**: Un utente a livello di piattaforma che può operare attraverso gli account
+- **Principal**: Un utente a livello di piattaforma che può operare attraverso gli Account e i Workspace
 
 ## Isolamento dei Tenant
 

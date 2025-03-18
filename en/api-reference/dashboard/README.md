@@ -26,9 +26,9 @@ The primary API for the Dashboard context is a GraphQL API:
 
 ### REST APIs
 
-While GraphQL is the primary API type, some specific operations are available as REST endpoints:
+REST APIs will have feature parity with GraphQL APIs but are not published yet:
 
-**Base URL:** `https://api.aworld.cloud/dashboard`
+**Future Base URL:** `https://api.aworld.cloud/dashboard`
 
 ## GraphQL Schema
 
@@ -43,7 +43,7 @@ When authenticated, your API requests operate within the context of:
 
 - The authenticated **Principal** (platform-level user)
 - The **Account** you have access to manage
-- The **Workspaces** within that account
+- The specific **Workspace** you are currently working with
 
 ## Common Queries
 

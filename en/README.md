@@ -52,7 +52,7 @@ Workspaces allow for separation of resources and access controls within the same
 
 ### Principal
 
-A principal is a platform-level user who has access across accounts. Principals typically represent administrators or super-users with elevated permissions.
+A principal is a platform-level user who has access across accounts and workspaces. While principals can manage multiple accounts, most commonly they manage multiple workspaces within a single account. Principals typically represent administrators or super-users with elevated permissions.
 
 ### User
 
@@ -62,5 +62,5 @@ A user is scoped to a specific workspace within an account. Users have permissio
 
 Cosmos provides both GraphQL and REST APIs:
 
-- **GraphQL APIs**: Primary API type, offering flexible queries and mutations
-- **REST APIs**: Available for specific operations, complementing the GraphQL APIs
+- **GraphQL APIs**: Currently available API type, offering flexible queries and mutations
+- **REST APIs**: Will have feature parity with GraphQL APIs but are not published yet

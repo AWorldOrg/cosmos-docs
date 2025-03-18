@@ -26,9 +26,9 @@ The primary API for the Portal context is a GraphQL API:
 
 ### REST APIs
 
-While GraphQL is the primary API type, some specific operations are available as REST endpoints:
+REST APIs will have feature parity with GraphQL APIs but are not published yet:
 
-**Base URL:** `https://api.aworld.cloud/portal`
+**Future Base URL:** `https://api.aworld.cloud/portal`
 
 ## GraphQL Schema
 
