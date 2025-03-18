@@ -16,6 +16,19 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 
 For information on obtaining access tokens, see the [Authentication Guide](../../guides/authentication.md).
 
+### Custom Claims
+
+The Portal context APIs use custom claims in the access token to enforce permissions and operations. The required custom claims for the Portal context are:
+- `principalId`
+
+When performing a sign-in as a principal, this custom claim is automatically included in the access token.
+
+### Machine-to-Machine (M2M) Flows
+
+Portal context APIs can be invoked in machine-to-machine (M2M) flows using client credentials. Unlike the App and Dashboard contexts which operate within a user context, the Portal context operates at the platform level, typically with principal-level permissions.
+
+When using M2M flows with the Portal API, ensure your client credentials have the appropriate platform-level permissions. This approach is particularly useful for platform-level automation and administration tools that need to manage accounts programmatically.
+
 ## API Endpoints
 
 ### GraphQL API

@@ -16,6 +16,26 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 
 Per informazioni su come ottenere i token di accesso, consultare la [Guida all'Autenticazione](../../guide/autenticazione.md).
 
+### Claim Personalizzati
+
+Le API del contesto App utilizzano claim personalizzati nel token di accesso per applicare permessi e operazioni. I claim personalizzati richiesti per il contesto App sono:
+- `accountId`
+- `workspaceId`
+- `principalId`
+- `userId`
+
+Quando si esegue l'accesso come utente normale, tutti questi claim personalizzati sono automaticamente inclusi nel token di accesso.
+
+### Flussi Machine-to-Machine (M2M)
+
+Le API che richiedono accesso a "livello utente" possono essere invocate anche nei flussi machine-to-machine (M2M) utilizzando client credentials. Quando si utilizzano flussi M2M, il chiamante deve includere l'userId dell'utente da impersonare in un header con ogni chiamata:
+
+```
+x-user-id: USER_ID_TO_IMPERSONATE
+```
+
+Questo consente la corretta esecuzione delle API di "livello utente" anche nelle implementazioni M2M, dove il tuo servizio potrebbe dover eseguire azioni per conto degli utenti. Questo approccio è particolarmente utile per i servizi backend che devono interagire con l'API in modo programmatico, mantenendo il contesto dell'utente.
+
 ## Endpoint API
 
 ### API GraphQL

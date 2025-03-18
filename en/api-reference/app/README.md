@@ -16,6 +16,26 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 
 For information on obtaining access tokens, see the [Authentication Guide](../../guides/authentication.md).
 
+### Custom Claims
+
+The App context APIs use custom claims in the access token to enforce permissions and operations. The required custom claims for the App context are:
+- `accountId`
+- `workspaceId`
+- `principalId`
+- `userId`
+
+When performing a sign-in as a normal user, all these custom claims are automatically included in the access token.
+
+### Machine-to-Machine (M2M) Flows
+
+APIs that require "user level" access can also be invoked in machine-to-machine (M2M) flows using client credentials. When using M2M flows, the caller must include the userId of the user to impersonate in a header with every call:
+
+```
+x-user-id: USER_ID_TO_IMPERSONATE
+```
+
+This allows the correct execution of "user level" APIs even in M2M implementations, where your service may need to perform actions on behalf of users. This approach is particularly useful for backend services that need to interact with the API programmatically while preserving the user context.
+
 ## API Endpoints
 
 ### GraphQL API

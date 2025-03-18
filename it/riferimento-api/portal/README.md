@@ -16,6 +16,19 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 
 Per informazioni su come ottenere i token di accesso, consultare la [Guida all'Autenticazione](../../guide/autenticazione.md).
 
+### Claim Personalizzati
+
+Le API del contesto Portal utilizzano claim personalizzati nel token di accesso per applicare permessi e operazioni. I claim personalizzati richiesti per il contesto Portal sono:
+- `principalId`
+
+Quando si esegue l'accesso come principal, questo claim personalizzato è automaticamente incluso nel token di accesso.
+
+### Flussi Machine-to-Machine (M2M)
+
+Le API del contesto Portal possono essere invocate nei flussi machine-to-machine (M2M) utilizzando client credentials. A differenza dei contesti App e Dashboard che operano all'interno di un contesto utente, il contesto Portal opera a livello di piattaforma, tipicamente con permessi a livello di principal.
+
+Quando si utilizzano flussi M2M con l'API Portal, assicurarsi che le credenziali del client abbiano i permessi appropriati a livello di piattaforma. Questo approccio è particolarmente utile per strumenti di automazione e amministrazione a livello di piattaforma che devono gestire gli account in modo programmatico.
+
 ## Endpoint API
 
 ### API GraphQL
