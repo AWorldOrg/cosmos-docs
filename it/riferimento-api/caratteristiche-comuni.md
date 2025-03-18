@@ -144,6 +144,19 @@ Esempio di variabili:
 
 Nella fase pre-alpha, non sono ancora applicati limiti di frequenza.
 
+## Selezione della Lingua
+
+Per le API rivolte all'utente (come il contesto App), le entità restituiranno dati e metadati in una singola lingua. Il meccanismo di selezione della lingua funziona come segue:
+
+1. La lingua è determinata dal claim personalizzato `lang` nel token di accesso
+2. Questo claim viene impostato automaticamente quando un utente effettua l'accesso, in base alle preferenze del suo profilo
+3. Tutti i contenuti verranno restituiti nella lingua specificata da questo claim
+4. Se il contenuto non è disponibile nella lingua richiesta, potrebbe ricadere su una lingua predefinita (tipicamente l'inglese)
+
+> **Importante**: Se un utente modifica la preferenza della lingua nel proprio profilo, il token di accesso deve essere aggiornato per ricevere i contenuti nella nuova lingua selezionata. La semplice modifica dell'impostazione del profilo senza ottenere un nuovo token non influirà sulle risposte dell'API.
+
+Questo comportamento si applica a tutti i contenuti traducibili nel sistema, incluse domande e risposte dei quiz, testo dell'interfaccia utente e qualsiasi altra risorsa localizzata.
+
 ## Best Practices
 
 1. **Utilizzare variabili GraphQL** per valori dinamici piuttosto che l'interpolazione di stringhe
@@ -151,3 +164,4 @@ Nella fase pre-alpha, non sono ancora applicati limiti di frequenza.
 3. **Implementare la gestione degli errori** per gestire con eleganza i diversi scenari di errore
 4. **Utilizzare la paginazione** per grandi set di risultati per migliorare le prestazioni
 5. **Proteggere gli endpoint** implementando controlli di autorizzazione appropriati
+6. **Gestire l'aggiornamento del token** quando le preferenze dell'utente cambiano (ad esempio, per garantire che i contenuti siano forniti nella lingua preferita, che il fuso orario selezionato sia rispettato, ecc.)

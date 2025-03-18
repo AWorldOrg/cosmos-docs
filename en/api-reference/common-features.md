@@ -144,6 +144,19 @@ Example variables:
 
 At pre-alpha stage, there are no rate limits applied yet.
 
+## Language Selection
+
+For user-facing APIs (like the App context), entities will return data and metadata in a single language. The language selection mechanism works as follows:
+
+1. The language is determined by the `lang` custom claim in the access token
+2. This claim is set automatically when a user signs in, based on their profile preferences
+3. All content will be returned in the language specified by this claim
+4. If content is not available in the requested language, it may fall back to a default language (typically English)
+
+> **Important**: If a user changes their language preference in their profile, the access token needs to be refreshed to retrieve content in the newly selected language. Simply changing the profile setting without getting a new token will not affect API responses.
+
+This behavior applies to all translatable content in the system, including quiz questions and answers, UI text, and any other localized resources.
+
 ## Best Practices
 
 1. **Use GraphQL variables** for dynamic values rather than string interpolation
@@ -151,3 +164,4 @@ At pre-alpha stage, there are no rate limits applied yet.
 3. **Implement error handling** to gracefully handle different error scenarios
 4. **Use pagination** for large result sets to improve performance
 5. **Secure endpoints** by implementing proper authorization checks
+6. **Handle token refresh** when user preferences change (for example, to ensure content is delivered in the preferred language, selected timezone is respected, etc)
