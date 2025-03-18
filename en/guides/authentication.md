@@ -94,26 +94,68 @@ Mobile applications should also use the authorization code flow with PKCE, typic
 
 ### Server-side Applications
 
-Server-side applications can use the client credentials flow:
+Server-side applications can use the client credentials flow to obtain access tokens without user interaction:
 
 ```javascript
-// Example token request
-const tokenResponse = await fetch('https://auth.cosmos.example.com/oauth2/token', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-  },
-  body: new URLSearchParams({
-    grant_type: 'client_credentials',
-    client_id: 'YOUR_CLIENT_ID',
-    client_secret: 'YOUR_CLIENT_SECRET',
-    scope: 'YOUR_SCOPES',
-  }),
-});
+/**
+ * Minimal example of obtaining a token using OAuth2 client credentials flow
+ */
+async function getClientCredentialsToken() {
+  // Configuration
+  const tokenEndpoint = 'https://auth.aworld.cloud/oauth2/token';
+  const clientId = 'YOUR_CLIENT_ID';
+  const clientSecret = 'YOUR_CLIENT_SECRET';
+  const scope = 'YOUR_SCOPES'; // Optional, space-separated
 
-const tokens = await tokenResponse.json();
-// Use tokens.access_token for API requests
+  try {
+    // Create Basic Auth header
+    const authHeader = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+    
+    // Prepare request body
+    const body = new URLSearchParams();
+    body.append('grant_type', 'client_credentials');
+    if (scope) body.append('scope', scope);
+    
+    // Make the request
+    const response = await fetch(tokenEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': `Basic ${authHeader}`
+      },
+      body: body
+    });
+    
+    // Handle the response
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Request failed: ${response.status} ${errorText}`);
+    }
+    
+    // Parse and return token data
+    const tokenData = await response.json();
+    return tokenData;
+  } catch (error) {
+    console.error('Token request failed:', error);
+    throw error;
+  }
+}
+
+// Example usage
+getClientCredentialsToken()
+  .then(token => {
+    console.log(`Access Token: ${token.access_token}`);
+    console.log(`Expires in: ${token.expires_in} seconds`);
+    
+    // Use this token for API requests
+    // const apiResponse = await fetch('https://api.example.com/resource', {
+    //   headers: { 'Authorization': `Bearer ${token.access_token}` }
+    // });
+  })
+  .catch(error => console.error('Authentication failed:', error));
 ```
+
+> **Note**: The correct token endpoint for Cosmos is `https://auth.aworld.cloud/oauth2/token`
 
 ## Best Practices
 
