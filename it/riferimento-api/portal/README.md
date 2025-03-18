@@ -225,24 +225,40 @@ Molti client GraphQL (per esempio Postman) forniscono automaticamente funzionali
 
 ## Paginazione
 
-Le query di lista tipicamente supportano parametri di paginazione:
+Le query che ritornano liste in Cosmos supportano la paginazione attraverso un pattern "Connection" con la seguente struttura:
 
 ```graphql
-query GetPaginatedAccounts($first: Int, $after: String) {
-  accounts(first: $first, after: $after) {
-    edges {
-      node {
-        id
-        name
-        status
-      }
-      cursor
+type AccountConnection {
+  items: [Account!]!
+  nextToken: String
+}
+```
+
+Tutte le operazioni che restituiscono liste paginate restituiscono una "Connection" che contiene una lista di elementi del tipo pertinente e un `nextToken` opzionale per richiedere la pagina successiva.
+
+Esempio di query con paginazione:
+
+```graphql
+query ListAccounts($input: ListAccountsInput) {
+  listAccounts(input: $input) {
+    items {
+      id
+      name
+      status
+      createdAt
+      updatedAt
     }
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
+    nextToken
   }
+}
+```
+
+L'input per la paginazione segue tipicamente questa struttura:
+
+```graphql
+input ListAccountsInput {
+  limit: Int
+  nextToken: String
 }
 ```
 
@@ -250,10 +266,19 @@ Esempio di variabili:
 
 ```json
 {
-  "first": 10,
-  "after": "cursor_from_previous_page"
+  "input": {
+    "limit": 10,
+    "nextToken": "eyJsYXN0SXRlbUlkIjoiMTIzNDUiLCJsYXN0SXRlbVZhbHVlIjoidGVzdCJ9"
+  }
 }
 ```
+
+### Linee Guida per la Paginazione
+
+- È possibile specificare un `limit` opzionale per controllare il numero di elementi restituiti per pagina
+- Se non viene fornito alcun limite, il sistema utilizzerà un valore predefinito
+- Per recuperare la pagina successiva, passare il `nextToken` dalla risposta precedente
+- **Importante**: Un `nextToken` è valido solo se utilizzato con lo stesso `limit` che è stato utilizzato nella richiesta originale. Non dovresti mischiare token restituiti da chiamate con valori di limite diversi
 
 ## Limiti di Frequenza
 

@@ -250,26 +250,41 @@ Molti client GraphQL (per esempio Postman) forniscono automaticamente funzionali
 
 ## Paginazione
 
-Le query di lista tipicamente supportano parametri di paginazione:
+Le query che ritornano liste in Cosmos supportano la paginazione attraverso un pattern "Connection" con la seguente struttura:
 
 ```graphql
-query GetPaginatedWorkspaces($accountId: ID!, $first: Int, $after: String) {
-  account(id: $accountId) {
-    workspaces(first: $first, after: $after) {
-      edges {
-        node {
-          id
-          name
-          environment
-        }
-        cursor
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
+type WorkspaceConnection {
+  items: [Workspace!]!
+  nextToken: String
+}
+```
+
+Tutte le operazioni che restituiscono liste paginate restituiscono una "Connection" che contiene una lista di elementi del tipo pertinente e un `nextToken` opzionale per richiedere la pagina successiva.
+
+Esempio di query con paginazione:
+
+```graphql
+query ListWorkspaces($input: ListWorkspacesInput) {
+  listWorkspaces(input: $input) {
+    items {
+      id
+      name
+      description
+      environment
+      status
+      createdAt
     }
+    nextToken
   }
+}
+```
+
+L'input per la paginazione segue tipicamente questa struttura:
+
+```graphql
+input ListWorkspacesInput {
+  limit: Int
+  nextToken: String
 }
 ```
 
@@ -277,11 +292,19 @@ Esempio di variabili:
 
 ```json
 {
-  "accountId": "account-123",
-  "first": 10,
-  "after": "cursor_from_previous_page"
+  "input": {
+    "limit": 10,
+    "nextToken": "eyJsYXN0SXRlbUlkIjoiMTIzNDUiLCJsYXN0SXRlbVZhbHVlIjoidGVzdCJ9"
+  }
 }
 ```
+
+### Linee Guida per la Paginazione
+
+- È possibile specificare un `limit` opzionale per controllare il numero di elementi restituiti per pagina
+- Se non viene fornito alcun limite, il sistema utilizzerà un valore predefinito
+- Per recuperare la pagina successiva, passare il `nextToken` dalla risposta precedente
+- **Importante**: Un `nextToken` è valido solo se utilizzato con lo stesso `limit` che è stato utilizzato nella richiesta originale. Non dovresti mischiare token restituiti da chiamate con valori di limite diversi
 
 ## Limiti di Frequenza
 

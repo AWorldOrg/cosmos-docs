@@ -250,26 +250,41 @@ Many GraphQL clients (for example Postman) automatically provide introspection f
 
 ## Pagination
 
-List queries typically support pagination parameters:
+List queries in Cosmos support pagination through a Connection pattern with the following structure:
 
 ```graphql
-query GetPaginatedWorkspaces($accountId: ID!, $first: Int, $after: String) {
-  account(id: $accountId) {
-    workspaces(first: $first, after: $after) {
-      edges {
-        node {
-          id
-          name
-          environment
-        }
-        cursor
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
+type WorkspaceConnection {
+  items: [Workspace!]!
+  nextToken: String
+}
+```
+
+All operations that return paginated lists return a "Connection" that contains a list of items of the relevant type and an optional `nextToken` for requesting the next page.
+
+Example query with pagination:
+
+```graphql
+query ListWorkspaces($input: ListWorkspacesInput) {
+  listWorkspaces(input: $input) {
+    items {
+      id
+      name
+      description
+      environment
+      status
+      createdAt
     }
+    nextToken
   }
+}
+```
+
+The pagination input typically follows this structure:
+
+```graphql
+input ListWorkspacesInput {
+  limit: Int
+  nextToken: String
 }
 ```
 
@@ -277,11 +292,19 @@ Example variables:
 
 ```json
 {
-  "accountId": "account-123",
-  "first": 10,
-  "after": "cursor_from_previous_page"
+  "input": {
+    "limit": 10,
+    "nextToken": "eyJsYXN0SXRlbUlkIjoiMTIzNDUiLCJsYXN0SXRlbVZhbHVlIjoidGVzdCJ9"
+  }
 }
 ```
+
+### Pagination Guidelines
+
+- You can specify an optional `limit` to control the number of items returned per page
+- If no limit is provided, the system will use a default value
+- To retrieve the next page, pass the `nextToken` from the previous response
+- **Important**: A `nextToken` is only valid when used with the same `limit` that was used in the original request. You should not mix tokens returned from calls with different limit values
 
 ## Rate Limiting
 
