@@ -22,13 +22,21 @@ For information on obtaining access tokens, see the [Authentication Guide](../..
 
 The primary API for the App context is a GraphQL API:
 
-**Endpoint:** `https://api.aworld.cloud/app/graphql`
+**Current Endpoint:** `https://v1.gql.app.aworld.cloud/graphql`
+
+> **Note**: These endpoints are currently exposing internal APIs directly to customers. In the future, all APIs will be accessible through a single reverse proxy, and these endpoints will change.
+
+### API Versioning
+
+- **GraphQL**: GraphQL APIs typically use a rolling updates approach without formal versioning until breaking changes occurs. This allows the API to evolve while maintaining backward compatibility. During this pre-alpha stage, more significant changes may occur, but once stable, changes will follow the rolling approach.
+
+- **REST**: REST APIs (when published) will use explicit versioning (e.g., v1, v2). The version numbers will be aligned with GraphQL whenever REST requires updates.
 
 ### REST APIs
 
 REST APIs will have feature parity with GraphQL APIs but are not published yet:
 
-**Future Base URL:** `https://api.aworld.cloud/app`
+**Future Base URL:** To be determined after reverse proxy implementation
 
 ## GraphQL Schema
 
@@ -237,7 +245,7 @@ async function submitQuizAnswer(quizId, userAnswer, context = "default") {
     }
   };
 
-  const response = await fetch('https://api.aworld.cloud/app/graphql', {
+  const response = await fetch('https://v1.gql.app.aworld.cloud/graphql', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

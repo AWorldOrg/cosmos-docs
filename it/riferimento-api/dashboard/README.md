@@ -22,13 +22,21 @@ Per informazioni su come ottenere i token di accesso, consultare la [Guida all'A
 
 L'API principale per il contesto Dashboard è un'API GraphQL:
 
-**Endpoint:** `https://api.aworld.cloud/dashboard/graphql`
+**Endpoint Attuale:** `https://v1.gql.dashboard.aworld.cloud/graphql`
+
+> **Nota**: Questi endpoint stanno attualmente esponendo API interne direttamente ai clienti. In futuro, tutte le API saranno accessibili attraverso un singolo reverse proxy, e questi endpoint cambieranno.
+
+### Versionamento API
+
+- **GraphQL**: Le API GraphQL tipicamente utilizzano un approccio di aggiornamenti continui (rolling updates) senza un versionamento formale fino a quando non si verificano cambiamenti incompatibili. Questo permette all'API di evolversi mantenendo la compatibilità all'indietro. Durante questa fase pre-alpha, potrebbero verificarsi cambiamenti più significativi, ma una volta stabile, i cambiamenti seguiranno l'approccio rolling.
+
+- **REST**: Le API REST (quando saranno pubblicate) utilizzeranno un versionamento esplicito (es. v1, v2). I numeri di versione saranno allineati con GraphQL ogni volta che REST richiederà aggiornamenti.
 
 ### API REST
 
 Le API REST avranno parità di funzionalità con le API GraphQL ma non sono ancora pubblicate:
 
-**Futuro URL Base:** `https://api.aworld.cloud/dashboard`
+**Futuro URL Base:** TBD
 
 ## Schema GraphQL
 
@@ -401,7 +409,7 @@ async function fetchAccountWorkspaces(accountId) {
     }
   `;
 
-  const response = await fetch('https://api.aworld.cloud/dashboard/graphql', {
+  const response = await fetch('https://v1.gql.dashboard.aworld.cloud/graphql', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
