@@ -1,5 +1,7 @@
 # Quizzes
 
+> **Important**: This detailed documentation is provided for demonstration purposes. Always refer to the GraphQL schema (using introspection) for the most up-to-date API documentation. The schemas evolve over time, and introspection will always provide the current definition.
+
 Quizzes are interactive assessment units used throughout the Cosmos platform to engage users and evaluate knowledge. This document provides comprehensive information about the Quiz entity, its properties, and how it's used across different contexts.
 
 ## Overview
@@ -272,6 +274,29 @@ Variables:
 }
 ```
 
+### Context Usage in Quiz Submission
+
+The `context` parameter in quiz submissions serves an important purpose:
+
+```graphql
+# Input for submitting a quiz answer.
+input SubmitQuizInput {
+  # ID of the quiz being answered.
+  quizId: ID!
+  # User's selected answer.
+  answer: QuizAnswer!
+  # Context in which the quiz have been answered. Users can answer a quiz only once per context. 
+  # Using context creatively, complex logic can be built (for example, using a date, a month, a custom context, etc)
+  context: String
+}
+```
+
+Users can answer a quiz only once per unique context. This provides flexibility for implementing various quiz scenarios:
+- Use date-based contexts (e.g., "2025-03-18") to allow daily quiz attempts
+- Use location contexts (e.g., "homepage", "story-123") for different placements
+- Use sequential contexts (e.g., "level-1", "level-2") for progression tracking
+- Use custom contexts for specialized workflows
+
 ### Submitting a Quiz Answer
 
 ```javascript
@@ -294,7 +319,7 @@ async function submitQuizAnswer(quizId, userAnswer, context = "default") {
     input: {
       quizId: quizId,
       answer: userAnswer,
-      context: context
+      context: context  // Use strategically for replay control
     }
   };
 

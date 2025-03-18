@@ -1,5 +1,7 @@
 # Quiz
 
+> **Importante**: Questa documentazione dettagliata è fornita a scopo dimostrativo. Fai sempre riferimento allo schema GraphQL (utilizzando l'introspezione) per la documentazione API più aggiornata. Gli schemi evolvono nel tempo, e l'introspezione fornirà sempre la definizione corrente.
+
 I quiz sono unità di valutazione interattive utilizzate in tutta la piattaforma Cosmos per coinvolgere gli utenti e valutare le conoscenze. Questo documento fornisce informazioni complete sull'entità Quiz, le sue proprietà e come viene utilizzata in diversi contesti.
 
 ## Panoramica
@@ -272,6 +274,29 @@ Variabili:
 }
 ```
 
+### Utilizzo del Contesto nell'Invio dei Quiz
+
+Il parametro `context` nell'invio dei quiz serve a uno scopo importante:
+
+```graphql
+# Input per l'invio di una risposta a un quiz.
+input SubmitQuizInput {
+  # ID del quiz a cui si risponde.
+  quizId: ID!
+  # Risposta selezionata dall'utente.
+  answer: QuizAnswer!
+  # Contesto in cui il quiz è stato risposto. Gli utenti possono rispondere a un quiz solo una volta per contesto.
+  # Utilizzando il contesto in modo creativo, è possibile costruire logiche complesse (ad esempio, utilizzando una data, un mese, un contesto personalizzato, ecc.)
+  context: String
+}
+```
+
+Gli utenti possono rispondere a un quiz solo una volta per ogni contesto unico. Questo offre flessibilità per implementare vari scenari di quiz:
+- Uso di contesti basati sulla data (es. "2025-03-18") per consentire tentativi quotidiani
+- Uso di contesti di posizione (es. "homepage", "story-123") per diversi posizionamenti
+- Uso di contesti sequenziali (es. "livello-1", "livello-2") per il tracciamento della progressione
+- Uso di contesti personalizzati per flussi di lavoro specializzati
+
 ### Invio di una Risposta a un Quiz
 
 ```javascript
@@ -294,7 +319,7 @@ async function submitQuizAnswer(quizId, userAnswer, context = "default") {
     input: {
       quizId: quizId,
       answer: userAnswer,
-      context: context
+      context: context  // Usa strategicamente per il controllo della ripetizione
     }
   };
 

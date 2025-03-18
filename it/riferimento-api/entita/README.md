@@ -1,5 +1,7 @@
 # Entità Cosmos
 
+> **Importante**: Questa documentazione dettagliata è fornita a scopo dimostrativo. Fai sempre riferimento allo schema GraphQL (utilizzando l'introspezione) per la documentazione API più aggiornata. Gli schemi evolvono nel tempo, e l'introspezione fornirà sempre la definizione corrente.
+
 Questa sezione fornisce documentazione approfondita sulle entità principali della piattaforma Cosmos. Ogni entità è documentata in dettaglio con informazioni sul suo modello di dati, ciclo di vita, modelli di utilizzo nei diversi contesti e best practice.
 
 ## Scopo
