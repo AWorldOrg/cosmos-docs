@@ -34,8 +34,8 @@ REST APIs will have feature parity with GraphQL APIs but are not published yet:
 
 The Dashboard context GraphQL API provides the following main types of operations:
 
-1. **Queries**: For retrieving data about accounts, workspaces, users, and system configuration
-2. **Mutations**: For creating, updating, or deleting resources and configurations
+1. **Queries**: For retrieving data about users, quizzes, and workspace resources
+2. **Mutations**: For creating and updating resources
 
 ### Administrative Context
 
@@ -45,127 +45,197 @@ When authenticated, your API requests operate within the context of:
 - The **Account** you have access to manage
 - The specific **Workspace** you are currently working with
 
+## Schema Details
+
+### Scalar Types
+
+- `AWSDateTime`, `AWSDate`, `AWSTime`, `AWSTimestamp`
+- `AWSEmail`, `AWSJSON`, `AWSURL`, `AWSPhone`, `AWSIPAddress`
+- `Long`
+
+### Interfaces
+
+```graphql
+interface Node {
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+interface Connection {
+  items: [Node]
+  nextToken: String
+}
+```
+
+### User Types
+
+```graphql
+type User {
+  userId: ID!
+  principalId: String!
+  workspaceId: String!
+  accountId: String!
+  externalId: String
+  lang: String!
+  timezone: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type UserConnection {
+  items: [User!]!
+  nextToken: String
+}
+
+input CreateUserInput {
+  email: AWSEmail!
+  firstName: String
+  lastName: String
+  lang: String
+  timezone: String
+  externalId: String
+}
+```
+
+### Quiz Types
+
+```graphql
+enum QuizDifficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum QuizAnswer {
+  opt1
+  opt2
+  opt3
+  opt4
+}
+
+enum QuizOrigin {
+  CATALOG
+  CUSTOM
+}
+
+enum QuizPlacement {
+  STANDALONE
+  STORY
+  NEWS
+}
+
+type Quiz {
+  quizId: ID!
+  difficulty: QuizDifficulty!
+  answer: QuizAnswer!
+  syncWithCatalog: Boolean
+  origin: QuizOrigin!
+  placement: QuizPlacement!
+  quizCatalogId: ID!
+  translations: [QuizTranslation!]!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type QuizConnection {
+  items: [Quiz!]!
+  nextToken: String
+}
+
+type QuizTranslation {
+  quizId: ID!
+  lang: String!
+  opt1: String!
+  opt2: String!
+  opt3: String
+  opt4: String
+  question: String!
+  explanation: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input ListQuizzesInput {
+  limit: Int
+  nextToken: String
+}
+```
+
 ## Common Queries
 
-### Account Information
+### List Users
 
-Retrieve information about an account:
+Retrieve users in the current workspace:
 
 ```graphql
-query GetAccount($id: ID!) {
-  account(id: $id) {
-    id
-    name
-    status
-    createdAt
-    updatedAt
-    workspaces {
-      id
-      name
-      environment
+query ListUsers($nextToken: String) {
+  users(nextToken: $nextToken) {
+    items {
+      userId
+      principalId
+      workspaceId
+      accountId
+      externalId
+      lang
+      timezone
+      createdAt
+      updatedAt
     }
+    nextToken
   }
 }
 ```
 
-### Account Users
+### List Quizzes
 
-Retrieve users associated with an account:
-
-```graphql
-query GetAccountUsers($accountId: ID!) {
-  account(id: $accountId) {
-    id
-    name
-    users {
-      id
-      email
-      firstName
-      lastName
-      roles {
-        id
-        name
-      }
-      workspace {
-        id
-        name
-      }
-    }
-  }
-}
-```
-
-### Workspace Information
-
-Retrieve detailed information about a workspace:
+Retrieve quizzes with pagination:
 
 ```graphql
-query GetWorkspace($id: ID!) {
-  workspace(id: $id) {
-    id
-    name
-    description
-    environment
-    status
-    createdAt
-    updatedAt
-    account {
-      id
-      name
+query ListQuizzes($input: ListQuizzesInput) {
+  quizzes(input: $input) {
+    items {
+      quizId
+      difficulty
+      answer
+      origin
+      placement
+      quizCatalogId
+      syncWithCatalog
+      createdAt
+      updatedAt
+      translations {
+        lang
+        question
+        opt1
+        opt2
+        opt3
+        opt4
+        explanation
+      }
     }
-    users {
-      id
-      email
-      firstName
-      lastName
-    }
+    nextToken
   }
 }
 ```
 
 ## Common Mutations
 
-### Create Workspace
+### Create User
 
-Create a new workspace within an account:
+Create a new user in the current workspace:
 
 ```graphql
-mutation CreateWorkspace($input: CreateWorkspaceInput!) {
-  createWorkspace(input: $input) {
-    id
-    name
-    description
-    environment
-    status
+mutation CreateUser($input: CreateUserInput!) {
+  createUser(input: $input) {
+    userId
+    principalId
+    workspaceId
+    accountId
+    externalId
+    lang
+    timezone
     createdAt
-  }
-}
-```
-
-Example variables:
-
-```json
-{
-  "input": {
-    "accountId": "account-123",
-    "name": "Production Environment",
-    "description": "Production workspace for live applications",
-    "environment": "PRODUCTION"
-  }
-}
-```
-
-### Invite User
-
-Invite a user to join a workspace:
-
-```graphql
-mutation InviteUser($input: InviteUserInput!) {
-  inviteUser(input: $input) {
-    id
-    email
-    status
-    expiresAt
+    updatedAt
   }
 }
 ```
@@ -176,41 +246,11 @@ Example variables:
 {
   "input": {
     "email": "user@example.com",
-    "workspaceId": "workspace-123",
-    "roleIds": ["role-456"]
-  }
-}
-```
-
-### Update Account Settings
-
-Update settings for an account:
-
-```graphql
-mutation UpdateAccountSettings($id: ID!, $input: UpdateAccountSettingsInput!) {
-  updateAccountSettings(id: $id, input: $input) {
-    id
-    name
-    settings {
-      allowUserRegistration
-      requireMfa
-      sessionTimeout
-    }
-  }
-}
-```
-
-Example variables:
-
-```json
-{
-  "id": "account-123",
-  "input": {
-    "settings": {
-      "allowUserRegistration": true,
-      "requireMfa": true,
-      "sessionTimeout": 3600
-    }
+    "firstName": "John",
+    "lastName": "Doe",
+    "lang": "en",
+    "timezone": "Europe/Rome",
+    "externalId": "ext-12345"
   }
 }
 ```
