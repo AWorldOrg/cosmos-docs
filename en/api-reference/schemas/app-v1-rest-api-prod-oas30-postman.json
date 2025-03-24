@@ -1,0 +1,182 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "app-v1-rest-api",
+    "version" : "2025-03-24T15:10:09Z"
+  },
+  "servers" : [ {
+    "url" : "https://api.eu-west-1.aworld.cloud/app/v1"
+  } ],
+  "paths" : {
+    "/quiz/{quizId}/translation" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "quizId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "security" : [ {
+          "app-v1-rest-api-authorizer" : [ ]
+        } ]
+      },
+      "options" : {
+        "parameters" : [ {
+          "name" : "quizId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Access-Control-Allow-Methods" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Access-Control-Allow-Headers" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "content" : { }
+          }
+        }
+      }
+    },
+    "/user" : {
+      "post" : {
+        "security" : [ {
+          "app-v1-rest-api-authorizer" : [ ]
+        } ]
+      },
+      "options" : {
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Access-Control-Allow-Methods" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Access-Control-Allow-Headers" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "content" : { }
+          }
+        }
+      }
+    },
+    "/quiz/{quizId}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "quizId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "security" : [ {
+          "app-v1-rest-api-authorizer" : [ ]
+        } ]
+      },
+      "options" : {
+        "parameters" : [ {
+          "name" : "quizId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Access-Control-Allow-Methods" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Access-Control-Allow-Headers" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "content" : { }
+          }
+        }
+      }
+    },
+    "/quizzes" : {
+      "get" : {
+        "security" : [ {
+          "app-v1-rest-api-authorizer" : [ ]
+        } ]
+      },
+      "options" : {
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Access-Control-Allow-Methods" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Access-Control-Allow-Headers" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "content" : { }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "securitySchemes" : {
+      "app-v1-rest-api-authorizer" : {
+        "type" : "apiKey",
+        "name" : "Unused",
+        "in" : "header",
+        "x-amazon-apigateway-authtype" : "custom"
+      }
+    }
+  }
+}
