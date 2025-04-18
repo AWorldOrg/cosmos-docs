@@ -6,13 +6,10 @@
     "version" : "2025-04-18T14:26:01Z"
   },
   "servers" : [ {
-    "url" : "https://{baseUrl}/{basePath}",
+    "url" : "https://{baseUrl}",
     "variables" : {
       "baseUrl": {
-        "default": "api.eu-west-1.aworld.cloud"
-      },
-      "basePath" : {
-        "default" : "dashboard/v1"
+        "default": "api.eu-west-1.aworld.cloud/dashboard/v1"
       }
     }
   } ],
@@ -1042,6 +1039,35 @@
     }
   },
   "components" : {
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "description": "OAuth2 Client Credentials Flow",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://auth.eu-west-1.aworld.cloud/oauth2/token",
+            "scopes": {}
+          }
+        },
+        "x-postman-variables": [
+          {
+            "key": "clientId",
+            "value": "{{clientId}}"
+          },
+          {
+            "key": "clientSecret",
+            "value": "{{clientSecret}}"
+          }
+        ]
+      },
+      "dashboard-v1-rest-api-authorizer": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header",
+        "x-amazon-apigateway-authtype": "custom",
+        "description": "API Gateway custom authorizer for validating dashboard user authentication"
+      }
+    },
     "schemas": {
       "User": {
         "type": "object",
@@ -1782,15 +1808,6 @@
             "description": "Translated description for the activity"
           }
         }
-      }
-    },
-    "securitySchemes" : {
-      "dashboard-v1-rest-api-authorizer" : {
-        "type" : "apiKey",
-        "name" : "Unused",
-        "in" : "header",
-        "x-amazon-apigateway-authtype" : "custom",
-        "description": "API Gateway custom authorizer for validating dashboard user authentication"
       }
     }
   }

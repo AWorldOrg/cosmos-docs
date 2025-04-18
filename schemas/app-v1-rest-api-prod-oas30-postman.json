@@ -6,13 +6,10 @@
     "version": "2025-04-18T14:27:21Z"
   },
   "servers": [{
-    "url": "https://{baseUrl}/{basePath}",
+    "url": "https://{baseUrl}",
     "variables": {
       "baseUrl": {
-        "default": "api.eu-west-1.aworld.cloud"
-      },
-      "basePath": {
-        "default": "app/v1"
+        "default": "api.eu-west-1.aworld.cloud/app/v1"
       }
     }
   }],
@@ -338,6 +335,35 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "description": "OAuth2 Client Credentials Flow",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://auth.eu-west-1.aworld.cloud/oauth2/token",
+            "scopes": {}
+          }
+        },
+        "x-postman-variables": [
+          {
+            "key": "clientId",
+            "value": "{{clientId}}"
+          },
+          {
+            "key": "clientSecret",
+            "value": "{{clientSecret}}"
+          }
+        ]
+      },
+      "app-v1-rest-api-authorizer": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header",
+        "x-amazon-apigateway-authtype": "custom",
+        "description": "API Gateway custom authorizer for validating user authentication"
+      }
+    },
     "schemas": {
       "AppQuiz": {
         "type": "object",
@@ -607,15 +633,6 @@
             "description": "Timestamp when the user was last updated"
           }
         }
-      }
-    },
-    "securitySchemes": {
-      "app-v1-rest-api-authorizer": {
-        "type": "apiKey",
-        "name": "Unused",
-        "in": "header",
-        "x-amazon-apigateway-authtype": "custom",
-        "description": "API Gateway custom authorizer for validating user authentication"
       }
     }
   }
