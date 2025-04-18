@@ -419,27 +419,82 @@
     },
     "/rewardRules/{rewardRuleId}" : {
       "get" : {
+        "summary": "Get reward rule by ID",
+        "description": "Retrieves a specific reward rule by its unique identifier",
         "parameters" : [ {
           "name" : "rewardRuleId",
           "in" : "path",
+          "description": "Unique identifier of the reward rule to retrieve",
           "required" : true,
           "schema" : {
             "type" : "string"
           }
         } ],
+        "responses": {
+          "200": {
+            "description": "Reward rule retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RewardRule"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Reward rule not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
       },
       "post" : {
+        "summary": "Update reward rule",
+        "description": "Updates an existing reward rule identified by its ID",
         "parameters" : [ {
           "name" : "rewardRuleId",
           "in" : "path",
+          "description": "Unique identifier of the reward rule to update",
           "required" : true,
           "schema" : {
             "type" : "string"
           }
         } ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRewardRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reward rule updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RewardRule"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Reward rule not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
@@ -634,11 +689,91 @@
     },
     "/rewardRules" : {
       "get" : {
+        "summary": "List reward rules",
+        "description": "Retrieves a paginated list of reward rules available in the workspace",
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of reward rules to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of reward rules retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RewardRule"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
       },
       "post" : {
+        "summary": "Create reward rule",
+        "description": "Creates a new reward rule with a system-generated ID",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRewardRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Reward rule created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RewardRule"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
@@ -780,14 +915,38 @@
     },
     "/rewardRules/{rewardRuleId}/publish" : {
       "post" : {
+        "summary": "Publish a reward rule",
+        "description": "Publishes a reward rule, making it available for use in the application",
         "parameters" : [ {
           "name" : "rewardRuleId",
           "in" : "path",
+          "description": "Unique identifier of the reward rule to publish",
           "required" : true,
           "schema" : {
             "type" : "string"
           }
         } ],
+        "responses": {
+          "200": {
+            "description": "Reward rule published successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RewardRule"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Reward rule not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
@@ -1040,6 +1199,263 @@
   },
   "components" : {
     "schemas": {
+      "JsonLogicExpression": {
+        "description": "JSON Logic expression used for defining conditions and calculations",
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "Object representation of a JSON Logic rule"
+          },
+          {
+            "type": "number",
+            "description": "Numeric literal value"
+          },
+          {
+            "type": "boolean",
+            "description": "Boolean literal value"
+          }
+        ]
+      },
+      "Reward": {
+        "type": "object",
+        "description": "Definition of a reward associated with a reward rule",
+        "required": ["rewardCurrencyId", "expression"],
+        "properties": {
+          "rewardCurrencyId": {
+            "type": "string",
+            "description": "Identifier of the reward currency to award"
+          },
+          "expression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression that calculates the amount of reward currency to award"
+          }
+        }
+      },
+      "RewardRule": {
+        "type": "object",
+        "description": "Reward rule entity defining conditions for awarding rewards",
+        "required": ["rewardRuleId", "name", "ruleType", "matchEntity", "matchCondition", "applicationMode", "origin", "defaultLang", "langs", "rewards", "createdAt", "updatedAt"],
+        "properties": {
+          "rewardRuleId": {
+            "type": "string",
+            "description": "Unique identifier for the reward rule"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the reward rule"
+          },
+          "ruleType": {
+            "type": "string",
+            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "description": "Type of rule determining its scope and application"
+          },
+          "matchEntity": {
+            "type": "string",
+            "enum": ["Activity", "Quiz", "Tag"],
+            "description": "Entity type this rule applies to"
+          },
+          "matchEntityId": {
+            "type": "string",
+            "description": "Specific entity ID this rule applies to (if applicable)"
+          },
+          "matchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression that determines whether the rule applies"
+          },
+          "applicationMode": {
+            "type": "string",
+            "enum": ["ALWAYS", "FALLBACK", "DISABLED"],
+            "description": "Mode determining when the rule should be applied"
+          },
+          "origin": {
+            "type": "string",
+            "enum": ["CATALOG", "CUSTOM"],
+            "description": "Whether the reward rule comes from a central catalog or is custom-created"
+          },
+          "rewardRuleCatalogId": {
+            "type": "string",
+            "description": "ID reference to the original reward rule in the catalog if applicable"
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether the reward rule should be synced with catalog updates"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "The default language code for the reward rule content"
+          },
+          "langs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of language codes available for this reward rule"
+          },
+          "rewards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Reward"
+            },
+            "description": "List of rewards to be awarded when the rule conditions are met",
+            "minItems": 1,
+            "maxItems": 10
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that owns this reward rule"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that contains this reward rule"
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where the reward rule was created"
+          },
+          "stage": {
+            "type": "string",
+            "enum": ["DRAFT", "PUBLISHED"],
+            "description": "Current publication stage of the reward rule"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the reward rule was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the reward rule was last updated"
+          }
+        }
+      },
+      "CreateRewardRuleRequest": {
+        "type": "object",
+        "description": "Data required to create a new reward rule",
+        "required": ["name", "ruleType", "matchEntity", "matchCondition", "applicationMode", "defaultLang", "translations", "rewards"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the reward rule"
+          },
+          "ruleType": {
+            "type": "string",
+            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "description": "Type of rule determining its scope and application"
+          },
+          "matchEntity": {
+            "type": "string",
+            "enum": ["Activity", "Quiz", "Tag"],
+            "description": "Entity type this rule applies to"
+          },
+          "matchEntityId": {
+            "type": "string",
+            "description": "Specific entity ID this rule applies to (if applicable)"
+          },
+          "matchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression that determines whether the rule applies"
+          },
+          "applicationMode": {
+            "type": "string",
+            "enum": ["ALWAYS", "FALLBACK", "DISABLED"],
+            "description": "Mode determining when the rule should be applied"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "The default language code for the reward rule content"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RewardRuleTranslation"
+            },
+            "description": "List of translations for the reward rule content",
+            "minItems": 1,
+            "maxItems": 10
+          },
+          "rewards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Reward"
+            },
+            "description": "List of rewards to be awarded when the rule conditions are met",
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "UpdateRewardRuleRequest": {
+        "type": "object",
+        "description": "Data required to update an existing reward rule",
+        "required": ["name", "ruleType", "matchEntity", "matchCondition", "applicationMode", "defaultLang", "translations", "rewards"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Updated name of the reward rule"
+          },
+          "ruleType": {
+            "type": "string",
+            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "description": "Updated type of rule determining its scope and application"
+          },
+          "matchEntity": {
+            "type": "string",
+            "enum": ["Activity", "Quiz", "Tag"],
+            "description": "Updated entity type this rule applies to"
+          },
+          "matchEntityId": {
+            "type": "string",
+            "description": "Updated specific entity ID this rule applies to (if applicable)"
+          },
+          "matchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Updated JSON Logic expression that determines whether the rule applies"
+          },
+          "applicationMode": {
+            "type": "string",
+            "enum": ["ALWAYS", "FALLBACK", "DISABLED"],
+            "description": "Updated mode determining when the rule should be applied"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Updated default language code for the reward rule content"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RewardRuleTranslation"
+            },
+            "description": "Updated list of translations for the reward rule content",
+            "minItems": 1,
+            "maxItems": 10
+          },
+          "rewards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Reward"
+            },
+            "description": "Updated list of rewards to be awarded when the rule conditions are met",
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "RewardRuleTranslation": {
+        "type": "object",
+        "description": "Translation for reward rule content in a specific language",
+        "required": ["lang"],
+        "properties": {
+          "lang": {
+            "type": "string",
+            "description": "Language code for this translation"
+          },
+          "description": {
+            "type": "string",
+            "description": "Translated description for the reward rule"
+          }
+        }
+      },
       "RewardCurrency": {
         "type": "object",
         "description": "Reward currency entity representing a digital asset or point system that users can earn",
