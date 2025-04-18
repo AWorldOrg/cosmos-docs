@@ -6,10 +6,10 @@
     "version" : "2025-04-18T14:26:01Z"
   },
   "servers" : [ {
-    "url" : "https://{baseUrl}",
+    "url" : "{baseUrl}",
     "variables" : {
       "baseUrl": {
-        "default": "api.eu-west-1.aworld.cloud/dashboard/v1"
+        "default": "https://api.eu-west-1.aworld.cloud/dashboard/v1"
       }
     }
   } ],
