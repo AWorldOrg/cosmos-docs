@@ -54,39 +54,6 @@
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
-      },
-      "options" : {
-        "parameters" : [ {
-          "name" : "rewardCurrencyId",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "content" : { }
-          }
-        }
       }
     },
     "/users" : {
@@ -182,31 +149,6 @@
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
-      },
-      "options" : {
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "content" : { }
-          }
-        }
       }
     },
     "/activities" : {
@@ -264,31 +206,6 @@
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
-      },
-      "options" : {
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "content" : { }
-          }
-        }
       }
     },
     "/tags" : {
@@ -381,31 +298,6 @@
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
-      },
-      "options" : {
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "content" : { }
-          }
-        }
       }
     },
     "/rewardCurrencies/{rewardCurrencyId}" : {
@@ -545,39 +437,6 @@
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
-      },
-      "options" : {
-        "parameters" : [ {
-          "name" : "rewardCurrencyId",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "content" : { }
-          }
-        }
       }
     },
     "/rewardRules/{rewardRuleId}" : {
@@ -661,39 +520,6 @@
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
-      },
-      "options" : {
-        "parameters" : [ {
-          "name" : "rewardRuleId",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "content" : { }
-          }
-        }
       }
     },
     "/rewardCurrencies" : {
@@ -751,31 +577,6 @@
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
-      },
-      "options" : {
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "content" : { }
-          }
-        }
       }
     },
     "/activities/{activityId}/publish" : {
@@ -815,39 +616,6 @@
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
-      },
-      "options" : {
-        "parameters" : [ {
-          "name" : "activityId",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "content" : { }
-          }
-        }
       }
     },
     "/rewardRules" : {
@@ -940,31 +708,6 @@
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
-      },
-      "options" : {
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "content" : { }
-          }
-        }
       }
     },
     "/tags/{tagId}" : {
@@ -1048,39 +791,6 @@
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
-      },
-      "options" : {
-        "parameters" : [ {
-          "name" : "tagId",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "content" : { }
-          }
-        }
       }
     },
     "/tags/{tagId}/publish" : {
@@ -1120,39 +830,6 @@
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
-      },
-      "options" : {
-        "parameters" : [ {
-          "name" : "tagId",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "content" : { }
-          }
-        }
       }
     },
     "/rewardRules/{rewardRuleId}/publish" : {
@@ -1192,39 +869,6 @@
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
-      },
-      "options" : {
-        "parameters" : [ {
-          "name" : "rewardRuleId",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "content" : { }
-          }
-        }
       }
     },
     "/users/{userId}" : {
@@ -1261,39 +905,6 @@
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
-      },
-      "options" : {
-        "parameters" : [ {
-          "name" : "userId",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "content" : { }
-          }
-        }
       }
     },
     "/activities/{activityId}" : {
@@ -1424,39 +1035,6 @@
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
-      },
-      "options" : {
-        "parameters" : [ {
-          "name" : "activityId",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "content" : { }
-          }
-        }
       }
     }
   },
