@@ -6,151 +6,17 @@
     "version" : "2025-04-18T14:26:01Z"
   },
   "servers" : [ {
-    "url" : "https://api.eu-west-1.aworld.cloud/{basePath}",
+    "url" : "https://{baseUrl}/{basePath}",
     "variables" : {
+      "baseUrl": {
+        "default": "api.eu-west-1.aworld.cloud"
+      },
       "basePath" : {
         "default" : "dashboard/v1"
       }
     }
   } ],
   "paths" : {
-    "/rewardCurrencies/{rewardCurrencyId}/publish" : {
-      "post" : {
-        "summary": "Publish a reward currency",
-        "description": "Publishes a reward currency, making it available for use in the application",
-        "parameters" : [ {
-          "name" : "rewardCurrencyId",
-          "in" : "path",
-          "description": "Unique identifier of the reward currency to publish",
-          "required" : true,
-          "schema" : {
-            "type" : "string",
-            "minLength": 2,
-            "maxLength": 30,
-            "pattern": "^\\S+$"
-          }
-        } ],
-        "responses": {
-          "200": {
-            "description": "Reward currency published successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RewardCurrency"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request"
-          },
-          "404": {
-            "description": "Reward currency not found"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
-      }
-    },
-    "/users" : {
-      "get" : {
-        "summary": "List users",
-        "description": "Retrieves a paginated list of users available in the workspace",
-        "parameters": [
-          {
-            "name": "nextToken",
-            "in": "query",
-            "description": "Pagination token for fetching the next set of results",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of users to return per page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of users retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/User"
-                      }
-                    },
-                    "nextToken": {
-                      "type": "string",
-                      "description": "Pagination token for the next set of results"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
-      },
-      "post" : {
-        "summary": "Create user",
-        "description": "Creates a new user in the system with generated credentials",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "User created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input"
-          },
-          "409": {
-            "description": "User with the specified email already exists"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
-      }
-    },
     "/activities" : {
       "get" : {
         "summary": "List activities",
@@ -208,10 +74,179 @@
         } ]
       }
     },
-    "/tags" : {
+    "/activities/{activityId}" : {
       "get" : {
-        "summary": "List tags",
-        "description": "Retrieves a paginated list of tags available in the workspace",
+        "summary": "Get activity by ID",
+        "description": "Retrieves a specific activity by its unique identifier",
+        "parameters" : [ {
+          "name" : "activityId",
+          "in" : "path",
+          "description": "Unique identifier of the activity to retrieve",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses": {
+          "200": {
+            "description": "Activity retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Activity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Activity not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "dashboard-v1-rest-api-authorizer" : [ ]
+        } ]
+      },
+      "put" : {
+        "summary": "Create activity",
+        "description": "Creates a new activity with the specified ID. It is recommended to use a human-readable ID.",
+        "parameters" : [ {
+          "name" : "activityId",
+          "in" : "path",
+          "description": "Unique identifier for the new activity",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateActivityRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Activity created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Activity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "409": {
+            "description": "Activity ID already exists"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "dashboard-v1-rest-api-authorizer" : [ ]
+        } ]
+      },
+      "post" : {
+        "summary": "Update activity",
+        "description": "Updates an existing activity identified by its ID",
+        "parameters" : [ {
+          "name" : "activityId",
+          "in" : "path",
+          "description": "Unique identifier of the activity to update",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateActivityRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Activity updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Activity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Activity not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "dashboard-v1-rest-api-authorizer" : [ ]
+        } ]
+      }
+    },
+    "/activities/{activityId}/publish" : {
+      "post" : {
+        "summary": "Publish an activity",
+        "description": "Publishes an activity, making it available for use in the application",
+        "parameters" : [ {
+          "name" : "activityId",
+          "in" : "path",
+          "description": "Unique identifier of the activity to publish",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses": {
+          "200": {
+            "description": "Activity published successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Activity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Activity not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "dashboard-v1-rest-api-authorizer" : [ ]
+        } ]
+      }
+    },
+    "/rewardCurrencies" : {
+      "get" : {
+        "summary": "List reward currencies",
+        "description": "Retrieves a paginated list of reward currencies available in the workspace",
         "parameters": [
           {
             "name": "nextToken",
@@ -225,7 +260,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of tags to return per page",
+            "description": "Maximum number of reward currencies to return per page",
             "required": false,
             "schema": {
               "type": "integer",
@@ -235,7 +270,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of tags retrieved successfully",
+            "description": "List of reward currencies retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -244,7 +279,7 @@
                     "items": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Tag"
+                        "$ref": "#/components/schemas/RewardCurrency"
                       }
                     },
                     "nextToken": {
@@ -255,41 +290,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
-      },
-      "post" : {
-        "summary": "Create tag",
-        "description": "Creates a new tag with a system-generated ID",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateTagRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Tag created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Tag"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input"
           },
           "401": {
             "description": "Unauthorized"
@@ -340,7 +340,7 @@
       },
       "put" : {
         "summary": "Create reward currency",
-        "description": "Creates a new reward currency with the specified ID",
+        "description": "Creates a new reward currency with the specified ID. It is recommended to use a human-readable ID.",
         "parameters" : [ {
           "name" : "rewardCurrencyId",
           "in" : "path",
@@ -364,7 +364,7 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "Reward currency created successfully",
             "content": {
               "application/json": {
@@ -429,6 +429,140 @@
           },
           "404": {
             "description": "Reward currency not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "dashboard-v1-rest-api-authorizer" : [ ]
+        } ]
+      }
+    },
+    "/rewardCurrencies/{rewardCurrencyId}/publish" : {
+      "post" : {
+        "summary": "Publish a reward currency",
+        "description": "Publishes a reward currency, making it available for use in the application",
+        "parameters" : [ {
+          "name" : "rewardCurrencyId",
+          "in" : "path",
+          "description": "Unique identifier of the reward currency to publish",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "minLength": 2,
+            "maxLength": 30,
+            "pattern": "^\\S+$"
+          }
+        } ],
+        "responses": {
+          "200": {
+            "description": "Reward currency published successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RewardCurrency"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Reward currency not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "dashboard-v1-rest-api-authorizer" : [ ]
+        } ]
+      }
+    },
+    "/rewardRules" : {
+      "get" : {
+        "summary": "List reward rules",
+        "description": "Retrieves a paginated list of reward rules available in the workspace",
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of reward rules to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of reward rules retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RewardRule"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "dashboard-v1-rest-api-authorizer" : [ ]
+        } ]
+      },
+      "post" : {
+        "summary": "Create reward rule",
+        "description": "Creates a new reward rule with a system-generated ID",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRewardRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reward rule created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RewardRule"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
           },
           "401": {
             "description": "Unauthorized"
@@ -522,71 +656,14 @@
         } ]
       }
     },
-    "/rewardCurrencies" : {
-      "get" : {
-        "summary": "List reward currencies",
-        "description": "Retrieves a paginated list of reward currencies available in the workspace",
-        "parameters": [
-          {
-            "name": "nextToken",
-            "in": "query",
-            "description": "Pagination token for fetching the next set of results",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of reward currencies to return per page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of reward currencies retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/RewardCurrency"
-                      }
-                    },
-                    "nextToken": {
-                      "type": "string",
-                      "description": "Pagination token for the next set of results"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
-      }
-    },
-    "/activities/{activityId}/publish" : {
+    "/rewardRules/{rewardRuleId}/publish" : {
       "post" : {
-        "summary": "Publish an activity",
-        "description": "Publishes an activity, making it available for use in the application",
+        "summary": "Publish a reward rule",
+        "description": "Publishes a reward rule, making it available for use in the application",
         "parameters" : [ {
-          "name" : "activityId",
+          "name" : "rewardRuleId",
           "in" : "path",
-          "description": "Unique identifier of the activity to publish",
+          "description": "Unique identifier of the reward rule to publish",
           "required" : true,
           "schema" : {
             "type" : "string"
@@ -594,11 +671,11 @@
         } ],
         "responses": {
           "200": {
-            "description": "Activity published successfully",
+            "description": "Reward rule published successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Activity"
+                  "$ref": "#/components/schemas/RewardRule"
                 }
               }
             }
@@ -607,7 +684,7 @@
             "description": "Invalid request"
           },
           "404": {
-            "description": "Activity not found"
+            "description": "Reward rule not found"
           },
           "401": {
             "description": "Unauthorized"
@@ -618,10 +695,10 @@
         } ]
       }
     },
-    "/rewardRules" : {
+    "/tags" : {
       "get" : {
-        "summary": "List reward rules",
-        "description": "Retrieves a paginated list of reward rules available in the workspace",
+        "summary": "List tags",
+        "description": "Retrieves a paginated list of tags available in the workspace",
         "parameters": [
           {
             "name": "nextToken",
@@ -635,7 +712,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of reward rules to return per page",
+            "description": "Maximum number of tags to return per page",
             "required": false,
             "schema": {
               "type": "integer",
@@ -645,7 +722,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of reward rules retrieved successfully",
+            "description": "List of tags retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -654,7 +731,7 @@
                     "items": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/RewardRule"
+                        "$ref": "#/components/schemas/Tag"
                       }
                     },
                     "nextToken": {
@@ -675,25 +752,25 @@
         } ]
       },
       "post" : {
-        "summary": "Create reward rule",
-        "description": "Creates a new reward rule with a system-generated ID",
+        "summary": "Create tag",
+        "description": "Creates a new tag with a system-generated ID",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateRewardRuleRequest"
+                "$ref": "#/components/schemas/CreateTagRequest"
               }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Reward rule created successfully",
+          "200": {
+            "description": "Tag created successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RewardRule"
+                  "$ref": "#/components/schemas/Tag"
                 }
               }
             }
@@ -832,35 +909,91 @@
         } ]
       }
     },
-    "/rewardRules/{rewardRuleId}/publish" : {
-      "post" : {
-        "summary": "Publish a reward rule",
-        "description": "Publishes a reward rule, making it available for use in the application",
-        "parameters" : [ {
-          "name" : "rewardRuleId",
-          "in" : "path",
-          "description": "Unique identifier of the reward rule to publish",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+    "/users" : {
+      "get" : {
+        "summary": "List users",
+        "description": "Retrieves a paginated list of users available in the workspace",
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of users to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
           }
-        } ],
+        ],
         "responses": {
           "200": {
-            "description": "Reward rule published successfully",
+            "description": "List of users retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RewardRule"
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "dashboard-v1-rest-api-authorizer" : [ ]
+        } ]
+      },
+      "post" : {
+        "summary": "Create user",
+        "description": "Creates a new user in the system with generated credentials",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request"
+            "description": "Invalid input"
           },
-          "404": {
-            "description": "Reward rule not found"
+          "409": {
+            "description": "User with the specified email already exists"
           },
           "401": {
             "description": "Unauthorized"
@@ -897,136 +1030,6 @@
           },
           "404": {
             "description": "User not found"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
-      }
-    },
-    "/activities/{activityId}" : {
-      "get" : {
-        "summary": "Get activity by ID",
-        "description": "Retrieves a specific activity by its unique identifier",
-        "parameters" : [ {
-          "name" : "activityId",
-          "in" : "path",
-          "description": "Unique identifier of the activity to retrieve",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses": {
-          "200": {
-            "description": "Activity retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Activity"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Activity not found"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
-      },
-      "put" : {
-        "summary": "Create activity",
-        "description": "Creates a new activity with the specified ID",
-        "parameters" : [ {
-          "name" : "activityId",
-          "in" : "path",
-          "description": "Unique identifier for the new activity",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateActivityRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Activity created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Activity"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input"
-          },
-          "409": {
-            "description": "Activity ID already exists"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
-      },
-      "post" : {
-        "summary": "Update activity",
-        "description": "Updates an existing activity identified by its ID",
-        "parameters" : [ {
-          "name" : "activityId",
-          "in" : "path",
-          "description": "Unique identifier of the activity to update",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateActivityRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Activity updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Activity"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input"
-          },
-          "404": {
-            "description": "Activity not found"
           },
           "401": {
             "description": "Unauthorized"

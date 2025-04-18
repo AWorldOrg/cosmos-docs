@@ -6,296 +6,17 @@
     "version": "2025-04-18T14:27:21Z"
   },
   "servers": [{
-    "url": "https://api.eu-west-1.aworld.cloud/{basePath}",
+    "url": "https://{baseUrl}/{basePath}",
     "variables": {
+      "baseUrl": {
+        "default": "api.eu-west-1.aworld.cloud"
+      },
       "basePath": {
         "default": "app/v1"
       }
     }
   }],
   "paths": {
-    "/quizzes/{quizId}": {
-      "get": {
-        "summary": "Get a specific quiz by ID",
-        "description": "Retrieves a quiz object with associated content, excluding the correct answer for client-side display purposes.",
-        "parameters": [{
-          "name": "quizId",
-          "in": "path",
-          "description": "Unique identifier for the quiz to retrieve",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "200": {
-            "description": "Quiz retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AppQuiz"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Quiz not found"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security": [{
-          "app-v1-rest-api-authorizer": []
-        }]
-      },
-      "options": {
-        "parameters": [{
-          "name": "quizId",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "204": {
-            "description": "204 response",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Methods": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {}
-          }
-        }
-      }
-    },
-    "/users": {
-      "post": {
-        "summary": "Create a new user",
-        "description": "Creates a new user in the system",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "User created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security": [{
-          "app-v1-rest-api-authorizer": []
-        }]
-      },
-      "options": {
-        "responses": {
-          "204": {
-            "description": "204 response",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Methods": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {}
-          }
-        }
-      }
-    },
-    "/quizzes": {
-      "get": {
-        "summary": "List available quizzes",
-        "description": "Retrieves a paginated list of available quizzes for the authenticated user",
-        "parameters": [
-          {
-            "name": "cursor",
-            "in": "query",
-            "description": "Pagination cursor for fetching the next set of results",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of quizzes to return per page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of quizzes retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/AppQuiz"
-                      }
-                    },
-                    "cursor": {
-                      "type": "string",
-                      "description": "Pagination cursor for the next set of results"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security": [{
-          "app-v1-rest-api-authorizer": []
-        }]
-      },
-      "options": {
-        "responses": {
-          "204": {
-            "description": "204 response",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Methods": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {}
-          }
-        }
-      }
-    },
-    "/quizzes/{quizId}/translation": {
-      "get": {
-        "summary": "Get translations for a quiz",
-        "description": "Retrieves the translation content for a specific quiz, including questions and answer options",
-        "parameters": [{
-          "name": "quizId",
-          "in": "path",
-          "description": "Unique identifier for the quiz to retrieve translations for",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "200": {
-            "description": "Quiz translation retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/QuizTranslation"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Quiz or translation not found"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security": [{
-          "app-v1-rest-api-authorizer": []
-        }]
-      },
-      "options": {
-        "parameters": [{
-          "name": "quizId",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "204": {
-            "description": "204 response",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Methods": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {}
-          }
-        }
-      }
-    },
     "/activityLogs": {
       "put": {
         "summary": "Create a new activity log",
@@ -311,7 +32,7 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "Activity log created successfully",
             "content": {
               "application/json": {
@@ -366,31 +87,6 @@
         "security": [{
           "app-v1-rest-api-authorizer": []
         }]
-      },
-      "options": {
-        "responses": {
-          "204": {
-            "description": "204 response",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Methods": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {}
-          }
-        }
       }
     },
     "/activityLogs/{activityLogId}": {
@@ -472,39 +168,172 @@
         "security": [{
           "app-v1-rest-api-authorizer": []
         }]
-      },
-      "options": {
+      }
+    },
+    "/quizzes": {
+      "get": {
+        "summary": "List available quizzes",
+        "description": "Retrieves a paginated list of available quizzes for the authenticated user",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of quizzes to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of quizzes retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AppQuiz"
+                      }
+                    },
+                    "cursor": {
+                      "type": "string",
+                      "description": "Pagination cursor for the next set of results"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [{
+          "app-v1-rest-api-authorizer": []
+        }]
+      }
+    },
+    "/quizzes/{quizId}": {
+      "get": {
+        "summary": "Get a specific quiz by ID",
+        "description": "Retrieves a quiz object with associated content, excluding the correct answer for client-side display purposes.",
         "parameters": [{
-          "name": "activityLogId",
+          "name": "quizId",
           "in": "path",
+          "description": "Unique identifier for the quiz to retrieve",
           "required": true,
           "schema": {
             "type": "string"
           }
         }],
         "responses": {
-          "204": {
-            "description": "204 response",
-            "headers": {
-              "Access-Control-Allow-Origin": {
+          "200": {
+            "description": "Quiz retrieved successfully",
+            "content": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Methods": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/AppQuiz"
                 }
               }
-            },
-            "content": {}
+            }
+          },
+          "404": {
+            "description": "Quiz not found"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
-        }
+        },
+        "security": [{
+          "app-v1-rest-api-authorizer": []
+        }]
+      }
+    },
+    "/quizzes/{quizId}/translation": {
+      "get": {
+        "summary": "Get translations for a quiz",
+        "description": "Retrieves the translation content for a specific quiz, including questions and answer options",
+        "parameters": [{
+          "name": "quizId",
+          "in": "path",
+          "description": "Unique identifier for the quiz to retrieve translations for",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Quiz translation retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuizTranslation"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Quiz or translation not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [{
+          "app-v1-rest-api-authorizer": []
+        }]
+      }
+    },
+    "/users": {
+      "post": {
+        "summary": "Create a new user",
+        "description": "Creates a new user in the system",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [{
+          "app-v1-rest-api-authorizer": []
+        }]
       }
     }
   },
