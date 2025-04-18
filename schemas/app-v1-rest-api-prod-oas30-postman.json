@@ -1,181 +1,792 @@
 {
-  "openapi" : "3.0.1",
-  "info" : {
-    "title" : "app-v1-rest-api",
-    "version" : "2025-03-24T15:10:09Z"
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Cosmos App APIs",
+    "description": "API for client applications to interact with the Cosmos platform",
+    "version": "2025-04-18T14:27:21Z"
   },
-  "servers" : [ {
-    "url" : "https://api.eu-west-1.aworld.cloud/app/v1"
-  } ],
-  "paths" : {
-    "/quiz/{quizId}/translation" : {
-      "get" : {
-        "parameters" : [ {
-          "name" : "quizId",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+  "servers": [{
+    "url": "https://api.eu-west-1.aworld.cloud/{basePath}",
+    "variables": {
+      "basePath": {
+        "default": "app/v1"
+      }
+    }
+  }],
+  "paths": {
+    "/quizzes/{quizId}": {
+      "get": {
+        "summary": "Get a specific quiz by ID",
+        "description": "Retrieves a quiz object with associated content, excluding the correct answer for client-side display purposes.",
+        "parameters": [{
+          "name": "quizId",
+          "in": "path",
+          "description": "Unique identifier for the quiz to retrieve",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        } ],
-        "security" : [ {
-          "app-v1-rest-api-authorizer" : [ ]
-        } ]
+        }],
+        "responses": {
+          "200": {
+            "description": "Quiz retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppQuiz"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Quiz not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [{
+          "app-v1-rest-api-authorizer": []
+        }]
       },
-      "options" : {
-        "parameters" : [ {
-          "name" : "quizId",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+      "options": {
+        "parameters": [{
+          "name": "quizId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        } ],
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
+        }],
+        "responses": {
+          "204": {
+            "description": "204 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
                 }
               },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string"
                 }
               },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string"
                 }
               }
             },
-            "content" : { }
+            "content": {}
           }
         }
       }
     },
-    "/user" : {
-      "post" : {
-        "security" : [ {
-          "app-v1-rest-api-authorizer" : [ ]
-        } ]
+    "/users": {
+      "post": {
+        "summary": "Create a new user",
+        "description": "Creates a new user in the system",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [{
+          "app-v1-rest-api-authorizer": []
+        }]
       },
-      "options" : {
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
+      "options": {
+        "responses": {
+          "204": {
+            "description": "204 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
                 }
               },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string"
                 }
               },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string"
                 }
               }
             },
-            "content" : { }
+            "content": {}
           }
         }
       }
     },
-    "/quiz/{quizId}" : {
-      "get" : {
-        "parameters" : [ {
-          "name" : "quizId",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+    "/quizzes": {
+      "get": {
+        "summary": "List available quizzes",
+        "description": "Retrieves a paginated list of available quizzes for the authenticated user",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of quizzes to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
           }
-        } ],
-        "security" : [ {
-          "app-v1-rest-api-authorizer" : [ ]
-        } ]
+        ],
+        "responses": {
+          "200": {
+            "description": "List of quizzes retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AppQuiz"
+                      }
+                    },
+                    "cursor": {
+                      "type": "string",
+                      "description": "Pagination cursor for the next set of results"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [{
+          "app-v1-rest-api-authorizer": []
+        }]
       },
-      "options" : {
-        "parameters" : [ {
-          "name" : "quizId",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
+      "options": {
+        "responses": {
+          "204": {
+            "description": "204 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
                 }
               },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string"
                 }
               },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string"
                 }
               }
             },
-            "content" : { }
+            "content": {}
           }
         }
       }
     },
-    "/quizzes" : {
-      "get" : {
-        "security" : [ {
-          "app-v1-rest-api-authorizer" : [ ]
-        } ]
+    "/quizzes/{quizId}/translation": {
+      "get": {
+        "summary": "Get translations for a quiz",
+        "description": "Retrieves the translation content for a specific quiz, including questions and answer options",
+        "parameters": [{
+          "name": "quizId",
+          "in": "path",
+          "description": "Unique identifier for the quiz to retrieve translations for",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Quiz translation retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuizTranslation"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Quiz or translation not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [{
+          "app-v1-rest-api-authorizer": []
+        }]
       },
-      "options" : {
-        "responses" : {
-          "204" : {
-            "description" : "204 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "schema" : {
-                  "type" : "string"
+      "options": {
+        "parameters": [{
+          "name": "quizId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "204": {
+            "description": "204 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
                 }
               },
-              "Access-Control-Allow-Methods" : {
-                "schema" : {
-                  "type" : "string"
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string"
                 }
               },
-              "Access-Control-Allow-Headers" : {
-                "schema" : {
-                  "type" : "string"
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string"
                 }
               }
             },
-            "content" : { }
+            "content": {}
+          }
+        }
+      }
+    },
+    "/activityLogs": {
+      "put": {
+        "summary": "Create a new activity log",
+        "description": "Records a user's activity completion by creating a new activity log entry with an auto-generated ID",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateActivityLogRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Activity log created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityLog"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input - missing required fields or validation errors",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the validation issue"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Path to the field with error"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Error message"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Referenced activity not found"
+          }
+        },
+        "security": [{
+          "app-v1-rest-api-authorizer": []
+        }]
+      },
+      "options": {
+        "responses": {
+          "204": {
+            "description": "204 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {}
+          }
+        }
+      }
+    },
+    "/activityLogs/{activityLogId}": {
+      "put": {
+        "summary": "Create or update an activity log with a specific ID",
+        "description": "Records a user's activity completion by creating or updating an activity log entry with the provided ID. This endpoint is useful for idempotent operations when you need to ensure the same activity completion is not recorded multiple times.",
+        "parameters": [{
+          "name": "activityLogId",
+          "in": "path",
+          "description": "Unique identifier for the activity log. Must be a nanoid string.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateActivityLogRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Activity log created or updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityLog"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input - missing required fields, validation errors, or ID format issues",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the validation issue"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Path to the field with error"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Error message"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Referenced activity not found"
+          }
+        },
+        "security": [{
+          "app-v1-rest-api-authorizer": []
+        }]
+      },
+      "options": {
+        "parameters": [{
+          "name": "activityLogId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "204": {
+            "description": "204 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {}
           }
         }
       }
     }
   },
-  "components" : {
-    "securitySchemes" : {
-      "app-v1-rest-api-authorizer" : {
-        "type" : "apiKey",
-        "name" : "Unused",
-        "in" : "header",
-        "x-amazon-apigateway-authtype" : "custom"
+  "components": {
+    "schemas": {
+      "AppQuiz": {
+        "type": "object",
+        "description": "Quiz representation for client applications, with sensitive data removed",
+        "required": ["quizId", "difficulty", "origin", "placement", "defaultLang"],
+        "properties": {
+          "quizId": {
+            "type": "string",
+            "description": "Unique identifier for the quiz"
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": ["EASY", "MEDIUM", "HARD"],
+            "description": "The difficulty level of the quiz"
+          },
+          "origin": {
+            "type": "string",
+            "enum": ["CATALOG", "CUSTOM"],
+            "description": "Whether the quiz comes from a central catalog or is custom-created"
+          },
+          "quizCatalogId": {
+            "type": "string",
+            "description": "ID reference to the original quiz in the catalog if applicable"
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether the quiz should be synced with catalog updates"
+          },
+          "placement": {
+            "type": "string",
+            "enum": ["LEARNING", "ASSESSMENT", "CERTIFICATION"],
+            "description": "The context in which the quiz is used"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "The default language code for the quiz content"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the quiz was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the quiz was last updated"
+          }
+        }
+      },
+      "QuizTranslation": {
+        "type": "object",
+        "description": "Translation content for a quiz, including questions and answer options",
+        "required": ["quizId", "lang", "opt1", "opt2", "opt3", "opt4", "question"],
+        "properties": {
+          "quizId": {
+            "type": "string",
+            "description": "ID of the quiz this translation belongs to"
+          },
+          "lang": {
+            "type": "string",
+            "description": "Language code for this translation"
+          },
+          "opt1": {
+            "type": "string",
+            "description": "Text for the first answer option"
+          },
+          "opt2": {
+            "type": "string",
+            "description": "Text for the second answer option"
+          },
+          "opt3": {
+            "type": "string",
+            "description": "Text for the third answer option"
+          },
+          "opt4": {
+            "type": "string",
+            "description": "Text for the fourth answer option"
+          },
+          "question": {
+            "type": "string",
+            "description": "The question text"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the translation was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the translation was last updated"
+          }
+        }
+      },
+      "CreateActivityLogRequest": {
+        "type": "object",
+        "description": "Data required to create a new activity log entry",
+        "required": ["activityId", "userId", "completedAt"],
+        "properties": {
+          "activityId": {
+            "type": "string",
+            "description": "Identifier of the activity that was completed. Must match an existing activity in the system.",
+            "minLength": 2,
+            "maxLength": 30,
+            "pattern": "^\\S+$"
+          },
+          "userId": {
+            "type": "string",
+            "description": "Identifier of the user who completed the activity"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": ["SUCCESS", "FAILURE"],
+            "description": "Result of the activity completion. If not provided, no outcome is recorded."
+          },
+          "value": {
+            "type": "number",
+            "default": 1,
+            "description": "Numerical value associated with the activity completion. Can represent points, progress, or any quantifiable measure."
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Associated tags for categorization and filtering. Tags can be used to group related activity completions."
+          },
+          "additionalData": {
+            "type": "object",
+            "description": "Any additional data related to the activity completion. This can include custom fields specific to the activity type."
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the activity was completed. Must be in ISO 8601 format."
+          }
+        }
+      },
+      "ActivityLog": {
+        "type": "object",
+        "description": "Record of a completed activity by a user",
+        "required": ["activityLogId", "activityId", "userId", "completedAt"],
+        "properties": {
+          "activityLogId": {
+            "type": "string",
+            "description": "Unique identifier for this activity log entry, generated as a nanoid if not provided"
+          },
+          "activityId": {
+            "type": "string",
+            "description": "Identifier of the activity that was completed",
+            "minLength": 2,
+            "maxLength": 30,
+            "pattern": "^\\S+$"
+          },
+          "userId": {
+            "type": "string",
+            "description": "Identifier of the user who completed the activity"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": ["SUCCESS", "FAILURE"],
+            "description": "Result of the activity completion"
+          },
+          "value": {
+            "type": "number",
+            "default": 1,
+            "description": "Numerical value associated with the activity completion"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Associated tags for categorization and filtering. Can be used for reporting and analytics."
+          },
+          "additionalData": {
+            "type": "object",
+            "description": "Any additional data related to the activity completion. This flexible field allows for storing custom information related to the specific activity."
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the activity was completed"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when this record was created in the system"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when this record was last updated"
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID associated with this activity log"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID associated with this activity log"
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where this activity log was created"
+          }
+        }
+      },
+      "CreateUserRequest": {
+        "type": "object",
+        "description": "Data required to create a new user",
+        "required": ["email"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "User's email address"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "User's first name"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "User's last name"
+          },
+          "preferences": {
+            "type": "object",
+            "description": "User preferences settings"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "description": "User account information",
+        "required": ["userId", "email"],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "Unique identifier for the user"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "User's email address"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "User's first name"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "User's last name"
+          },
+          "preferences": {
+            "type": "object",
+            "description": "User preferences settings"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the user was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the user was last updated"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "app-v1-rest-api-authorizer": {
+        "type": "apiKey",
+        "name": "Unused",
+        "in": "header",
+        "x-amazon-apigateway-authtype": "custom",
+        "description": "API Gateway custom authorizer for validating user authentication"
       }
     }
   }
