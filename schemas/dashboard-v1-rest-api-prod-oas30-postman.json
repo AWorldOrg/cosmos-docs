@@ -91,11 +91,94 @@
     },
     "/users" : {
       "get" : {
+        "summary": "List users",
+        "description": "Retrieves a paginated list of users available in the workspace",
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of users to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
       },
       "post" : {
+        "summary": "Create user",
+        "description": "Creates a new user in the system with generated credentials",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "409": {
+            "description": "User with the specified email already exists"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
@@ -1146,14 +1229,35 @@
     },
     "/users/{userId}" : {
       "get" : {
+        "summary": "Get user by ID",
+        "description": "Retrieves a specific user by their unique identifier",
         "parameters" : [ {
           "name" : "userId",
           "in" : "path",
+          "description": "Unique identifier of the user to retrieve",
           "required" : true,
           "schema" : {
             "type" : "string"
           }
         } ],
+        "responses": {
+          "200": {
+            "description": "User retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
@@ -1358,6 +1462,84 @@
   },
   "components" : {
     "schemas": {
+      "User": {
+        "type": "object",
+        "description": "User entity representing a person who can access the system",
+        "required": ["userId", "principalId", "lang", "timezone", "accountId", "workspaceId"],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "Unique identifier for the user"
+          },
+          "principalId": {
+            "type": "string",
+            "description": "Identifier used for authentication"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "Optional external system identifier for the user"
+          },
+          "lang": {
+            "type": "string",
+            "description": "User's preferred language code",
+            "default": "en"
+          },
+          "timezone": {
+            "type": "string",
+            "description": "User's timezone",
+            "default": "UTC"
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that this user belongs to"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that this user belongs to"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the user was created"
+          },
+          "updatedAt": {
+            "type": "string", 
+            "format": "date-time",
+            "description": "Timestamp when the user was last updated"
+          }
+        }
+      },
+      "CreateUserRequest": {
+        "type": "object",
+        "description": "Data required to create a new user",
+        "required": ["email"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "User's email address, used for login"
+          },
+          "password": {
+            "type": "string",
+            "description": "Password for the user (if not provided, a temporary password will be generated)",
+            "format": "password"
+          },
+          "lang": {
+            "type": "string",
+            "description": "User's preferred language code",
+            "default": "en"
+          },
+          "timezone": {
+            "type": "string",
+            "description": "User's timezone",
+            "default": "UTC"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "Optional external system identifier for the user"
+          }
+        }
+      },
       "Tag": {
         "type": "object",
         "description": "Tag entity used for categorizing and filtering content",
