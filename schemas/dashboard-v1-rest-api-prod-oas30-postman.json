@@ -210,11 +210,91 @@
     },
     "/tags" : {
       "get" : {
+        "summary": "List tags",
+        "description": "Retrieves a paginated list of tags available in the workspace",
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of tags to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tags retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Tag"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
       },
       "post" : {
+        "summary": "Create tag",
+        "description": "Creates a new tag with a system-generated ID",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTagRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Tag created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
@@ -806,27 +886,82 @@
     },
     "/tags/{tagId}" : {
       "get" : {
+        "summary": "Get tag by ID",
+        "description": "Retrieves a specific tag by its unique identifier",
         "parameters" : [ {
           "name" : "tagId",
           "in" : "path",
+          "description": "Unique identifier of the tag to retrieve",
           "required" : true,
           "schema" : {
             "type" : "string"
           }
         } ],
+        "responses": {
+          "200": {
+            "description": "Tag retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Tag not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
       },
       "post" : {
+        "summary": "Update tag",
+        "description": "Updates an existing tag identified by its ID",
         "parameters" : [ {
           "name" : "tagId",
           "in" : "path",
+          "description": "Unique identifier of the tag to update",
           "required" : true,
           "schema" : {
             "type" : "string"
           }
         } ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTagRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Tag not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
@@ -867,14 +1002,38 @@
     },
     "/tags/{tagId}/publish" : {
       "post" : {
+        "summary": "Publish a tag",
+        "description": "Publishes a tag, making it available for use in the application",
         "parameters" : [ {
           "name" : "tagId",
           "in" : "path",
+          "description": "Unique identifier of the tag to publish",
           "required" : true,
           "schema" : {
             "type" : "string"
           }
         } ],
+        "responses": {
+          "200": {
+            "description": "Tag published successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Tag not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
         "security" : [ {
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
@@ -1199,6 +1358,151 @@
   },
   "components" : {
     "schemas": {
+      "Tag": {
+        "type": "object",
+        "description": "Tag entity used for categorizing and filtering content",
+        "required": ["tagId", "namespace", "variant", "origin", "defaultLang", "langs", "createdAt", "updatedAt"],
+        "properties": {
+          "tagId": {
+            "type": "string",
+            "description": "Unique identifier for the tag"
+          },
+          "namespace": {
+            "type": "string",
+            "description": "Namespace that groups related tags together"
+          },
+          "variant": {
+            "type": "string",
+            "description": "Variant identifier within the namespace"
+          },
+          "origin": {
+            "type": "string",
+            "enum": ["CATALOG", "CUSTOM"],
+            "description": "Whether the tag comes from a central catalog or is custom-created"
+          },
+          "tagCatalogId": {
+            "type": "string",
+            "description": "ID reference to the original tag in the catalog if applicable"
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether the tag should be synced with catalog updates"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "The default language code for the tag content"
+          },
+          "langs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of language codes available for this tag"
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that owns this tag"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that contains this tag"
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where the tag was created"
+          },
+          "stage": {
+            "type": "string",
+            "enum": ["DRAFT", "PUBLISHED"],
+            "description": "Current publication stage of the tag"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the tag was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the tag was last updated"
+          }
+        }
+      },
+      "CreateTagRequest": {
+        "type": "object",
+        "description": "Data required to create a new tag",
+        "required": ["namespace", "variant", "defaultLang", "translations"],
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "description": "Namespace that groups related tags together"
+          },
+          "variant": {
+            "type": "string",
+            "description": "Variant identifier within the namespace"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "The default language code for the tag content"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TagTranslation"
+            },
+            "description": "List of translations for the tag content",
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "UpdateTagRequest": {
+        "type": "object",
+        "description": "Data required to update an existing tag",
+        "required": ["namespace", "variant", "defaultLang", "translations"],
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "description": "Updated namespace that groups related tags together"
+          },
+          "variant": {
+            "type": "string",
+            "description": "Updated variant identifier within the namespace"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Updated default language code for the tag content"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TagTranslation"
+            },
+            "description": "Updated list of translations for the tag content",
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "TagTranslation": {
+        "type": "object",
+        "description": "Translation for tag content in a specific language",
+        "required": ["lang", "label"],
+        "properties": {
+          "lang": {
+            "type": "string",
+            "description": "Language code for this translation"
+          },
+          "label": {
+            "type": "string",
+            "description": "Translated label for the tag"
+          },
+          "description": {
+            "type": "string",
+            "description": "Translated description for the tag"
+          }
+        }
+      },
       "JsonLogicExpression": {
         "description": "JSON Logic expression used for defining conditions and calculations",
         "oneOf": [
