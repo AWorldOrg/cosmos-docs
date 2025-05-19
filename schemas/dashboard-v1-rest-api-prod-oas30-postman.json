@@ -240,15 +240,15 @@
         } ]
       }
     },
-    "/rewardCurrencies" : {
+    "/virtualCurrencies" : {
       "get" : {
-        "summary": "List reward currencies",
-        "description": "Retrieves a paginated list of reward currencies available in the workspace",
+        "summary": "List virtual currencies",
+        "description": "Retrieves a paginated list of virtual currencies available in the workspace",
         "parameters": [
           {
             "name": "nextToken",
             "in": "query",
-            "description": "Pagination token for fetching the next set of results",
+            "description": "Pagination cursor for fetching the next set of results.",
             "required": false,
             "schema": {
               "type": "string"
@@ -257,7 +257,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of reward currencies to return per page",
+            "description": "Maximum number of virtual currencies to return per page.",
             "required": false,
             "schema": {
               "type": "integer",
@@ -267,7 +267,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of reward currencies retrieved successfully",
+            "description": "List of virtual currencies retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -276,12 +276,13 @@
                     "items": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/RewardCurrency"
-                      }
+                        "$ref": "#/components/schemas/VirtualCurrency"
+                      },
+                      "description": "A list of virtual currencies."
                     },
                     "nextToken": {
                       "type": "string",
-                      "description": "Pagination token for the next set of results"
+                      "description": "Pagination cursor for fetching the next set of results. Null if no more items are available."
                     }
                   }
                 }
@@ -297,14 +298,14 @@
         } ]
       }
     },
-    "/rewardCurrencies/{rewardCurrencyId}" : {
+    "/virtualCurrencies/{virtualCurrencyId}" : {
       "get" : {
-        "summary": "Get reward currency by ID",
-        "description": "Retrieves a specific reward currency by its unique identifier",
+        "summary": "Get virtual currency by ID",
+        "description": "Retrieves a specific virtual currency by its unique identifier",
         "parameters" : [ {
-          "name" : "rewardCurrencyId",
+          "name" : "virtualCurrencyId",
           "in" : "path",
-          "description": "Unique identifier of the reward currency to retrieve",
+          "description": "Unique identifier of the virtual currency to retrieve",
           "required" : true,
           "schema" : {
             "type" : "string",
@@ -315,17 +316,17 @@
         } ],
         "responses": {
           "200": {
-            "description": "Reward currency retrieved successfully",
+            "description": "Virtual currency retrieved successfully.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RewardCurrency"
+                  "$ref": "#/components/schemas/VirtualCurrency"
                 }
               }
             }
           },
           "404": {
-            "description": "Reward currency not found"
+            "description": "Virtual currency not found."
           },
           "401": {
             "description": "Unauthorized"
@@ -336,12 +337,12 @@
         } ]
       },
       "put" : {
-        "summary": "Create reward currency",
-        "description": "Creates a new reward currency with the specified ID. It is recommended to use a human-readable ID.",
+        "summary": "Create virtual currency",
+        "description": "Creates a new virtual currency with the specified ID. It is recommended to use a human-readable ID.",
         "parameters" : [ {
-          "name" : "rewardCurrencyId",
+          "name" : "virtualCurrencyId",
           "in" : "path",
-          "description": "Unique identifier for the new reward currency",
+          "description": "Unique identifier for the new virtual currency",
           "required" : true,
           "schema" : {
             "type" : "string",
@@ -355,27 +356,27 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateRewardCurrencyRequest"
+                "$ref": "#/components/schemas/CreateVirtualCurrencyRequest"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Reward currency created successfully",
+            "description": "Virtual currency created successfully.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RewardCurrency"
+                  "$ref": "#/components/schemas/VirtualCurrency"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid input"
+            "description": "Invalid input. Please check the request body for errors."
           },
           "409": {
-            "description": "Reward currency ID already exists"
+            "description": "A virtual currency with the specified ID already exists."
           },
           "401": {
             "description": "Unauthorized"
@@ -386,12 +387,12 @@
         } ]
       },
       "post" : {
-        "summary": "Update reward currency",
-        "description": "Updates an existing reward currency identified by its ID",
+        "summary": "Update virtual currency",
+        "description": "Updates an existing virtual currency identified by its ID",
         "parameters" : [ {
-          "name" : "rewardCurrencyId",
+          "name" : "virtualCurrencyId",
           "in" : "path",
-          "description": "Unique identifier of the reward currency to update",
+          "description": "Unique identifier of the virtual currency to update",
           "required" : true,
           "schema" : {
             "type" : "string",
@@ -405,27 +406,27 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateRewardCurrencyRequest"
+                "$ref": "#/components/schemas/UpdateVirtualCurrencyRequest"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Reward currency updated successfully",
+            "description": "Virtual currency updated successfully.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RewardCurrency"
+                  "$ref": "#/components/schemas/VirtualCurrency"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid input"
+            "description": "Invalid input. Please check the request body for errors."
           },
           "404": {
-            "description": "Reward currency not found"
+            "description": "Virtual currency not found."
           },
           "401": {
             "description": "Unauthorized"
@@ -436,14 +437,14 @@
         } ]
       }
     },
-    "/rewardCurrencies/{rewardCurrencyId}/publish" : {
+    "/virtualCurrencies/{virtualCurrencyId}/publish" : {
       "post" : {
-        "summary": "Publish a reward currency",
-        "description": "Publishes a reward currency, making it available for use in the application",
+        "summary": "Publish a virtual currency",
+        "description": "Publishes a virtual currency, making it available for use in the application",
         "parameters" : [ {
-          "name" : "rewardCurrencyId",
+          "name" : "virtualCurrencyId",
           "in" : "path",
-          "description": "Unique identifier of the reward currency to publish",
+          "description": "Unique identifier of the virtual currency to publish",
           "required" : true,
           "schema" : {
             "type" : "string",
@@ -454,23 +455,26 @@
         } ],
         "responses": {
           "200": {
-            "description": "Reward currency published successfully",
+            "description": "Virtual currency published successfully.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RewardCurrency"
+                  "$ref": "#/components/schemas/VirtualCurrency"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid request"
+            "description": "Invalid request."
           },
           "404": {
-            "description": "Reward currency not found"
+            "description": "Virtual currency not found."
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "409": {
+            "description": "The virtual currency may already be published or in a state that prevents publishing."
           }
         },
         "security" : [ {
@@ -1036,6 +1040,62 @@
           "dashboard-v1-rest-api-authorizer" : [ ]
         } ]
       }
+    },
+    "/virtualTransactions": {
+      "post": {
+        "summary": "Create new virtual transactions (Admin)",
+        "description": "Allows an administrator to create transactions between users, or between a user and the system. Multiple transaction requests can be batched. Operations are atomic (all or nothing). It is strongly recommended to include an 'X-Idempotency-Key' header for safe retries.",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVirtualTransactionsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Virtual transactions created successfully. Returns all generated ledger entries.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateVirtualTransactionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input, validation error (e.g., invalid user IDs, inconsistent source/destination), or other processing error."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Not Found - Referenced entity (e.g., userId, virtualCurrencyId) not found."
+          },
+          "409": {
+            "description": "Conflict - Potential duplicate request based on idempotency key and request content. Another cause could be that at least one of the operations would conflict with a user's counterpart boundary (minAllowedBalance or maxAllowedBalance)"
+          }
+        },
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
+      }
     }
   },
   "components" : {
@@ -1312,15 +1372,15 @@
       "Reward": {
         "type": "object",
         "description": "Definition of a reward associated with a reward rule",
-        "required": ["rewardCurrencyId", "expression"],
+        "required": ["virtualCurrencyId", "expression"],
         "properties": {
-          "rewardCurrencyId": {
+          "virtualCurrencyId": {
             "type": "string",
-            "description": "Identifier of the reward currency to award"
+            "description": "Identifier of the virtual currency to award"
           },
           "expression": {
             "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "JSON Logic expression that calculates the amount of reward currency to award"
+            "description": "JSON Logic expression that calculates the amount of virtual currency to award"
           }
         }
       },
@@ -1549,139 +1609,139 @@
           }
         }
       },
-      "RewardCurrency": {
+      "VirtualCurrency": {
         "type": "object",
-        "description": "Reward currency entity representing a digital asset or point system that users can earn",
-        "required": ["rewardCurrencyId", "name", "origin", "defaultLang", "langs", "createdAt", "updatedAt"],
+        "description": "Virtual currency entity representing a digital asset or point system that users can earn and use within the platform.",
+        "required": ["virtualCurrencyId", "name", "origin", "defaultLang", "langs", "createdAt", "updatedAt"],
         "properties": {
-          "rewardCurrencyId": {
+          "virtualCurrencyId": {
             "type": "string",
-            "description": "Unique identifier for the reward currency",
+            "description": "Unique identifier for the virtual currency. Must be a non-empty string without spaces, 2-30 characters long.",
             "minLength": 2,
             "maxLength": 30,
             "pattern": "^\\S+$"
           },
           "name": {
             "type": "string",
-            "description": "Name of the reward currency"
+            "description": "Name of the virtual currency."
           },
           "origin": {
             "type": "string",
             "enum": ["CATALOG", "CUSTOM"],
-            "description": "Whether the reward currency comes from a central catalog or is custom-created"
+            "description": "Indicates if the virtual currency originates from a predefined catalog or is custom-created for the workspace."
           },
-          "rewardCurrencyCatalogId": {
+          "virtualCurrencyCatalogId": {
             "type": "string",
-            "description": "ID reference to the original reward currency in the catalog if applicable"
+            "description": "If origin is 'CATALOG', this is the ID reference to the original virtual currency in the catalog."
           },
           "syncWithCatalog": {
             "type": "boolean",
-            "description": "Whether the reward currency should be synced with catalog updates"
+            "description": "If true and origin is 'CATALOG', this virtual currency will be kept in sync with updates from the catalog."
           },
           "defaultLang": {
             "type": "string",
-            "description": "The default language code for the reward currency content"
+            "description": "The default language code (e.g., 'en', 'it') for the virtual currency's translatable content like label and description."
           },
           "langs": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "List of language codes available for this reward currency"
+            "description": "A list of language codes for which translations of this virtual currency are available."
           },
           "accountId": {
             "type": "string",
-            "description": "The account ID that owns this reward currency"
+            "description": "The ID of the account that owns this virtual currency."
           },
           "workspaceId": {
             "type": "string",
-            "description": "The workspace ID that contains this reward currency"
+            "description": "The ID of the workspace to which this virtual currency belongs."
           },
           "sourceRegion": {
             "type": "string",
-            "description": "AWS region where the reward currency was created"
+            "description": "The AWS region where this virtual currency record was created."
           },
           "stage": {
             "type": "string",
             "enum": ["DRAFT", "PUBLISHED"],
-            "description": "Current publication stage of the reward currency"
+            "description": "The current publication stage of the virtual currency. 'DRAFT' means it's not yet active, 'PUBLISHED' means it's available for use."
           },
           "createdAt": {
             "type": "string",
             "format": "date-time",
-            "description": "Timestamp when the reward currency was created"
+            "description": "Timestamp indicating when the virtual currency was created."
           },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
-            "description": "Timestamp when the reward currency was last updated"
+            "description": "Timestamp indicating when the virtual currency was last updated."
           }
         }
       },
-      "CreateRewardCurrencyRequest": {
+      "CreateVirtualCurrencyRequest": {
         "type": "object",
-        "description": "Data required to create a new reward currency",
+        "description": "Data required to create a new virtual currency.",
         "required": ["name", "defaultLang", "translations"],
         "properties": {
           "name": {
             "type": "string",
-            "description": "Name of the reward currency"
+            "description": "Name of the virtual currency. This is for internal identification and management."
           },
           "defaultLang": {
             "type": "string",
-            "description": "The default language code for the reward currency content"
+            "description": "The default language code for the virtual currency's translatable content (e.g., label, description)."
           },
           "translations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/RewardCurrencyTranslation"
+              "$ref": "#/components/schemas/VirtualCurrencyTranslation"
             },
-            "description": "List of translations for the reward currency content",
+            "description": "A list of translations for the virtual currency's content. At least one translation (for the defaultLang) must be provided.",
             "minItems": 1,
             "maxItems": 10
           }
         }
       },
-      "UpdateRewardCurrencyRequest": {
+      "UpdateVirtualCurrencyRequest": {
         "type": "object",
-        "description": "Data required to update an existing reward currency",
+        "description": "Data required to update an existing virtual currency.",
         "required": ["name", "defaultLang", "translations"],
         "properties": {
           "name": {
             "type": "string",
-            "description": "Updated name of the reward currency"
+            "description": "Updated name of the virtual currency."
           },
           "defaultLang": {
             "type": "string",
-            "description": "Updated default language code for the reward currency content"
+            "description": "Updated default language code for the virtual currency's content."
           },
           "translations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/RewardCurrencyTranslation"
+              "$ref": "#/components/schemas/VirtualCurrencyTranslation"
             },
-            "description": "Updated list of translations for the reward currency content",
+            "description": "Updated list of translations for the virtual currency's content. Ensures all previously supported languages are still covered or explicitly removed.",
             "minItems": 1,
             "maxItems": 10
           }
         }
       },
-      "RewardCurrencyTranslation": {
+      "VirtualCurrencyTranslation": {
         "type": "object",
-        "description": "Translation for reward currency content in a specific language",
+        "description": "Provides the translatable content (label and description) for a virtual currency in a specific language.",
         "required": ["lang", "label"],
         "properties": {
           "lang": {
             "type": "string",
-            "description": "Language code for this translation"
+            "description": "The language code (e.g., 'en', 'it') for this translation."
           },
           "label": {
             "type": "string",
-            "description": "Translated label for the reward currency"
+            "description": "The translated display name or label for the virtual currency (e.g., 'Gold Coins', 'Punti Stella')."
           },
           "description": {
             "type": "string",
-            "description": "Translated description for the reward currency"
+            "description": "The translated description providing more details about the virtual currency."
           }
         }
       },
@@ -1806,6 +1866,172 @@
           "description": {
             "type": "string",
             "description": "Translated description for the activity"
+          }
+        }
+      },
+      "VirtualTransactionInput": {
+        "type": "object",
+        "description": "Input for a single transaction initiated via the Dashboard API by an admin. If sourceUserId is provided, it's an ADMIN forced user-to-user transfer, otherwise it is a transaction from/to the system to/from the destinationUserId, depending on the amount sign",
+        "required": [
+          "virtualCurrencyId",
+          "redemptionMode",
+          "amount",
+          "destinationUserId"
+        ],
+        "properties": {
+          "virtualCurrencyId": {
+            "type": "string",
+            "description": "The ID of the virtual currency to be transacted."
+          },
+          "sourceUserId": {
+            "type": "string",
+            "description": "Optional. The ID of the user from whom the currency will be debited. If omitted, the source is considered the SYSTEM."
+          },
+          "destinationUserId": {
+            "type": "string",
+            "description": "Optional. The ID of the user to whom the currency will be credited. If omitted, the destination is considered the SYSTEM."
+          },
+          "redemptionMode": {
+            "type": "string",
+            "enum": ["AUTO", "MANUAL"],
+            "description": "The redemption mode for the transaction."
+          },
+          "amount": {
+            "type": "number",
+            "description": "The amount of virtual currency. Must be a positive value. Direction is inferred from source/destination.",
+            "minimum": 0.0000000001
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional ISO date-time string. If provided and redemptionMode is MANUAL, the transaction will expire at this time if not completed."
+          }
+        } 
+      },
+      "CreateVirtualTransactionsRequest": {
+        "type": "object",
+        "description": "Request body for creating virtual transactions from the Dashboard API.",
+        "required": ["transactions"],
+        "properties": {
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualTransactionInput"
+            },
+            "description": "A list of transaction inputs. Minimum 1 item.",
+            "minItems": 1
+          }
+        }
+      },
+      "CreateVirtualTransactionsResponse": {
+        "type": "object",
+        "description": "Response body after creating virtual transactions from the Dashboard API.",
+        "required": ["transactions"],
+        "properties": {
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualTransaction"
+            },
+            "description": "A list of all created virtual transaction ledger entries."
+          }
+        }
+      },
+      "VirtualTransaction": {
+        "type": "object",
+        "description": "Represents a virtual currency transaction.",
+        "required": [
+          "virtualTransactionId",
+          "virtualCurrencyId",
+          "amount",
+          "direction",
+          "state",
+          "initiator",
+          "initiatorType",
+          "counterpart",
+          "counterpartType",
+          "redemptionMode",
+          "virtualTransactionGroupId",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "virtualTransactionId": {
+            "type": "string",
+            "description": "Unique identifier for the virtual transaction."
+          },
+          "userId": {
+            "type": "string",
+            "description": "The ID of the User to whom this transaction pertains."
+          },
+          "virtualCurrencyId": {
+            "type": "string",
+            "description": "Identifier of the virtual currency involved in the transaction."
+          },
+          "amount": {
+            "type": "number",
+            "description": "The amount of virtual currency transacted. Positive for credit, negative for debit (direction field also indicates actual movement)."
+          },
+          "direction": {
+            "type": "string",
+            "enum": ["CREDIT", "DEBIT"],
+            "description": "Indicates whether the transaction is a credit or a debit for the user."
+          },
+          "state": {
+            "type": "string",
+            "enum": ["PENDING", "COMPLETED", "EXPIRED", "REJECTED"],
+            "description": "The current state of the transaction. Expired transactions are evaluated lazily and their state is updated when trying to redeem them."
+          },
+          "initiator": {
+            "type": "string",
+            "description": "Identifier of the entity that initiated the transaction (e.g., userId, ruleId, system process name)."
+          },
+          "initiatorType": {
+            "type": "string",
+            "enum": ["USER", "REWARD_RULE", "SYSTEM", "ADMIN"],
+            "description": "The type of entity that initiated the transaction."
+          },
+          "counterpart": {
+            "type": "string",
+            "description": "Identifier of the counterpart in the transaction (e.g., another userId, system entity)."
+          },
+          "counterpartType": {
+            "type": "string",
+            "enum": ["USER", "SYSTEM"],
+            "description": "The type of counterpart entity."
+          },
+          "redemptionMode": {
+            "type": "string",
+            "enum": ["AUTO", "MANUAL"],
+            "description": "Defines wether the transaction is automatically redeemed or not. If redemptionMode is MANUAL, the transaction will be pending until this transaction (if at credit) or the counterpart transaction (if at debit) is redeemed."
+          },
+          "virtualTransactionGroupId": {
+            "type": "string",
+            "description": "Identifier for a group of related transactions that was processed (created) together ad a database transaction."
+          },
+          "redemptionGroupId": {
+            "type": "string",
+            "description": "Identifier for a grouping related transactions (credit and debit counterparts) where redemptionMode was MANUAL. When the credit ledger transaction is redeemed, all transactions in the group are redeemed together."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the transaction record was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the transaction record was last updated."
+          },
+          "redeemedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the transaction was redeemed (ex, state changed to COMPLETED)."
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional Timestamp that reflects the expiration date of the transaction when redemptionMode is MANUAL and state is PENDING. If not provided, the transaction will never expire."
           }
         }
       }

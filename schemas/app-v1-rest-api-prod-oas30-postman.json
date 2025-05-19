@@ -5,14 +5,16 @@
     "description": "API for client applications to interact with the Cosmos platform",
     "version": "2025-04-18T14:27:21Z"
   },
-  "servers": [{
-    "url": "{baseUrl}",
-    "variables" : {
-      "baseUrl": {
-        "default": "https://api.eu-west-1.aworld.cloud/app/v1"
+  "servers": [
+    {
+      "url": "{baseUrl}",
+      "variables": {
+        "baseUrl": {
+          "default": "https://api.eu-west-1.aworld.cloud/app/v1"
+        }
       }
     }
-  }],
+  ],
   "paths": {
     "/activityLogs": {
       "put": {
@@ -81,24 +83,28 @@
             "description": "Referenced activity not found"
           }
         },
-        "security": [{
-          "app-v1-rest-api-authorizer": []
-        }]
+        "security": [
+          {
+            "app-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
     "/activityLogs/{activityLogId}": {
       "put": {
         "summary": "Create or update an activity log with a specific ID",
         "description": "Records a user's activity completion by creating or updating an activity log entry with the provided ID. This endpoint is useful for idempotent operations when you need to ensure the same activity completion is not recorded multiple times.",
-        "parameters": [{
-          "name": "activityLogId",
-          "in": "path",
-          "description": "Unique identifier for the activity log. Must be a nanoid string.",
-          "required": true,
-          "schema": {
-            "type": "string"
+        "parameters": [
+          {
+            "name": "activityLogId",
+            "in": "path",
+            "description": "Unique identifier for the activity log. Must be a nanoid string.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -162,9 +168,11 @@
             "description": "Referenced activity not found"
           }
         },
-        "security": [{
-          "app-v1-rest-api-authorizer": []
-        }]
+        "security": [
+          {
+            "app-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
     "/quizzes": {
@@ -173,7 +181,7 @@
         "description": "Retrieves a paginated list of available quizzes for the authenticated user",
         "parameters": [
           {
-            "name": "cursor",
+            "name": "nextToken",
             "in": "query",
             "description": "Pagination cursor for fetching the next set of results",
             "required": false,
@@ -203,10 +211,10 @@
                     "items": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/AppQuiz"
+                        "$ref": "#/components/schemas/Quiz"
                       }
                     },
-                    "cursor": {
+                    "nextToken": {
                       "type": "string",
                       "description": "Pagination cursor for the next set of results"
                     }
@@ -219,31 +227,35 @@
             "description": "Unauthorized"
           }
         },
-        "security": [{
-          "app-v1-rest-api-authorizer": []
-        }]
+        "security": [
+          {
+            "app-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
     "/quizzes/{quizId}": {
       "get": {
         "summary": "Get a specific quiz by ID",
         "description": "Retrieves a quiz object with associated content, excluding the correct answer for client-side display purposes.",
-        "parameters": [{
-          "name": "quizId",
-          "in": "path",
-          "description": "Unique identifier for the quiz to retrieve",
-          "required": true,
-          "schema": {
-            "type": "string"
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier for the quiz to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "Quiz retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppQuiz"
+                  "$ref": "#/components/schemas/Quiz"
                 }
               }
             }
@@ -255,24 +267,28 @@
             "description": "Unauthorized"
           }
         },
-        "security": [{
-          "app-v1-rest-api-authorizer": []
-        }]
+        "security": [
+          {
+            "app-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
     "/quizzes/{quizId}/translation": {
       "get": {
         "summary": "Get translations for a quiz",
         "description": "Retrieves the translation content for a specific quiz, including questions and answer options",
-        "parameters": [{
-          "name": "quizId",
-          "in": "path",
-          "description": "Unique identifier for the quiz to retrieve translations for",
-          "required": true,
-          "schema": {
-            "type": "string"
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier for the quiz to retrieve translations for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "Quiz translation retrieved successfully",
@@ -291,46 +307,265 @@
             "description": "Unauthorized"
           }
         },
-        "security": [{
-          "app-v1-rest-api-authorizer": []
-        }]
+        "security": [
+          {
+            "app-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/users": {
+    "/virtualBalances": {
+      "get": {
+        "summary": "List virtual currency balances",
+        "description": "Retrieves a paginated list of virtual currency balances for the authenticated user.",
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of virtual balances to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Virtual Balances retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VirtualBalance"
+                      },
+                      "description": "A list of virtual currency balances."
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination cursor for fetching the next set of results. Null if no more items are available."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "app-v1-rest-api-authorizer": []
+          }
+        ]
+      }
+    },
+    "/virtualBalances/{virtualCurrencyId}": {
+      "get": {
+        "summary": "Get a specific virtual currency balance by ID",
+        "description": "Retrieves the balance for a specific virtual currency for the authenticated user.",
+        "parameters": [
+          {
+            "name": "virtualCurrencyId",
+            "in": "path",
+            "description": "Unique identifier for the virtual currency.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Virtual Balance retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualBalance"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Virtual currency or balance not found."
+          }
+        },
+        "security": [
+          {
+            "app-v1-rest-api-authorizer": []
+          }
+        ]
+      }
+    },
+    "/virtualTransactions": {
+      "get": {
+        "summary": "List virtual transactions",
+        "description": "Retrieves a paginated list of virtual transactions for the authenticated user.",
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of virtual transactions to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of virtual transactions retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VirtualTransaction"
+                      },
+                      "description": "A list of virtual transactions."
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination cursor for fetching the next set of results. Null if no more items are available."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "security": [
+          {
+            "app-v1-rest-api-authorizer": []
+          }
+        ]
+      },
       "post": {
-        "summary": "Create a new user",
-        "description": "Creates a new user in the system",
+        "summary": "Create new virtual transactions",
+        "description": "Allows a user to send virtual currency to another user. Multiple transaction requests can be batched. The source user is always the authenticated caller. Operations are atomic (all or nothing). It is strongly recommended to include an 'X-Idempotency-Key' header for safe retries.",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateUserRequest"
+                "$ref": "#/components/schemas/CreateVirtualTransactionsRequest"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "User created successfully",
+            "description": "Virtual transactions created successfully. Returns the transactions from the point of view of the caller.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/CreateVirtualTransactionsResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid input"
+            "description": "Bad Request - Invalid input, validation error (e.g., negative amount), or other processing error."
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Not Found - Referenced entity (e.g., destinationUserId, virtualCurrencyId) not found."
+          },
+          "409": {
+            "description": "Conflict - Potential duplicate request based on idempotency key and request content. Another cause could be that at least one of the operations would conflict with a user's counterpart boundary (minAllowedBalance or maxAllowedBalance)"
           }
         },
-        "security": [{
-          "app-v1-rest-api-authorizer": []
-        }]
+        "security": [
+          {
+            "app-v1-rest-api-authorizer": []
+          }
+        ]
+      }
+    },
+    "/virtualTransactions/{virtualTransactionId}": {
+      "get": {
+        "summary": "Get a specific virtual transaction by ID",
+        "description": "Retrieves a specific virtual transaction by its ID for the authenticated user.",
+        "parameters": [
+          {
+            "name": "virtualTransactionId",
+            "in": "path",
+            "description": "Unique identifier for the virtual transaction.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Virtual transaction retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualTransaction"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Virtual transaction not found."
+          }
+        },
+        "security": [
+          {
+            "app-v1-rest-api-authorizer": []
+          }
+        ]
       }
     }
   },
@@ -365,10 +600,16 @@
       }
     },
     "schemas": {
-      "AppQuiz": {
+      "Quiz": {
         "type": "object",
         "description": "Quiz representation for client applications, with sensitive data removed",
-        "required": ["quizId", "difficulty", "origin", "placement", "defaultLang"],
+        "required": [
+          "quizId",
+          "difficulty",
+          "origin",
+          "placement",
+          "defaultLang"
+        ],
         "properties": {
           "quizId": {
             "type": "string",
@@ -416,7 +657,15 @@
       "QuizTranslation": {
         "type": "object",
         "description": "Translation content for a quiz, including questions and answer options",
-        "required": ["quizId", "lang", "opt1", "opt2", "opt3", "opt4", "question"],
+        "required": [
+          "quizId",
+          "lang",
+          "opt1",
+          "opt2",
+          "opt3",
+          "opt4",
+          "question"
+        ],
         "properties": {
           "quizId": {
             "type": "string",
@@ -631,6 +880,208 @@
             "type": "string",
             "format": "date-time",
             "description": "Timestamp when the user was last updated"
+          }
+        }
+      },
+      "VirtualBalance": {
+        "type": "object",
+        "description": "Virtual Currency Balance representation for client applications, with sensitive data removed",
+        "required": [
+          "virtualCurrencyId",
+          "userId",
+          "amount",
+          "availableAmount",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "virtualCurrencyId": {
+            "type": "string",
+            "description": "The ID of the Virtual Currency to which this balance pertains."
+          },
+          "userId": {
+            "type": "string",
+            "description": "The ID of the User to whom this balance belongs."
+          },
+          "amount": {
+            "type": "number",
+            "description": "The total current amount of the virtual currency owned by the user."
+          },
+          "availableAmount": {
+            "type": "number",
+            "description": "The amount of virtual currency that the user can currently spend. This amount considers any pending debit operations."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when this virtual balance record was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when this virtual balance record was last updated."
+          }
+        }
+      },
+      "VirtualTransactionInput": {
+        "type": "object",
+        "description": "Input for a single transaction initiated by an app user.",
+        "required": [
+          "virtualCurrencyId",
+          "destinationUserId",
+          "redemptionMode",
+          "amount"
+        ],
+        "properties": {
+          "virtualCurrencyId": {
+            "type": "string",
+            "description": "The ID of the virtual currency to be transacted."
+          },
+          "destinationUserId": {
+            "type": "string",
+            "description": "The ID of the user who will receive the virtual currency."
+          },
+          "redemptionMode": {
+            "type": "string",
+            "enum": ["AUTO", "MANUAL"],
+            "description": "The redemption mode for the transaction."
+          },
+          "amount": {
+            "type": "number",
+            "description": "The amount of virtual currency to send. Must be a positive value.",
+            "minimum": 0.0000000001
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional ISO date-time string. If provided and redemptionMode is MANUAL, the transaction will expire at this time if not completed."
+          }
+        }
+      },
+      "CreateVirtualTransactionsRequest": {
+        "type": "object",
+        "description": "Request body for creating virtual transactions from the App API.",
+        "required": ["transactions"],
+        "properties": {
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualTransactionInput"
+            },
+            "description": "A list of transaction inputs. Minimum 1 item.",
+            "minItems": 1
+          }
+        }
+      },
+      "CreateVirtualTransactionsResponse": {
+        "type": "object",
+        "description": "Response body after creating virtual transactions from the App API.",
+        "required": ["transactions"],
+        "properties": {
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualTransaction"
+            },
+            "description": "A list of the created virtual transactions, from the point of view of the calling user."
+          }
+        }
+      },
+      "VirtualTransaction": {
+        "type": "object",
+        "description": "Represents a virtual currency transaction.",
+        "required": [
+          "virtualTransactionId",
+          "virtualCurrencyId",
+          "amount",
+          "direction",
+          "state",
+          "initiator",
+          "initiatorType",
+          "counterpart",
+          "counterpartType",
+          "redemptionMode",
+          "virtualTransactionGroupId",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "virtualTransactionId": {
+            "type": "string",
+            "description": "Unique identifier for the virtual transaction."
+          },
+          "userId": {
+            "type": "string",
+            "description": "The ID of the User to whom this transaction pertains."
+          },
+          "virtualCurrencyId": {
+            "type": "string",
+            "description": "Identifier of the virtual currency involved in the transaction."
+          },
+          "amount": {
+            "type": "number",
+            "description": "The amount of virtual currency transacted. Positive for credit, negative for debit (direction field also indicates actual movement)."
+          },
+          "direction": {
+            "type": "string",
+            "enum": ["CREDIT", "DEBIT"],
+            "description": "Indicates whether the transaction is a credit or a debit for the user."
+          },
+          "state": {
+            "type": "string",
+            "enum": ["PENDING", "COMPLETED", "EXPIRED", "REJECTED"],
+            "description": "The current state of the transaction. Expired transactions are evaluated lazily and their state is updated when trying to redeem them."
+          },
+          "initiator": {
+            "type": "string",
+            "description": "Identifier of the entity that initiated the transaction (e.g., userId, ruleId, system process name)."
+          },
+          "initiatorType": {
+            "type": "string",
+            "enum": ["USER", "REWARD_RULE", "SYSTEM", "ADMIN"],
+            "description": "The type of entity that initiated the transaction."
+          },
+          "counterpart": {
+            "type": "string",
+            "description": "Identifier of the counterpart in the transaction (e.g., another userId, system entity)."
+          },
+          "counterpartType": {
+            "type": "string",
+            "enum": ["USER", "SYSTEM"],
+            "description": "The type of counterpart entity."
+          },
+          "redemptionMode": {
+            "type": "string",
+            "enum": ["AUTO", "MANUAL"],
+            "description": "Defines wether the transaction is automatically redeemed or not. If redemptionMode is MANUAL, the transaction will be pending until this transaction (if at credit) or the counterpart transaction (if at debit) is redeemed."
+          },
+          "virtualTransactionGroupId": {
+            "type": "string",
+            "description": "Identifier for a group of related transactions that was processed (created) together ad a database transaction."
+          },
+          "redemptionGroupId": {
+            "type": "string",
+            "description": "Identifier for a grouping related transactions (credit and debit counterparts) where redemptionMode was MANUAL. When the credit ledger transaction is redeemed, all transactions in the group are redeemed together."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the transaction record was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the transaction record was last updated."
+          },
+          "redeemedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the transaction was redeemed (ex, state changed to COMPLETED)."
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional Timestamp that reflects the expiration date of the transaction when redemptionMode is MANUAL and state is PENDING. If not provided, the transaction will never expire."
           }
         }
       }
