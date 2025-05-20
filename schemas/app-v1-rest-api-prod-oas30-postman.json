@@ -567,6 +567,55 @@
           }
         ]
       }
+    },
+    "/virtualTransactions/{virtualTransactionId}/redeem": {
+      "post": {
+        "summary": "Redeem a virtual transaction",
+        "description": "Redeems a specific pending credit virtual transaction for the authenticated user. This action is typically available for transactions with 'MANUAL' redemption mode. Redeeming a transaction may also complete other related transactions (e.g., a corresponding debit) if they share the same redemptionGroupId.",
+        "parameters": [
+          {
+            "name": "virtualTransactionId",
+            "in": "path",
+            "description": "Unique identifier for the virtual transaction to redeem.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Virtual transaction redeemed successfully. Returns all affected transactions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedeemVirtualTransactionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Transaction Id does not match specified format."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Not Found - The specified virtualTransactionId does not exist for current user."
+          },
+          "409": {
+            "description": "Conflict - The transaction is not in a state that allows redemption (e.g., already completed, expired, or rejected)."
+          },
+          "422": {
+            "description": "Unprocessable Entity - The transaction is not in a state that allows redemption (e.g., already completed, expired, or rejected) or is not a credit transaction."
+          }
+        },
+        "security": [
+          {
+            "app-v1-rest-api-authorizer": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -920,6 +969,16 @@
             "type": "string",
             "format": "date-time",
             "description": "Timestamp when this virtual balance record was last updated."
+          },
+          "minAllowedBalance": {
+            "type": "number",
+            "description": "Optional minimum balance allowed for this virtual currency for the user. Transactions might be blocked if they would result in the balance falling below this value.",
+            "nullable": true
+          },
+          "maxAllowedBalance": {
+            "type": "number",
+            "description": "Optional maximum balance allowed for this virtual currency for the user. Transactions might be blocked if they would result in the balance exceeding this value.",
+            "nullable": true
           }
         }
       },
@@ -984,6 +1043,20 @@
               "$ref": "#/components/schemas/VirtualTransaction"
             },
             "description": "A list of the created virtual transactions, from the point of view of the calling user."
+          }
+        }
+      },
+      "RedeemVirtualTransactionResponse": {
+        "type": "object",
+        "description": "Response body after redeeming a virtual transaction. Includes all affected transactions.",
+        "required": ["transactions"],
+        "properties": {
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualTransaction"
+            },
+            "description": "A list of virtual transactions directly affecting the authenticated user that were updated by the redemption (e.g., the redeemed credit transaction, now in a COMPLETED state). Any other linked transactions (like a counterpart's debit) will be processed internally but not typically returned in this App API response."
           }
         }
       },

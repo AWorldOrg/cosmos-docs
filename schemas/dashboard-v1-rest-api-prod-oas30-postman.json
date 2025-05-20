@@ -1372,15 +1372,20 @@
       "Reward": {
         "type": "object",
         "description": "Definition of a reward associated with a reward rule",
-        "required": ["virtualCurrencyId", "expression"],
+        "required": ["virtualCurrencyId", "expression", "redemptionMode"],
         "properties": {
           "virtualCurrencyId": {
             "type": "string",
-            "description": "Identifier of the virtual currency to award"
+            "description": "Identifier of the virtual currency to award."
           },
           "expression": {
             "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "JSON Logic expression that calculates the amount of virtual currency to award"
+            "description": "JSON Logic expression that calculates the amount of virtual currency to award."
+          },
+          "redemptionMode": {
+            "type": "string",
+            "enum": ["AUTO", "MANUAL"],
+            "description": "The redemption mode for the transaction generated when this reward is granted. 'AUTO' means the transaction completes immediately. 'MANUAL' means the transaction will be pending and may require a separate redeem action by the user."
           }
         }
       },
