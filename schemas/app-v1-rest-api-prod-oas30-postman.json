@@ -969,16 +969,6 @@
             "type": "string",
             "format": "date-time",
             "description": "Timestamp when this virtual balance record was last updated."
-          },
-          "minAllowedBalance": {
-            "type": "number",
-            "description": "Optional minimum balance allowed for this virtual currency for the user. Transactions might be blocked if they would result in the balance falling below this value.",
-            "nullable": true
-          },
-          "maxAllowedBalance": {
-            "type": "number",
-            "description": "Optional maximum balance allowed for this virtual currency for the user. Transactions might be blocked if they would result in the balance exceeding this value.",
-            "nullable": true
           }
         }
       },

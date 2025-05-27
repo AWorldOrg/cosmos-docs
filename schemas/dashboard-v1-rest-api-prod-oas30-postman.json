@@ -1041,6 +1041,42 @@
         } ]
       }
     },
+    "/users/byExternalId/{externalId}/" : {
+      "get" : {
+        "summary": "Get user by external ID",
+        "description": "Retrieves a specific user by their unique external ID identifier",
+        "parameters" : [ {
+          "name" : "externalId",
+          "in" : "path",
+          "description": "Unique external identifier of the user to retrieve",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses": {
+          "200": {
+            "description": "User retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "dashboard-v1-rest-api-authorizer" : [ ]
+        } ]
+      }
+    },
     "/virtualTransactions": {
       "post": {
         "summary": "Create new virtual transactions (Admin)",
@@ -1653,6 +1689,14 @@
               "type": "string"
             },
             "description": "A list of language codes for which translations of this virtual currency are available."
+          },
+          "minAllowedBalance": {
+            "type": "number",
+            "description": "Optional minimum balance allowed for this virtual currency for the user. Transactions might be blocked if they would result in the balance falling below this value."
+          },
+          "maxAllowedBalance": {
+            "type": "number",
+            "description": "Optional maximum balance allowed for this virtual currency for the user. Transactions might be blocked if they would result in the balance exceeding this value."
           },
           "accountId": {
             "type": "string",
