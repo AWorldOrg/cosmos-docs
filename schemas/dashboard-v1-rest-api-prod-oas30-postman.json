@@ -1132,6 +1132,511 @@
           }
         ]
       }
+    },
+    "/missions": {
+      "get": {
+        "summary": "List missions",
+        "description": "Retrieves a paginated list of missions available in the workspace.",
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of missions to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of missions retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Mission"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create mission",
+        "description": "Creates a new mission with a system-generated ID.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMissionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Mission created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mission"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
+      }
+    },
+    "/missions/{missionId}": {
+      "get": {
+        "summary": "Get mission by ID",
+        "description": "Retrieves a specific mission by its unique identifier.",
+        "parameters": [
+          {
+            "name": "missionId",
+            "in": "path",
+            "description": "Unique identifier of the mission to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mission retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mission"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Mission not found."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Update mission",
+        "description": "Updates an existing mission identified by its ID.",
+        "parameters": [
+          {
+            "name": "missionId",
+            "in": "path",
+            "description": "Unique identifier of the mission to update.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMissionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Mission updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mission"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input."
+          },
+          "404": {
+            "description": "Mission not found."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
+      }
+    },
+    "/missions/{missionId}/publish": {
+      "post": {
+        "summary": "Publish a mission",
+        "description": "Publishes a mission, making it available for use.",
+        "parameters": [
+          {
+            "name": "missionId",
+            "in": "path",
+            "description": "Unique identifier of the mission to publish.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mission published successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mission"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request."
+          },
+          "404": {
+            "description": "Mission not found."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
+      }
+    },
+    "/missionRules": {
+      "get": {
+        "summary": "List mission rules",
+        "description": "Retrieves a paginated list of mission rules available in the workspace.",
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of mission rules to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of mission rules retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/MissionRule"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create mission rule",
+        "description": "Creates a new mission rule with a system-generated ID.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMissionRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Mission rule created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionRule"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
+      }
+    },
+    "/missionRules/{missionRuleId}": {
+      "get": {
+        "summary": "Get mission rule by ID",
+        "description": "Retrieves a specific mission rule by its unique identifier.",
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mission rule retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionRule"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Mission rule not found."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Update mission rule",
+        "description": "Updates an existing mission rule identified by its ID.",
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule to update.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMissionRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Mission rule updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionRule"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input."
+          },
+          "404": {
+            "description": "Mission rule not found."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
+      }
+    },
+    "/missionRules/{missionRuleId}/publish": {
+      "post": {
+        "summary": "Publish a mission rule",
+        "description": "Publishes a mission rule, making it active.",
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule to publish.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mission rule published successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionRule"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request."
+          },
+          "404": {
+            "description": "Mission rule not found."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
+      }
+    },
+    "/missionAssignments": {
+      "post": {
+        "summary": "Create mission assignment (manual)",
+        "description": "Manually assigns a mission to a user or a group. This is typically used for specific cases not covered by mission rules.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMissionAssignmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Mission assignment created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionAssignment"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input. Check request body for missing fields or incorrect values."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Referenced mission, user, or groupTagId not found."
+          },
+          "409": {
+            "description": "Conflict. The mission might already be assigned to the user/group for the specified period."
+          }
+        },
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
+      }
     }
   },
   "components" : {
@@ -1165,6 +1670,721 @@
       }
     },
     "schemas": {
+      "MissionAssignment": {
+        "type": "object",
+        "description": "Represents the assignment of a mission to a user or a group.",
+        "required": [
+          "missionAssignmentId",
+          "missionType",
+          "missionId",
+          "periodId",
+          "timeframeType",
+          "startsAt",
+          "state",
+          "currentAmount",
+          "targetAmount",
+          "incrementExpression",
+          "targetAmountExpression"
+        ],
+        "properties": {
+          "missionAssignmentId": {
+            "type": "string",
+            "description": "Unique identifier for the mission assignment (NanoID)."
+          },
+          "missionType": {
+            "type": "string",
+            "enum": ["INDIVIDUAL", "GROUP"],
+            "description": "Type of the assigned mission."
+          },
+          "missionId": {
+            "type": "string",
+            "description": "Identifier of the assigned mission."
+          },
+          "missionRuleId": {
+            "type": "string",
+            "description": "Optional. Identifier of the mission rule that triggered this assignment."
+          },
+          "periodId": {
+            "type": "string",
+            "description": "Identifier for the specific period of a recurring mission assignment."
+          },
+          "timeframeType": {
+            "type": "string",
+            "enum": ["PERMANENT", "RANGE", "RECURRING"],
+            "description": "The timeframe type of this assignment."
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date-time of this mission assignment."
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional. End date-time of this mission assignment (for RANGE and RECURRING)."
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional. Timestamp when the mission assignment was completed."
+          },
+          "isCompleted": {
+            "type": "boolean",
+            "description": "Indicates if the mission assignment is completed."
+          },
+          "state": {
+            "type": "string",
+            "enum": ["PENDING", "ACTIVE", "ENDED"],
+            "description": "Current state of the mission assignment."
+          },
+          "groupTagId": {
+            "type": "string",
+            "description": "Required if missionType is 'GROUP'. The tag ID of the assigned group."
+          },
+          "userId": {
+            "type": "string",
+            "description": "Required if missionType is 'INDIVIDUAL'. The ID of the assigned user."
+          },
+          "currentAmount": {
+            "type": "number",
+            "description": "Current progress amount towards the target."
+          },
+          "targetAmount": {
+            "type": "number",
+            "description": "Target amount required for mission completion."
+          },
+          "incrementExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression defining how progress is incremented for this assignment. Evaluated against: `{ event }` (where event is the specific entity like Activity, Quiz, or Tag that triggered the evaluation)."
+          },
+          "targetAmountExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression defining the target amount for this assignment. Evaluated against: `{ mission, user? }` (user is optional and only present for INDIVIDUAL missions)."
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID associated with this assignment."
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID associated with this assignment."
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where this assignment was created."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the assignment was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the assignment was last updated."
+          }
+        }
+      },
+      "CreateMissionAssignmentRequest": {
+        "type": "object",
+        "description": "Data required to manually create a mission assignment.",
+        "required": [
+          "missionType",
+          "missionId",
+          "startsAt",
+          "timeframeType"
+        ],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "Required if missionType is 'INDIVIDUAL'. The ID of the user to assign the mission to."
+          },
+          "groupTagId": {
+            "type": "string",
+            "description": "Required if missionType is 'GROUP'. The tag ID of the group to assign the mission to."
+          },
+          "missionType": {
+            "type": "string",
+            "enum": ["INDIVIDUAL", "GROUP"],
+            "description": "Type of the mission being assigned."
+          },
+          "missionId": {
+            "type": "string",
+            "description": "Identifier of the mission to assign."
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date-time for this manual assignment."
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional. End date-time for this manual assignment (required if timeframeType is 'RANGE')."
+          },
+          "currentAmount": {
+            "type": "number",
+            "default": 0,
+            "description": "Optional. Initial progress amount. Defaults to 0."
+          },
+          "targetAmount": {
+            "type": "number",
+            "description": "Optional. Overrides the mission's targetAmountExpression if provided."
+          },
+          "timeframeType": {
+            "type": "string",
+            "enum": ["RANGE", "PERMANENT"],
+            "description": "Timeframe type for this manual assignment. 'RECURRING' is not allowed for manual assignments."
+          }
+        }
+      },
+      "MissionRule": {
+        "type": "object",
+        "description": "Defines rules for automatically assigning missions to users or groups.",
+        "required": [
+          "missionRuleId",
+          "missionType",
+          "name",
+          "missionsMatchCondition",
+          "timeframeType",
+          "timeframeTimezoneType",
+          "timeframeStartsAt",
+          "assignmentMode",
+          "state",
+          "origin",
+          "defaultLang",
+          "langs"
+        ],
+        "properties": {
+          "missionRuleId": {
+            "type": "string",
+            "description": "Unique identifier for the mission rule (NanoID)."
+          },
+          "missionType": {
+            "type": "string",
+            "enum": ["INDIVIDUAL", "GROUP"],
+            "description": "Type of missions this rule assigns (individual or group)."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the mission rule."
+          },
+          "groupTagId": {
+            "type": "string",
+            "description": "Required if missionType is 'GROUP'. The tag ID identifying the target group."
+          },
+          "usersMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Required if missionType is 'INDIVIDUAL'. JSON Logic to filter users. Evaluated against: `{ user }`."
+          },
+          "missionsPool": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Optional pool of mission IDs from which to select."
+          },
+          "missionsMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic to select missions from the pool or all available missions. Every mission is evaluated singularly. Evaluated against: `{ mission }`."
+          },
+          "timeframeType": {
+            "type": "string",
+            "enum": ["PERMANENT", "RANGE", "RECURRING"],
+            "description": "Defines the active period of the rule. Please note that 'PERMANENT' should be used only on one-time missions, since they cannot be assigned again after the first time "
+          },
+          "timeframeTimezoneType": {
+            "type": "string",
+            "enum": ["FIXED", "USER"],
+            "description": "Determines if the timeframe uses a fixed timezone or the user's timezone."
+          },
+          "timeframeTimezone": {
+            "type": "string",
+            "description": "Required if timeframeTimezoneType is 'FIXED'. The IANA timezone string."
+          },
+          "timeframeStartsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date-time of the rule's active period."
+          },
+          "timeframeEndsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Required for 'RANGE' and 'RECURRING' timeframeTypes. End date-time."
+          },
+          "recurrence": {
+            "type": "string",
+            "enum": ["DAILY", "WEEKLY", "MONTHLY", "CUSTOM"],
+            "description": "Required for 'RECURRING' timeframeType. How often the rule recurs."
+          },
+          "scheduleCron": {
+            "type": "string",
+            "description": "Required if recurrence is 'CUSTOM' or assignmentMode is 'SCHEDULED_PUSH'. Cron expression for scheduling."
+          },
+          "assignmentMode": {
+            "type": "string",
+            "enum": ["LAZY", "SCHEDULED_PUSH", "EVENT", "DISABLED"],
+            "description": "How missions are assigned by this rule. LAZY would cause missions to be assigned (if applicable) every time a user requests its own missions. EVENT based assignments allows assigning missions in response to other events. Please note that SCHEDULED_PUSH is not supported at the moment, and will be supported in the future."
+          },
+          "state": {
+            "type": "string",
+            "enum": ["PENDING", "ACTIVE", "ENDED"],
+            "default": "PENDING",
+            "description": "Current operational state of the rule."
+          },
+          "origin": {
+            "type": "string",
+            "enum": ["CATALOG", "CUSTOM"],
+            "description": "Source of the rule definition."
+          },
+          "missionRuleCatalogId": {
+            "type": "string",
+            "description": "ID from catalog if origin is 'CATALOG'."
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether to sync with catalog updates."
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language for translations."
+          },
+          "langs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Available languages for translations."
+          },
+          "eventMatchType": {
+            "type": "string",
+            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "description": "Required for 'EVENT' assignmentMode. Type of event matching."
+          },
+          "eventMatchEntity": {
+            "type": "string",
+            "enum": ["Activity", "Quiz", "Tag", "User"],
+            "description": "Required for 'EVENT' assignmentMode. Entity involved in the event."
+          },
+          "eventMatchEntityId": {
+            "type": "string",
+            "description": "Required for 'EVENT' assignmentMode. Specific ID of the event entity."
+          },
+          "eventMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Required for 'EVENT' assignmentMode. JSON Logic for event conditions. Evaluated against: `{ event }` (where event is the specific entity like Activity, Quiz, Tag, or User that triggered the evaluation)."
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that owns this mission rule."
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that contains this mission rule."
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where the mission rule was created."
+          },
+          "stage": {
+            "type": "string",
+            "enum": ["DRAFT", "PUBLISHED"],
+            "description": "Current publication stage of the mission rule."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the mission rule was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the mission rule was last updated."
+          }
+        }
+      },
+      "CreateMissionRuleRequest": {
+        "type": "object",
+        "description": "Data required to create a new mission rule.",
+        "required": [
+          "missionType",
+          "name",
+          "missionsMatchCondition",
+          "timeframeType",
+          "timeframeTimezoneType",
+          "timeframeStartsAt",
+          "assignmentMode",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "missionType": {
+            "type": "string",
+            "enum": ["INDIVIDUAL", "GROUP"]
+          },
+          "name": {
+            "type": "string"
+          },
+          "groupTagId": {
+            "type": "string"
+          },
+          "usersMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Evaluated against: `{ user }`."
+          },
+          "missionsPool": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "missionsMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Evaluated against: `{ mission }`."
+          },
+          "timeframeType": {
+            "type": "string",
+            "enum": ["PERMANENT", "RANGE", "RECURRING"]
+          },
+          "timeframeTimezoneType": {
+            "type": "string",
+            "enum": ["FIXED", "USER"]
+          },
+          "timeframeTimezone": {
+            "type": "string"
+          },
+          "timeframeStartsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "timeframeEndsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "recurrence": {
+            "type": "string",
+            "enum": ["DAILY", "WEEKLY", "MONTHLY", "CUSTOM"]
+          },
+          "scheduleCron": {
+            "type": "string"
+          },
+          "assignmentMode": {
+            "type": "string",
+            "enum": ["LAZY", "SCHEDULED_PUSH", "EVENT", "DISABLED"]
+          },
+          "defaultLang": {
+            "type": "string"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MissionRuleTranslation"
+            },
+            "minItems": 1,
+            "maxItems": 10
+          },
+          "eventMatchType": {
+            "type": "string",
+            "enum": ["INSTANCE", "ENTITY", "TAG"]
+          },
+          "eventMatchEntity": {
+            "type": "string",
+            "enum": ["Activity", "Quiz", "Tag", "User"]
+          },
+          "eventMatchEntityId": {
+            "type": "string"
+          },
+          "eventMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Evaluated against: `{ event }`."
+          }
+        }
+      },
+      "UpdateMissionRuleRequest": {
+        "type": "object",
+        "description": "Data required to update an existing mission rule.",
+        "required": [
+          "name",
+          "defaultLang",
+          "missionType",
+          "assignmentMode",
+          "missionsPool",
+          "translations"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "defaultLang": {
+            "type": "string"
+          },
+          "missionType": {
+            "type": "string",
+            "enum": ["INDIVIDUAL", "GROUP"]
+          },
+          "assignmentMode": {
+            "type": "string",
+            "enum": ["LAZY", "SCHEDULED_PUSH", "EVENT", "DISABLED"]
+          },
+          "eventMatchEntity": {
+            "type": "string",
+            "enum": ["Activity", "Quiz", "Tag", "User"]
+          },
+          "eventMatchEntityId": {
+            "type": "string"
+          },
+          "eventMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Evaluated against: `{ event }`."
+          },
+          "missionsPool": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MissionRuleTranslation"
+            },
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "MissionRuleTranslation": {
+        "type": "object",
+        "description": "Translation for mission rule content.",
+        "required": ["lang"],
+        "properties": {
+          "lang": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "Mission": {
+        "type": "object",
+        "description": "Mission entity representing a set of tasks or objectives for users.",
+        "required": [
+          "missionId",
+          "name",
+          "missionType",
+          "matchType",
+          "matchEntity",
+          "matchCondition",
+          "incrementExpression",
+          "targetAmountExpression",
+          "origin",
+          "defaultLang",
+          "langs",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "missionId": {
+            "type": "string",
+            "description": "Unique identifier for the mission (NanoID)."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the mission."
+          },
+          "missionType": {
+            "type": "string",
+            "enum": ["INDIVIDUAL", "GROUP"],
+            "description": "Type of mission (individual or group-based)."
+          },
+          "matchType": {
+            "type": "string",
+            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "description": "Determines how the mission's conditions are matched."
+          },
+          "matchEntity": {
+            "type": "string",
+            "enum": ["Activity", "Quiz", "Tag"],
+            "description": "The entity type the mission's conditions apply to."
+          },
+          "matchEntityId": {
+            "type": "string",
+            "description": "Specific entity ID for matching (if applicable)."
+          },
+          "matchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression defining the refining conditions that defines if the matched entity contributes to mission progress. Evaluated against: `{ mission }`."
+          },
+          "incrementExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression defining how progress is incremented."
+          },
+          "targetAmountExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression defining the target amount for mission completion. Evaluated against: `{ mission, user? }` (user is optional and only present for INDIVIDUAL missions)."
+          },
+          "origin": {
+            "type": "string",
+            "enum": ["CATALOG", "CUSTOM"],
+            "description": "Indicates if the mission is from a catalog or custom-created."
+          },
+          "missionCatalogId": {
+            "type": "string",
+            "description": "ID of the mission in the catalog (if applicable)."
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether the mission should sync with catalog updates."
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language code for the mission's content."
+          },
+          "langs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of available language codes for this mission."
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that owns this mission."
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that contains this mission."
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where the mission was created."
+          },
+          "stage": {
+            "type": "string",
+            "enum": ["DRAFT", "PUBLISHED"],
+            "description": "Current publication stage of the mission."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the mission was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the mission was last updated."
+          }
+        }
+      },
+      "CreateMissionRequest": {
+        "type": "object",
+        "description": "Data required to create a new mission.",
+        "required": [
+          "name",
+          "missionType",
+          "matchType",
+          "matchEntity",
+          "matchCondition",
+          "incrementExpression",
+          "targetAmountExpression",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the mission."
+          },
+          "missionType": {
+            "type": "string",
+            "enum": ["INDIVIDUAL", "GROUP"],
+            "description": "Type of mission."
+          },
+          "matchType": {
+            "type": "string",
+            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "description": "Condition matching type."
+          },
+          "matchEntity": {
+            "type": "string",
+            "enum": ["Activity", "Quiz", "Tag"],
+            "description": "Entity type for matching."
+          },
+          "matchEntityId": {
+            "type": "string",
+            "description": "Specific entity ID for matching (optional)."
+          },
+          "matchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Condition for mission progress. Evaluated against: `{ mission }`."
+          },
+          "incrementExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Expression for progress increment."
+          },
+          "targetAmountExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Expression for target completion amount. Evaluated against: `{ mission, user? }`."
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language for content."
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MissionTranslation"
+            },
+            "description": "List of translations for the mission.",
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "UpdateMissionRequest": {
+        "type": "object",
+        "description": "Data required to update an existing mission.",
+        "required": ["name", "defaultLang", "translations"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Updated name of the mission."
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Updated default language for content."
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MissionTranslation"
+            },
+            "description": "Updated list of translations for the mission.",
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "MissionTranslation": {
+        "type": "object",
+        "description": "Translation for mission content in a specific language.",
+        "required": ["lang", "label"],
+        "properties": {
+          "lang": {
+            "type": "string",
+            "description": "Language code for this translation."
+          },
+          "label": {
+            "type": "string",
+            "description": "Translated label for the mission."
+          },
+          "description": {
+            "type": "string",
+            "description": "Translated description for the mission (optional)."
+          }
+        }
+      },
       "User": {
         "type": "object",
         "description": "User entity representing a person who can access the system",
@@ -1416,7 +2636,7 @@
           },
           "expression": {
             "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "JSON Logic expression that calculates the amount of virtual currency to award."
+            "description": "JSON Logic expression that calculates the amount of virtual currency to award. Evaluated against: `{ event }` (where event is the specific entity like Activity or Quiz that triggered the evaluation)."
           },
           "redemptionMode": {
             "type": "string",
@@ -1454,7 +2674,7 @@
           },
           "matchCondition": {
             "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "JSON Logic expression that determines whether the rule applies"
+            "description": "JSON Logic expression that determines whether the rule applies. Evaluated against: `{ event }` (where event is the specific entity like Activity or Quiz that triggered the evaluation)."
           },
           "applicationMode": {
             "type": "string",
@@ -1548,7 +2768,7 @@
           },
           "matchCondition": {
             "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "JSON Logic expression that determines whether the rule applies"
+            "description": "JSON Logic expression that determines whether the rule applies. Evaluated against: `{ event }`."
           },
           "applicationMode": {
             "type": "string",
@@ -1604,7 +2824,7 @@
           },
           "matchCondition": {
             "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "Updated JSON Logic expression that determines whether the rule applies"
+            "description": "Updated JSON Logic expression that determines whether the rule applies. Evaluated against: `{ event }`."
           },
           "applicationMode": {
             "type": "string",

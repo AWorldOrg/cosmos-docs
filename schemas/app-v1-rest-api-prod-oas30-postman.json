@@ -456,7 +456,7 @@
                     },
                     "nextToken": {
                       "type": "string",
-                      "description": "Pagination cursor for fetching the next set of results. Null if no more items are available."
+                      "description": "Pagination cursor for the next set of results. Null if no more items are available."
                     }
                   }
                 }
@@ -616,6 +616,65 @@
           }
         ]
       }
+    },
+    "/missions": {
+      "get": {
+        "summary": "List user's assigned missions",
+        "description": "Retrieves a paginated list of missions assigned to the authenticated user.",
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of assigned missions to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of assigned missions retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AppMissionAssignment"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "security": [
+          {
+            "app-v1-rest-api-authorizer": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -649,6 +708,99 @@
       }
     },
     "schemas": {
+      "AppMissionAssignment": {
+        "type": "object",
+        "description": "Represents a mission assigned to a user, tailored for app display.",
+        "required": [
+          "missionAssignmentId",
+          "missionType",
+          "missionId",
+          "periodId",
+          "timeframeType",
+          "startsAt",
+          "state",
+          "currentAmount",
+          "targetAmount"
+        ],
+        "properties": {
+          "missionAssignmentId": {
+            "type": "string",
+            "description": "Unique identifier for the mission assignment."
+          },
+          "missionType": {
+            "type": "string",
+            "enum": ["INDIVIDUAL", "GROUP"],
+            "description": "Type of the assigned mission."
+          },
+          "missionId": {
+            "type": "string",
+            "description": "Identifier of the assigned mission."
+          },
+          "missionRuleId": {
+            "type": "string",
+            "description": "Optional. Identifier of the mission rule that triggered this assignment."
+          },
+          "periodId": {
+            "type": "string",
+            "description": "Identifier for the specific period of a recurring mission assignment."
+          },
+          "timeframeType": {
+            "type": "string",
+            "enum": ["PERMANENT", "RANGE", "RECURRING"],
+            "description": "The timeframe type of this assignment."
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date-time of this mission assignment."
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional. End date-time of this mission assignment."
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional. Timestamp when the mission assignment was completed."
+          },
+          "isCompleted": {
+            "type": "boolean",
+            "description": "Indicates if the mission assignment is completed."
+          },
+          "state": {
+            "type": "string",
+            "enum": ["PENDING", "ACTIVE", "ENDED"],
+            "description": "Current state of the mission assignment."
+          },
+          "groupTagId": {
+            "type": "string",
+            "description": "If missionType is 'GROUP', the tag ID of the assigned group."
+          },
+          "userId": {
+            "type": "string",
+            "description": "If missionType is 'INDIVIDUAL', the ID of the assigned user."
+          },
+          "currentAmount": {
+            "type": "number",
+            "description": "Current progress amount towards the target."
+          },
+          "targetAmount": {
+            "type": "number",
+            "description": "Target amount required for mission completion."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the assignment was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the assignment was last updated."
+          }
+        }
+      },
       "Quiz": {
         "type": "object",
         "description": "Quiz representation for client applications, with sensitive data removed",
