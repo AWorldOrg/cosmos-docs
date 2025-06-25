@@ -15,11 +15,41 @@
       }
     }
   ],
+  "tags": [
+    {
+      "name": "ActivityLogs",
+      "description": "Operations related to activity logs"
+    },
+    {
+      "name": "Quizzes",
+      "description": "Operations related to quizzes and quiz translations"
+    },
+    {
+      "name": "VirtualBalances",
+      "description": "Operations related to virtual currency balances"
+    },
+    {
+      "name": "VirtualTransactions",
+      "description": "Operations related to virtual currency transactions"
+    },
+    {
+      "name": "Missions",
+      "description": "Operations related to user missions"
+    }
+  ],
   "paths": {
     "/activityLogs": {
       "put": {
-        "summary": "Create a new activity log",
+        "tags": [
+          "ActivityLogs"
+        ],
+        "summary": "Create activity log",
         "description": "Records a user's activity completion by creating a new activity log entry with an auto-generated ID",
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "ActivityLogs"
+        },
         "requestBody": {
           "required": true,
           "content": {
@@ -92,8 +122,16 @@
     },
     "/activityLogs/{activityLogId}": {
       "put": {
-        "summary": "Create or update an activity log with a specific ID",
+        "tags": [
+          "ActivityLogs"
+        ],
+        "summary": "Create/update activity log",
         "description": "Records a user's activity completion by creating or updating an activity log entry with the provided ID. This endpoint is useful for idempotent operations when you need to ensure the same activity completion is not recorded multiple times.",
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "ActivityLogs"
+        },
         "parameters": [
           {
             "name": "activityLogId",
@@ -177,8 +215,16 @@
     },
     "/quizzes": {
       "get": {
-        "summary": "List available quizzes",
+        "tags": [
+          "Quizzes"
+        ],
+        "summary": "List quizzes",
         "description": "Retrieves a paginated list of available quizzes for the authenticated user",
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        },
         "parameters": [
           {
             "name": "nextToken",
@@ -236,8 +282,16 @@
     },
     "/quizzes/{quizId}": {
       "get": {
-        "summary": "Get a specific quiz by ID",
+        "tags": [
+          "Quizzes"
+        ],
+        "summary": "Get quiz",
         "description": "Retrieves a quiz object with associated content, excluding the correct answer for client-side display purposes.",
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        },
         "parameters": [
           {
             "name": "quizId",
@@ -276,8 +330,16 @@
     },
     "/quizzes/{quizId}/translation": {
       "get": {
-        "summary": "Get translations for a quiz",
+        "tags": [
+          "Quizzes"
+        ],
+        "summary": "Get quiz translation",
         "description": "Retrieves the translation content for a specific quiz, including questions and answer options",
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        },
         "parameters": [
           {
             "name": "quizId",
@@ -316,8 +378,16 @@
     },
     "/virtualBalances": {
       "get": {
-        "summary": "List virtual currency balances",
+        "tags": [
+          "VirtualBalances"
+        ],
+        "summary": "List virtual balances",
         "description": "Retrieves a paginated list of virtual currency balances for the authenticated user.",
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualBalances"
+        },
         "parameters": [
           {
             "name": "nextToken",
@@ -376,8 +446,16 @@
     },
     "/virtualBalances/{virtualCurrencyId}": {
       "get": {
-        "summary": "Get a specific virtual currency balance by ID",
+        "tags": [
+          "VirtualBalances"
+        ],
+        "summary": "Get virtual balance",
         "description": "Retrieves the balance for a specific virtual currency for the authenticated user.",
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualBalances"
+        },
         "parameters": [
           {
             "name": "virtualCurrencyId",
@@ -416,8 +494,16 @@
     },
     "/virtualTransactions": {
       "get": {
+        "tags": [
+          "VirtualTransactions"
+        ],
         "summary": "List virtual transactions",
         "description": "Retrieves a paginated list of virtual transactions for the authenticated user.",
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualTransactions"
+        },
         "parameters": [
           {
             "name": "nextToken",
@@ -474,8 +560,16 @@
         ]
       },
       "post": {
-        "summary": "Create new virtual transactions",
+        "tags": [
+          "VirtualTransactions"
+        ],
+        "summary": "Create virtual transactions",
         "description": "Allows a user to send virtual currency to another user. Multiple transaction requests can be batched. The source user is always the authenticated caller. Operations are atomic (all or nothing). It is strongly recommended to include an 'X-Idempotency-Key' header for safe retries.",
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualTransactions"
+        },
         "parameters": [
           {
             "name": "X-Idempotency-Key",
@@ -530,8 +624,16 @@
     },
     "/virtualTransactions/{virtualTransactionId}": {
       "get": {
-        "summary": "Get a specific virtual transaction by ID",
+        "tags": [
+          "VirtualTransactions"
+        ],
+        "summary": "Get virtual transaction",
         "description": "Retrieves a specific virtual transaction by its ID for the authenticated user.",
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualTransactions"
+        },
         "parameters": [
           {
             "name": "virtualTransactionId",
@@ -570,8 +672,16 @@
     },
     "/virtualTransactions/{virtualTransactionId}/redeem": {
       "post": {
-        "summary": "Redeem a virtual transaction",
+        "tags": [
+          "VirtualTransactions"
+        ],
+        "summary": "Redeem virtual transaction",
         "description": "Redeems a specific pending credit virtual transaction for the authenticated user. This action is typically available for transactions with 'MANUAL' redemption mode. Redeeming a transaction may also complete other related transactions (e.g., a corresponding debit) if they share the same redemptionGroupId.",
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualTransactions"
+        },
         "parameters": [
           {
             "name": "virtualTransactionId",
@@ -619,8 +729,16 @@
     },
     "/missions": {
       "get": {
-        "summary": "List user's assigned missions",
+        "tags": [
+          "Missions"
+        ],
+        "summary": "List user's missions",
         "description": "Retrieves a paginated list of missions assigned to the authenticated user.",
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        },
         "parameters": [
           {
             "name": "nextToken",
@@ -729,7 +847,10 @@
           },
           "missionType": {
             "type": "string",
-            "enum": ["INDIVIDUAL", "GROUP"],
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ],
             "description": "Type of the assigned mission."
           },
           "missionId": {
@@ -746,7 +867,11 @@
           },
           "timeframeType": {
             "type": "string",
-            "enum": ["PERMANENT", "RANGE", "RECURRING"],
+            "enum": [
+              "PERMANENT",
+              "RANGE",
+              "RECURRING"
+            ],
             "description": "The timeframe type of this assignment."
           },
           "startsAt": {
@@ -770,7 +895,11 @@
           },
           "state": {
             "type": "string",
-            "enum": ["PENDING", "ACTIVE", "ENDED"],
+            "enum": [
+              "PENDING",
+              "ACTIVE",
+              "ENDED"
+            ],
             "description": "Current state of the mission assignment."
           },
           "groupTagId": {
@@ -818,12 +947,19 @@
           },
           "difficulty": {
             "type": "string",
-            "enum": ["EASY", "MEDIUM", "HARD"],
+            "enum": [
+              "EASY",
+              "MEDIUM",
+              "HARD"
+            ],
             "description": "The difficulty level of the quiz"
           },
           "origin": {
             "type": "string",
-            "enum": ["CATALOG", "CUSTOM"],
+            "enum": [
+              "CATALOG",
+              "CUSTOM"
+            ],
             "description": "Whether the quiz comes from a central catalog or is custom-created"
           },
           "quizCatalogId": {
@@ -836,7 +972,11 @@
           },
           "placement": {
             "type": "string",
-            "enum": ["LEARNING", "ASSESSMENT", "CERTIFICATION"],
+            "enum": [
+              "LEARNING",
+              "ASSESSMENT",
+              "CERTIFICATION"
+            ],
             "description": "The context in which the quiz is used"
           },
           "defaultLang": {
@@ -911,7 +1051,11 @@
       "CreateActivityLogRequest": {
         "type": "object",
         "description": "Data required to create a new activity log entry",
-        "required": ["activityId", "userId", "completedAt"],
+        "required": [
+          "activityId",
+          "userId",
+          "completedAt"
+        ],
         "properties": {
           "activityId": {
             "type": "string",
@@ -926,7 +1070,10 @@
           },
           "outcome": {
             "type": "string",
-            "enum": ["SUCCESS", "FAILURE"],
+            "enum": [
+              "SUCCESS",
+              "FAILURE"
+            ],
             "description": "Result of the activity completion. If not provided, no outcome is recorded."
           },
           "value": {
@@ -955,7 +1102,12 @@
       "ActivityLog": {
         "type": "object",
         "description": "Record of a completed activity by a user",
-        "required": ["activityLogId", "activityId", "userId", "completedAt"],
+        "required": [
+          "activityLogId",
+          "activityId",
+          "userId",
+          "completedAt"
+        ],
         "properties": {
           "activityLogId": {
             "type": "string",
@@ -974,7 +1126,10 @@
           },
           "outcome": {
             "type": "string",
-            "enum": ["SUCCESS", "FAILURE"],
+            "enum": [
+              "SUCCESS",
+              "FAILURE"
+            ],
             "description": "Result of the activity completion"
           },
           "value": {
@@ -1025,7 +1180,9 @@
       "CreateUserRequest": {
         "type": "object",
         "description": "Data required to create a new user",
-        "required": ["email"],
+        "required": [
+          "email"
+        ],
         "properties": {
           "email": {
             "type": "string",
@@ -1049,7 +1206,10 @@
       "User": {
         "type": "object",
         "description": "User account information",
-        "required": ["userId", "email"],
+        "required": [
+          "userId",
+          "email"
+        ],
         "properties": {
           "userId": {
             "type": "string",
@@ -1144,7 +1304,10 @@
           },
           "redemptionMode": {
             "type": "string",
-            "enum": ["AUTO", "MANUAL"],
+            "enum": [
+              "AUTO",
+              "MANUAL"
+            ],
             "description": "The redemption mode for the transaction."
           },
           "amount": {
@@ -1162,7 +1325,9 @@
       "CreateVirtualTransactionsRequest": {
         "type": "object",
         "description": "Request body for creating virtual transactions from the App API.",
-        "required": ["transactions"],
+        "required": [
+          "transactions"
+        ],
         "properties": {
           "transactions": {
             "type": "array",
@@ -1177,7 +1342,9 @@
       "CreateVirtualTransactionsResponse": {
         "type": "object",
         "description": "Response body after creating virtual transactions from the App API.",
-        "required": ["transactions"],
+        "required": [
+          "transactions"
+        ],
         "properties": {
           "transactions": {
             "type": "array",
@@ -1191,7 +1358,9 @@
       "RedeemVirtualTransactionResponse": {
         "type": "object",
         "description": "Response body after redeeming a virtual transaction. Includes all affected transactions.",
-        "required": ["transactions"],
+        "required": [
+          "transactions"
+        ],
         "properties": {
           "transactions": {
             "type": "array",
@@ -1239,12 +1408,20 @@
           },
           "direction": {
             "type": "string",
-            "enum": ["CREDIT", "DEBIT"],
+            "enum": [
+              "CREDIT",
+              "DEBIT"
+            ],
             "description": "Indicates whether the transaction is a credit or a debit for the user."
           },
           "state": {
             "type": "string",
-            "enum": ["PENDING", "COMPLETED", "EXPIRED", "REJECTED"],
+            "enum": [
+              "PENDING",
+              "COMPLETED",
+              "EXPIRED",
+              "REJECTED"
+            ],
             "description": "The current state of the transaction. Expired transactions are evaluated lazily and their state is updated when trying to redeem them."
           },
           "initiator": {
@@ -1253,7 +1430,12 @@
           },
           "initiatorType": {
             "type": "string",
-            "enum": ["USER", "REWARD_RULE", "SYSTEM", "ADMIN"],
+            "enum": [
+              "USER",
+              "REWARD_RULE",
+              "SYSTEM",
+              "ADMIN"
+            ],
             "description": "The type of entity that initiated the transaction."
           },
           "counterpart": {
@@ -1262,12 +1444,18 @@
           },
           "counterpartType": {
             "type": "string",
-            "enum": ["USER", "SYSTEM"],
+            "enum": [
+              "USER",
+              "SYSTEM"
+            ],
             "description": "The type of counterpart entity."
           },
           "redemptionMode": {
             "type": "string",
-            "enum": ["AUTO", "MANUAL"],
+            "enum": [
+              "AUTO",
+              "MANUAL"
+            ],
             "description": "Defines wether the transaction is automatically redeemed or not. If redemptionMode is MANUAL, the transaction will be pending until this transaction (if at credit) or the counterpart transaction (if at debit) is redeemed."
           },
           "virtualTransactionGroupId": {
