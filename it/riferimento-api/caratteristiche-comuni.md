@@ -1,10 +1,10 @@
 # Caratteristiche API Comuni
 
-Questa pagina documenta le caratteristiche e i comportamenti comuni condivisi tra tutti i contesti API di Cosmos (App, Dashboard e Portal). Consulta la documentazione specifica del contesto per dettagli specifici.
+Questa pagina documenta le caratteristiche e i comportamenti comuni condivisi tra tutti i contesti API di AWorld (App, Dashboard e Portal). Consulta la documentazione specifica del contesto per dettagli specifici.
 
 ## Nozioni di Base sull'Autenticazione
 
-Tutte le API Cosmos richiedono autenticazione utilizzando un token di accesso valido. Le richieste devono includere un header Authorization:
+Tutte le API AWorld richiedono autenticazione utilizzando un token di accesso valido. Le richieste devono includere un header Authorization:
 
 ```
 Authorization: Bearer YOUR_ACCESS_TOKEN
@@ -14,7 +14,7 @@ Per informazioni su come ottenere i token di accesso, consulta la [Guida all'Aut
 
 ### Claim Personalizzati
 
-Le API Cosmos utilizzano claim personalizzati nel token di accesso per applicare permessi e operazioni. Quando si esegue l'accesso, tutti i claim personalizzati necessari sono automaticamente inclusi nel token di accesso.
+Le API AWorld utilizzano claim personalizzati nel token di accesso per applicare permessi e operazioni. Quando si esegue l'accesso, tutti i claim personalizzati necessari sono automaticamente inclusi nel token di accesso.
 
 Ogni contesto richiede claim specifici:
 - **Contesto App**: `accountId`, `workspaceId`, `principalId`, `userId`, e altri
@@ -83,11 +83,11 @@ query {
 
 Molti client GraphQL (per esempio Postman) forniscono automaticamente funzionalità di introspezione, permettendo di navigare lo schema e le operazioni disponibili.
 
-> **Nota**: L'API Cosmos è in fase pre-alpha e subisce frequenti aggiornamenti. L'introspezione dello schema è un ottimo modo per scoprire le operazioni più recenti disponibili.
+> **Nota**: L'API AWorld è in fase pre-alpha e subisce frequenti aggiornamenti. L'introspezione dello schema è un ottimo modo per scoprire le operazioni più recenti disponibili.
 
 ## Paginazione
 
-Le query che ritornano liste in Cosmos supportano la paginazione attraverso un pattern "Connection" con la seguente struttura:
+Le query che ritornano liste in AWorld supportano la paginazione attraverso un pattern "Connection" con la seguente struttura:
 
 ```graphql
 type ResourceConnection {
@@ -146,7 +146,7 @@ Nella fase pre-alpha, non sono ancora applicati limiti di frequenza.
 
 ## Validazione dei Dati
 
-Le API Cosmos impiegano una rigorosa validazione per tutti gli input di dati per garantire coerenza, sicurezza e integrità dei dati. Comprendere queste regole di validazione ti aiuta a costruire integrazioni più robuste.
+Le API AWorld impiegano una rigorosa validazione per tutti gli input di dati per garantire coerenza, sicurezza e integrità dei dati. Comprendere queste regole di validazione ti aiuta a costruire integrazioni più robuste.
 
 ### Tipi Comuni e Regole di Validazione
 

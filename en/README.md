@@ -1,6 +1,6 @@
-# Cosmos Documentation
+# AWorld Documentation
 
-Welcome to the official documentation for the Cosmos SaaS platform.
+Welcome to the official documentation for the AWorld SaaS platform.
 
 ## Contents
 
@@ -12,9 +12,9 @@ Welcome to the official documentation for the Cosmos SaaS platform.
 
 ## Introduction
 
-Cosmos is a multi-tenant SaaS platform that offers a suite of APIs across three distinct contexts: App, Dashboard, and Portal. The platform is designed with a user-centric approach while also supporting machine-to-machine (M2M) interactions through client credentials.
+AWorld is a multi-tenant SaaS platform that offers a suite of APIs across three distinct contexts: App, Dashboard, and Portal. The platform is designed with a user-centric approach while also supporting machine-to-machine (M2M) interactions through client credentials.
 
-> **Important**: Cosmos APIs are currently in **pre-alpha stage** and are being heavily developed. New updates are released on a daily basis, which may introduce changes to the APIs. Please check the documentation regularly for the latest information.
+> **Important**: AWorld APIs are currently in **pre-alpha stage** and are being heavily developed. New updates are released on a daily basis, which may introduce changes to the APIs. Please check the documentation regularly for the latest information.
 
 ## API Reference
 
@@ -35,13 +35,13 @@ Step-by-step guides for common tasks:
 
 ## Authentication
 
-Cosmos uses AWS Cognito with a custom domain for authentication, implementing standard OAuth2 flows. For detailed instructions on authentication, see our [Authentication Guide](./guides/authentication.md).
+AWorld uses AWS Cognito with a custom domain for authentication, implementing standard OAuth2 flows. For detailed instructions on authentication, see our [Authentication Guide](./guides/authentication.md).
 
 ## Key Concepts
 
 ### Account
 
-An account represents a tenant in the multi-tenant architecture of Cosmos. Each organization typically has its own account, which serves as the top-level container for all resources related to that organization.
+An account represents a tenant in the multi-tenant architecture of AWorld. Each organization typically has its own account, which serves as the top-level container for all resources related to that organization.
 
 ### Workspace
 
@@ -62,7 +62,7 @@ A user is scoped to a specific workspace within an account. Users have permissio
 
 ## API Types
 
-Cosmos provides both GraphQL and REST APIs:
+AWorld provides both GraphQL and REST APIs:
 
 - **GraphQL APIs**: Currently available API type, offering flexible queries and mutations
 - **REST APIs**: Will have feature parity with GraphQL APIs but are not published yet

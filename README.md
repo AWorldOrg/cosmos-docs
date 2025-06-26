@@ -1,6 +1,6 @@
-# Cosmos Documentation
+# AWorld Documentation
 
-This repository contains the official documentation for the Cosmos SaaS platform APIs.
+This repository contains the official documentation for the AWorld SaaS platform APIs.
 
 ## Available Languages
 
@@ -19,7 +19,7 @@ The documentation is organized into the following categories:
 
 ## Overview
 
-Cosmos is a multi-tenant SaaS platform that provides different APIs across three main contexts: App, Dashboard, and Portal. The platform uses Cognito with a custom domain for authentication and follows the OAuth2 protocol for user authorization.
+AWorld is a multi-tenant SaaS platform that provides different APIs across three main contexts: App, Dashboard, and Portal. The platform uses Cognito with a custom domain for authentication and follows the OAuth2 protocol for user authorization.
 
 ## Key Concepts
 

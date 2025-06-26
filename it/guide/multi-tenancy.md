@@ -1,16 +1,16 @@
 # Comprendere il Multi-tenancy
 
-Questa guida spiega l'architettura multi-tenant della piattaforma Cosmos e come questa consente l'isolamento sicuro delle risorse e l'erogazione scalabile dei servizi.
+Questa guida spiega l'architettura multi-tenant della piattaforma AWorld e come questa consente l'isolamento sicuro delle risorse e l'erogazione scalabile dei servizi.
 
 ## Cos'è il Multi-tenancy?
 
 Il multi-tenancy è un'architettura software in cui una singola istanza di software serve più clienti o "tenant". I dati e la configurazione di ciascun tenant rimangono isolati dagli altri tenant, anche se condividono l'infrastruttura sottostante e il codice dell'applicazione.
 
-Nella piattaforma Cosmos, un **Account** rappresenta un tenant – tipicamente un'organizzazione o un'azienda che utilizza la piattaforma.
+Nella piattaforma AWorld, un **Account** rappresenta un tenant – tipicamente un'organizzazione o un'azienda che utilizza la piattaforma.
 
-## Architettura Multi-tenant in Cosmos
+## Architettura Multi-tenant in AWorld
 
-La piattaforma Cosmos implementa un'architettura multi-tenant gerarchica:
+La piattaforma AWorld implementa un'architettura multi-tenant gerarchica:
 
 ```
 Piattaforma
@@ -21,7 +21,7 @@ Piattaforma
 
 ### Componenti Chiave
 
-- **Piattaforma**: Il sistema Cosmos di livello superiore che ospita tutti gli account
+- **Piattaforma**: Il sistema AWorld di livello superiore che ospita tutti gli account
 - **Account**: Un tenant con i propri dati e configurazione isolati
 - **Workspace**: Un ambiente all'interno di un account (es. sviluppo, staging, produzione)
 - **User**: Un utente a livello di workspace con permessi specifici
@@ -29,7 +29,7 @@ Piattaforma
 
 ## Isolamento dei Tenant
 
-La piattaforma Cosmos garantisce l'isolamento dei tenant a più livelli:
+La piattaforma AWorld garantisce l'isolamento dei tenant a più livelli:
 
 ### Isolamento dei Dati
 
@@ -57,7 +57,7 @@ Tutte le chiamate API sono autenticate e limitate al contesto del tenant appropr
 
 ## Vantaggi del Multi-tenancy
 
-L'architettura multi-tenant di Cosmos offre diversi vantaggi:
+L'architettura multi-tenant di AWorld offre diversi vantaggi:
 
 ### Per i Fornitori di Servizi
 
@@ -84,7 +84,7 @@ Sebbene il multi-tenancy offra molti vantaggi, richiede anche un'attenta impleme
 
 ## Utilizzo API Multi-tenant
 
-Quando si interagisce con le API Cosmos, il contesto del tenant è stabilito attraverso l'autenticazione:
+Quando si interagisce con le API AWorld, il contesto del tenant è stabilito attraverso l'autenticazione:
 
 1. **Autenticazione Utente**: Al login, l'utente è associato a uno specifico workspace e account
 2. **Token di Accesso**: Il token JWT contiene claims sull'identità dell'utente e sugli ambiti tenant consentiti

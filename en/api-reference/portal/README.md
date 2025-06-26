@@ -1,6 +1,6 @@
 # Portal Context API Reference
 
-This section documents the API endpoints available in the Portal context of the Cosmos platform.
+This section documents the API endpoints available in the Portal context of the AWorld platform.
 
 ## Introduction
 
@@ -162,11 +162,11 @@ query {
 
 Many GraphQL clients (for example Postman) automatically provide introspection features, allowing you to browse the schema and available operations.
 
-> **Note**: The Cosmos API is in pre-alpha stage and undergoes frequent updates. Schema introspection is a great way to discover the latest available operations.
+> **Note**: The AWorld API is in pre-alpha stage and undergoes frequent updates. Schema introspection is a great way to discover the latest available operations.
 
 ## Pagination
 
-List queries in Cosmos support pagination through a Connection pattern with the following structure:
+List queries in AWorld support pagination through a Connection pattern with the following structure:
 
 ```graphql
 type AccountConnection {

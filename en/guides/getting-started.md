@@ -1,22 +1,22 @@
-# Getting Started with Cosmos
+# Getting Started with AWorld
 
-This guide will help you quickly set up and begin using the Cosmos SaaS platform.
+This guide will help you quickly set up and begin using the AWorld SaaS platform.
 
 ## Overview
 
-Cosmos is a multi-tenant SaaS platform that provides a suite of APIs across three contexts: App, Dashboard, and Portal. This guide will walk you through the initial setup and basic integration steps.
+AWorld is a multi-tenant SaaS platform that provides a suite of APIs across three contexts: App, Dashboard, and Portal. This guide will walk you through the initial setup and basic integration steps.
 
 ## Prerequisites
 
 Before you begin, you'll need:
 
-- A Cosmos account (provided by your administrator or created through sign-up)
+- A AWorld account (provided by your administrator or created through sign-up)
 - Basic understanding of GraphQL (for API interactions)
 - Development environment with your preferred language/framework
 
 ## Account and Workspace Setup
 
-1. **Account Access**: You'll receive an invitation email with instructions to access your Cosmos account.
+1. **Account Access**: You'll receive an invitation email with instructions to access your AWorld account.
 
 2. **User Types**:
    - If you're a **Principal** (platform-level user), you'll have access to manage multiple accounts.
@@ -26,7 +26,7 @@ Before you begin, you'll need:
 
 ## Authentication
 
-Cosmos uses AWS Cognito with a custom domain for authentication. For a complete guide, see [Authentication & Authorization](./authentication.md).
+AWorld uses AWS Cognito with a custom domain for authentication. For a complete guide, see [Authentication & Authorization](./authentication.md).
 
 ### Quick Authentication Overview
 
@@ -45,7 +45,7 @@ Cosmos uses AWS Cognito with a custom domain for authentication. For a complete 
 
 ## API Basics
 
-Cosmos provides three API contexts:
+AWorld provides three API contexts:
 
 - **App Context**: For user-facing functionality within a workspace
 - **Dashboard Context**: For management and observability functionality within a workspace

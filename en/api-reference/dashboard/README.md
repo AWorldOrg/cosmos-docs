@@ -1,10 +1,10 @@
 # Dashboard Context API Reference
 
-This section documents the API endpoints available in the Dashboard context of the Cosmos platform.
+This section documents the API endpoints available in the Dashboard context of the AWorld platform.
 
 ## Introduction
 
-The Dashboard context provides APIs for administration and management functions, enabling account owners and administrators to configure and monitor their Cosmos environments. These APIs are designed for use in administrative interfaces and management tools.
+The Dashboard context provides APIs for administration and management functions, enabling account owners and administrators to configure and monitor their AWorld environments. These APIs are designed for use in administrative interfaces and management tools.
 
 ## Authentication
 
@@ -267,7 +267,7 @@ Example variables:
 }
 ```
 
-> **Important**: It is strongly recommended to always set an `externalId` when creating users. This identifier links the user in Cosmos to your external system. Without an `externalId`, it may become impossible to track which user in Cosmos corresponds to which user in your platform, especially in scenarios involving user management operations. The `externalId` should be a stable, unique identifier from your system.
+> **Important**: It is strongly recommended to always set an `externalId` when creating users. This identifier links the user in AWorld to your external system. Without an `externalId`, it may become impossible to track which user in AWorld corresponds to which user in your platform, especially in scenarios involving user management operations. The `externalId` should be a stable, unique identifier from your system.
 
 ## API Features
 
