@@ -744,8 +744,7 @@
             "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-override-baseurl": "Authentication"
+        "security": []
       }
     },
     "/activityLogs": {
