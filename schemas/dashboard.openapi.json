@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "AWorld API",
-    "description": "Introduction",
+    "title": "AWorld API - Dashboard Endpoints",
+    "description": "The Dashboard context provides APIs for administration and management functions, enabling account owners and administrators to configure and monitor their AWorld environments. These APIs are designed for use in administrative interfaces and management tools.",
     "version": "1.0.0"
   },
   "tags": [
