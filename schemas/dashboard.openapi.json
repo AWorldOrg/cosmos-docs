@@ -134,8 +134,7 @@
           "currentHelper": null,
           "helperAttributes": null,
           "folder": "Authentication"
-        },
-        "x-apidog-override-baseurl": true
+        }
       }
     },
     "/activities": {
@@ -200,7 +199,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Activities"
+        }
       }
     },
     "/activities/{activityId}": {
@@ -248,7 +252,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Activities"
+        }
       },
       "put": {
         "summary": "Create activity",
@@ -307,7 +316,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Activities"
+        }
       },
       "post": {
         "summary": "Update activity",
@@ -366,7 +380,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Activities"
+        }
       }
     },
     "/activities/{activityId}/publish": {
@@ -418,7 +437,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Activities"
+        }
       }
     },
     "/missions": {
@@ -483,7 +507,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        }
       },
       "post": {
         "summary": "Create mission",
@@ -527,7 +556,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        }
       }
     },
     "/missions/{missionId}": {
@@ -575,7 +609,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        }
       },
       "post": {
         "summary": "Update mission",
@@ -634,7 +673,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        }
       }
     },
     "/missions/{missionId}/publish": {
@@ -686,7 +730,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        }
       }
     },
     "/missionRules": {
@@ -751,7 +800,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionRules"
+        }
       },
       "post": {
         "summary": "Create mission rule",
@@ -795,7 +849,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionRules"
+        }
       }
     },
     "/missionRules/{missionRuleId}": {
@@ -843,7 +902,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionRules"
+        }
       },
       "post": {
         "summary": "Update mission rule",
@@ -902,7 +966,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionRules"
+        }
       }
     },
     "/missionRules/{missionRuleId}/publish": {
@@ -954,7 +1023,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionRules"
+        }
       }
     },
     "/missionAssignments": {
@@ -1009,7 +1083,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionAssignments"
+        }
       }
     },
     "/rewardRules": {
@@ -1074,7 +1153,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "RewardRules"
+        }
       },
       "post": {
         "summary": "Create reward rule",
@@ -1118,7 +1202,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "RewardRules"
+        }
       }
     },
     "/rewardRules/{rewardRuleId}": {
@@ -1166,7 +1255,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "RewardRules"
+        }
       },
       "post": {
         "summary": "Update reward rule",
@@ -1225,7 +1319,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "RewardRules"
+        }
       }
     },
     "/rewardRules/{rewardRuleId}/publish": {
@@ -1277,7 +1376,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "RewardRules"
+        }
       }
     },
     "/tags": {
@@ -1342,7 +1446,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Tags"
+        }
       },
       "post": {
         "summary": "Create tag",
@@ -1386,7 +1495,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Tags"
+        }
       }
     },
     "/tags/{tagId}": {
@@ -1434,7 +1548,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Tags"
+        }
       },
       "post": {
         "summary": "Update tag",
@@ -1493,7 +1612,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Tags"
+        }
       }
     },
     "/tags/{tagId}/publish": {
@@ -1545,7 +1669,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Tags"
+        }
       }
     },
     "/users": {
@@ -1610,7 +1739,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
       },
       "post": {
         "summary": "Create user",
@@ -1658,7 +1792,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
       }
     },
     "/users/{userId}": {
@@ -1706,7 +1845,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
       }
     },
     "/users/byExternalId/{externalId}/": {
@@ -1754,7 +1898,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
       }
     },
     "/virtualCurrencies": {
@@ -1820,7 +1969,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualCurrencies"
+        }
       }
     },
     "/virtualCurrencies/{virtualCurrencyId}": {
@@ -1871,7 +2025,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualCurrencies"
+        }
       },
       "put": {
         "summary": "Create virtual currency",
@@ -1933,7 +2092,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualCurrencies"
+        }
       },
       "post": {
         "summary": "Update virtual currency",
@@ -1995,7 +2159,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualCurrencies"
+        }
       }
     },
     "/virtualCurrencies/{virtualCurrencyId}/publish": {
@@ -2054,7 +2223,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualCurrencies"
+        }
       }
     },
     "/virtualTransactions": {
@@ -2119,7 +2293,12 @@
           {
             "bearer": []
           }
-        ]
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualTransactions"
+        }
       }
     }
   },
