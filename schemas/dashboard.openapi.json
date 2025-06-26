@@ -1,0 +1,4105 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AWorld API",
+    "description": "Introduction",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "Authentication"
+    },
+    {
+      "name": "Activities"
+    },
+    {
+      "name": "Missions"
+    },
+    {
+      "name": "MissionRules"
+    },
+    {
+      "name": "MissionAssignments"
+    },
+    {
+      "name": "RewardRules"
+    },
+    {
+      "name": "Tags"
+    },
+    {
+      "name": "Users"
+    },
+    {
+      "name": "VirtualCurrencies"
+    },
+    {
+      "name": "VirtualTransactions"
+    }
+  ],
+  "paths": {
+    "/oauth2/token": {
+      "post": {
+        "summary": "Get OAuth2 Access Token",
+        "deprecated": false,
+        "description": "Obtain an access token using OAuth2 Client Credentials flow. Use the returned access_token as Bearer token in the Authorization header for all API requests.",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "grant_type": {
+                    "type": "string",
+                    "enum": [
+                      "client_credentials"
+                    ],
+                    "description": "OAuth2 grant type",
+                    "examples": [
+                      "client_credentials"
+                    ],
+                    "example": "client_credentials"
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "description": "Your OAuth2 client ID",
+                    "examples": [
+                      "your_client_id"
+                    ],
+                    "example": "your_client_id"
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "description": "Your OAuth2 client secret",
+                    "examples": [
+                      "your_client_secret"
+                    ],
+                    "example": "your_client_secret"
+                  }
+                },
+                "required": [
+                  "grant_type",
+                  "client_id",
+                  "client_secret"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Access token obtained successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "description": "The access token to use in API requests"
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "description": "Token type",
+                      "examples": [
+                        "Bearer"
+                      ]
+                    },
+                    "expires_in": {
+                      "type": "integer",
+                      "description": "Token expiration time in seconds"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request - Invalid client credentials or request format",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized - Invalid client_id or client_secret",
+            "headers": {}
+          }
+        },
+        "security": [],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Authentication"
+        },
+        "x-apidog-override-baseurl": true
+      }
+    },
+    "/activities": {
+      "get": {
+        "summary": "List activities",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of activities available in the workspace",
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of activities to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of activities retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Activity"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination cursor for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/activities/{activityId}": {
+      "get": {
+        "summary": "Get activity by ID",
+        "deprecated": false,
+        "description": "Retrieves a specific activity by its unique identifier",
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity to retrieve",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Activity"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Activity not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "summary": "Create activity",
+        "deprecated": false,
+        "description": "Creates a new activity with the specified ID. It is recommended to use a human-readable ID.",
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier for the new activity",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateActivityRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Activity created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Activity"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "409": {
+            "description": "Activity ID already exists",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Update activity",
+        "deprecated": false,
+        "description": "Updates an existing activity identified by its ID",
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity to update",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateActivityRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Activity updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Activity"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Activity not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/activities/{activityId}/publish": {
+      "post": {
+        "summary": "Publish an activity",
+        "deprecated": false,
+        "description": "Publishes an activity, making it available for use in the application",
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity to publish",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity published successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Activity"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Activity not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/missions": {
+      "get": {
+        "summary": "List missions",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of missions available in the workspace.",
+        "tags": [
+          "Missions"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of missions to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of missions retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Mission"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create mission",
+        "deprecated": false,
+        "description": "Creates a new mission with a system-generated ID.",
+        "tags": [
+          "Missions"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMissionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Mission created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mission"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input.",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/missions/{missionId}": {
+      "get": {
+        "summary": "Get mission by ID",
+        "deprecated": false,
+        "description": "Retrieves a specific mission by its unique identifier.",
+        "tags": [
+          "Missions"
+        ],
+        "parameters": [
+          {
+            "name": "missionId",
+            "in": "path",
+            "description": "Unique identifier of the mission to retrieve.",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mission retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mission"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission not found.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Update mission",
+        "deprecated": false,
+        "description": "Updates an existing mission identified by its ID.",
+        "tags": [
+          "Missions"
+        ],
+        "parameters": [
+          {
+            "name": "missionId",
+            "in": "path",
+            "description": "Unique identifier of the mission to update.",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMissionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Mission updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mission"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input.",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission not found.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/missions/{missionId}/publish": {
+      "post": {
+        "summary": "Publish a mission",
+        "deprecated": false,
+        "description": "Publishes a mission, making it available for use.",
+        "tags": [
+          "Missions"
+        ],
+        "parameters": [
+          {
+            "name": "missionId",
+            "in": "path",
+            "description": "Unique identifier of the mission to publish.",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mission published successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mission"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid request.",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission not found.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/missionRules": {
+      "get": {
+        "summary": "List mission rules",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of mission rules available in the workspace.",
+        "tags": [
+          "MissionRules"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of mission rules to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of mission rules retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/MissionRule"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create mission rule",
+        "deprecated": false,
+        "description": "Creates a new mission rule with a system-generated ID.",
+        "tags": [
+          "MissionRules"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMissionRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Mission rule created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionRule"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input.",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/missionRules/{missionRuleId}": {
+      "get": {
+        "summary": "Get mission rule by ID",
+        "deprecated": false,
+        "description": "Retrieves a specific mission rule by its unique identifier.",
+        "tags": [
+          "MissionRules"
+        ],
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule to retrieve.",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mission rule retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionRule"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission rule not found.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Update mission rule",
+        "deprecated": false,
+        "description": "Updates an existing mission rule identified by its ID.",
+        "tags": [
+          "MissionRules"
+        ],
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule to update.",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMissionRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Mission rule updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionRule"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input.",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission rule not found.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/missionRules/{missionRuleId}/publish": {
+      "post": {
+        "summary": "Publish a mission rule",
+        "deprecated": false,
+        "description": "Publishes a mission rule, making it active.",
+        "tags": [
+          "MissionRules"
+        ],
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule to publish.",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mission rule published successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionRule"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid request.",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission rule not found.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/missionAssignments": {
+      "post": {
+        "summary": "Create mission assignment (manual)",
+        "deprecated": false,
+        "description": "Manually assigns a mission to a user or a group. This is typically used for specific cases not covered by mission rules.",
+        "tags": [
+          "MissionAssignments"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMissionAssignmentRequest"
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Mission assignment created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionAssignment"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input. Check request body for missing fields or incorrect values.",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          },
+          "404": {
+            "description": "Referenced mission, user, or groupTagId not found.",
+            "headers": {}
+          },
+          "409": {
+            "description": "Conflict. The mission might already be assigned to the user/group for the specified period.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/rewardRules": {
+      "get": {
+        "summary": "List reward rules",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of reward rules available in the workspace",
+        "tags": [
+          "RewardRules"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of reward rules to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of reward rules retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RewardRule"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create reward rule",
+        "deprecated": false,
+        "description": "Creates a new reward rule with a system-generated ID",
+        "tags": [
+          "RewardRules"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRewardRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reward rule created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RewardRule"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/rewardRules/{rewardRuleId}": {
+      "get": {
+        "summary": "Get reward rule by ID",
+        "deprecated": false,
+        "description": "Retrieves a specific reward rule by its unique identifier",
+        "tags": [
+          "RewardRules"
+        ],
+        "parameters": [
+          {
+            "name": "rewardRuleId",
+            "in": "path",
+            "description": "Unique identifier of the reward rule to retrieve",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reward rule retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RewardRule"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Reward rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Update reward rule",
+        "deprecated": false,
+        "description": "Updates an existing reward rule identified by its ID",
+        "tags": [
+          "RewardRules"
+        ],
+        "parameters": [
+          {
+            "name": "rewardRuleId",
+            "in": "path",
+            "description": "Unique identifier of the reward rule to update",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRewardRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reward rule updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RewardRule"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Reward rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/rewardRules/{rewardRuleId}/publish": {
+      "post": {
+        "summary": "Publish a reward rule",
+        "deprecated": false,
+        "description": "Publishes a reward rule, making it available for use in the application",
+        "tags": [
+          "RewardRules"
+        ],
+        "parameters": [
+          {
+            "name": "rewardRuleId",
+            "in": "path",
+            "description": "Unique identifier of the reward rule to publish",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reward rule published successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RewardRule"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Reward rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/tags": {
+      "get": {
+        "summary": "List tags",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of tags available in the workspace",
+        "tags": [
+          "Tags"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of tags to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tags retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Tag"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create tag",
+        "deprecated": false,
+        "description": "Creates a new tag with a system-generated ID",
+        "tags": [
+          "Tags"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTagRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/tags/{tagId}": {
+      "get": {
+        "summary": "Get tag by ID",
+        "deprecated": false,
+        "description": "Retrieves a specific tag by its unique identifier",
+        "tags": [
+          "Tags"
+        ],
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag to retrieve",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Update tag",
+        "deprecated": false,
+        "description": "Updates an existing tag identified by its ID",
+        "tags": [
+          "Tags"
+        ],
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag to update",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTagRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/tags/{tagId}/publish": {
+      "post": {
+        "summary": "Publish a tag",
+        "deprecated": false,
+        "description": "Publishes a tag, making it available for use in the application",
+        "tags": [
+          "Tags"
+        ],
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag to publish",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag published successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "List users",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of users available in the workspace",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of users to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create user",
+        "deprecated": false,
+        "description": "Creates a new user in the system with generated credentials",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "409": {
+            "description": "User with the specified email already exists",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "summary": "Get user by ID",
+        "deprecated": false,
+        "description": "Retrieves a specific user by their unique identifier",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Unique identifier of the user to retrieve",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "User not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/users/byExternalId/{externalId}/": {
+      "get": {
+        "summary": "Get user by external ID",
+        "deprecated": false,
+        "description": "Retrieves a specific user by their unique external ID identifier",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "description": "Unique external identifier of the user to retrieve",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "User not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/virtualCurrencies": {
+      "get": {
+        "summary": "List virtual currencies",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of virtual currencies available in the workspace",
+        "tags": [
+          "VirtualCurrencies"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of virtual currencies to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of virtual currencies retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VirtualCurrency"
+                      },
+                      "description": "A list of virtual currencies."
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination cursor for fetching the next set of results. Null if no more items are available."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/virtualCurrencies/{virtualCurrencyId}": {
+      "get": {
+        "summary": "Get virtual currency by ID",
+        "deprecated": false,
+        "description": "Retrieves a specific virtual currency by its unique identifier",
+        "tags": [
+          "VirtualCurrencies"
+        ],
+        "parameters": [
+          {
+            "name": "virtualCurrencyId",
+            "in": "path",
+            "description": "Unique identifier of the virtual currency to retrieve",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 30,
+              "pattern": "^\\S+$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Virtual currency retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualCurrency"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Virtual currency not found.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "summary": "Create virtual currency",
+        "deprecated": false,
+        "description": "Creates a new virtual currency with the specified ID. It is recommended to use a human-readable ID.",
+        "tags": [
+          "VirtualCurrencies"
+        ],
+        "parameters": [
+          {
+            "name": "virtualCurrencyId",
+            "in": "path",
+            "description": "Unique identifier for the new virtual currency",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 30,
+              "pattern": "^\\S+$"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVirtualCurrencyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Virtual currency created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualCurrency"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input. Please check the request body for errors.",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "409": {
+            "description": "A virtual currency with the specified ID already exists.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Update virtual currency",
+        "deprecated": false,
+        "description": "Updates an existing virtual currency identified by its ID",
+        "tags": [
+          "VirtualCurrencies"
+        ],
+        "parameters": [
+          {
+            "name": "virtualCurrencyId",
+            "in": "path",
+            "description": "Unique identifier of the virtual currency to update",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 30,
+              "pattern": "^\\S+$"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVirtualCurrencyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Virtual currency updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualCurrency"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input. Please check the request body for errors.",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Virtual currency not found.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/virtualCurrencies/{virtualCurrencyId}/publish": {
+      "post": {
+        "summary": "Publish virtual currency",
+        "deprecated": false,
+        "description": "Publishes a virtual currency, making it available for use in the application",
+        "tags": [
+          "VirtualCurrencies"
+        ],
+        "parameters": [
+          {
+            "name": "virtualCurrencyId",
+            "in": "path",
+            "description": "Unique identifier of the virtual currency to publish",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 30,
+              "pattern": "^\\S+$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Virtual currency published successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualCurrency"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid request.",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Virtual currency not found.",
+            "headers": {}
+          },
+          "409": {
+            "description": "The virtual currency may already be published or in a state that prevents publishing.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/virtualTransactions": {
+      "post": {
+        "summary": "Create new virtual transactions (Admin)",
+        "deprecated": false,
+        "description": "Allows an administrator to create transactions between users, or between a user and the system. Multiple transaction requests can be batched. Operations are atomic (all or nothing). It is strongly recommended to include an 'X-Idempotency-Key' header for safe retries.",
+        "tags": [
+          "VirtualTransactions"
+        ],
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVirtualTransactionsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Virtual transactions created successfully. Returns all generated ledger entries.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateVirtualTransactionsResponse"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request - Invalid input, validation error (e.g., invalid user IDs, inconsistent source/destination), or other processing error.",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          },
+          "404": {
+            "description": "Not Found - Referenced entity (e.g., userId, virtualCurrencyId) not found.",
+            "headers": {}
+          },
+          "409": {
+            "description": "Conflict - Potential duplicate request based on idempotency key and request content. Another cause could be that at least one of the operations would conflict with a user's counterpart boundary (minAllowedBalance or maxAllowedBalance)",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateUserRequest": {
+        "type": "object",
+        "description": "Data required to create a new user",
+        "required": [
+          "email"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "User's email address"
+          },
+          "password": {
+            "type": "string",
+            "description": "Password for the user (if not provided, a temporary password will be generated)",
+            "format": "password"
+          },
+          "lang": {
+            "type": "string",
+            "description": "User's preferred language code",
+            "default": "en"
+          },
+          "timezone": {
+            "type": "string",
+            "description": "User's timezone",
+            "default": "UTC"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "Optional external system identifier for the user"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "description": "User account information",
+        "required": [
+          "userId",
+          "principalId",
+          "lang",
+          "timezone",
+          "accountId",
+          "workspaceId"
+        ],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "Unique identifier for the user"
+          },
+          "principalId": {
+            "type": "string",
+            "description": "Identifier used for authentication"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "Optional external system identifier for the user"
+          },
+          "lang": {
+            "type": "string",
+            "description": "User's preferred language code",
+            "default": "en"
+          },
+          "timezone": {
+            "type": "string",
+            "description": "User's timezone",
+            "default": "UTC"
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that this user belongs to"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that this user belongs to"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the user was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the user was last updated"
+          }
+        }
+      },
+      "VirtualTransactionInput": {
+        "type": "object",
+        "description": "Input for a single transaction initiated by an app user.",
+        "required": [
+          "virtualCurrencyId",
+          "redemptionMode",
+          "amount",
+          "destinationUserId"
+        ],
+        "properties": {
+          "virtualCurrencyId": {
+            "type": "string",
+            "description": "The ID of the virtual currency to be transacted."
+          },
+          "sourceUserId": {
+            "type": "string",
+            "description": "Optional. The ID of the user from whom the currency will be debited. If omitted, the source is considered the SYSTEM."
+          },
+          "destinationUserId": {
+            "type": "string",
+            "description": "The ID of the user who will receive the virtual currency."
+          },
+          "redemptionMode": {
+            "type": "string",
+            "enum": [
+              "AUTO",
+              "MANUAL"
+            ],
+            "description": "The redemption mode for the transaction."
+          },
+          "amount": {
+            "type": "number",
+            "description": "The amount of virtual currency to send. Must be a positive value.",
+            "minimum": 1e-10
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional ISO date-time string. If provided and redemptionMode is MANUAL, the transaction will expire at this time if not completed."
+          }
+        }
+      },
+      "CreateVirtualTransactionsRequest": {
+        "type": "object",
+        "description": "Request body for creating virtual transactions from the App API.",
+        "required": [
+          "transactions"
+        ],
+        "properties": {
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualTransactionInput"
+            },
+            "description": "A list of transaction inputs. Minimum 1 item.",
+            "minItems": 1
+          }
+        }
+      },
+      "CreateVirtualTransactionsResponse": {
+        "type": "object",
+        "description": "Response body after creating virtual transactions from the App API.",
+        "required": [
+          "transactions"
+        ],
+        "properties": {
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualTransaction"
+            },
+            "description": "A list of the created virtual transactions, from the point of view of the calling user."
+          }
+        }
+      },
+      "VirtualTransaction": {
+        "type": "object",
+        "description": "Represents a virtual currency transaction.",
+        "required": [
+          "virtualTransactionId",
+          "virtualCurrencyId",
+          "amount",
+          "direction",
+          "state",
+          "initiator",
+          "initiatorType",
+          "counterpart",
+          "counterpartType",
+          "redemptionMode",
+          "virtualTransactionGroupId",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "virtualTransactionId": {
+            "type": "string",
+            "description": "Unique identifier for the virtual transaction."
+          },
+          "userId": {
+            "type": "string",
+            "description": "The ID of the User to whom this transaction pertains."
+          },
+          "virtualCurrencyId": {
+            "type": "string",
+            "description": "Identifier of the virtual currency involved in the transaction."
+          },
+          "amount": {
+            "type": "number",
+            "description": "The amount of virtual currency transacted. Positive for credit, negative for debit (direction field also indicates actual movement)."
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "CREDIT",
+              "DEBIT"
+            ],
+            "description": "Indicates whether the transaction is a credit or a debit for the user."
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "COMPLETED",
+              "EXPIRED",
+              "REJECTED"
+            ],
+            "description": "The current state of the transaction. Expired transactions are evaluated lazily and their state is updated when trying to redeem them."
+          },
+          "initiator": {
+            "type": "string",
+            "description": "Identifier of the entity that initiated the transaction (e.g., userId, ruleId, system process name)."
+          },
+          "initiatorType": {
+            "type": "string",
+            "enum": [
+              "USER",
+              "REWARD_RULE",
+              "SYSTEM",
+              "ADMIN"
+            ],
+            "description": "The type of entity that initiated the transaction."
+          },
+          "counterpart": {
+            "type": "string",
+            "description": "Identifier of the counterpart in the transaction (e.g., another userId, system entity)."
+          },
+          "counterpartType": {
+            "type": "string",
+            "enum": [
+              "USER",
+              "SYSTEM"
+            ],
+            "description": "The type of counterpart entity."
+          },
+          "redemptionMode": {
+            "type": "string",
+            "enum": [
+              "AUTO",
+              "MANUAL"
+            ],
+            "description": "Defines wether the transaction is automatically redeemed or not. If redemptionMode is MANUAL, the transaction will be pending until this transaction (if at credit) or the counterpart transaction (if at debit) is redeemed."
+          },
+          "virtualTransactionGroupId": {
+            "type": "string",
+            "description": "Identifier for a group of related transactions that was processed (created) together ad a database transaction."
+          },
+          "redemptionGroupId": {
+            "type": "string",
+            "description": "Identifier for a grouping related transactions (credit and debit counterparts) where redemptionMode was MANUAL. When the credit ledger transaction is redeemed, all transactions in the group are redeemed together."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the transaction record was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the transaction record was last updated."
+          },
+          "redeemedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the transaction was redeemed (ex, state changed to COMPLETED)."
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional Timestamp that reflects the expiration date of the transaction when redemptionMode is MANUAL and state is PENDING. If not provided, the transaction will never expire."
+          }
+        }
+      },
+      "MissionAssignment": {
+        "type": "object",
+        "description": "Represents the assignment of a mission to a user or a group.",
+        "required": [
+          "missionAssignmentId",
+          "missionType",
+          "missionId",
+          "periodId",
+          "timeframeType",
+          "startsAt",
+          "state",
+          "currentAmount",
+          "targetAmount",
+          "incrementExpression",
+          "targetAmountExpression"
+        ],
+        "properties": {
+          "missionAssignmentId": {
+            "type": "string",
+            "description": "Unique identifier for the mission assignment (NanoID)."
+          },
+          "missionType": {
+            "type": "string",
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ],
+            "description": "Type of the assigned mission."
+          },
+          "missionId": {
+            "type": "string",
+            "description": "Identifier of the assigned mission."
+          },
+          "missionRuleId": {
+            "type": "string",
+            "description": "Optional. Identifier of the mission rule that triggered this assignment."
+          },
+          "periodId": {
+            "type": "string",
+            "description": "Identifier for the specific period of a recurring mission assignment."
+          },
+          "timeframeType": {
+            "type": "string",
+            "enum": [
+              "PERMANENT",
+              "RANGE",
+              "RECURRING"
+            ],
+            "description": "The timeframe type of this assignment."
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date-time of this mission assignment."
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional. End date-time of this mission assignment (for RANGE and RECURRING)."
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional. Timestamp when the mission assignment was completed."
+          },
+          "isCompleted": {
+            "type": "boolean",
+            "description": "Indicates if the mission assignment is completed."
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "ACTIVE",
+              "ENDED"
+            ],
+            "description": "Current state of the mission assignment."
+          },
+          "groupTagId": {
+            "type": "string",
+            "description": "Required if missionType is 'GROUP'. The tag ID of the assigned group."
+          },
+          "userId": {
+            "type": "string",
+            "description": "Required if missionType is 'INDIVIDUAL'. The ID of the assigned user."
+          },
+          "currentAmount": {
+            "type": "number",
+            "description": "Current progress amount towards the target."
+          },
+          "targetAmount": {
+            "type": "number",
+            "description": "Target amount required for mission completion."
+          },
+          "incrementExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression defining how progress is incremented for this assignment. Evaluated against: `{ event }` (where event is the specific entity like Activity, Quiz, or Tag that triggered the evaluation)."
+          },
+          "targetAmountExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression defining the target amount for this assignment. Evaluated against: `{ mission, user? }` (user is optional and only present for INDIVIDUAL missions)."
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID associated with this assignment."
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID associated with this assignment."
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where this assignment was created."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the assignment was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the assignment was last updated."
+          }
+        }
+      },
+      "JsonLogicExpression": {
+        "description": "JSON Logic expression used for defining conditions and calculations",
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "Object representation of a JSON Logic rule"
+          },
+          {
+            "type": "number",
+            "description": "Numeric literal value"
+          },
+          {
+            "type": "boolean",
+            "description": "Boolean literal value"
+          }
+        ]
+      },
+      "CreateMissionAssignmentRequest": {
+        "type": "object",
+        "description": "Data required to manually create a mission assignment.",
+        "required": [
+          "missionType",
+          "missionId",
+          "startsAt",
+          "timeframeType"
+        ],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "Required if missionType is 'INDIVIDUAL'. The ID of the user to assign the mission to."
+          },
+          "groupTagId": {
+            "type": "string",
+            "description": "Required if missionType is 'GROUP'. The tag ID of the group to assign the mission to."
+          },
+          "missionType": {
+            "type": "string",
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ],
+            "description": "Type of the mission being assigned."
+          },
+          "missionId": {
+            "type": "string",
+            "description": "Identifier of the mission to assign."
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date-time for this manual assignment."
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional. End date-time for this manual assignment (required if timeframeType is 'RANGE')."
+          },
+          "currentAmount": {
+            "type": "number",
+            "default": 0,
+            "description": "Optional. Initial progress amount. Defaults to 0."
+          },
+          "targetAmount": {
+            "type": "number",
+            "description": "Optional. Overrides the mission's targetAmountExpression if provided."
+          },
+          "timeframeType": {
+            "type": "string",
+            "enum": [
+              "RANGE",
+              "PERMANENT"
+            ],
+            "description": "Timeframe type for this manual assignment. 'RECURRING' is not allowed for manual assignments."
+          }
+        }
+      },
+      "MissionRule": {
+        "type": "object",
+        "description": "Defines rules for automatically assigning missions to users or groups.",
+        "required": [
+          "missionRuleId",
+          "missionType",
+          "name",
+          "missionsMatchCondition",
+          "timeframeType",
+          "timeframeTimezoneType",
+          "timeframeStartsAt",
+          "assignmentMode",
+          "state",
+          "origin",
+          "defaultLang",
+          "langs"
+        ],
+        "properties": {
+          "missionRuleId": {
+            "type": "string",
+            "description": "Unique identifier for the mission rule (NanoID)."
+          },
+          "missionType": {
+            "type": "string",
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ],
+            "description": "Type of missions this rule assigns (individual or group)."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the mission rule."
+          },
+          "groupTagId": {
+            "type": "string",
+            "description": "Required if missionType is 'GROUP'. The tag ID identifying the target group."
+          },
+          "usersMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Required if missionType is 'INDIVIDUAL'. JSON Logic to filter users. Evaluated against: `{ user }`."
+          },
+          "missionsPool": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Optional pool of mission IDs from which to select."
+          },
+          "missionsMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic to select missions from the pool or all available missions. Every mission is evaluated singularly. Evaluated against: `{ mission }`."
+          },
+          "timeframeType": {
+            "type": "string",
+            "enum": [
+              "PERMANENT",
+              "RANGE",
+              "RECURRING"
+            ],
+            "description": "Defines the active period of the rule. Please note that 'PERMANENT' should be used only on one-time missions, since they cannot be assigned again after the first time "
+          },
+          "timeframeTimezoneType": {
+            "type": "string",
+            "enum": [
+              "FIXED",
+              "USER"
+            ],
+            "description": "Determines if the timeframe uses a fixed timezone or the user's timezone."
+          },
+          "timeframeTimezone": {
+            "type": "string",
+            "description": "Required if timeframeTimezoneType is 'FIXED'. The IANA timezone string."
+          },
+          "timeframeStartsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date-time of the rule's active period."
+          },
+          "timeframeEndsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Required for 'RANGE' and 'RECURRING' timeframeTypes. End date-time."
+          },
+          "recurrence": {
+            "type": "string",
+            "enum": [
+              "DAILY",
+              "WEEKLY",
+              "MONTHLY",
+              "CUSTOM"
+            ],
+            "description": "Required for 'RECURRING' timeframeType. How often the rule recurs."
+          },
+          "scheduleCron": {
+            "type": "string",
+            "description": "Required if recurrence is 'CUSTOM' or assignmentMode is 'SCHEDULED_PUSH'. Cron expression for scheduling."
+          },
+          "assignmentMode": {
+            "type": "string",
+            "enum": [
+              "LAZY",
+              "SCHEDULED_PUSH",
+              "EVENT",
+              "DISABLED"
+            ],
+            "description": "How missions are assigned by this rule. LAZY would cause missions to be assigned (if applicable) every time a user requests its own missions. EVENT based assignments allows assigning missions in response to other events. Please note that SCHEDULED_PUSH is not supported at the moment, and will be supported in the future."
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "ACTIVE",
+              "ENDED"
+            ],
+            "default": "PENDING",
+            "description": "Current operational state of the rule."
+          },
+          "origin": {
+            "type": "string",
+            "enum": [
+              "CATALOG",
+              "CUSTOM"
+            ],
+            "description": "Source of the rule definition."
+          },
+          "missionRuleCatalogId": {
+            "type": "string",
+            "description": "ID from catalog if origin is 'CATALOG'."
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether to sync with catalog updates."
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language for translations."
+          },
+          "langs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Available languages for translations."
+          },
+          "eventMatchType": {
+            "type": "string",
+            "enum": [
+              "INSTANCE",
+              "ENTITY",
+              "TAG"
+            ],
+            "description": "Required for 'EVENT' assignmentMode. Type of event matching."
+          },
+          "eventMatchEntity": {
+            "type": "string",
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag",
+              "User"
+            ],
+            "description": "Required for 'EVENT' assignmentMode. Entity involved in the event."
+          },
+          "eventMatchEntityId": {
+            "type": "string",
+            "description": "Required for 'EVENT' assignmentMode. Specific ID of the event entity."
+          },
+          "eventMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Required for 'EVENT' assignmentMode. JSON Logic for event conditions. Evaluated against: `{ event }` (where event is the specific entity like Activity, Quiz, Tag, or User that triggered the evaluation)."
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that owns this mission rule."
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that contains this mission rule."
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where the mission rule was created."
+          },
+          "stage": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ],
+            "description": "Current publication stage of the mission rule."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the mission rule was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the mission rule was last updated."
+          }
+        }
+      },
+      "CreateMissionRuleRequest": {
+        "type": "object",
+        "description": "Data required to create a new mission rule.",
+        "required": [
+          "missionType",
+          "name",
+          "missionsMatchCondition",
+          "timeframeType",
+          "timeframeTimezoneType",
+          "timeframeStartsAt",
+          "assignmentMode",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "missionType": {
+            "type": "string",
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "groupTagId": {
+            "type": "string"
+          },
+          "usersMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Evaluated against: `{ user }`."
+          },
+          "missionsPool": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "missionsMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Evaluated against: `{ mission }`."
+          },
+          "timeframeType": {
+            "type": "string",
+            "enum": [
+              "PERMANENT",
+              "RANGE",
+              "RECURRING"
+            ]
+          },
+          "timeframeTimezoneType": {
+            "type": "string",
+            "enum": [
+              "FIXED",
+              "USER"
+            ]
+          },
+          "timeframeTimezone": {
+            "type": "string"
+          },
+          "timeframeStartsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "timeframeEndsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "recurrence": {
+            "type": "string",
+            "enum": [
+              "DAILY",
+              "WEEKLY",
+              "MONTHLY",
+              "CUSTOM"
+            ]
+          },
+          "scheduleCron": {
+            "type": "string"
+          },
+          "assignmentMode": {
+            "type": "string",
+            "enum": [
+              "LAZY",
+              "SCHEDULED_PUSH",
+              "EVENT",
+              "DISABLED"
+            ]
+          },
+          "defaultLang": {
+            "type": "string"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {}
+            },
+            "minItems": 1,
+            "maxItems": 10
+          },
+          "eventMatchType": {
+            "type": "string",
+            "enum": [
+              "INSTANCE",
+              "ENTITY",
+              "TAG"
+            ]
+          },
+          "eventMatchEntity": {
+            "type": "string",
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag",
+              "User"
+            ]
+          },
+          "eventMatchEntityId": {
+            "type": "string"
+          },
+          "eventMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Evaluated against: `{ event }`."
+          }
+        }
+      },
+      "Activity": {
+        "type": "object",
+        "description": "Activity entity representing a task or action that users can complete",
+        "required": [
+          "activityId",
+          "name",
+          "origin",
+          "defaultLang",
+          "langs",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "activityId": {
+            "type": "string",
+            "description": "Unique identifier for the activity"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the activity"
+          },
+          "origin": {
+            "type": "string",
+            "enum": [
+              "CATALOG",
+              "CUSTOM"
+            ],
+            "description": "Whether the activity comes from a central catalog or is custom-created"
+          },
+          "activityCatalogId": {
+            "type": "string",
+            "description": "ID reference to the original activity in the catalog if applicable"
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether the activity should be synced with catalog updates"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "The default language code for the activity content"
+          },
+          "langs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of language codes available for this activity"
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that owns this activity"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that contains this activity"
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where the activity was created"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the activity was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the activity was last updated"
+          }
+        }
+      },
+      "MissionRuleTranslation": {
+        "type": "object",
+        "description": "Translation for mission rule content.",
+        "required": [
+          "lang"
+        ],
+        "properties": {
+          "lang": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateMissionRuleRequest": {
+        "type": "object",
+        "description": "Data required to update an existing mission rule.",
+        "required": [
+          "name",
+          "defaultLang",
+          "missionType",
+          "assignmentMode",
+          "missionsPool",
+          "translations"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "defaultLang": {
+            "type": "string"
+          },
+          "missionType": {
+            "type": "string",
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ]
+          },
+          "assignmentMode": {
+            "type": "string",
+            "enum": [
+              "LAZY",
+              "SCHEDULED_PUSH",
+              "EVENT",
+              "DISABLED"
+            ]
+          },
+          "eventMatchEntity": {
+            "type": "string",
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag",
+              "User"
+            ]
+          },
+          "eventMatchEntityId": {
+            "type": "string"
+          },
+          "eventMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Evaluated against: `{ event }`."
+          },
+          "missionsPool": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MissionRuleTranslation"
+            },
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "Mission": {
+        "type": "object",
+        "description": "Mission entity representing a set of tasks or objectives for users.",
+        "required": [
+          "missionId",
+          "name",
+          "missionType",
+          "matchType",
+          "matchEntity",
+          "matchCondition",
+          "incrementExpression",
+          "targetAmountExpression",
+          "origin",
+          "defaultLang",
+          "langs",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "missionId": {
+            "type": "string",
+            "description": "Unique identifier for the mission (NanoID)."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the mission."
+          },
+          "missionType": {
+            "type": "string",
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ],
+            "description": "Type of mission (individual or group-based)."
+          },
+          "matchType": {
+            "type": "string",
+            "enum": [
+              "INSTANCE",
+              "ENTITY",
+              "TAG"
+            ],
+            "description": "Determines how the mission's conditions are matched."
+          },
+          "matchEntity": {
+            "type": "string",
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag"
+            ],
+            "description": "The entity type the mission's conditions apply to."
+          },
+          "matchEntityId": {
+            "type": "string",
+            "description": "Specific entity ID for matching (if applicable)."
+          },
+          "matchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression defining the refining conditions that defines if the matched entity contributes to mission progress. Evaluated against: `{ mission }`."
+          },
+          "incrementExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression defining how progress is incremented."
+          },
+          "targetAmountExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression defining the target amount for mission completion. Evaluated against: `{ mission, user? }` (user is optional and only present for INDIVIDUAL missions)."
+          },
+          "origin": {
+            "type": "string",
+            "enum": [
+              "CATALOG",
+              "CUSTOM"
+            ],
+            "description": "Indicates if the mission is from a catalog or custom-created."
+          },
+          "missionCatalogId": {
+            "type": "string",
+            "description": "ID of the mission in the catalog (if applicable)."
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether the mission should sync with catalog updates."
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language code for the mission's content."
+          },
+          "langs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of available language codes for this mission."
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that owns this mission."
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that contains this mission."
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where the mission was created."
+          },
+          "stage": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ],
+            "description": "Current publication stage of the mission."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the mission was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the mission was last updated."
+          }
+        }
+      },
+      "CreateActivityRequest": {
+        "type": "object",
+        "description": "Data required to create a new activity",
+        "required": [
+          "name",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the activity"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "The default language code for the activity content"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityTranslation"
+            },
+            "description": "List of translations for the activity content"
+          }
+        }
+      },
+      "ActivityTranslation": {
+        "type": "object",
+        "description": "Translation for activity content in a specific language",
+        "required": [
+          "lang",
+          "label"
+        ],
+        "properties": {
+          "lang": {
+            "type": "string",
+            "description": "Language code for this translation"
+          },
+          "label": {
+            "type": "string",
+            "description": "Translated label for the activity"
+          },
+          "description": {
+            "type": "string",
+            "description": "Translated description for the activity"
+          }
+        }
+      },
+      "CreateMissionRequest": {
+        "type": "object",
+        "description": "Data required to create a new mission.",
+        "required": [
+          "name",
+          "missionType",
+          "matchType",
+          "matchEntity",
+          "matchCondition",
+          "incrementExpression",
+          "targetAmountExpression",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the mission."
+          },
+          "missionType": {
+            "type": "string",
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ],
+            "description": "Type of mission."
+          },
+          "matchType": {
+            "type": "string",
+            "enum": [
+              "INSTANCE",
+              "ENTITY",
+              "TAG"
+            ],
+            "description": "Condition matching type."
+          },
+          "matchEntity": {
+            "type": "string",
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag"
+            ],
+            "description": "Entity type for matching."
+          },
+          "matchEntityId": {
+            "type": "string",
+            "description": "Specific entity ID for matching (optional)."
+          },
+          "matchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Condition for mission progress. Evaluated against: `{ mission }`."
+          },
+          "incrementExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Expression for progress increment."
+          },
+          "targetAmountExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Expression for target completion amount. Evaluated against: `{ mission, user? }`."
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language for content."
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MissionTranslation"
+            },
+            "description": "List of translations for the mission.",
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "MissionTranslation": {
+        "type": "object",
+        "description": "Translation for mission content in a specific language.",
+        "required": [
+          "lang",
+          "label"
+        ],
+        "properties": {
+          "lang": {
+            "type": "string",
+            "description": "Language code for this translation."
+          },
+          "label": {
+            "type": "string",
+            "description": "Translated label for the mission."
+          },
+          "description": {
+            "type": "string",
+            "description": "Translated description for the mission (optional)."
+          }
+        }
+      },
+      "UpdateActivityRequest": {
+        "type": "object",
+        "description": "Data required to update an existing activity",
+        "required": [
+          "name",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Updated name of the activity"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Updated default language code for the activity content"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityTranslation"
+            },
+            "description": "Updated list of translations for the activity content"
+          }
+        }
+      },
+      "UpdateMissionRequest": {
+        "type": "object",
+        "description": "Data required to update an existing mission.",
+        "required": [
+          "name",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Updated name of the mission."
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Updated default language for content."
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MissionTranslation"
+            },
+            "description": "Updated list of translations for the mission.",
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "Tag": {
+        "type": "object",
+        "description": "Tag entity used for categorizing and filtering content",
+        "required": [
+          "tagId",
+          "namespace",
+          "variant",
+          "origin",
+          "defaultLang",
+          "langs",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "tagId": {
+            "type": "string",
+            "description": "Unique identifier for the tag"
+          },
+          "namespace": {
+            "type": "string",
+            "description": "Namespace that groups related tags together"
+          },
+          "variant": {
+            "type": "string",
+            "description": "Variant identifier within the namespace"
+          },
+          "origin": {
+            "type": "string",
+            "enum": [
+              "CATALOG",
+              "CUSTOM"
+            ],
+            "description": "Whether the tag comes from a central catalog or is custom-created"
+          },
+          "tagCatalogId": {
+            "type": "string",
+            "description": "ID reference to the original tag in the catalog if applicable"
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether the tag should be synced with catalog updates"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "The default language code for the tag content"
+          },
+          "langs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of language codes available for this tag"
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that owns this tag"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that contains this tag"
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where the tag was created"
+          },
+          "stage": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ],
+            "description": "Current publication stage of the tag"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the tag was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the tag was last updated"
+          }
+        }
+      },
+      "CreateTagRequest": {
+        "type": "object",
+        "description": "Data required to create a new tag",
+        "required": [
+          "namespace",
+          "variant",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "description": "Namespace that groups related tags together"
+          },
+          "variant": {
+            "type": "string",
+            "description": "Variant identifier within the namespace"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "The default language code for the tag content"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TagTranslation"
+            },
+            "description": "List of translations for the tag content",
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "TagTranslation": {
+        "type": "object",
+        "description": "Translation for tag content in a specific language",
+        "required": [
+          "lang",
+          "label"
+        ],
+        "properties": {
+          "lang": {
+            "type": "string",
+            "description": "Language code for this translation"
+          },
+          "label": {
+            "type": "string",
+            "description": "Translated label for the tag"
+          },
+          "description": {
+            "type": "string",
+            "description": "Translated description for the tag"
+          }
+        }
+      },
+      "UpdateTagRequest": {
+        "type": "object",
+        "description": "Data required to update an existing tag",
+        "required": [
+          "namespace",
+          "variant",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "description": "Updated namespace that groups related tags together"
+          },
+          "variant": {
+            "type": "string",
+            "description": "Updated variant identifier within the namespace"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Updated default language code for the tag content"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TagTranslation"
+            },
+            "description": "Updated list of translations for the tag content",
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "Reward": {
+        "type": "object",
+        "description": "Definition of a reward associated with a reward rule",
+        "required": [
+          "virtualCurrencyId",
+          "expression",
+          "redemptionMode"
+        ],
+        "properties": {
+          "virtualCurrencyId": {
+            "type": "string",
+            "description": "Identifier of the virtual currency to award."
+          },
+          "expression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression that calculates the amount of virtual currency to award. Evaluated against: `{ event }` (where event is the specific entity like Activity or Quiz that triggered the evaluation)."
+          },
+          "redemptionMode": {
+            "type": "string",
+            "enum": [
+              "AUTO",
+              "MANUAL"
+            ],
+            "description": "The redemption mode for the transaction generated when this reward is granted. 'AUTO' means the transaction completes immediately. 'MANUAL' means the transaction will be pending and may require a separate redeem action by the user."
+          }
+        }
+      },
+      "RewardRule": {
+        "type": "object",
+        "description": "Reward rule entity defining conditions for awarding rewards",
+        "required": [
+          "rewardRuleId",
+          "name",
+          "ruleType",
+          "matchEntity",
+          "matchCondition",
+          "applicationMode",
+          "origin",
+          "defaultLang",
+          "langs",
+          "rewards",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "rewardRuleId": {
+            "type": "string",
+            "description": "Unique identifier for the reward rule"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the reward rule"
+          },
+          "ruleType": {
+            "type": "string",
+            "enum": [
+              "INSTANCE",
+              "ENTITY",
+              "TAG"
+            ],
+            "description": "Type of rule determining its scope and application"
+          },
+          "matchEntity": {
+            "type": "string",
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag"
+            ],
+            "description": "Entity type this rule applies to"
+          },
+          "matchEntityId": {
+            "type": "string",
+            "description": "Specific entity ID this rule applies to (if applicable)"
+          },
+          "matchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression that determines whether the rule applies. Evaluated against: `{ event }` (where event is the specific entity like Activity or Quiz that triggered the evaluation)."
+          },
+          "applicationMode": {
+            "type": "string",
+            "enum": [
+              "ALWAYS",
+              "FALLBACK",
+              "DISABLED"
+            ],
+            "description": "Mode determining when the rule should be applied"
+          },
+          "origin": {
+            "type": "string",
+            "enum": [
+              "CATALOG",
+              "CUSTOM"
+            ],
+            "description": "Whether the reward rule comes from a central catalog or is custom-created"
+          },
+          "rewardRuleCatalogId": {
+            "type": "string",
+            "description": "ID reference to the original reward rule in the catalog if applicable"
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether the reward rule should be synced with catalog updates"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "The default language code for the reward rule content"
+          },
+          "langs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of language codes available for this reward rule"
+          },
+          "rewards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Reward"
+            },
+            "description": "List of rewards to be awarded when the rule conditions are met",
+            "minItems": 1,
+            "maxItems": 10
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that owns this reward rule"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that contains this reward rule"
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where the reward rule was created"
+          },
+          "stage": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ],
+            "description": "Current publication stage of the reward rule"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the reward rule was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the reward rule was last updated"
+          }
+        }
+      },
+      "CreateRewardRuleRequest": {
+        "type": "object",
+        "description": "Data required to create a new reward rule",
+        "required": [
+          "name",
+          "ruleType",
+          "matchEntity",
+          "matchCondition",
+          "applicationMode",
+          "defaultLang",
+          "translations",
+          "rewards"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the reward rule"
+          },
+          "ruleType": {
+            "type": "string",
+            "enum": [
+              "INSTANCE",
+              "ENTITY",
+              "TAG"
+            ],
+            "description": "Type of rule determining its scope and application"
+          },
+          "matchEntity": {
+            "type": "string",
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag"
+            ],
+            "description": "Entity type this rule applies to"
+          },
+          "matchEntityId": {
+            "type": "string",
+            "description": "Specific entity ID this rule applies to (if applicable)"
+          },
+          "matchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "JSON Logic expression that determines whether the rule applies. Evaluated against: `{ event }`."
+          },
+          "applicationMode": {
+            "type": "string",
+            "enum": [
+              "ALWAYS",
+              "FALLBACK",
+              "DISABLED"
+            ],
+            "description": "Mode determining when the rule should be applied"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "The default language code for the reward rule content"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {}
+            },
+            "description": "List of translations for the reward rule content",
+            "minItems": 1,
+            "maxItems": 10
+          },
+          "rewards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Reward"
+            },
+            "description": "List of rewards to be awarded when the rule conditions are met",
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "RewardRuleTranslation": {
+        "type": "object",
+        "description": "Translation for reward rule content in a specific language",
+        "required": [
+          "lang"
+        ],
+        "properties": {
+          "lang": {
+            "type": "string",
+            "description": "Language code for this translation"
+          },
+          "description": {
+            "type": "string",
+            "description": "Translated description for the reward rule"
+          }
+        }
+      },
+      "UpdateRewardRuleRequest": {
+        "type": "object",
+        "description": "Data required to update an existing reward rule",
+        "required": [
+          "name",
+          "ruleType",
+          "matchEntity",
+          "matchCondition",
+          "applicationMode",
+          "defaultLang",
+          "translations",
+          "rewards"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Updated name of the reward rule"
+          },
+          "ruleType": {
+            "type": "string",
+            "enum": [
+              "INSTANCE",
+              "ENTITY",
+              "TAG"
+            ],
+            "description": "Updated type of rule determining its scope and application"
+          },
+          "matchEntity": {
+            "type": "string",
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag"
+            ],
+            "description": "Updated entity type this rule applies to"
+          },
+          "matchEntityId": {
+            "type": "string",
+            "description": "Updated specific entity ID this rule applies to (if applicable)"
+          },
+          "matchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Updated JSON Logic expression that determines whether the rule applies. Evaluated against: `{ event }`."
+          },
+          "applicationMode": {
+            "type": "string",
+            "enum": [
+              "ALWAYS",
+              "FALLBACK",
+              "DISABLED"
+            ],
+            "description": "Updated mode determining when the rule should be applied"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Updated default language code for the reward rule content"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RewardRuleTranslation"
+            },
+            "description": "Updated list of translations for the reward rule content",
+            "minItems": 1,
+            "maxItems": 10
+          },
+          "rewards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Reward"
+            },
+            "description": "Updated list of rewards to be awarded when the rule conditions are met",
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "VirtualCurrency": {
+        "type": "object",
+        "description": "Virtual currency entity representing a digital asset or point system that users can earn and use within the platform.",
+        "required": [
+          "virtualCurrencyId",
+          "name",
+          "origin",
+          "defaultLang",
+          "langs",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "virtualCurrencyId": {
+            "type": "string",
+            "description": "Unique identifier for the virtual currency. Must be a non-empty string without spaces, 2-30 characters long.",
+            "minLength": 2,
+            "maxLength": 30,
+            "pattern": "^\\S+$"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the virtual currency."
+          },
+          "origin": {
+            "type": "string",
+            "enum": [
+              "CATALOG",
+              "CUSTOM"
+            ],
+            "description": "Indicates if the virtual currency originates from a predefined catalog or is custom-created for the workspace."
+          },
+          "virtualCurrencyCatalogId": {
+            "type": "string",
+            "description": "If origin is 'CATALOG', this is the ID reference to the original virtual currency in the catalog."
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "If true and origin is 'CATALOG', this virtual currency will be kept in sync with updates from the catalog."
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "The default language code (e.g., 'en', 'it') for the virtual currency's translatable content like label and description."
+          },
+          "langs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A list of language codes for which translations of this virtual currency are available."
+          },
+          "minAllowedBalance": {
+            "type": "number",
+            "description": "Optional minimum balance allowed for this virtual currency for the user. Transactions might be blocked if they would result in the balance falling below this value."
+          },
+          "maxAllowedBalance": {
+            "type": "number",
+            "description": "Optional maximum balance allowed for this virtual currency for the user. Transactions might be blocked if they would result in the balance exceeding this value."
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The ID of the account that owns this virtual currency."
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The ID of the workspace to which this virtual currency belongs."
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "The AWS region where this virtual currency record was created."
+          },
+          "stage": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ],
+            "description": "The current publication stage of the virtual currency. 'DRAFT' means it's not yet active, 'PUBLISHED' means it's available for use."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp indicating when the virtual currency was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp indicating when the virtual currency was last updated."
+          }
+        }
+      },
+      "CreateVirtualCurrencyRequest": {
+        "type": "object",
+        "description": "Data required to create a new virtual currency.",
+        "required": [
+          "name",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the virtual currency. This is for internal identification and management."
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "The default language code for the virtual currency's translatable content (e.g., label, description)."
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualCurrencyTranslation"
+            },
+            "description": "A list of translations for the virtual currency's content. At least one translation (for the defaultLang) must be provided.",
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "VirtualCurrencyTranslation": {
+        "type": "object",
+        "description": "Provides the translatable content (label and description) for a virtual currency in a specific language.",
+        "required": [
+          "lang",
+          "label"
+        ],
+        "properties": {
+          "lang": {
+            "type": "string",
+            "description": "The language code (e.g., 'en', 'it') for this translation."
+          },
+          "label": {
+            "type": "string",
+            "description": "The translated display name or label for the virtual currency (e.g., 'Gold Coins', 'Punti Stella')."
+          },
+          "description": {
+            "type": "string",
+            "description": "The translated description providing more details about the virtual currency."
+          }
+        }
+      },
+      "UpdateVirtualCurrencyRequest": {
+        "type": "object",
+        "description": "Data required to update an existing virtual currency.",
+        "required": [
+          "name",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Updated name of the virtual currency."
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Updated default language code for the virtual currency's content."
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualCurrencyTranslation"
+            },
+            "description": "Updated list of translations for the virtual currency's content. Ensures all previously supported languages are still covered or explicitly removed.",
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "servers": [],
+  "security": [
+    {
+      "bearer": []
+    }
+  ]
+}

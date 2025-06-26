@@ -1,0 +1,1559 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AWorld API",
+    "description": "Introduction",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "Quizzes"
+    },
+    {
+      "name": "VirtualBalances"
+    },
+    {
+      "name": "VirtualTransactions"
+    },
+    {
+      "name": "Missions"
+    },
+    {
+      "name": "Authentication"
+    },
+    {
+      "name": "ActivityLogs"
+    }
+  ],
+  "paths": {
+    "/quizzes": {
+      "get": {
+        "summary": "List quizzes",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of available quizzes for the authenticated user",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of quizzes to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of quizzes retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Quiz"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination cursor for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      }
+    },
+    "/quizzes/{quizId}": {
+      "get": {
+        "summary": "Get quiz",
+        "deprecated": false,
+        "description": "Retrieves a quiz object with associated content, excluding the correct answer for client-side display purposes.",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier for the quiz to retrieve",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Quiz retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quiz"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Quiz not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      }
+    },
+    "/quizzes/{quizId}/translation": {
+      "get": {
+        "summary": "Get quiz translation",
+        "deprecated": false,
+        "description": "Retrieves the translation content for a specific quiz, including questions and answer options",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier for the quiz to retrieve translations for",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Quiz translation retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuizTranslation"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Quiz or translation not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      }
+    },
+    "/virtualBalances": {
+      "get": {
+        "summary": "List virtual balances",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of virtual currency balances for the authenticated user.",
+        "tags": [
+          "VirtualBalances"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of virtual balances to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Virtual Balances retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VirtualBalance"
+                      },
+                      "description": "A list of virtual currency balances."
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination cursor for fetching the next set of results. Null if no more items are available."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualBalances"
+        }
+      }
+    },
+    "/virtualBalances/{virtualCurrencyId}": {
+      "get": {
+        "summary": "Get virtual balance",
+        "deprecated": false,
+        "description": "Retrieves the balance for a specific virtual currency for the authenticated user.",
+        "tags": [
+          "VirtualBalances"
+        ],
+        "parameters": [
+          {
+            "name": "virtualCurrencyId",
+            "in": "path",
+            "description": "Unique identifier for the virtual currency.",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Virtual Balance retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualBalance"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          },
+          "404": {
+            "description": "Virtual currency or balance not found.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualBalances"
+        }
+      }
+    },
+    "/virtualTransactions": {
+      "get": {
+        "summary": "List virtual transactions",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of virtual transactions for the authenticated user.",
+        "tags": [
+          "VirtualTransactions"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of virtual transactions to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of virtual transactions retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VirtualTransaction"
+                      },
+                      "description": "A list of virtual transactions."
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination cursor for the next set of results. Null if no more items are available."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualTransactions"
+        }
+      },
+      "post": {
+        "summary": "Create virtual transactions",
+        "deprecated": false,
+        "description": "Allows a user to send virtual currency to another user. Multiple transaction requests can be batched. The source user is always the authenticated caller. Operations are atomic (all or nothing). It is strongly recommended to include an 'X-Idempotency-Key' header for safe retries.",
+        "tags": [
+          "VirtualTransactions"
+        ],
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVirtualTransactionsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Virtual transactions created successfully. Returns the transactions from the point of view of the caller.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateVirtualTransactionsResponse"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request - Invalid input, validation error (e.g., negative amount), or other processing error.",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          },
+          "404": {
+            "description": "Not Found - Referenced entity (e.g., destinationUserId, virtualCurrencyId) not found.",
+            "headers": {}
+          },
+          "409": {
+            "description": "Conflict - Potential duplicate request based on idempotency key and request content. Another cause could be that at least one of the operations would conflict with a user's counterpart boundary (minAllowedBalance or maxAllowedBalance)",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualTransactions"
+        }
+      }
+    },
+    "/virtualTransactions/{virtualTransactionId}": {
+      "get": {
+        "summary": "Get virtual transaction",
+        "deprecated": false,
+        "description": "Retrieves a specific virtual transaction by its ID for the authenticated user.",
+        "tags": [
+          "VirtualTransactions"
+        ],
+        "parameters": [
+          {
+            "name": "virtualTransactionId",
+            "in": "path",
+            "description": "Unique identifier for the virtual transaction.",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Virtual transaction retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualTransaction"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          },
+          "404": {
+            "description": "Virtual transaction not found.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualTransactions"
+        }
+      }
+    },
+    "/virtualTransactions/{virtualTransactionId}/redeem": {
+      "post": {
+        "summary": "Redeem virtual transaction",
+        "deprecated": false,
+        "description": "Redeems a specific pending credit virtual transaction for the authenticated user. This action is typically available for transactions with 'MANUAL' redemption mode. Redeeming a transaction may also complete other related transactions (e.g., a corresponding debit) if they share the same redemptionGroupId.",
+        "tags": [
+          "VirtualTransactions"
+        ],
+        "parameters": [
+          {
+            "name": "virtualTransactionId",
+            "in": "path",
+            "description": "Unique identifier for the virtual transaction to redeem.",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Virtual transaction redeemed successfully. Returns all affected transactions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedeemVirtualTransactionResponse"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request - Transaction Id does not match specified format.",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          },
+          "404": {
+            "description": "Not Found - The specified virtualTransactionId does not exist for current user.",
+            "headers": {}
+          },
+          "409": {
+            "description": "Conflict - The transaction is not in a state that allows redemption (e.g., already completed, expired, or rejected).",
+            "headers": {}
+          },
+          "422": {
+            "description": "Unprocessable Entity - The transaction is not in a state that allows redemption (e.g., already completed, expired, or rejected) or is not a credit transaction.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualTransactions"
+        }
+      }
+    },
+    "/missions": {
+      "get": {
+        "summary": "List user's missions",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of missions assigned to the authenticated user.",
+        "tags": [
+          "Missions"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of assigned missions to return per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of assigned missions retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AppMissionAssignment"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        }
+      }
+    },
+    "/oauth2/token": {
+      "post": {
+        "summary": "Get OAuth2 Access Token",
+        "deprecated": false,
+        "description": "Obtain an access token using OAuth2 Client Credentials flow. Use the returned access_token as Bearer token in the Authorization header for all API requests.",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "grant_type": {
+                    "type": "string",
+                    "enum": [
+                      "client_credentials"
+                    ],
+                    "description": "OAuth2 grant type",
+                    "examples": [
+                      "client_credentials"
+                    ],
+                    "example": "client_credentials"
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "description": "Your OAuth2 client ID",
+                    "examples": [
+                      "your_client_id"
+                    ],
+                    "example": "your_client_id"
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "description": "Your OAuth2 client secret",
+                    "examples": [
+                      "your_client_secret"
+                    ],
+                    "example": "your_client_secret"
+                  }
+                },
+                "required": [
+                  "grant_type",
+                  "client_id",
+                  "client_secret"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Access token obtained successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "description": "The access token to use in API requests"
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "description": "Token type",
+                      "examples": [
+                        "Bearer"
+                      ]
+                    },
+                    "expires_in": {
+                      "type": "integer",
+                      "description": "Token expiration time in seconds"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request - Invalid client credentials or request format",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized - Invalid client_id or client_secret",
+            "headers": {}
+          }
+        },
+        "security": [],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Authentication"
+        },
+        "x-apidog-override-baseurl": true
+      }
+    },
+    "/activityLogs": {
+      "put": {
+        "summary": "Create activity log",
+        "deprecated": false,
+        "description": "Records a user's activity completion by creating a new activity log entry with an auto-generated ID",
+        "tags": [
+          "ActivityLogs"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateActivityLogRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Activity log created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityLog"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input - missing required fields or validation errors",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the validation issue"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Path to the field with error"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Error message"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Referenced activity not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "ActivityLogs"
+        }
+      }
+    },
+    "/activityLogs/{activityLogId}": {
+      "put": {
+        "summary": "Create/update activity log",
+        "deprecated": false,
+        "description": "Records a user's activity completion by creating or updating an activity log entry with the provided ID. This endpoint is useful for idempotent operations when you need to ensure the same activity completion is not recorded multiple times.",
+        "tags": [
+          "ActivityLogs"
+        ],
+        "parameters": [
+          {
+            "name": "activityLogId",
+            "in": "path",
+            "description": "Unique identifier for the activity log. Must be a nanoid string.",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateActivityLogRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Activity log created or updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityLog"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input - missing required fields, validation errors, or ID format issues",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the validation issue"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Path to the field with error"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Error message"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Referenced activity not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "ActivityLogs"
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AppMissionAssignment": {
+        "type": "object",
+        "description": "Represents a mission assigned to a user, tailored for app display.",
+        "required": [
+          "missionAssignmentId",
+          "missionType",
+          "missionId",
+          "periodId",
+          "timeframeType",
+          "startsAt",
+          "state",
+          "currentAmount",
+          "targetAmount"
+        ],
+        "properties": {
+          "missionAssignmentId": {
+            "type": "string",
+            "description": "Unique identifier for the mission assignment."
+          },
+          "missionType": {
+            "type": "string",
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ],
+            "description": "Type of the assigned mission."
+          },
+          "missionId": {
+            "type": "string",
+            "description": "Identifier of the assigned mission."
+          },
+          "missionRuleId": {
+            "type": "string",
+            "description": "Optional. Identifier of the mission rule that triggered this assignment."
+          },
+          "periodId": {
+            "type": "string",
+            "description": "Identifier for the specific period of a recurring mission assignment."
+          },
+          "timeframeType": {
+            "type": "string",
+            "enum": [
+              "PERMANENT",
+              "RANGE",
+              "RECURRING"
+            ],
+            "description": "The timeframe type of this assignment."
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date-time of this mission assignment."
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional. End date-time of this mission assignment."
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional. Timestamp when the mission assignment was completed."
+          },
+          "isCompleted": {
+            "type": "boolean",
+            "description": "Indicates if the mission assignment is completed."
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "ACTIVE",
+              "ENDED"
+            ],
+            "description": "Current state of the mission assignment."
+          },
+          "groupTagId": {
+            "type": "string",
+            "description": "If missionType is 'GROUP', the tag ID of the assigned group."
+          },
+          "userId": {
+            "type": "string",
+            "description": "If missionType is 'INDIVIDUAL', the ID of the assigned user."
+          },
+          "currentAmount": {
+            "type": "number",
+            "description": "Current progress amount towards the target."
+          },
+          "targetAmount": {
+            "type": "number",
+            "description": "Target amount required for mission completion."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the assignment was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the assignment was last updated."
+          }
+        }
+      },
+      "Quiz": {
+        "type": "object",
+        "description": "Quiz representation for client applications, with sensitive data removed",
+        "required": [
+          "quizId",
+          "difficulty",
+          "origin",
+          "placement",
+          "defaultLang"
+        ],
+        "properties": {
+          "quizId": {
+            "type": "string",
+            "description": "Unique identifier for the quiz"
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": [
+              "EASY",
+              "MEDIUM",
+              "HARD"
+            ],
+            "description": "The difficulty level of the quiz"
+          },
+          "origin": {
+            "type": "string",
+            "enum": [
+              "CATALOG",
+              "CUSTOM"
+            ],
+            "description": "Whether the quiz comes from a central catalog or is custom-created"
+          },
+          "quizCatalogId": {
+            "type": "string",
+            "description": "ID reference to the original quiz in the catalog if applicable"
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether the quiz should be synced with catalog updates"
+          },
+          "placement": {
+            "type": "string",
+            "enum": [
+              "LEARNING",
+              "ASSESSMENT",
+              "CERTIFICATION"
+            ],
+            "description": "The context in which the quiz is used"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "The default language code for the quiz content"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the quiz was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the quiz was last updated"
+          }
+        }
+      },
+      "QuizTranslation": {
+        "type": "object",
+        "description": "Translation content for a quiz, including questions and answer options",
+        "required": [
+          "quizId",
+          "lang",
+          "opt1",
+          "opt2",
+          "opt3",
+          "opt4",
+          "question"
+        ],
+        "properties": {
+          "quizId": {
+            "type": "string",
+            "description": "ID of the quiz this translation belongs to"
+          },
+          "lang": {
+            "type": "string",
+            "description": "Language code for this translation"
+          },
+          "opt1": {
+            "type": "string",
+            "description": "Text for the first answer option"
+          },
+          "opt2": {
+            "type": "string",
+            "description": "Text for the second answer option"
+          },
+          "opt3": {
+            "type": "string",
+            "description": "Text for the third answer option"
+          },
+          "opt4": {
+            "type": "string",
+            "description": "Text for the fourth answer option"
+          },
+          "question": {
+            "type": "string",
+            "description": "The question text"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the translation was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the translation was last updated"
+          }
+        }
+      },
+      "CreateActivityLogRequest": {
+        "type": "object",
+        "description": "Data required to create a new activity log entry",
+        "required": [
+          "activityId",
+          "userId",
+          "completedAt"
+        ],
+        "properties": {
+          "activityId": {
+            "type": "string",
+            "description": "Identifier of the activity that was completed. Must match an existing activity in the system.",
+            "minLength": 2,
+            "maxLength": 30,
+            "pattern": "^\\S+$"
+          },
+          "userId": {
+            "type": "string",
+            "description": "Identifier of the user who completed the activity"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "SUCCESS",
+              "FAILURE"
+            ],
+            "description": "Result of the activity completion. If not provided, no outcome is recorded."
+          },
+          "value": {
+            "type": "number",
+            "default": 1,
+            "description": "Numerical value associated with the activity completion. Can represent points, progress, or any quantifiable measure."
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Associated tags for categorization and filtering. Tags can be used to group related activity completions."
+          },
+          "additionalData": {
+            "type": "object",
+            "description": "Any additional data related to the activity completion. This can include custom fields specific to the activity type.",
+            "properties": {}
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the activity was completed. Must be in ISO 8601 format."
+          }
+        }
+      },
+      "ActivityLog": {
+        "type": "object",
+        "description": "Record of a completed activity by a user",
+        "required": [
+          "activityLogId",
+          "activityId",
+          "userId",
+          "completedAt"
+        ],
+        "properties": {
+          "activityLogId": {
+            "type": "string",
+            "description": "Unique identifier for this activity log entry, generated as a nanoid if not provided"
+          },
+          "activityId": {
+            "type": "string",
+            "description": "Identifier of the activity that was completed",
+            "minLength": 2,
+            "maxLength": 30,
+            "pattern": "^\\S+$"
+          },
+          "userId": {
+            "type": "string",
+            "description": "Identifier of the user who completed the activity"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "SUCCESS",
+              "FAILURE"
+            ],
+            "description": "Result of the activity completion"
+          },
+          "value": {
+            "type": "number",
+            "default": 1,
+            "description": "Numerical value associated with the activity completion"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Associated tags for categorization and filtering. Can be used for reporting and analytics."
+          },
+          "additionalData": {
+            "type": "object",
+            "description": "Any additional data related to the activity completion. This flexible field allows for storing custom information related to the specific activity.",
+            "properties": {}
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the activity was completed"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when this record was created in the system"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when this record was last updated"
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID associated with this activity log"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID associated with this activity log"
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where this activity log was created"
+          }
+        }
+      },
+      "VirtualBalance": {
+        "type": "object",
+        "description": "Virtual Currency Balance representation for client applications, with sensitive data removed",
+        "required": [
+          "virtualCurrencyId",
+          "userId",
+          "amount",
+          "availableAmount",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "virtualCurrencyId": {
+            "type": "string",
+            "description": "The ID of the Virtual Currency to which this balance pertains."
+          },
+          "userId": {
+            "type": "string",
+            "description": "The ID of the User to whom this balance belongs."
+          },
+          "amount": {
+            "type": "number",
+            "description": "The total current amount of the virtual currency owned by the user."
+          },
+          "availableAmount": {
+            "type": "number",
+            "description": "The amount of virtual currency that the user can currently spend. This amount considers any pending debit operations."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when this virtual balance record was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when this virtual balance record was last updated."
+          }
+        }
+      },
+      "VirtualTransactionInput": {
+        "type": "object",
+        "description": "Input for a single transaction initiated by an app user.",
+        "required": [
+          "virtualCurrencyId",
+          "redemptionMode",
+          "amount",
+          "destinationUserId"
+        ],
+        "properties": {
+          "virtualCurrencyId": {
+            "type": "string",
+            "description": "The ID of the virtual currency to be transacted."
+          },
+          "sourceUserId": {
+            "type": "string",
+            "description": "Optional. The ID of the user from whom the currency will be debited. If omitted, the source is considered the SYSTEM."
+          },
+          "destinationUserId": {
+            "type": "string",
+            "description": "The ID of the user who will receive the virtual currency."
+          },
+          "redemptionMode": {
+            "type": "string",
+            "enum": [
+              "AUTO",
+              "MANUAL"
+            ],
+            "description": "The redemption mode for the transaction."
+          },
+          "amount": {
+            "type": "number",
+            "description": "The amount of virtual currency to send. Must be a positive value.",
+            "minimum": 1e-10
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional ISO date-time string. If provided and redemptionMode is MANUAL, the transaction will expire at this time if not completed."
+          }
+        }
+      },
+      "CreateVirtualTransactionsRequest": {
+        "type": "object",
+        "description": "Request body for creating virtual transactions from the App API.",
+        "required": [
+          "transactions"
+        ],
+        "properties": {
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualTransactionInput"
+            },
+            "description": "A list of transaction inputs. Minimum 1 item.",
+            "minItems": 1
+          }
+        }
+      },
+      "CreateVirtualTransactionsResponse": {
+        "type": "object",
+        "description": "Response body after creating virtual transactions from the App API.",
+        "required": [
+          "transactions"
+        ],
+        "properties": {
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualTransaction"
+            },
+            "description": "A list of the created virtual transactions, from the point of view of the calling user."
+          }
+        }
+      },
+      "VirtualTransaction": {
+        "type": "object",
+        "description": "Represents a virtual currency transaction.",
+        "required": [
+          "virtualTransactionId",
+          "virtualCurrencyId",
+          "amount",
+          "direction",
+          "state",
+          "initiator",
+          "initiatorType",
+          "counterpart",
+          "counterpartType",
+          "redemptionMode",
+          "virtualTransactionGroupId",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "virtualTransactionId": {
+            "type": "string",
+            "description": "Unique identifier for the virtual transaction."
+          },
+          "userId": {
+            "type": "string",
+            "description": "The ID of the User to whom this transaction pertains."
+          },
+          "virtualCurrencyId": {
+            "type": "string",
+            "description": "Identifier of the virtual currency involved in the transaction."
+          },
+          "amount": {
+            "type": "number",
+            "description": "The amount of virtual currency transacted. Positive for credit, negative for debit (direction field also indicates actual movement)."
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "CREDIT",
+              "DEBIT"
+            ],
+            "description": "Indicates whether the transaction is a credit or a debit for the user."
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "COMPLETED",
+              "EXPIRED",
+              "REJECTED"
+            ],
+            "description": "The current state of the transaction. Expired transactions are evaluated lazily and their state is updated when trying to redeem them."
+          },
+          "initiator": {
+            "type": "string",
+            "description": "Identifier of the entity that initiated the transaction (e.g., userId, ruleId, system process name)."
+          },
+          "initiatorType": {
+            "type": "string",
+            "enum": [
+              "USER",
+              "REWARD_RULE",
+              "SYSTEM",
+              "ADMIN"
+            ],
+            "description": "The type of entity that initiated the transaction."
+          },
+          "counterpart": {
+            "type": "string",
+            "description": "Identifier of the counterpart in the transaction (e.g., another userId, system entity)."
+          },
+          "counterpartType": {
+            "type": "string",
+            "enum": [
+              "USER",
+              "SYSTEM"
+            ],
+            "description": "The type of counterpart entity."
+          },
+          "redemptionMode": {
+            "type": "string",
+            "enum": [
+              "AUTO",
+              "MANUAL"
+            ],
+            "description": "Defines wether the transaction is automatically redeemed or not. If redemptionMode is MANUAL, the transaction will be pending until this transaction (if at credit) or the counterpart transaction (if at debit) is redeemed."
+          },
+          "virtualTransactionGroupId": {
+            "type": "string",
+            "description": "Identifier for a group of related transactions that was processed (created) together ad a database transaction."
+          },
+          "redemptionGroupId": {
+            "type": "string",
+            "description": "Identifier for a grouping related transactions (credit and debit counterparts) where redemptionMode was MANUAL. When the credit ledger transaction is redeemed, all transactions in the group are redeemed together."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the transaction record was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the transaction record was last updated."
+          },
+          "redeemedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the transaction was redeemed (ex, state changed to COMPLETED)."
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Optional Timestamp that reflects the expiration date of the transaction when redemptionMode is MANUAL and state is PENDING. If not provided, the transaction will never expire."
+          }
+        }
+      },
+      "RedeemVirtualTransactionResponse": {
+        "type": "object",
+        "description": "Response body after redeeming a virtual transaction. Includes all affected transactions.",
+        "required": [
+          "transactions"
+        ],
+        "properties": {
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualTransaction"
+            },
+            "description": "A list of virtual transactions directly affecting the authenticated user that were updated by the redemption (e.g., the redeemed credit transaction, now in a COMPLETED state). Any other linked transactions (like a counterpart's debit) will be processed internally but not typically returned in this App API response."
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "servers": [],
+  "security": [
+    {
+      "bearer": []
+    }
+  ]
+}
