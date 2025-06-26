@@ -2,43 +2,43 @@
 
 > **Important**: This detailed documentation is provided for demonstration purposes. Always refer to the GraphQL schema (using introspection) for the most up-to-date API documentation. The schemas evolve over time, and introspection will always provide the current definition.
 
-Quizzes are interactive assessment units used throughout the Cosmos platform to engage users and evaluate knowledge. This document provides comprehensive information about the Quiz entity, its properties, and how it's used across different contexts.
+Quizzes are interactive assessment units used throughout the AWorld platform to engage users and evaluate knowledge. This document provides comprehensive information about the Quiz entity, its properties, and how it's used across different contexts.
 
 ## Overview
 
-Quizzes in the Cosmos platform serve as knowledge assessment tools that can be embedded in various content types. They support multiple difficulty levels, internationalization through translations, and detailed outcome tracking.
+Quizzes in the AWorld platform serve as knowledge assessment tools that can be embedded in various content types. They support multiple difficulty levels, internationalization through translations, and detailed outcome tracking.
 
 ## Data Model
 
 ### Core Fields
 
-| Field | Type | Description | Required |
-|-------|------|-------------|----------|
-| `quizId` | ID | Unique identifier for the quiz | Yes |
-| `difficulty` | QuizDifficulty | Difficulty level: EASY, MEDIUM, or HARD | Yes |
-| `answer` | QuizAnswer | Correct answer option: opt1, opt2, opt3, or opt4 | Yes |
-| `syncWithCatalog` | Boolean | Whether the quiz syncs with the catalog | No |
-| `origin` | QuizOrigin | Source of the quiz: CATALOG or CUSTOM | Yes |
-| `placement` | QuizPlacement | Where the quiz appears: STANDALONE, STORY, or NEWS | Yes |
-| `quizCatalogId` | ID | Reference to the catalog quiz if applicable | Yes |
-| `translations` | [QuizTranslation] | List of translations for different languages | Yes |
-| `createdAt` | AWSDateTime | Timestamp when the quiz was created | Yes (auto) |
-| `updatedAt` | AWSDateTime | Timestamp when the quiz was last updated | Yes (auto) |
+| Field             | Type              | Description                                        | Required   |
+| ----------------- | ----------------- | -------------------------------------------------- | ---------- |
+| `quizId`          | ID                | Unique identifier for the quiz                     | Yes        |
+| `difficulty`      | QuizDifficulty    | Difficulty level: EASY, MEDIUM, or HARD            | Yes        |
+| `answer`          | QuizAnswer        | Correct answer option: opt1, opt2, opt3, or opt4   | Yes        |
+| `syncWithCatalog` | Boolean           | Whether the quiz syncs with the catalog            | No         |
+| `origin`          | QuizOrigin        | Source of the quiz: CATALOG or CUSTOM              | Yes        |
+| `placement`       | QuizPlacement     | Where the quiz appears: STANDALONE, STORY, or NEWS | Yes        |
+| `quizCatalogId`   | ID                | Reference to the catalog quiz if applicable        | Yes        |
+| `translations`    | [QuizTranslation] | List of translations for different languages       | Yes        |
+| `createdAt`       | AWSDateTime       | Timestamp when the quiz was created                | Yes (auto) |
+| `updatedAt`       | AWSDateTime       | Timestamp when the quiz was last updated           | Yes (auto) |
 
 ### QuizTranslation
 
-| Field | Type | Description | Required |
-|-------|------|-------------|----------|
-| `quizId` | ID | Reference to the parent quiz | Yes |
-| `lang` | String | Language code (e.g., "en", "it") | Yes |
-| `opt1` | String | First answer option | Yes |
-| `opt2` | String | Second answer option | Yes |
-| `opt3` | String | Third answer option | No |
-| `opt4` | String | Fourth answer option | No |
-| `question` | String | The quiz question text | Yes |
-| `explanation` | String | Explanation of the correct answer | No |
-| `createdAt` | AWSDateTime | Timestamp when the translation was created | Yes (auto) |
-| `updatedAt` | AWSDateTime | Timestamp when the translation was last updated | Yes (auto) |
+| Field         | Type        | Description                                     | Required   |
+| ------------- | ----------- | ----------------------------------------------- | ---------- |
+| `quizId`      | ID          | Reference to the parent quiz                    | Yes        |
+| `lang`        | String      | Language code (e.g., "en", "it")                | Yes        |
+| `opt1`        | String      | First answer option                             | Yes        |
+| `opt2`        | String      | Second answer option                            | Yes        |
+| `opt3`        | String      | Third answer option                             | No         |
+| `opt4`        | String      | Fourth answer option                            | No         |
+| `question`    | String      | The quiz question text                          | Yes        |
+| `explanation` | String      | Explanation of the correct answer               | No         |
+| `createdAt`   | AWSDateTime | Timestamp when the translation was created      | Yes (auto) |
+| `updatedAt`   | AWSDateTime | Timestamp when the translation was last updated | Yes (auto) |
 
 ### GraphQL Schema
 

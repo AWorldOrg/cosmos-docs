@@ -1,10 +1,10 @@
 # Common API Features
 
-This page documents common features and behaviors shared across all Cosmos API contexts (App, Dashboard, and Portal). Refer to the specific context documentation for context-specific details.
+This page documents common features and behaviors shared across all AWorld API contexts (App, Dashboard, and Portal). Refer to the specific context documentation for context-specific details.
 
 ## Authentication Basics
 
-All Cosmos APIs require authentication using a valid access token. Requests must include an Authorization header:
+All AWorld APIs require authentication using a valid access token. Requests must include an Authorization header:
 
 ```
 Authorization: Bearer YOUR_ACCESS_TOKEN
@@ -14,7 +14,7 @@ For information on obtaining access tokens, see the [Authentication Guide](../gu
 
 ### Custom Claims
 
-Cosmos APIs use custom claims in the access token to enforce permissions and operations. When performing a sign-in, all necessary custom claims are automatically included in the access token.
+AWorld APIs use custom claims in the access token to enforce permissions and operations. When performing a sign-in, all necessary custom claims are automatically included in the access token.
 
 Each context requires specific claims:
 - **App Context**: `accountId`, `workspaceId`, `principalId`, `userId`, and others
@@ -83,11 +83,11 @@ query {
 
 Many GraphQL clients (for example Postman) automatically provide introspection features, allowing you to browse the schema and available operations.
 
-> **Note**: The Cosmos API is in pre-alpha stage and undergoes frequent updates. Schema introspection is a great way to discover the latest available operations.
+> **Note**: The AWorld API is in pre-alpha stage and undergoes frequent updates. Schema introspection is a great way to discover the latest available operations.
 
 ## Pagination
 
-List queries in Cosmos support pagination through a Connection pattern with the following structure:
+List queries in AWorld support pagination through a Connection pattern with the following structure:
 
 ```graphql
 type ResourceConnection {
@@ -146,7 +146,7 @@ At pre-alpha stage, there are no rate limits applied yet.
 
 ## Data Validation
 
-Cosmos APIs employ strict validation for all data inputs to ensure consistency, security, and data integrity. Understanding these validation rules helps you build more robust integrations.
+AWorld APIs employ strict validation for all data inputs to ensure consistency, security, and data integrity. Understanding these validation rules helps you build more robust integrations.
 
 ### Common Types and Validation Rules
 

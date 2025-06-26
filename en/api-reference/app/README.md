@@ -1,10 +1,10 @@
 # App Context API Reference
 
-This section documents the API endpoints available in the App context of the Cosmos platform.
+This section documents the API endpoints available in the App context of the AWorld platform.
 
 ## Introduction
 
-The App context provides APIs for integrating with and extending applications built on the Cosmos platform. These APIs are designed for use in end-user applications and client-side interfaces.
+The App context provides APIs for integrating with and extending applications built on the AWorld platform. These APIs are designed for use in end-user applications and client-side interfaces.
 
 ## Authentication
 

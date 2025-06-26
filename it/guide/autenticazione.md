@@ -1,16 +1,16 @@
 # Autenticazione & Autorizzazione
 
-Questa guida spiega come funzionano l'autenticazione e l'autorizzazione nella piattaforma Cosmos.
+Questa guida spiega come funzionano l'autenticazione e l'autorizzazione nella piattaforma AWorld.
 
 ## Panoramica
 
-Cosmos utilizza AWS Cognito con un dominio personalizzato per l'autenticazione, implementando i flussi standard OAuth2. La piattaforma supporta sia l'autenticazione incentrata sull'utente che l'autorizzazione machine-to-machine (M2M) attraverso client credentials.
+AWorld utilizza AWS Cognito con un dominio personalizzato per l'autenticazione, implementando i flussi standard OAuth2. La piattaforma supporta sia l'autenticazione incentrata sull'utente che l'autorizzazione machine-to-machine (M2M) attraverso client credentials.
 
 ## Metodi di Autenticazione
 
 ### Autenticazione Utente (OAuth2)
 
-Per le applicazioni incentrate sull'utente, Cosmos implementa il flusso standard di authorization code OAuth2:
+Per le applicazioni incentrate sull'utente, AWorld implementa il flusso standard di authorization code OAuth2:
 
 1. **Richiesta di Autorizzazione**: Il client reindirizza l'utente all'endpoint di autorizzazione Cognito
 2. **Autenticazione Utente**: L'utente si autentica con le proprie credenziali
@@ -20,7 +20,7 @@ Per le applicazioni incentrate sull'utente, Cosmos implementa il flusso standard
 
 ### Autenticazione Machine-to-Machine (Client Credentials)
 
-Per le interazioni M2M, Cosmos supporta il flusso client credentials di OAuth2:
+Per le interazioni M2M, AWorld supporta il flusso client credentials di OAuth2:
 
 1. **Richiesta di Token**: Il client effettua una richiesta diretta all'endpoint token con client ID e secret
 2. **Risposta Token**: Il server di autorizzazione restituisce i token di accesso
@@ -51,11 +51,11 @@ Per le interazioni M2M, Cosmos supporta il flusso client credentials di OAuth2:
 
 ## Endpoint di Autenticazione
 
-| Endpoint | Descrizione |
-|----------|-------------|
+| Endpoint                                     | Descrizione                                             |
+| -------------------------------------------- | ------------------------------------------------------- |
 | `https://auth.aworld.cloud/oauth2/authorize` | Endpoint di autorizzazione per iniziare i flussi OAuth2 |
-| `https://auth.aworld.cloud/oauth2/token` | Endpoint token per ottenere i token di accesso |
-| `https://auth.aworld.cloud/oauth2/userInfo` | Endpoint userInfo per ottenere i dettagli dell'utente |
+| `https://auth.aworld.cloud/oauth2/token`     | Endpoint token per ottenere i token di accesso          |
+| `https://auth.aworld.cloud/oauth2/userInfo`  | Endpoint userInfo per ottenere i dettagli dell'utente   |
 
 ## Contesti Utente e Livelli di Accesso
 
@@ -67,7 +67,7 @@ I Principal hanno accesso attraverso gli account e tipicamente rappresentano amm
 
 Gli User sono limitati a uno specifico workspace all'interno di un account, con permessi limitati al workspace assegnato.
 
-## Integrazione con l'Autenticazione Cosmos
+## Integrazione con l'Autenticazione AWorld
 
 ### Applicazioni Web
 
@@ -155,7 +155,7 @@ getClientCredentialsToken()
   .catch(error => console.error('Autenticazione fallita:', error));
 ```
 
-> **Nota**: L'endpoint token corretto per Cosmos è `https://auth.aworld.cloud/oauth2/token`
+> **Nota**: L'endpoint token corretto per AWorld è `https://auth.aworld.cloud/oauth2/token`
 
 ## Best Practices
 

@@ -1,8 +1,8 @@
-# Cosmos Entities
+# AWorld Entities
 
 > **Important**: This detailed documentation is provided for demonstration purposes. Always refer to the GraphQL schema (using introspection) for the most up-to-date API documentation. The schemas evolve over time, and introspection will always provide the current definition.
 
-This section provides in-depth documentation for the core entities in the Cosmos platform. Each entity is documented in detail with information about its data model, lifecycle, usage patterns across different contexts, and best practices.
+This section provides in-depth documentation for the core entities in the AWorld platform. Each entity is documented in detail with information about its data model, lifecycle, usage patterns across different contexts, and best practices.
 
 ## Purpose
 

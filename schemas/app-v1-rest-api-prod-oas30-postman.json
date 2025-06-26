@@ -1,21 +1,27 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Cosmos App APIs",
-    "description": "API for client applications to interact with the Cosmos platform",
+    "title": "AWorld App APIs",
+    "description": "API for client applications to interact with the AWorld platform",
     "version": "2025-04-18T14:27:21Z"
   },
   "servers": [
     {
-      "url": "{baseUrl}",
-      "variables": {
-        "baseUrl": {
-          "default": "https://api.eu-west-1.aworld.cloud/app/v1"
-        }
-      }
+      "url": "https://api.eu-west-1.aworld.cloud/app/v1",
+      "description": "Production",
+      "x-auth-url": "https://auth.aworld.cloud"
+    },
+    {
+      "url": "https://api.us-east-1.aworld.services/app/v1",
+      "description": "Development",
+      "x-auth-url": "https://auth.aworld.services"
     }
   ],
   "tags": [
+    {
+      "name": "Authentication",
+      "description": "OAuth2 authentication operations"
+    },
     {
       "name": "ActivityLogs",
       "description": "Operations related to activity logs"
@@ -38,6 +44,104 @@
     }
   ],
   "paths": {
+    "/oauth2/token": {
+      "post": {
+        "servers": [
+          {
+            "url": "https://auth.aworld.cloud",
+            "description": "Production"
+          },
+          {
+            "url": "https://auth.aworld.services",
+            "description": "Development"
+          }
+        ],
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Get OAuth2 Access Token",
+        "description": "Obtain an access token using OAuth2 Client Credentials flow. Use the returned access_token as Bearer token in the Authorization header for all API requests.",
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Authentication"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "grant_type",
+                  "client_id",
+                  "client_secret"
+                ],
+                "properties": {
+                  "grant_type": {
+                    "type": "string",
+                    "enum": [
+                      "client_credentials"
+                    ],
+                    "description": "OAuth2 grant type",
+                    "example": "client_credentials"
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "description": "Your OAuth2 client ID",
+                    "example": "your_client_id"
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "description": "Your OAuth2 client secret",
+                    "example": "your_client_secret"
+                  }
+                },
+                "example": {
+                  "grant_type": "client_credentials",
+                  "client_id": "your_client_id",
+                  "client_secret": "your_client_secret"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Access token obtained successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "description": "The access token to use in API requests"
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "example": "Bearer",
+                      "description": "Token type"
+                    },
+                    "expires_in": {
+                      "type": "integer",
+                      "description": "Token expiration time in seconds"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid client credentials or request format"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid client_id or client_secret"
+          }
+        },
+        "security": []
+      }
+    },
     "/activityLogs": {
       "put": {
         "tags": [
@@ -115,7 +219,7 @@
         },
         "security": [
           {
-            "app-v1-rest-api-authorizer": []
+            "oauth2": []
           }
         ]
       }
@@ -208,7 +312,7 @@
         },
         "security": [
           {
-            "app-v1-rest-api-authorizer": []
+            "oauth2": []
           }
         ]
       }
@@ -275,7 +379,7 @@
         },
         "security": [
           {
-            "app-v1-rest-api-authorizer": []
+            "oauth2": []
           }
         ]
       }
@@ -323,7 +427,7 @@
         },
         "security": [
           {
-            "app-v1-rest-api-authorizer": []
+            "oauth2": []
           }
         ]
       }
@@ -371,7 +475,7 @@
         },
         "security": [
           {
-            "app-v1-rest-api-authorizer": []
+            "oauth2": []
           }
         ]
       }
@@ -439,7 +543,7 @@
         },
         "security": [
           {
-            "app-v1-rest-api-authorizer": []
+            "oauth2": []
           }
         ]
       }
@@ -487,7 +591,7 @@
         },
         "security": [
           {
-            "app-v1-rest-api-authorizer": []
+            "oauth2": []
           }
         ]
       }
@@ -555,7 +659,7 @@
         },
         "security": [
           {
-            "app-v1-rest-api-authorizer": []
+            "oauth2": []
           }
         ]
       },
@@ -617,7 +721,7 @@
         },
         "security": [
           {
-            "app-v1-rest-api-authorizer": []
+            "oauth2": []
           }
         ]
       }
@@ -665,7 +769,7 @@
         },
         "security": [
           {
-            "app-v1-rest-api-authorizer": []
+            "oauth2": []
           }
         ]
       }
@@ -722,7 +826,7 @@
         },
         "security": [
           {
-            "app-v1-rest-api-authorizer": []
+            "oauth2": []
           }
         ]
       }
@@ -789,7 +893,7 @@
         },
         "security": [
           {
-            "app-v1-rest-api-authorizer": []
+            "oauth2": []
           }
         ]
       }
@@ -799,30 +903,14 @@
     "securitySchemes": {
       "oauth2": {
         "type": "oauth2",
-        "description": "OAuth2 Client Credentials Flow",
+        "description": "OAuth2 Client Credentials Flow. Use the /oauth2/token endpoint to obtain an access token, then use it in all API requests. IMPORTANT: Token URL depends on environment - Production: https://auth.aworld.cloud/oauth2/token | Development: https://auth.aworld.services/oauth2/token",
         "flows": {
           "clientCredentials": {
-            "tokenUrl": "https://auth.eu-west-1.aworld.cloud/oauth2/token",
+            "tokenUrl": "https://auth.aworld.cloud/oauth2/token",
             "scopes": {}
           }
         },
-        "x-postman-variables": [
-          {
-            "key": "clientId",
-            "value": "{{clientId}}"
-          },
-          {
-            "key": "clientSecret",
-            "value": "{{clientSecret}}"
-          }
-        ]
-      },
-      "app-v1-rest-api-authorizer": {
-        "type": "apiKey",
-        "name": "Authorization",
-        "in": "header",
-        "x-amazon-apigateway-authtype": "custom",
-        "description": "API Gateway custom authorizer for validating user authentication"
+        "x-tokenUrl-development": "https://auth.aworld.services/oauth2/token"
       }
     },
     "schemas": {

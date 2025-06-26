@@ -1,6 +1,6 @@
 # Working with Workspaces
 
-This guide explains the concept of workspaces in the Cosmos platform and how to effectively manage them.
+This guide explains the concept of workspaces in the AWorld platform and how to effectively manage them.
 
 ## What is a Workspace?
 
@@ -8,9 +8,9 @@ A workspace is an isolated environment within an account that provides a dedicat
 
 ## Workspace Hierarchy
 
-In the Cosmos platform, the organizational hierarchy is:
+In the AWorld platform, the organizational hierarchy is:
 
-1. **Platform**: The top-level Cosmos platform
+1. **Platform**: The top-level AWorld platform
 2. **Account**: A tenant in the multi-tenant architecture
 3. **Workspace**: An isolated environment within an account
 4. **Resources**: Services, configurations, and data within a workspace

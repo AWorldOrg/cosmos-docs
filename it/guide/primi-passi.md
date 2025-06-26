@@ -1,22 +1,22 @@
-# Primi Passi con Cosmos
+# Primi Passi con AWorld
 
-Questa guida ti aiuterà a configurare e iniziare a utilizzare rapidamente la piattaforma SaaS Cosmos.
+Questa guida ti aiuterà a configurare e iniziare a utilizzare rapidamente la piattaforma SaaS AWorld.
 
 ## Panoramica
 
-Cosmos è una piattaforma SaaS multi-tenant che fornisce una suite di API attraverso tre contesti: App, Dashboard e Portal. Questa guida ti accompagnerà attraverso la configurazione iniziale e i passaggi di base per l'integrazione.
+AWorld è una piattaforma SaaS multi-tenant che fornisce una suite di API attraverso tre contesti: App, Dashboard e Portal. Questa guida ti accompagnerà attraverso la configurazione iniziale e i passaggi di base per l'integrazione.
 
 ## Prerequisiti
 
 Prima di iniziare, avrai bisogno di:
 
-- Un account Cosmos (fornito dal tuo amministratore o creato tramite registrazione)
+- Un account AWorld (fornito dal tuo amministratore o creato tramite registrazione)
 - Conoscenza base di GraphQL (per le interazioni con le API)
 - Ambiente di sviluppo con il tuo linguaggio/framework preferito
 
 ## Configurazione di Account e Workspace
 
-1. **Accesso all'Account**: Riceverai un'email di invito con le istruzioni per accedere al tuo account Cosmos.
+1. **Accesso all'Account**: Riceverai un'email di invito con le istruzioni per accedere al tuo account AWorld.
 
 2. **Tipi di Utente**:
    - Se sei un **Principal** (utente a livello di piattaforma), avrai accesso per gestire più account.
@@ -26,7 +26,7 @@ Prima di iniziare, avrai bisogno di:
 
 ## Autenticazione
 
-Cosmos utilizza AWS Cognito con un dominio personalizzato per l'autenticazione. Per una guida completa, consulta [Autenticazione & Autorizzazione](./autenticazione.md).
+AWorld utilizza AWS Cognito con un dominio personalizzato per l'autenticazione. Per una guida completa, consulta [Autenticazione & Autorizzazione](./autenticazione.md).
 
 ### Panoramica Rapida dell'Autenticazione
 
@@ -45,7 +45,7 @@ Cosmos utilizza AWS Cognito con un dominio personalizzato per l'autenticazione. 
 
 ## Basi delle API
 
-Cosmos fornisce tre contesti API:
+AWorld fornisce tre contesti API:
 
 - **Contesto App**: Per funzionalità rivolte all'utente all'interno di un workspace
 - **Contesto Dashboard**: Per funzionalità di gestione e osservabilità all'interno di un workspace

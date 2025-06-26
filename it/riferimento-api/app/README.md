@@ -1,10 +1,10 @@
 # Riferimento API Contesto App
 
-Questa sezione documenta gli endpoint API disponibili nel contesto App della piattaforma Cosmos.
+Questa sezione documenta gli endpoint API disponibili nel contesto App della piattaforma AWorld.
 
 ## Introduzione
 
-Il contesto App fornisce API per l'integrazione e l'estensione delle applicazioni costruite sulla piattaforma Cosmos. Queste API sono progettate per l'uso in applicazioni per utenti finali e interfacce lato client.
+Il contesto App fornisce API per l'integrazione e l'estensione delle applicazioni costruite sulla piattaforma AWorld. Queste API sono progettate per l'uso in applicazioni per utenti finali e interfacce lato client.
 
 ## Autenticazione
 

@@ -1,21 +1,23 @@
 {
-  "openapi" : "3.0.1",
-  "info" : {
-    "title" : "Cosmos Dashboard APIs",
-    "description": "API for dashboard applications to manage content and settings in the Cosmos platform",
-    "version" : "2025-04-18T14:26:01Z"
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AWorld Dashboard APIs",
+    "description": "API for dashboard applications to manage content and settings in the AWorld platform",
+    "version": "2025-04-18T14:26:01Z"
   },
-  "servers" : [ {
-    "url" : "{baseUrl}",
-    "variables" : {
-      "baseUrl": {
-        "default": "https://api.eu-west-1.aworld.cloud/dashboard/v1"
+  "servers": [
+    {
+      "url": "{baseUrl}",
+      "variables": {
+        "baseUrl": {
+          "default": "https://api.eu-west-1.aworld.cloud/dashboard/v1"
+        }
       }
     }
-  } ],
-  "paths" : {
-    "/activities" : {
-      "get" : {
+  ],
+  "paths": {
+    "/activities": {
+      "get": {
         "summary": "List activities",
         "description": "Retrieves a paginated list of activities available in the workspace",
         "parameters": [
@@ -66,24 +68,28 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/activities/{activityId}" : {
-      "get" : {
+    "/activities/{activityId}": {
+      "get": {
         "summary": "Get activity by ID",
         "description": "Retrieves a specific activity by its unique identifier",
-        "parameters" : [ {
-          "name" : "activityId",
-          "in" : "path",
-          "description": "Unique identifier of the activity to retrieve",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
+        ],
         "responses": {
           "200": {
             "description": "Activity retrieved successfully",
@@ -102,22 +108,26 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       },
-      "put" : {
+      "put": {
         "summary": "Create activity",
         "description": "Creates a new activity with the specified ID. It is recommended to use a human-readable ID.",
-        "parameters" : [ {
-          "name" : "activityId",
-          "in" : "path",
-          "description": "Unique identifier for the new activity",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier for the new activity",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -149,22 +159,26 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       },
-      "post" : {
+      "post": {
         "summary": "Update activity",
         "description": "Updates an existing activity identified by its ID",
-        "parameters" : [ {
-          "name" : "activityId",
-          "in" : "path",
-          "description": "Unique identifier of the activity to update",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity to update",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -196,24 +210,28 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/activities/{activityId}/publish" : {
-      "post" : {
+    "/activities/{activityId}/publish": {
+      "post": {
         "summary": "Publish an activity",
         "description": "Publishes an activity, making it available for use in the application",
-        "parameters" : [ {
-          "name" : "activityId",
-          "in" : "path",
-          "description": "Unique identifier of the activity to publish",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity to publish",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
+        ],
         "responses": {
           "200": {
             "description": "Activity published successfully",
@@ -235,13 +253,15 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/virtualCurrencies" : {
-      "get" : {
+    "/virtualCurrencies": {
+      "get": {
         "summary": "List virtual currencies",
         "description": "Retrieves a paginated list of virtual currencies available in the workspace",
         "parameters": [
@@ -293,27 +313,31 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/virtualCurrencies/{virtualCurrencyId}" : {
-      "get" : {
+    "/virtualCurrencies/{virtualCurrencyId}": {
+      "get": {
         "summary": "Get virtual currency by ID",
         "description": "Retrieves a specific virtual currency by its unique identifier",
-        "parameters" : [ {
-          "name" : "virtualCurrencyId",
-          "in" : "path",
-          "description": "Unique identifier of the virtual currency to retrieve",
-          "required" : true,
-          "schema" : {
-            "type" : "string",
-            "minLength": 2,
-            "maxLength": 30,
-            "pattern": "^\\S+$"
+        "parameters": [
+          {
+            "name": "virtualCurrencyId",
+            "in": "path",
+            "description": "Unique identifier of the virtual currency to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 30,
+              "pattern": "^\\S+$"
+            }
           }
-        } ],
+        ],
         "responses": {
           "200": {
             "description": "Virtual currency retrieved successfully.",
@@ -332,25 +356,29 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       },
-      "put" : {
+      "put": {
         "summary": "Create virtual currency",
         "description": "Creates a new virtual currency with the specified ID. It is recommended to use a human-readable ID.",
-        "parameters" : [ {
-          "name" : "virtualCurrencyId",
-          "in" : "path",
-          "description": "Unique identifier for the new virtual currency",
-          "required" : true,
-          "schema" : {
-            "type" : "string",
-            "minLength": 2,
-            "maxLength": 30,
-            "pattern": "^\\S+$"
+        "parameters": [
+          {
+            "name": "virtualCurrencyId",
+            "in": "path",
+            "description": "Unique identifier for the new virtual currency",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 30,
+              "pattern": "^\\S+$"
+            }
           }
-        } ],
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -382,25 +410,29 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       },
-      "post" : {
+      "post": {
         "summary": "Update virtual currency",
         "description": "Updates an existing virtual currency identified by its ID",
-        "parameters" : [ {
-          "name" : "virtualCurrencyId",
-          "in" : "path",
-          "description": "Unique identifier of the virtual currency to update",
-          "required" : true,
-          "schema" : {
-            "type" : "string",
-            "minLength": 2,
-            "maxLength": 30,
-            "pattern": "^\\S+$"
+        "parameters": [
+          {
+            "name": "virtualCurrencyId",
+            "in": "path",
+            "description": "Unique identifier of the virtual currency to update",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 30,
+              "pattern": "^\\S+$"
+            }
           }
-        } ],
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -432,27 +464,31 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/virtualCurrencies/{virtualCurrencyId}/publish" : {
-      "post" : {
+    "/virtualCurrencies/{virtualCurrencyId}/publish": {
+      "post": {
         "summary": "Publish a virtual currency",
         "description": "Publishes a virtual currency, making it available for use in the application",
-        "parameters" : [ {
-          "name" : "virtualCurrencyId",
-          "in" : "path",
-          "description": "Unique identifier of the virtual currency to publish",
-          "required" : true,
-          "schema" : {
-            "type" : "string",
-            "minLength": 2,
-            "maxLength": 30,
-            "pattern": "^\\S+$"
+        "parameters": [
+          {
+            "name": "virtualCurrencyId",
+            "in": "path",
+            "description": "Unique identifier of the virtual currency to publish",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 30,
+              "pattern": "^\\S+$"
+            }
           }
-        } ],
+        ],
         "responses": {
           "200": {
             "description": "Virtual currency published successfully.",
@@ -477,13 +513,15 @@
             "description": "The virtual currency may already be published or in a state that prevents publishing."
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/rewardRules" : {
-      "get" : {
+    "/rewardRules": {
+      "get": {
         "summary": "List reward rules",
         "description": "Retrieves a paginated list of reward rules available in the workspace",
         "parameters": [
@@ -534,11 +572,13 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       },
-      "post" : {
+      "post": {
         "summary": "Create reward rule",
         "description": "Creates a new reward rule with a system-generated ID",
         "requestBody": {
@@ -569,24 +609,28 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/rewardRules/{rewardRuleId}" : {
-      "get" : {
+    "/rewardRules/{rewardRuleId}": {
+      "get": {
         "summary": "Get reward rule by ID",
         "description": "Retrieves a specific reward rule by its unique identifier",
-        "parameters" : [ {
-          "name" : "rewardRuleId",
-          "in" : "path",
-          "description": "Unique identifier of the reward rule to retrieve",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+        "parameters": [
+          {
+            "name": "rewardRuleId",
+            "in": "path",
+            "description": "Unique identifier of the reward rule to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
+        ],
         "responses": {
           "200": {
             "description": "Reward rule retrieved successfully",
@@ -605,22 +649,26 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       },
-      "post" : {
+      "post": {
         "summary": "Update reward rule",
         "description": "Updates an existing reward rule identified by its ID",
-        "parameters" : [ {
-          "name" : "rewardRuleId",
-          "in" : "path",
-          "description": "Unique identifier of the reward rule to update",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+        "parameters": [
+          {
+            "name": "rewardRuleId",
+            "in": "path",
+            "description": "Unique identifier of the reward rule to update",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -652,24 +700,28 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/rewardRules/{rewardRuleId}/publish" : {
-      "post" : {
+    "/rewardRules/{rewardRuleId}/publish": {
+      "post": {
         "summary": "Publish a reward rule",
         "description": "Publishes a reward rule, making it available for use in the application",
-        "parameters" : [ {
-          "name" : "rewardRuleId",
-          "in" : "path",
-          "description": "Unique identifier of the reward rule to publish",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+        "parameters": [
+          {
+            "name": "rewardRuleId",
+            "in": "path",
+            "description": "Unique identifier of the reward rule to publish",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
+        ],
         "responses": {
           "200": {
             "description": "Reward rule published successfully",
@@ -691,13 +743,15 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/tags" : {
-      "get" : {
+    "/tags": {
+      "get": {
         "summary": "List tags",
         "description": "Retrieves a paginated list of tags available in the workspace",
         "parameters": [
@@ -748,11 +802,13 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       },
-      "post" : {
+      "post": {
         "summary": "Create tag",
         "description": "Creates a new tag with a system-generated ID",
         "requestBody": {
@@ -783,24 +839,28 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/tags/{tagId}" : {
-      "get" : {
+    "/tags/{tagId}": {
+      "get": {
         "summary": "Get tag by ID",
         "description": "Retrieves a specific tag by its unique identifier",
-        "parameters" : [ {
-          "name" : "tagId",
-          "in" : "path",
-          "description": "Unique identifier of the tag to retrieve",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
+        ],
         "responses": {
           "200": {
             "description": "Tag retrieved successfully",
@@ -819,22 +879,26 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       },
-      "post" : {
+      "post": {
         "summary": "Update tag",
         "description": "Updates an existing tag identified by its ID",
-        "parameters" : [ {
-          "name" : "tagId",
-          "in" : "path",
-          "description": "Unique identifier of the tag to update",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag to update",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -866,24 +930,28 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/tags/{tagId}/publish" : {
-      "post" : {
+    "/tags/{tagId}/publish": {
+      "post": {
         "summary": "Publish a tag",
         "description": "Publishes a tag, making it available for use in the application",
-        "parameters" : [ {
-          "name" : "tagId",
-          "in" : "path",
-          "description": "Unique identifier of the tag to publish",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag to publish",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
+        ],
         "responses": {
           "200": {
             "description": "Tag published successfully",
@@ -905,13 +973,15 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/users" : {
-      "get" : {
+    "/users": {
+      "get": {
         "summary": "List users",
         "description": "Retrieves a paginated list of users available in the workspace",
         "parameters": [
@@ -962,11 +1032,13 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       },
-      "post" : {
+      "post": {
         "summary": "Create user",
         "description": "Creates a new user in the system with generated credentials",
         "requestBody": {
@@ -1000,24 +1072,28 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/users/{userId}" : {
-      "get" : {
+    "/users/{userId}": {
+      "get": {
         "summary": "Get user by ID",
         "description": "Retrieves a specific user by their unique identifier",
-        "parameters" : [ {
-          "name" : "userId",
-          "in" : "path",
-          "description": "Unique identifier of the user to retrieve",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Unique identifier of the user to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
+        ],
         "responses": {
           "200": {
             "description": "User retrieved successfully",
@@ -1036,24 +1112,28 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
-    "/users/byExternalId/{externalId}/" : {
-      "get" : {
+    "/users/byExternalId/{externalId}/": {
+      "get": {
         "summary": "Get user by external ID",
         "description": "Retrieves a specific user by their unique external ID identifier",
-        "parameters" : [ {
-          "name" : "externalId",
-          "in" : "path",
-          "description": "Unique external identifier of the user to retrieve",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "description": "Unique external identifier of the user to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
+        ],
         "responses": {
           "200": {
             "description": "User retrieved successfully",
@@ -1072,9 +1152,11 @@
             "description": "Unauthorized"
           }
         },
-        "security" : [ {
-          "dashboard-v1-rest-api-authorizer" : [ ]
-        } ]
+        "security": [
+          {
+            "dashboard-v1-rest-api-authorizer": []
+          }
+        ]
       }
     },
     "/virtualTransactions": {
@@ -1639,7 +1721,7 @@
       }
     }
   },
-  "components" : {
+  "components": {
     "securitySchemes": {
       "oauth2": {
         "type": "oauth2",
@@ -1693,7 +1775,10 @@
           },
           "missionType": {
             "type": "string",
-            "enum": ["INDIVIDUAL", "GROUP"],
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ],
             "description": "Type of the assigned mission."
           },
           "missionId": {
@@ -1710,7 +1795,11 @@
           },
           "timeframeType": {
             "type": "string",
-            "enum": ["PERMANENT", "RANGE", "RECURRING"],
+            "enum": [
+              "PERMANENT",
+              "RANGE",
+              "RECURRING"
+            ],
             "description": "The timeframe type of this assignment."
           },
           "startsAt": {
@@ -1734,7 +1823,11 @@
           },
           "state": {
             "type": "string",
-            "enum": ["PENDING", "ACTIVE", "ENDED"],
+            "enum": [
+              "PENDING",
+              "ACTIVE",
+              "ENDED"
+            ],
             "description": "Current state of the mission assignment."
           },
           "groupTagId": {
@@ -1805,7 +1898,10 @@
           },
           "missionType": {
             "type": "string",
-            "enum": ["INDIVIDUAL", "GROUP"],
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ],
             "description": "Type of the mission being assigned."
           },
           "missionId": {
@@ -1833,7 +1929,10 @@
           },
           "timeframeType": {
             "type": "string",
-            "enum": ["RANGE", "PERMANENT"],
+            "enum": [
+              "RANGE",
+              "PERMANENT"
+            ],
             "description": "Timeframe type for this manual assignment. 'RECURRING' is not allowed for manual assignments."
           }
         }
@@ -1862,7 +1961,10 @@
           },
           "missionType": {
             "type": "string",
-            "enum": ["INDIVIDUAL", "GROUP"],
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ],
             "description": "Type of missions this rule assigns (individual or group)."
           },
           "name": {
@@ -1890,12 +1992,19 @@
           },
           "timeframeType": {
             "type": "string",
-            "enum": ["PERMANENT", "RANGE", "RECURRING"],
+            "enum": [
+              "PERMANENT",
+              "RANGE",
+              "RECURRING"
+            ],
             "description": "Defines the active period of the rule. Please note that 'PERMANENT' should be used only on one-time missions, since they cannot be assigned again after the first time "
           },
           "timeframeTimezoneType": {
             "type": "string",
-            "enum": ["FIXED", "USER"],
+            "enum": [
+              "FIXED",
+              "USER"
+            ],
             "description": "Determines if the timeframe uses a fixed timezone or the user's timezone."
           },
           "timeframeTimezone": {
@@ -1914,7 +2023,12 @@
           },
           "recurrence": {
             "type": "string",
-            "enum": ["DAILY", "WEEKLY", "MONTHLY", "CUSTOM"],
+            "enum": [
+              "DAILY",
+              "WEEKLY",
+              "MONTHLY",
+              "CUSTOM"
+            ],
             "description": "Required for 'RECURRING' timeframeType. How often the rule recurs."
           },
           "scheduleCron": {
@@ -1923,18 +2037,30 @@
           },
           "assignmentMode": {
             "type": "string",
-            "enum": ["LAZY", "SCHEDULED_PUSH", "EVENT", "DISABLED"],
+            "enum": [
+              "LAZY",
+              "SCHEDULED_PUSH",
+              "EVENT",
+              "DISABLED"
+            ],
             "description": "How missions are assigned by this rule. LAZY would cause missions to be assigned (if applicable) every time a user requests its own missions. EVENT based assignments allows assigning missions in response to other events. Please note that SCHEDULED_PUSH is not supported at the moment, and will be supported in the future."
           },
           "state": {
             "type": "string",
-            "enum": ["PENDING", "ACTIVE", "ENDED"],
+            "enum": [
+              "PENDING",
+              "ACTIVE",
+              "ENDED"
+            ],
             "default": "PENDING",
             "description": "Current operational state of the rule."
           },
           "origin": {
             "type": "string",
-            "enum": ["CATALOG", "CUSTOM"],
+            "enum": [
+              "CATALOG",
+              "CUSTOM"
+            ],
             "description": "Source of the rule definition."
           },
           "missionRuleCatalogId": {
@@ -1958,12 +2084,21 @@
           },
           "eventMatchType": {
             "type": "string",
-            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "enum": [
+              "INSTANCE",
+              "ENTITY",
+              "TAG"
+            ],
             "description": "Required for 'EVENT' assignmentMode. Type of event matching."
           },
           "eventMatchEntity": {
             "type": "string",
-            "enum": ["Activity", "Quiz", "Tag", "User"],
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag",
+              "User"
+            ],
             "description": "Required for 'EVENT' assignmentMode. Entity involved in the event."
           },
           "eventMatchEntityId": {
@@ -1988,7 +2123,10 @@
           },
           "stage": {
             "type": "string",
-            "enum": ["DRAFT", "PUBLISHED"],
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ],
             "description": "Current publication stage of the mission rule."
           },
           "createdAt": {
@@ -2020,7 +2158,10 @@
         "properties": {
           "missionType": {
             "type": "string",
-            "enum": ["INDIVIDUAL", "GROUP"]
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ]
           },
           "name": {
             "type": "string"
@@ -2044,11 +2185,18 @@
           },
           "timeframeType": {
             "type": "string",
-            "enum": ["PERMANENT", "RANGE", "RECURRING"]
+            "enum": [
+              "PERMANENT",
+              "RANGE",
+              "RECURRING"
+            ]
           },
           "timeframeTimezoneType": {
             "type": "string",
-            "enum": ["FIXED", "USER"]
+            "enum": [
+              "FIXED",
+              "USER"
+            ]
           },
           "timeframeTimezone": {
             "type": "string"
@@ -2063,14 +2211,24 @@
           },
           "recurrence": {
             "type": "string",
-            "enum": ["DAILY", "WEEKLY", "MONTHLY", "CUSTOM"]
+            "enum": [
+              "DAILY",
+              "WEEKLY",
+              "MONTHLY",
+              "CUSTOM"
+            ]
           },
           "scheduleCron": {
             "type": "string"
           },
           "assignmentMode": {
             "type": "string",
-            "enum": ["LAZY", "SCHEDULED_PUSH", "EVENT", "DISABLED"]
+            "enum": [
+              "LAZY",
+              "SCHEDULED_PUSH",
+              "EVENT",
+              "DISABLED"
+            ]
           },
           "defaultLang": {
             "type": "string"
@@ -2085,11 +2243,20 @@
           },
           "eventMatchType": {
             "type": "string",
-            "enum": ["INSTANCE", "ENTITY", "TAG"]
+            "enum": [
+              "INSTANCE",
+              "ENTITY",
+              "TAG"
+            ]
           },
           "eventMatchEntity": {
             "type": "string",
-            "enum": ["Activity", "Quiz", "Tag", "User"]
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag",
+              "User"
+            ]
           },
           "eventMatchEntityId": {
             "type": "string"
@@ -2120,15 +2287,28 @@
           },
           "missionType": {
             "type": "string",
-            "enum": ["INDIVIDUAL", "GROUP"]
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ]
           },
           "assignmentMode": {
             "type": "string",
-            "enum": ["LAZY", "SCHEDULED_PUSH", "EVENT", "DISABLED"]
+            "enum": [
+              "LAZY",
+              "SCHEDULED_PUSH",
+              "EVENT",
+              "DISABLED"
+            ]
           },
           "eventMatchEntity": {
             "type": "string",
-            "enum": ["Activity", "Quiz", "Tag", "User"]
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag",
+              "User"
+            ]
           },
           "eventMatchEntityId": {
             "type": "string"
@@ -2156,7 +2336,9 @@
       "MissionRuleTranslation": {
         "type": "object",
         "description": "Translation for mission rule content.",
-        "required": ["lang"],
+        "required": [
+          "lang"
+        ],
         "properties": {
           "lang": {
             "type": "string"
@@ -2195,17 +2377,28 @@
           },
           "missionType": {
             "type": "string",
-            "enum": ["INDIVIDUAL", "GROUP"],
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ],
             "description": "Type of mission (individual or group-based)."
           },
           "matchType": {
             "type": "string",
-            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "enum": [
+              "INSTANCE",
+              "ENTITY",
+              "TAG"
+            ],
             "description": "Determines how the mission's conditions are matched."
           },
           "matchEntity": {
             "type": "string",
-            "enum": ["Activity", "Quiz", "Tag"],
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag"
+            ],
             "description": "The entity type the mission's conditions apply to."
           },
           "matchEntityId": {
@@ -2226,7 +2419,10 @@
           },
           "origin": {
             "type": "string",
-            "enum": ["CATALOG", "CUSTOM"],
+            "enum": [
+              "CATALOG",
+              "CUSTOM"
+            ],
             "description": "Indicates if the mission is from a catalog or custom-created."
           },
           "missionCatalogId": {
@@ -2262,7 +2458,10 @@
           },
           "stage": {
             "type": "string",
-            "enum": ["DRAFT", "PUBLISHED"],
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ],
             "description": "Current publication stage of the mission."
           },
           "createdAt": {
@@ -2298,17 +2497,28 @@
           },
           "missionType": {
             "type": "string",
-            "enum": ["INDIVIDUAL", "GROUP"],
+            "enum": [
+              "INDIVIDUAL",
+              "GROUP"
+            ],
             "description": "Type of mission."
           },
           "matchType": {
             "type": "string",
-            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "enum": [
+              "INSTANCE",
+              "ENTITY",
+              "TAG"
+            ],
             "description": "Condition matching type."
           },
           "matchEntity": {
             "type": "string",
-            "enum": ["Activity", "Quiz", "Tag"],
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag"
+            ],
             "description": "Entity type for matching."
           },
           "matchEntityId": {
@@ -2345,7 +2555,11 @@
       "UpdateMissionRequest": {
         "type": "object",
         "description": "Data required to update an existing mission.",
-        "required": ["name", "defaultLang", "translations"],
+        "required": [
+          "name",
+          "defaultLang",
+          "translations"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -2369,7 +2583,10 @@
       "MissionTranslation": {
         "type": "object",
         "description": "Translation for mission content in a specific language.",
-        "required": ["lang", "label"],
+        "required": [
+          "lang",
+          "label"
+        ],
         "properties": {
           "lang": {
             "type": "string",
@@ -2388,7 +2605,14 @@
       "User": {
         "type": "object",
         "description": "User entity representing a person who can access the system",
-        "required": ["userId", "principalId", "lang", "timezone", "accountId", "workspaceId"],
+        "required": [
+          "userId",
+          "principalId",
+          "lang",
+          "timezone",
+          "accountId",
+          "workspaceId"
+        ],
         "properties": {
           "userId": {
             "type": "string",
@@ -2426,7 +2650,7 @@
             "description": "Timestamp when the user was created"
           },
           "updatedAt": {
-            "type": "string", 
+            "type": "string",
             "format": "date-time",
             "description": "Timestamp when the user was last updated"
           }
@@ -2435,7 +2659,9 @@
       "CreateUserRequest": {
         "type": "object",
         "description": "Data required to create a new user",
-        "required": ["email"],
+        "required": [
+          "email"
+        ],
         "properties": {
           "email": {
             "type": "string",
@@ -2466,7 +2692,16 @@
       "Tag": {
         "type": "object",
         "description": "Tag entity used for categorizing and filtering content",
-        "required": ["tagId", "namespace", "variant", "origin", "defaultLang", "langs", "createdAt", "updatedAt"],
+        "required": [
+          "tagId",
+          "namespace",
+          "variant",
+          "origin",
+          "defaultLang",
+          "langs",
+          "createdAt",
+          "updatedAt"
+        ],
         "properties": {
           "tagId": {
             "type": "string",
@@ -2482,7 +2717,10 @@
           },
           "origin": {
             "type": "string",
-            "enum": ["CATALOG", "CUSTOM"],
+            "enum": [
+              "CATALOG",
+              "CUSTOM"
+            ],
             "description": "Whether the tag comes from a central catalog or is custom-created"
           },
           "tagCatalogId": {
@@ -2518,7 +2756,10 @@
           },
           "stage": {
             "type": "string",
-            "enum": ["DRAFT", "PUBLISHED"],
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ],
             "description": "Current publication stage of the tag"
           },
           "createdAt": {
@@ -2536,7 +2777,12 @@
       "CreateTagRequest": {
         "type": "object",
         "description": "Data required to create a new tag",
-        "required": ["namespace", "variant", "defaultLang", "translations"],
+        "required": [
+          "namespace",
+          "variant",
+          "defaultLang",
+          "translations"
+        ],
         "properties": {
           "namespace": {
             "type": "string",
@@ -2564,7 +2810,12 @@
       "UpdateTagRequest": {
         "type": "object",
         "description": "Data required to update an existing tag",
-        "required": ["namespace", "variant", "defaultLang", "translations"],
+        "required": [
+          "namespace",
+          "variant",
+          "defaultLang",
+          "translations"
+        ],
         "properties": {
           "namespace": {
             "type": "string",
@@ -2592,7 +2843,10 @@
       "TagTranslation": {
         "type": "object",
         "description": "Translation for tag content in a specific language",
-        "required": ["lang", "label"],
+        "required": [
+          "lang",
+          "label"
+        ],
         "properties": {
           "lang": {
             "type": "string",
@@ -2628,7 +2882,11 @@
       "Reward": {
         "type": "object",
         "description": "Definition of a reward associated with a reward rule",
-        "required": ["virtualCurrencyId", "expression", "redemptionMode"],
+        "required": [
+          "virtualCurrencyId",
+          "expression",
+          "redemptionMode"
+        ],
         "properties": {
           "virtualCurrencyId": {
             "type": "string",
@@ -2640,7 +2898,10 @@
           },
           "redemptionMode": {
             "type": "string",
-            "enum": ["AUTO", "MANUAL"],
+            "enum": [
+              "AUTO",
+              "MANUAL"
+            ],
             "description": "The redemption mode for the transaction generated when this reward is granted. 'AUTO' means the transaction completes immediately. 'MANUAL' means the transaction will be pending and may require a separate redeem action by the user."
           }
         }
@@ -2648,7 +2909,20 @@
       "RewardRule": {
         "type": "object",
         "description": "Reward rule entity defining conditions for awarding rewards",
-        "required": ["rewardRuleId", "name", "ruleType", "matchEntity", "matchCondition", "applicationMode", "origin", "defaultLang", "langs", "rewards", "createdAt", "updatedAt"],
+        "required": [
+          "rewardRuleId",
+          "name",
+          "ruleType",
+          "matchEntity",
+          "matchCondition",
+          "applicationMode",
+          "origin",
+          "defaultLang",
+          "langs",
+          "rewards",
+          "createdAt",
+          "updatedAt"
+        ],
         "properties": {
           "rewardRuleId": {
             "type": "string",
@@ -2660,12 +2934,20 @@
           },
           "ruleType": {
             "type": "string",
-            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "enum": [
+              "INSTANCE",
+              "ENTITY",
+              "TAG"
+            ],
             "description": "Type of rule determining its scope and application"
           },
           "matchEntity": {
             "type": "string",
-            "enum": ["Activity", "Quiz", "Tag"],
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag"
+            ],
             "description": "Entity type this rule applies to"
           },
           "matchEntityId": {
@@ -2678,12 +2960,19 @@
           },
           "applicationMode": {
             "type": "string",
-            "enum": ["ALWAYS", "FALLBACK", "DISABLED"],
+            "enum": [
+              "ALWAYS",
+              "FALLBACK",
+              "DISABLED"
+            ],
             "description": "Mode determining when the rule should be applied"
           },
           "origin": {
             "type": "string",
-            "enum": ["CATALOG", "CUSTOM"],
+            "enum": [
+              "CATALOG",
+              "CUSTOM"
+            ],
             "description": "Whether the reward rule comes from a central catalog or is custom-created"
           },
           "rewardRuleCatalogId": {
@@ -2728,7 +3017,10 @@
           },
           "stage": {
             "type": "string",
-            "enum": ["DRAFT", "PUBLISHED"],
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ],
             "description": "Current publication stage of the reward rule"
           },
           "createdAt": {
@@ -2746,7 +3038,16 @@
       "CreateRewardRuleRequest": {
         "type": "object",
         "description": "Data required to create a new reward rule",
-        "required": ["name", "ruleType", "matchEntity", "matchCondition", "applicationMode", "defaultLang", "translations", "rewards"],
+        "required": [
+          "name",
+          "ruleType",
+          "matchEntity",
+          "matchCondition",
+          "applicationMode",
+          "defaultLang",
+          "translations",
+          "rewards"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -2754,12 +3055,20 @@
           },
           "ruleType": {
             "type": "string",
-            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "enum": [
+              "INSTANCE",
+              "ENTITY",
+              "TAG"
+            ],
             "description": "Type of rule determining its scope and application"
           },
           "matchEntity": {
             "type": "string",
-            "enum": ["Activity", "Quiz", "Tag"],
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag"
+            ],
             "description": "Entity type this rule applies to"
           },
           "matchEntityId": {
@@ -2772,7 +3081,11 @@
           },
           "applicationMode": {
             "type": "string",
-            "enum": ["ALWAYS", "FALLBACK", "DISABLED"],
+            "enum": [
+              "ALWAYS",
+              "FALLBACK",
+              "DISABLED"
+            ],
             "description": "Mode determining when the rule should be applied"
           },
           "defaultLang": {
@@ -2802,7 +3115,16 @@
       "UpdateRewardRuleRequest": {
         "type": "object",
         "description": "Data required to update an existing reward rule",
-        "required": ["name", "ruleType", "matchEntity", "matchCondition", "applicationMode", "defaultLang", "translations", "rewards"],
+        "required": [
+          "name",
+          "ruleType",
+          "matchEntity",
+          "matchCondition",
+          "applicationMode",
+          "defaultLang",
+          "translations",
+          "rewards"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -2810,12 +3132,20 @@
           },
           "ruleType": {
             "type": "string",
-            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "enum": [
+              "INSTANCE",
+              "ENTITY",
+              "TAG"
+            ],
             "description": "Updated type of rule determining its scope and application"
           },
           "matchEntity": {
             "type": "string",
-            "enum": ["Activity", "Quiz", "Tag"],
+            "enum": [
+              "Activity",
+              "Quiz",
+              "Tag"
+            ],
             "description": "Updated entity type this rule applies to"
           },
           "matchEntityId": {
@@ -2828,7 +3158,11 @@
           },
           "applicationMode": {
             "type": "string",
-            "enum": ["ALWAYS", "FALLBACK", "DISABLED"],
+            "enum": [
+              "ALWAYS",
+              "FALLBACK",
+              "DISABLED"
+            ],
             "description": "Updated mode determining when the rule should be applied"
           },
           "defaultLang": {
@@ -2858,7 +3192,9 @@
       "RewardRuleTranslation": {
         "type": "object",
         "description": "Translation for reward rule content in a specific language",
-        "required": ["lang"],
+        "required": [
+          "lang"
+        ],
         "properties": {
           "lang": {
             "type": "string",
@@ -2873,7 +3209,15 @@
       "VirtualCurrency": {
         "type": "object",
         "description": "Virtual currency entity representing a digital asset or point system that users can earn and use within the platform.",
-        "required": ["virtualCurrencyId", "name", "origin", "defaultLang", "langs", "createdAt", "updatedAt"],
+        "required": [
+          "virtualCurrencyId",
+          "name",
+          "origin",
+          "defaultLang",
+          "langs",
+          "createdAt",
+          "updatedAt"
+        ],
         "properties": {
           "virtualCurrencyId": {
             "type": "string",
@@ -2888,7 +3232,10 @@
           },
           "origin": {
             "type": "string",
-            "enum": ["CATALOG", "CUSTOM"],
+            "enum": [
+              "CATALOG",
+              "CUSTOM"
+            ],
             "description": "Indicates if the virtual currency originates from a predefined catalog or is custom-created for the workspace."
           },
           "virtualCurrencyCatalogId": {
@@ -2932,7 +3279,10 @@
           },
           "stage": {
             "type": "string",
-            "enum": ["DRAFT", "PUBLISHED"],
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ],
             "description": "The current publication stage of the virtual currency. 'DRAFT' means it's not yet active, 'PUBLISHED' means it's available for use."
           },
           "createdAt": {
@@ -2950,7 +3300,11 @@
       "CreateVirtualCurrencyRequest": {
         "type": "object",
         "description": "Data required to create a new virtual currency.",
-        "required": ["name", "defaultLang", "translations"],
+        "required": [
+          "name",
+          "defaultLang",
+          "translations"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -2974,7 +3328,11 @@
       "UpdateVirtualCurrencyRequest": {
         "type": "object",
         "description": "Data required to update an existing virtual currency.",
-        "required": ["name", "defaultLang", "translations"],
+        "required": [
+          "name",
+          "defaultLang",
+          "translations"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -2998,7 +3356,10 @@
       "VirtualCurrencyTranslation": {
         "type": "object",
         "description": "Provides the translatable content (label and description) for a virtual currency in a specific language.",
-        "required": ["lang", "label"],
+        "required": [
+          "lang",
+          "label"
+        ],
         "properties": {
           "lang": {
             "type": "string",
@@ -3017,7 +3378,15 @@
       "Activity": {
         "type": "object",
         "description": "Activity entity representing a task or action that users can complete",
-        "required": ["activityId", "name", "origin", "defaultLang", "langs", "createdAt", "updatedAt"],
+        "required": [
+          "activityId",
+          "name",
+          "origin",
+          "defaultLang",
+          "langs",
+          "createdAt",
+          "updatedAt"
+        ],
         "properties": {
           "activityId": {
             "type": "string",
@@ -3029,7 +3398,10 @@
           },
           "origin": {
             "type": "string",
-            "enum": ["CATALOG", "CUSTOM"],
+            "enum": [
+              "CATALOG",
+              "CUSTOM"
+            ],
             "description": "Whether the activity comes from a central catalog or is custom-created"
           },
           "activityCatalogId": {
@@ -3078,7 +3450,11 @@
       "CreateActivityRequest": {
         "type": "object",
         "description": "Data required to create a new activity",
-        "required": ["name", "defaultLang", "translations"],
+        "required": [
+          "name",
+          "defaultLang",
+          "translations"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -3100,7 +3476,11 @@
       "UpdateActivityRequest": {
         "type": "object",
         "description": "Data required to update an existing activity",
-        "required": ["name", "defaultLang", "translations"],
+        "required": [
+          "name",
+          "defaultLang",
+          "translations"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -3122,7 +3502,10 @@
       "ActivityTranslation": {
         "type": "object",
         "description": "Translation for activity content in a specific language",
-        "required": ["lang", "label"],
+        "required": [
+          "lang",
+          "label"
+        ],
         "properties": {
           "lang": {
             "type": "string",
@@ -3162,7 +3545,10 @@
           },
           "redemptionMode": {
             "type": "string",
-            "enum": ["AUTO", "MANUAL"],
+            "enum": [
+              "AUTO",
+              "MANUAL"
+            ],
             "description": "The redemption mode for the transaction."
           },
           "amount": {
@@ -3175,12 +3561,14 @@
             "format": "date-time",
             "description": "Optional ISO date-time string. If provided and redemptionMode is MANUAL, the transaction will expire at this time if not completed."
           }
-        } 
+        }
       },
       "CreateVirtualTransactionsRequest": {
         "type": "object",
         "description": "Request body for creating virtual transactions from the Dashboard API.",
-        "required": ["transactions"],
+        "required": [
+          "transactions"
+        ],
         "properties": {
           "transactions": {
             "type": "array",
@@ -3195,7 +3583,9 @@
       "CreateVirtualTransactionsResponse": {
         "type": "object",
         "description": "Response body after creating virtual transactions from the Dashboard API.",
-        "required": ["transactions"],
+        "required": [
+          "transactions"
+        ],
         "properties": {
           "transactions": {
             "type": "array",
@@ -3243,12 +3633,20 @@
           },
           "direction": {
             "type": "string",
-            "enum": ["CREDIT", "DEBIT"],
+            "enum": [
+              "CREDIT",
+              "DEBIT"
+            ],
             "description": "Indicates whether the transaction is a credit or a debit for the user."
           },
           "state": {
             "type": "string",
-            "enum": ["PENDING", "COMPLETED", "EXPIRED", "REJECTED"],
+            "enum": [
+              "PENDING",
+              "COMPLETED",
+              "EXPIRED",
+              "REJECTED"
+            ],
             "description": "The current state of the transaction. Expired transactions are evaluated lazily and their state is updated when trying to redeem them."
           },
           "initiator": {
@@ -3257,7 +3655,12 @@
           },
           "initiatorType": {
             "type": "string",
-            "enum": ["USER", "REWARD_RULE", "SYSTEM", "ADMIN"],
+            "enum": [
+              "USER",
+              "REWARD_RULE",
+              "SYSTEM",
+              "ADMIN"
+            ],
             "description": "The type of entity that initiated the transaction."
           },
           "counterpart": {
@@ -3266,12 +3669,18 @@
           },
           "counterpartType": {
             "type": "string",
-            "enum": ["USER", "SYSTEM"],
+            "enum": [
+              "USER",
+              "SYSTEM"
+            ],
             "description": "The type of counterpart entity."
           },
           "redemptionMode": {
             "type": "string",
-            "enum": ["AUTO", "MANUAL"],
+            "enum": [
+              "AUTO",
+              "MANUAL"
+            ],
             "description": "Defines wether the transaction is automatically redeemed or not. If redemptionMode is MANUAL, the transaction will be pending until this transaction (if at credit) or the counterpart transaction (if at debit) is redeemed."
           },
           "virtualTransactionGroupId": {
