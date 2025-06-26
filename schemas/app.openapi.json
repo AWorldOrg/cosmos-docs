@@ -745,7 +745,7 @@
           }
         },
         "security": [],
-        "x-apidog-override-baseurl": "https://auth.aworld.services"
+        "x-apidog-override-baseurl": "Authentication"
       }
     },
     "/activityLogs": {
