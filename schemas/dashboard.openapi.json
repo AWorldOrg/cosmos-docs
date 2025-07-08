@@ -22,6 +22,9 @@
       "name": "MissionAssignments"
     },
     {
+      "name": "Quizzes"
+    },
+    {
       "name": "RewardRules"
     },
     {
@@ -388,6 +391,697 @@
         }
       }
     },
+    "/activities/{activityId}/tags": {
+      "get": {
+        "summary": "List activity tag assignments",
+        "deprecated": false,
+        "description": "Retrieves a list of tag assignments for a specific activity",
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tag assignments retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "priority": {
+                            "type": "number",
+                            "description": "Priority of the tag assignment"
+                          }
+                        },
+                        "required": ["tagId"]
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Activity not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Activities"
+        }
+      },
+      "put": {
+        "summary": "Create multiple activity tag assignments",
+        "deprecated": false,
+        "description": "Creates multiple tag assignments for a specific activity",
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "assignments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "tagId": {
+                          "type": "string",
+                          "description": "Unique identifier of the tag"
+                        },
+                        "priority": {
+                          "type": "number",
+                          "description": "Priority of the tag assignment (optional)"
+                        }
+                      },
+                      "required": ["tagId"]
+                    },
+                    "minItems": 1,
+                    "maxItems": 25
+                  }
+                },
+                "required": ["assignments"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignments created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "assignments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "priority": {
+                            "type": "number",
+                            "description": "Priority of the tag assignment"
+                          }
+                        },
+                        "required": ["tagId"]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Activity or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Activities"
+        }
+      },
+      "patch": {
+        "summary": "Update multiple activity tag assignments",
+        "deprecated": false,
+        "description": "Updates multiple tag assignments for a specific activity",
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "assignments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "tagId": {
+                          "type": "string",
+                          "description": "Unique identifier of the tag"
+                        },
+                        "priority": {
+                          "type": "number",
+                          "description": "Priority of the tag assignment"
+                        }
+                      },
+                      "required": ["tagId", "priority"]
+                    },
+                    "minItems": 1,
+                    "maxItems": 25
+                  }
+                },
+                "required": ["assignments"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignments updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "assignments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "priority": {
+                            "type": "number",
+                            "description": "Priority of the tag assignment"
+                          }
+                        },
+                        "required": ["tagId", "priority"]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Activity or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Activities"
+        }
+      },
+      "delete": {
+        "summary": "Delete multiple activity tag assignments",
+        "deprecated": false,
+        "description": "Deletes multiple tag assignments for a specific activity",
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "assignments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "tagId": {
+                          "type": "string",
+                          "description": "Unique identifier of the tag"
+                        }
+                      },
+                      "required": ["tagId"]
+                    },
+                    "minItems": 1,
+                    "maxItems": 25
+                  }
+                },
+                "required": ["assignments"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Tag assignments deleted successfully",
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Activity not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Activities"
+        }
+      }
+    },
+    "/activities/{activityId}/tags/{tagId}": {
+      "get": {
+        "summary": "Get activity tag assignment",
+        "deprecated": false,
+        "description": "Retrieves a specific tag assignment for an activity",
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag assignment retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "priority": {
+                      "type": "number",
+                      "description": "Priority of the tag assignment"
+                    }
+                  },
+                  "required": ["tagId"]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Activity or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Activities"
+        }
+      },
+      "put": {
+        "summary": "Create activity tag assignment",
+        "deprecated": false,
+        "description": "Creates a tag assignment for a specific activity",
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag to assign",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "priority": {
+                    "type": "number",
+                    "description": "Priority of the tag assignment (optional)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignment created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "priority": {
+                      "type": "number",
+                      "description": "Priority of the tag assignment"
+                    }
+                  },
+                  "required": ["tagId"]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Activity or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Activities"
+        }
+      },
+      "patch": {
+        "summary": "Update activity tag assignment",
+        "deprecated": false,
+        "description": "Updates a tag assignment for a specific activity",
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "priority": {
+                    "type": "number",
+                    "description": "Priority of the tag assignment"
+                  }
+                },
+                "required": ["priority"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignment updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "priority": {
+                      "type": "number",
+                      "description": "Priority of the tag assignment"
+                    }
+                  },
+                  "required": ["tagId"]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Activity or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Activities"
+        }
+      },
+      "delete": {
+        "summary": "Delete activity tag assignment",
+        "deprecated": false,
+        "description": "Deletes a tag assignment for a specific activity",
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag to remove",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Tag assignment deleted successfully",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Activity or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Activities"
+        }
+      }
+    },
     "/activities/{activityId}/publish": {
       "post": {
         "summary": "Publish an activity",
@@ -666,6 +1360,697 @@
           },
           "404": {
             "description": "Mission not found.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        }
+      }
+    },
+    "/missions/{missionId}/tags": {
+      "get": {
+        "summary": "List mission tag assignments",
+        "deprecated": false,
+        "description": "Retrieves a list of tag assignments for a specific mission",
+        "tags": [
+          "Missions"
+        ],
+        "parameters": [
+          {
+            "name": "missionId",
+            "in": "path",
+            "description": "Unique identifier of the mission",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tag assignments retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "priority": {
+                            "type": "number",
+                            "description": "Priority of the tag assignment"
+                          }
+                        },
+                        "required": ["tagId"]
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        }
+      },
+      "put": {
+        "summary": "Create multiple mission tag assignments",
+        "deprecated": false,
+        "description": "Creates multiple tag assignments for a specific mission",
+        "tags": [
+          "Missions"
+        ],
+        "parameters": [
+          {
+            "name": "missionId",
+            "in": "path",
+            "description": "Unique identifier of the mission",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "assignments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "tagId": {
+                          "type": "string",
+                          "description": "Unique identifier of the tag"
+                        },
+                        "priority": {
+                          "type": "number",
+                          "description": "Priority of the tag assignment (optional)"
+                        }
+                      },
+                      "required": ["tagId"]
+                    },
+                    "minItems": 1,
+                    "maxItems": 25
+                  }
+                },
+                "required": ["assignments"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignments created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "assignments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "priority": {
+                            "type": "number",
+                            "description": "Priority of the tag assignment"
+                          }
+                        },
+                        "required": ["tagId"]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        }
+      },
+      "patch": {
+        "summary": "Update multiple mission tag assignments",
+        "deprecated": false,
+        "description": "Updates multiple tag assignments for a specific mission",
+        "tags": [
+          "Missions"
+        ],
+        "parameters": [
+          {
+            "name": "missionId",
+            "in": "path",
+            "description": "Unique identifier of the mission",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "assignments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "tagId": {
+                          "type": "string",
+                          "description": "Unique identifier of the tag"
+                        },
+                        "priority": {
+                          "type": "number",
+                          "description": "Priority of the tag assignment"
+                        }
+                      },
+                      "required": ["tagId", "priority"]
+                    },
+                    "minItems": 1,
+                    "maxItems": 25
+                  }
+                },
+                "required": ["assignments"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignments updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "assignments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "priority": {
+                            "type": "number",
+                            "description": "Priority of the tag assignment"
+                          }
+                        },
+                        "required": ["tagId", "priority"]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        }
+      },
+      "delete": {
+        "summary": "Delete multiple mission tag assignments",
+        "deprecated": false,
+        "description": "Deletes multiple tag assignments for a specific mission",
+        "tags": [
+          "Missions"
+        ],
+        "parameters": [
+          {
+            "name": "missionId",
+            "in": "path",
+            "description": "Unique identifier of the mission",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "assignments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "tagId": {
+                          "type": "string",
+                          "description": "Unique identifier of the tag"
+                        }
+                      },
+                      "required": ["tagId"]
+                    },
+                    "minItems": 1,
+                    "maxItems": 25
+                  }
+                },
+                "required": ["assignments"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Tag assignments deleted successfully",
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        }
+      }
+    },
+    "/missions/{missionId}/tags/{tagId}": {
+      "get": {
+        "summary": "Get mission tag assignment",
+        "deprecated": false,
+        "description": "Retrieves a specific tag assignment for a mission",
+        "tags": [
+          "Missions"
+        ],
+        "parameters": [
+          {
+            "name": "missionId",
+            "in": "path",
+            "description": "Unique identifier of the mission",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag assignment retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "priority": {
+                      "type": "number",
+                      "description": "Priority of the tag assignment"
+                    }
+                  },
+                  "required": ["tagId"]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        }
+      },
+      "put": {
+        "summary": "Create mission tag assignment",
+        "deprecated": false,
+        "description": "Creates a tag assignment for a specific mission",
+        "tags": [
+          "Missions"
+        ],
+        "parameters": [
+          {
+            "name": "missionId",
+            "in": "path",
+            "description": "Unique identifier of the mission",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag to assign",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "priority": {
+                    "type": "number",
+                    "description": "Priority of the tag assignment (optional)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignment created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "priority": {
+                      "type": "number",
+                      "description": "Priority of the tag assignment"
+                    }
+                  },
+                  "required": ["tagId"]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        }
+      },
+      "patch": {
+        "summary": "Update mission tag assignment",
+        "deprecated": false,
+        "description": "Updates a tag assignment for a specific mission",
+        "tags": [
+          "Missions"
+        ],
+        "parameters": [
+          {
+            "name": "missionId",
+            "in": "path",
+            "description": "Unique identifier of the mission",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "priority": {
+                    "type": "number",
+                    "description": "Priority of the tag assignment"
+                  }
+                },
+                "required": ["priority"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignment updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "priority": {
+                      "type": "number",
+                      "description": "Priority of the tag assignment"
+                    }
+                  },
+                  "required": ["tagId"]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Missions"
+        }
+      },
+      "delete": {
+        "summary": "Delete mission tag assignment",
+        "deprecated": false,
+        "description": "Deletes a tag assignment for a specific mission",
+        "tags": [
+          "Missions"
+        ],
+        "parameters": [
+          {
+            "name": "missionId",
+            "in": "path",
+            "description": "Unique identifier of the mission",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag to remove",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Tag assignment deleted successfully",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission or tag assignment not found",
             "headers": {}
           }
         },
@@ -1853,6 +3238,697 @@
         }
       }
     },
+    "/users/{userId}/tags": {
+      "get": {
+        "summary": "List user tag assignments",
+        "deprecated": false,
+        "description": "Retrieves a list of tag assignments for a specific user",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Unique identifier of the user",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tag assignments retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "priority": {
+                            "type": "number",
+                            "description": "Priority of the tag assignment"
+                          }
+                        },
+                        "required": ["tagId"]
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "User not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
+      },
+      "put": {
+        "summary": "Create multiple user tag assignments",
+        "deprecated": false,
+        "description": "Creates multiple tag assignments for a specific user",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Unique identifier of the user",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "assignments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "tagId": {
+                          "type": "string",
+                          "description": "Unique identifier of the tag"
+                        },
+                        "priority": {
+                          "type": "number",
+                          "description": "Priority of the tag assignment (optional)"
+                        }
+                      },
+                      "required": ["tagId"]
+                    },
+                    "minItems": 1,
+                    "maxItems": 25
+                  }
+                },
+                "required": ["assignments"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignments created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "assignments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "priority": {
+                            "type": "number",
+                            "description": "Priority of the tag assignment"
+                          }
+                        },
+                        "required": ["tagId"]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "User or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
+      },
+      "patch": {
+        "summary": "Update multiple user tag assignments",
+        "deprecated": false,
+        "description": "Updates multiple tag assignments for a specific user",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Unique identifier of the user",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "assignments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "tagId": {
+                          "type": "string",
+                          "description": "Unique identifier of the tag"
+                        },
+                        "priority": {
+                          "type": "number",
+                          "description": "Priority of the tag assignment"
+                        }
+                      },
+                      "required": ["tagId", "priority"]
+                    },
+                    "minItems": 1,
+                    "maxItems": 25
+                  }
+                },
+                "required": ["assignments"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignments updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "assignments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "priority": {
+                            "type": "number",
+                            "description": "Priority of the tag assignment"
+                          }
+                        },
+                        "required": ["tagId", "priority"]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "User or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
+      },
+      "delete": {
+        "summary": "Delete multiple user tag assignments",
+        "deprecated": false,
+        "description": "Deletes multiple tag assignments for a specific user",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Unique identifier of the user",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "assignments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "tagId": {
+                          "type": "string",
+                          "description": "Unique identifier of the tag"
+                        }
+                      },
+                      "required": ["tagId"]
+                    },
+                    "minItems": 1,
+                    "maxItems": 25
+                  }
+                },
+                "required": ["assignments"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Tag assignments deleted successfully",
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "User not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
+      }
+    },
+    "/users/{userId}/tags/{tagId}": {
+      "get": {
+        "summary": "Get user tag assignment",
+        "deprecated": false,
+        "description": "Retrieves a specific tag assignment for a user",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Unique identifier of the user",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag assignment retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "priority": {
+                      "type": "number",
+                      "description": "Priority of the tag assignment"
+                    }
+                  },
+                  "required": ["tagId"]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "User or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
+      },
+      "put": {
+        "summary": "Create user tag assignment",
+        "deprecated": false,
+        "description": "Creates a tag assignment for a specific user",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Unique identifier of the user",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag to assign",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "priority": {
+                    "type": "number",
+                    "description": "Priority of the tag assignment (optional)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignment created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "priority": {
+                      "type": "number",
+                      "description": "Priority of the tag assignment"
+                    }
+                  },
+                  "required": ["tagId"]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "User or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
+      },
+      "patch": {
+        "summary": "Update user tag assignment",
+        "deprecated": false,
+        "description": "Updates a tag assignment for a specific user",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Unique identifier of the user",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "priority": {
+                    "type": "number",
+                    "description": "Priority of the tag assignment"
+                  }
+                },
+                "required": ["priority"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignment updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "priority": {
+                      "type": "number",
+                      "description": "Priority of the tag assignment"
+                    }
+                  },
+                  "required": ["tagId"]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "User or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
+      },
+      "delete": {
+        "summary": "Delete user tag assignment",
+        "deprecated": false,
+        "description": "Deletes a tag assignment for a specific user",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Unique identifier of the user",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag to remove",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Tag assignment deleted successfully",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "User or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
+      }
+    },
     "/users/byExternalId/{externalId}/": {
       "get": {
         "summary": "Get user by external ID",
@@ -2298,6 +4374,990 @@
           "currentHelper": null,
           "helperAttributes": null,
           "folder": "VirtualTransactions"
+        }
+      }
+    },
+    "/quizzes": {
+      "get": {
+        "summary": "List quizzes",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of quizzes available in the workspace",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of quizzes to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of quizzes retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Quiz"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination cursor for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      },
+      "post": {
+        "summary": "Create quiz",
+        "deprecated": false,
+        "description": "Creates a new quiz with a system-generated ID",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateQuizRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Quiz created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quiz"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      }
+    },
+    "/quizzes/{quizId}": {
+      "get": {
+        "summary": "Get quiz by ID",
+        "deprecated": false,
+        "description": "Retrieves a specific quiz by its unique identifier",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier of the quiz to retrieve",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Quiz retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quiz"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Quiz not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      },
+      "post": {
+        "summary": "Update quiz",
+        "deprecated": false,
+        "description": "Updates an existing quiz identified by its ID",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier of the quiz to update",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateQuizRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Quiz updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quiz"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Quiz not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      }
+    },
+    "/quizzes/{quizId}/tags": {
+      "get": {
+        "summary": "List quiz tag assignments",
+        "deprecated": false,
+        "description": "Retrieves a list of tag assignments for a specific quiz",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier of the quiz",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tag assignments retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "priority": {
+                            "type": "number",
+                            "description": "Priority of the tag assignment"
+                          }
+                        },
+                        "required": ["tagId"]
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Quiz not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      },
+      "put": {
+        "summary": "Create multiple quiz tag assignments",
+        "deprecated": false,
+        "description": "Creates multiple tag assignments for a specific quiz",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier of the quiz",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "assignments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "tagId": {
+                          "type": "string",
+                          "description": "Unique identifier of the tag"
+                        },
+                        "priority": {
+                          "type": "number",
+                          "description": "Priority of the tag assignment (optional)"
+                        }
+                      },
+                      "required": ["tagId"]
+                    },
+                    "minItems": 1,
+                    "maxItems": 25
+                  }
+                },
+                "required": ["assignments"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignments created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "assignments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "priority": {
+                            "type": "number",
+                            "description": "Priority of the tag assignment"
+                          }
+                        },
+                        "required": ["tagId"]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Quiz or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      },
+      "patch": {
+        "summary": "Update multiple quiz tag assignments",
+        "deprecated": false,
+        "description": "Updates multiple tag assignments for a specific quiz",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier of the quiz",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "assignments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "tagId": {
+                          "type": "string",
+                          "description": "Unique identifier of the tag"
+                        },
+                        "priority": {
+                          "type": "number",
+                          "description": "Priority of the tag assignment"
+                        }
+                      },
+                      "required": ["tagId", "priority"]
+                    },
+                    "minItems": 1,
+                    "maxItems": 25
+                  }
+                },
+                "required": ["assignments"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignments updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "assignments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "priority": {
+                            "type": "number",
+                            "description": "Priority of the tag assignment"
+                          }
+                        },
+                        "required": ["tagId", "priority"]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Quiz or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      },
+      "delete": {
+        "summary": "Delete multiple quiz tag assignments",
+        "deprecated": false,
+        "description": "Deletes multiple tag assignments for a specific quiz",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier of the quiz",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "assignments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "tagId": {
+                          "type": "string",
+                          "description": "Unique identifier of the tag"
+                        }
+                      },
+                      "required": ["tagId"]
+                    },
+                    "minItems": 1,
+                    "maxItems": 25
+                  }
+                },
+                "required": ["assignments"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Tag assignments deleted successfully",
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Quiz not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      }
+    },
+    "/quizzes/{quizId}/tags/{tagId}": {
+      "get": {
+        "summary": "Get quiz tag assignment",
+        "deprecated": false,
+        "description": "Retrieves a specific tag assignment for a quiz",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier of the quiz",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag assignment retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "priority": {
+                      "type": "number",
+                      "description": "Priority of the tag assignment"
+                    }
+                  },
+                  "required": ["tagId"]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Quiz or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      },
+      "put": {
+        "summary": "Create quiz tag assignment",
+        "deprecated": false,
+        "description": "Creates a tag assignment for a specific quiz",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier of the quiz",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag to assign",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "priority": {
+                    "type": "number",
+                    "description": "Priority of the tag assignment (optional)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignment created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "priority": {
+                      "type": "number",
+                      "description": "Priority of the tag assignment"
+                    }
+                  },
+                  "required": ["tagId"]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Quiz or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      },
+      "patch": {
+        "summary": "Update quiz tag assignment",
+        "deprecated": false,
+        "description": "Updates a tag assignment for a specific quiz",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier of the quiz",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "priority": {
+                    "type": "number",
+                    "description": "Priority of the tag assignment"
+                  }
+                },
+                "required": ["priority"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignment updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "priority": {
+                      "type": "number",
+                      "description": "Priority of the tag assignment"
+                    }
+                  },
+                  "required": ["tagId"]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Quiz or tag not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      },
+      "delete": {
+        "summary": "Delete quiz tag assignment",
+        "deprecated": false,
+        "description": "Deletes a tag assignment for a specific quiz",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier of the quiz",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag to remove",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Tag assignment deleted successfully",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Quiz or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      }
+    },
+    "/quizzes/{quizId}/publish": {
+      "post": {
+        "summary": "Publish a quiz",
+        "deprecated": false,
+        "description": "Publishes a quiz, making it available for use in the application",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier of the quiz to publish",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Quiz published successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quiz"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Quiz not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
         }
       }
     }
@@ -4264,6 +7324,264 @@
             "description": "Updated list of translations for the virtual currency's content. Ensures all previously supported languages are still covered or explicitly removed.",
             "minItems": 1,
             "maxItems": 10
+          }
+        }
+      },
+      "Quiz": {
+        "type": "object",
+        "description": "Quiz information",
+        "required": [
+          "quizId",
+          "difficulty",
+          "defaultLang"
+        ],
+        "properties": {
+          "quizId": {
+            "type": "string",
+            "description": "Unique identifier for the quiz"
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": [
+              "EASY",
+              "MEDIUM",
+              "HARD"
+            ],
+            "description": "Difficulty level of the quiz"
+          },
+          "origin": {
+            "type": "string",
+            "enum": [
+              "CUSTOM",
+              "CATALOG"
+            ],
+            "description": "Origin of the quiz"
+          },
+          "quizCatalogId": {
+            "type": "string",
+            "description": "Catalog ID if the quiz is from a catalog"
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether the quiz should sync with catalog updates"
+          },
+          "placement": {
+            "type": "string",
+            "enum": [
+              "STANDALONE",
+              "STORY",
+              "NEWS"
+            ],
+            "description": "Where the quiz should be displayed"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language for the quiz"
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that this quiz belongs to"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that this quiz belongs to"
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "The region where this quiz was created"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the quiz was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the quiz was last updated"
+          }
+        }
+      },
+      "QuizTranslation": {
+        "type": "object",
+        "description": "Translation for a quiz",
+        "required": [
+          "quizId",
+          "lang",
+          "question",
+          "opt1",
+          "opt2",
+          "opt3",
+          "opt4"
+        ],
+        "properties": {
+          "quizId": {
+            "type": "string",
+            "description": "ID of the quiz this translation belongs to"
+          },
+          "lang": {
+            "type": "string",
+            "description": "Language code for this translation"
+          },
+          "question": {
+            "type": "string",
+            "description": "The quiz question"
+          },
+          "opt1": {
+            "type": "string",
+            "description": "First answer option"
+          },
+          "opt2": {
+            "type": "string",
+            "description": "Second answer option"
+          },
+          "opt3": {
+            "type": "string",
+            "description": "Third answer option"
+          },
+          "opt4": {
+            "type": "string",
+            "description": "Fourth answer option"
+          },
+          "correctAnswer": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4,
+            "description": "The correct answer (1-4)"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the translation was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the translation was last updated"
+          }
+        }
+      },
+      "CreateQuizRequest": {
+        "type": "object",
+        "description": "Data required to create a new quiz",
+        "required": [
+          "difficulty",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "difficulty": {
+            "type": "string",
+            "enum": [
+              "EASY",
+              "MEDIUM",
+              "HARD"
+            ],
+            "description": "Difficulty level of the quiz"
+          },
+          "placement": {
+            "type": "string",
+            "enum": [
+              "STANDALONE",
+              "STORY",
+              "NEWS"
+            ],
+            "description": "Where the quiz should be displayed"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language for the quiz"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuizTranslationInput"
+            },
+            "description": "Translations for the quiz"
+          }
+        }
+      },
+      "UpdateQuizRequest": {
+        "type": "object",
+        "description": "Data required to update a quiz",
+        "required": [
+          "difficulty",
+          "defaultLang"
+        ],
+        "properties": {
+          "difficulty": {
+            "type": "string",
+            "enum": [
+              "EASY",
+              "MEDIUM",
+              "HARD"
+            ],
+            "description": "Difficulty level of the quiz"
+          },
+          "placement": {
+            "type": "string",
+            "enum": [
+              "STANDALONE",
+              "STORY",
+              "NEWS"
+            ],
+            "description": "Where the quiz should be displayed"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language for the quiz"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuizTranslationInput"
+            },
+            "description": "Translations for the quiz"
+          }
+        }
+      },
+      "QuizTranslationInput": {
+        "type": "object",
+        "description": "Input for creating or updating a quiz translation",
+        "required": [
+          "lang",
+          "question",
+          "opt1",
+          "opt2",
+          "opt3",
+          "opt4",
+          "correctAnswer"
+        ],
+        "properties": {
+          "lang": {
+            "type": "string",
+            "description": "Language code for this translation"
+          },
+          "question": {
+            "type": "string",
+            "description": "The quiz question"
+          },
+          "opt1": {
+            "type": "string",
+            "description": "First answer option"
+          },
+          "opt2": {
+            "type": "string",
+            "description": "Second answer option"
+          },
+          "opt3": {
+            "type": "string",
+            "description": "Third answer option"
+          },
+          "opt4": {
+            "type": "string",
+            "description": "Fourth answer option"
+          },
+          "correctAnswer": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4,
+            "description": "The correct answer (1-4)"
           }
         }
       }

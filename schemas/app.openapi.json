@@ -23,6 +23,9 @@
     },
     {
       "name": "ActivityLogs"
+    },
+    {
+      "name": "Users"
     }
   ],
   "paths": {
@@ -931,6 +934,167 @@
           "folder": "ActivityLogs"
         }
       }
+    },
+    "/users/me": {
+      "get": {
+        "summary": "Get current user",
+        "deprecated": false,
+        "description": "Retrieves the profile information for the currently authenticated user",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "User profile retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
+      }
+    },
+    "/users/me/tags": {
+      "get": {
+        "summary": "List current user's tag assignments",
+        "deprecated": false,
+        "description": "Retrieves a list of tag assignments for the currently authenticated user",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tag assignments retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TagAssignment"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
+      }
+    },
+    "/users/me/tags/{tagId}": {
+      "get": {
+        "summary": "Get current user's tag assignment",
+        "deprecated": false,
+        "description": "Retrieves a specific tag assignment for the currently authenticated user",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag assignment retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagAssignment"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Users"
+        }
+      }
     }
   },
   "components": {
@@ -1533,6 +1697,67 @@
               "$ref": "#/components/schemas/VirtualTransaction"
             },
             "description": "A list of virtual transactions directly affecting the authenticated user that were updated by the redemption (e.g., the redeemed credit transaction, now in a COMPLETED state). Any other linked transactions (like a counterpart's debit) will be processed internally but not typically returned in this App API response."
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "description": "User representation for client applications",
+        "required": [
+          "userId",
+          "principalId",
+          "lang",
+          "timezone"
+        ],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "Unique identifier for the user"
+          },
+          "principalId": {
+            "type": "string",
+            "description": "Authentication principal identifier"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "Optional external identifier for the user"
+          },
+          "lang": {
+            "type": "string",
+            "description": "User's preferred language code",
+            "default": "en"
+          },
+          "timezone": {
+            "type": "string",
+            "description": "User's timezone",
+            "default": "UTC"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the user was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the user was last updated"
+          }
+        }
+      },
+      "TagAssignment": {
+        "type": "object",
+        "description": "Tag assignment for an entity",
+        "required": [
+          "tagId"
+        ],
+        "properties": {
+          "tagId": {
+            "type": "string",
+            "description": "Unique identifier of the tag"
+          },
+          "priority": {
+            "type": "number",
+            "description": "Priority of the tag assignment"
           }
         }
       }
