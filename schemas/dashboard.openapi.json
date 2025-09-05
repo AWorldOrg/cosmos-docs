@@ -13,6 +13,12 @@
       "name": "Activities"
     },
     {
+      "name": "Activities/Tags"
+    },
+    {
+      "name": "Activities/Translations"
+    },
+    {
       "name": "Missions"
     },
     {
@@ -429,7 +435,7 @@
         "deprecated": false,
         "description": "Retrieves a list of tag assignments for a specific activity",
         "tags": [
-          "Activities"
+          "Activities/Tags"
         ],
         "parameters": [
           {
@@ -522,7 +528,7 @@
         "deprecated": false,
         "description": "Creates multiple tag assignments for a specific activity",
         "tags": [
-          "Activities"
+          "Activities/Tags"
         ],
         "parameters": [
           {
@@ -627,7 +633,7 @@
         "deprecated": false,
         "description": "Updates multiple tag assignments for a specific activity",
         "tags": [
-          "Activities"
+          "Activities/Tags"
         ],
         "parameters": [
           {
@@ -732,7 +738,7 @@
         "deprecated": false,
         "description": "Deletes multiple tag assignments for a specific activity",
         "tags": [
-          "Activities"
+          "Activities/Tags"
         ],
         "parameters": [
           {
@@ -809,7 +815,7 @@
         "deprecated": false,
         "description": "Retrieves a specific tag assignment for an activity",
         "tags": [
-          "Activities"
+          "Activities/Tags"
         ],
         "parameters": [
           {
@@ -881,7 +887,7 @@
         "deprecated": false,
         "description": "Creates a tag assignment for a specific activity",
         "tags": [
-          "Activities"
+          "Activities/Tags"
         ],
         "parameters": [
           {
@@ -972,7 +978,7 @@
         "deprecated": false,
         "description": "Updates a tag assignment for a specific activity",
         "tags": [
-          "Activities"
+          "Activities/Tags"
         ],
         "parameters": [
           {
@@ -1064,7 +1070,7 @@
         "deprecated": false,
         "description": "Deletes a tag assignment for a specific activity",
         "tags": [
-          "Activities"
+          "Activities/Tags"
         ],
         "parameters": [
           {
@@ -1177,7 +1183,7 @@
         "deprecated": false,
         "description": "Retrieves a list of translations for a specific activity",
         "tags": [
-          "Activities"
+          "Activities/Translations"
         ],
         "parameters": [
           {
