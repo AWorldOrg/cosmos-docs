@@ -28,6 +28,12 @@
       "name": "RewardRules"
     },
     {
+      "name": "StreakConfigurations"
+    },
+    {
+      "name": "StreakRules"
+    },
+    {
       "name": "Tags"
     },
     {
@@ -5360,6 +5366,652 @@
           "folder": "Quizzes"
         }
       }
+    },
+    "/streak-configurations": {
+      "get": {
+        "summary": "List streak configurations",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of streak configurations",
+        "tags": [
+          "StreakConfigurations"
+        ],
+        "parameters": [
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Additional fields to include (tags, translations)",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["tags", "translations"]
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of streak configurations retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/StreakConfiguration"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination cursor for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakConfigurations"
+        }
+      },
+      "post": {
+        "summary": "Create streak configuration",
+        "deprecated": false,
+        "description": "Creates a new streak configuration",
+        "tags": [
+          "StreakConfigurations"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStreakConfigurationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Streak configuration created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreakConfiguration"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request - Invalid input or validation errors",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakConfigurations"
+        }
+      }
+    },
+    "/streak-configurations/{streakConfigurationId}": {
+      "get": {
+        "summary": "Get streak configuration",
+        "deprecated": false,
+        "description": "Retrieves a specific streak configuration by ID",
+        "tags": [
+          "StreakConfigurations"
+        ],
+        "parameters": [
+          {
+            "name": "streakConfigurationId",
+            "in": "path",
+            "description": "Unique identifier of the streak configuration",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Additional fields to include (tags, translations)",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["tags", "translations"]
+              }
+            },
+            "style": "form",
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Streak configuration retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreakConfiguration"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak configuration not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakConfigurations"
+        }
+      },
+      "put": {
+        "summary": "Update streak configuration",
+        "deprecated": false,
+        "description": "Updates an existing streak configuration",
+        "tags": [
+          "StreakConfigurations"
+        ],
+        "parameters": [
+          {
+            "name": "streakConfigurationId",
+            "in": "path",
+            "description": "Unique identifier of the streak configuration to update",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStreakConfigurationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Streak configuration updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreakConfiguration"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request - Invalid input or validation errors",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak configuration not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakConfigurations"
+        }
+      }
+    },
+    "/streak-configurations/{streakConfigurationId}/publish": {
+      "post": {
+        "summary": "Publish streak configuration",
+        "deprecated": false,
+        "description": "Publishes a streak configuration, making it available for use",
+        "tags": [
+          "StreakConfigurations"
+        ],
+        "parameters": [
+          {
+            "name": "streakConfigurationId",
+            "in": "path",
+            "description": "Unique identifier of the streak configuration to publish",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Streak configuration published successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreakConfiguration"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak configuration not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakConfigurations"
+        }
+      }
+    },
+    "/streak-rules": {
+      "get": {
+        "summary": "List streak rules",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of streak rules",
+        "tags": [
+          "StreakRules"
+        ],
+        "parameters": [
+          {
+            "name": "state",
+            "in": "query",
+            "description": "Filter by streak rule state",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["PENDING", "ACTIVE", "ENDED"]
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Additional fields to include (tags, translations)",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["tags", "translations"]
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of streak rules retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/StreakRule"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination cursor for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakRules"
+        }
+      },
+      "post": {
+        "summary": "Create streak rule",
+        "deprecated": false,
+        "description": "Creates a new streak rule",
+        "tags": [
+          "StreakRules"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStreakRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Streak rule created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreakRule"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request - Invalid input or validation errors",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakRules"
+        }
+      }
+    },
+    "/streak-rules/{streakRuleId}": {
+      "get": {
+        "summary": "Get streak rule",
+        "deprecated": false,
+        "description": "Retrieves a specific streak rule by ID",
+        "tags": [
+          "StreakRules"
+        ],
+        "parameters": [
+          {
+            "name": "streakRuleId",
+            "in": "path",
+            "description": "Unique identifier of the streak rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Additional fields to include (tags, translations)",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["tags", "translations"]
+              }
+            },
+            "style": "form",
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Streak rule retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreakRule"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakRules"
+        }
+      },
+      "post": {
+        "summary": "Update streak rule",
+        "deprecated": false,
+        "description": "Updates an existing streak rule",
+        "tags": [
+          "StreakRules"
+        ],
+        "parameters": [
+          {
+            "name": "streakRuleId",
+            "in": "path",
+            "description": "Unique identifier of the streak rule to update",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStreakRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Streak rule updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreakRule"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request - Invalid input or validation errors",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakRules"
+        }
+      }
+    },
+    "/streak-rules/{streakRuleId}/publish": {
+      "post": {
+        "summary": "Publish streak rule",
+        "deprecated": false,
+        "description": "Publishes a streak rule, making it active for use",
+        "tags": [
+          "StreakRules"
+        ],
+        "parameters": [
+          {
+            "name": "streakRuleId",
+            "in": "path",
+            "description": "Unique identifier of the streak rule to publish",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Streak rule published successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreakRule"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakRules"
+        }
+      }
     }
   },
   "components": {
@@ -7582,6 +8234,604 @@
             "minimum": 1,
             "maximum": 4,
             "description": "The correct answer (1-4)"
+          }
+        }
+      },
+      "StreakConfiguration": {
+        "type": "object",
+        "description": "Configuration for streak tracking",
+        "required": [
+          "streakConfigurationId",
+          "name",
+          "matchType",
+          "matchEntity",
+          "matchCondition",
+          "origin",
+          "defaultLang",
+          "langs",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "streakConfigurationId": {
+            "type": "string",
+            "description": "Unique identifier for the streak configuration"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the streak configuration"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description of the streak configuration"
+          },
+          "matchType": {
+            "type": "string",
+            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "description": "Type of matching for this streak configuration"
+          },
+          "matchEntity": {
+            "type": "string",
+            "enum": ["Mission", "Activity", "Quiz", "Tag"],
+            "description": "Entity type to match against"
+          },
+          "matchEntityId": {
+            "type": "string",
+            "description": "Specific entity ID to match (required for INSTANCE and TAG match types)"
+          },
+          "matchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Condition logic for matching"
+          },
+          "origin": {
+            "type": "string",
+            "enum": ["CATALOG", "CUSTOM"],
+            "description": "Origin of the streak configuration"
+          },
+          "streakConfigurationCatalogId": {
+            "type": "string",
+            "description": "Optional catalog ID if imported from catalog"
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether to sync with catalog"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language for this configuration"
+          },
+          "langs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "maxItems": 10,
+            "description": "Supported languages"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creation timestamp"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last update timestamp"
+          }
+        }
+      },
+      "StreakRule": {
+        "type": "object",
+        "description": "Rule for managing streak behavior and lifecycle",
+        "required": [
+          "streakRuleId",
+          "name",
+          "streakConfigurationId",
+          "usersMatchCondition",
+          "timeframeType",
+          "timeframeTimezoneType",
+          "timeframeStartsAt",
+          "cadence",
+          "freezeEnabled",
+          "state",
+          "origin",
+          "defaultLang",
+          "langs",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "streakRuleId": {
+            "type": "string",
+            "description": "Unique identifier for the streak rule"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the streak rule"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description of the streak rule"
+          },
+          "streakConfigurationId": {
+            "type": "string",
+            "description": "ID of the associated streak configuration"
+          },
+          "usersMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Condition to determine which users this rule applies to"
+          },
+          "timeframeType": {
+            "type": "string",
+            "enum": ["PERMANENT", "RANGE"],
+            "description": "Type of timeframe for the streak rule"
+          },
+          "timeframeTimezoneType": {
+            "type": "string",
+            "enum": ["FIXED", "USER"],
+            "description": "How timezone is determined"
+          },
+          "timeframeTimezone": {
+            "type": "string",
+            "description": "Specific timezone (required when timeframeTimezoneType is FIXED)"
+          },
+          "timeframeStartsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start time for the streak rule"
+          },
+          "timeframeEndsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End time for the streak rule (required for RANGE timeframe)"
+          },
+          "cadence": {
+            "type": "string",
+            "enum": ["DAY", "WEEK"],
+            "description": "Frequency of streak tracking"
+          },
+          "perfectWeekEnabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether perfect week tracking is enabled"
+          },
+          "perfectMonthEnabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether perfect month tracking is enabled"
+          },
+          "perfectYearEnabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether perfect year tracking is enabled"
+          },
+          "freezeEnabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether freeze functionality is enabled"
+          },
+          "freezeVirtualCurrencyId": {
+            "type": "string",
+            "description": "Virtual currency used for freeze purchases (required when freezeEnabled is true)"
+          },
+          "freezeCostExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Expression determining freeze cost"
+          },
+          "goalTargets": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Optional goal targets for streak achievements"
+          },
+          "state": {
+            "type": "string",
+            "enum": ["PENDING", "ACTIVE", "ENDED"],
+            "default": "PENDING",
+            "description": "Current state of the streak rule"
+          },
+          "origin": {
+            "type": "string",
+            "enum": ["CATALOG", "CUSTOM"],
+            "description": "Origin of the streak rule"
+          },
+          "streakRuleCatalogId": {
+            "type": "string",
+            "description": "Optional catalog ID if imported from catalog"
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether to sync with catalog"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language for this rule"
+          },
+          "langs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "maxItems": 10,
+            "description": "Supported languages"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creation timestamp"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last update timestamp"
+          }
+        }
+      },
+      "CreateStreakConfigurationRequest": {
+        "type": "object",
+        "description": "Request body for creating a streak configuration",
+        "required": [
+          "name",
+          "matchType",
+          "matchEntity",
+          "matchCondition",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the streak configuration"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description"
+          },
+          "matchType": {
+            "type": "string",
+            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "description": "Type of matching"
+          },
+          "matchEntity": {
+            "type": "string",
+            "enum": ["Mission", "Activity", "Quiz", "Tag"],
+            "description": "Entity type to match"
+          },
+          "matchEntityId": {
+            "type": "string",
+            "description": "Specific entity ID (required for INSTANCE and TAG)"
+          },
+          "matchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Matching condition logic"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["lang"],
+              "properties": {
+                "lang": {
+                  "type": "string",
+                  "description": "Language code"
+                }
+              }
+            },
+            "minItems": 1,
+            "maxItems": 10,
+            "description": "Translation objects"
+          }
+        }
+      },
+      "UpdateStreakConfigurationRequest": {
+        "type": "object",
+        "description": "Request body for updating a streak configuration",
+        "required": [
+          "name",
+          "matchType",
+          "matchEntity",
+          "matchCondition",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the streak configuration"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description"
+          },
+          "matchType": {
+            "type": "string",
+            "enum": ["INSTANCE", "ENTITY", "TAG"],
+            "description": "Type of matching"
+          },
+          "matchEntity": {
+            "type": "string",
+            "enum": ["Mission", "Activity", "Quiz", "Tag"],
+            "description": "Entity type to match"
+          },
+          "matchEntityId": {
+            "type": "string",
+            "description": "Specific entity ID"
+          },
+          "matchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Matching condition logic"
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether to sync with catalog"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["lang"],
+              "properties": {
+                "lang": {
+                  "type": "string",
+                  "description": "Language code"
+                }
+              }
+            },
+            "minItems": 1,
+            "maxItems": 10,
+            "description": "Translation objects"
+          }
+        }
+      },
+      "CreateStreakRuleRequest": {
+        "type": "object",
+        "description": "Request body for creating a streak rule",
+        "required": [
+          "name",
+          "streakConfigurationId",
+          "usersMatchCondition",
+          "timeframeType",
+          "timeframeTimezoneType",
+          "timeframeStartsAt",
+          "cadence",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the streak rule"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description"
+          },
+          "streakConfigurationId": {
+            "type": "string",
+            "description": "Associated streak configuration ID"
+          },
+          "usersMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "User matching condition"
+          },
+          "timeframeType": {
+            "type": "string",
+            "enum": ["PERMANENT", "RANGE"],
+            "description": "Timeframe type"
+          },
+          "timeframeTimezoneType": {
+            "type": "string",
+            "enum": ["FIXED", "USER"],
+            "description": "Timezone type"
+          },
+          "timeframeTimezone": {
+            "type": "string",
+            "description": "Timezone (required for FIXED type)"
+          },
+          "timeframeStartsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start time"
+          },
+          "timeframeEndsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End time (required for RANGE)"
+          },
+          "cadence": {
+            "type": "string",
+            "enum": ["DAY", "WEEK"],
+            "description": "Streak cadence"
+          },
+          "perfectWeekEnabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable perfect week tracking"
+          },
+          "perfectMonthEnabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable perfect month tracking"
+          },
+          "perfectYearEnabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable perfect year tracking"
+          },
+          "freezeEnabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable freeze functionality"
+          },
+          "freezeVirtualCurrencyId": {
+            "type": "string",
+            "description": "Virtual currency for freezes"
+          },
+          "freezeCostExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Freeze cost expression"
+          },
+          "goalTargets": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Goal targets"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["lang"],
+              "properties": {
+                "lang": {
+                  "type": "string",
+                  "description": "Language code"
+                }
+              }
+            },
+            "minItems": 1,
+            "maxItems": 10,
+            "description": "Translation objects"
+          }
+        }
+      },
+      "UpdateStreakRuleRequest": {
+        "type": "object",
+        "description": "Request body for updating a streak rule",
+        "required": [
+          "name",
+          "streakConfigurationId",
+          "usersMatchCondition",
+          "timeframeType",
+          "timeframeTimezoneType",
+          "timeframeStartsAt",
+          "cadence",
+          "defaultLang",
+          "translations"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the streak rule"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description"
+          },
+          "streakConfigurationId": {
+            "type": "string",
+            "description": "Associated streak configuration ID"
+          },
+          "usersMatchCondition": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "User matching condition"
+          },
+          "timeframeType": {
+            "type": "string",
+            "enum": ["PERMANENT", "RANGE"],
+            "description": "Timeframe type"
+          },
+          "timeframeTimezoneType": {
+            "type": "string",
+            "enum": ["FIXED", "USER"],
+            "description": "Timezone type"
+          },
+          "timeframeTimezone": {
+            "type": "string",
+            "description": "Timezone (required for FIXED type)"
+          },
+          "timeframeStartsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start time"
+          },
+          "timeframeEndsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End time (required for RANGE)"
+          },
+          "cadence": {
+            "type": "string",
+            "enum": ["DAY", "WEEK"],
+            "description": "Streak cadence"
+          },
+          "perfectWeekEnabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable perfect week tracking"
+          },
+          "perfectMonthEnabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable perfect month tracking"
+          },
+          "perfectYearEnabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable perfect year tracking"
+          },
+          "freezeEnabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable freeze functionality"
+          },
+          "freezeVirtualCurrencyId": {
+            "type": "string",
+            "description": "Virtual currency for freezes"
+          },
+          "freezeCostExpression": {
+            "$ref": "#/components/schemas/JsonLogicExpression",
+            "description": "Freeze cost expression"
+          },
+          "goalTargets": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Goal targets"
+          },
+          "syncWithCatalog": {
+            "type": "boolean",
+            "description": "Whether to sync with catalog"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Default language"
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["lang"],
+              "properties": {
+                "lang": {
+                  "type": "string",
+                  "description": "Language code"
+                }
+              }
+            },
+            "minItems": 1,
+            "maxItems": 10,
+            "description": "Translation objects"
           }
         }
       }

@@ -26,6 +26,9 @@
     },
     {
       "name": "Users"
+    },
+    {
+      "name": "Streaks"
     }
   ],
   "paths": {
@@ -1095,6 +1098,156 @@
           "folder": "Users"
         }
       }
+    },
+    "/streaks": {
+      "get": {
+        "summary": "List streaks",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of streaks for the authenticated user, filtered by period type and other criteria",
+        "tags": [
+          "Streaks"
+        ],
+        "parameters": [
+          {
+            "name": "periodType",
+            "in": "query",
+            "description": "The type of period for which to retrieve streaks",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "DAY",
+                "WEEK",
+                "MONTH",
+                "YEAR",
+                "ITERATION",
+                "GOAL"
+              ]
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Start date for time-based periods (ISO 8601 format). Only valid for DAY, WEEK, MONTH, YEAR period types",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "End date for time-based periods (ISO 8601 format). Only valid for DAY, WEEK, MONTH, YEAR period types",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "iterationId",
+            "in": "query",
+            "description": "Iteration ID for ITERATION period type",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "goalId",
+            "in": "query",
+            "description": "Goal ID for GOAL period type",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "target",
+            "in": "query",
+            "description": "Target value for GOAL period type (can only be provided when goalId is also provided)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "streakRuleId",
+            "in": "query",
+            "description": "Filter by specific streak rule ID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of streaks to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of streaks retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Streak"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination cursor for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request - Invalid query parameters or validation errors",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Streaks"
+        }
+      }
     }
   },
   "components": {
@@ -1741,6 +1894,125 @@
             "type": "string",
             "format": "date-time",
             "description": "Timestamp when the user was last updated"
+          }
+        }
+      },
+      "Streak": {
+        "type": "object",
+        "description": "Represents a user's streak progress for a specific streak rule",
+        "required": [
+          "userId",
+          "streakRuleId",
+          "status",
+          "kind",
+          "cadence",
+          "metric",
+          "count",
+          "periodType",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "Unique identifier of the user"
+          },
+          "streakRuleId": {
+            "type": "string",
+            "description": "Unique identifier of the streak rule"
+          },
+          "periodId": {
+            "type": "string",
+            "description": "Optional identifier for the specific period"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "COMPLETED",
+              "BROKEN",
+              "ENDED"
+            ],
+            "description": "Current status of the streak"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "REGULAR",
+              "FREEZE",
+              "ANY"
+            ],
+            "description": "Type of streak tracking"
+          },
+          "cadence": {
+            "type": "string",
+            "enum": [
+              "DAY",
+              "WEEK"
+            ],
+            "description": "Cadence of the streak (daily or weekly)"
+          },
+          "metric": {
+            "type": "string",
+            "enum": [
+              "DAYS",
+              "WEEKS"
+            ],
+            "description": "Metric used for counting the streak"
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Current streak count"
+          },
+          "periodType": {
+            "type": "string",
+            "enum": [
+              "DAY",
+              "WEEK",
+              "MONTH",
+              "YEAR",
+              "ITERATION",
+              "GOAL"
+            ],
+            "description": "Type of period for this streak"
+          },
+          "iterationId": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Optional iteration identifier for ITERATION period type"
+          },
+          "goalId": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Optional goal identifier for GOAL period type"
+          },
+          "target": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Optional target value for goal tracking"
+          },
+          "perfectWeek": {
+            "type": "boolean",
+            "description": "Indicates if this represents a perfect week streak"
+          },
+          "perfectMonth": {
+            "type": "boolean",
+            "description": "Indicates if this represents a perfect month streak"
+          },
+          "perfectYear": {
+            "type": "boolean",
+            "description": "Indicates if this represents a perfect year streak"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the streak was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the streak was last updated"
           }
         }
       },
