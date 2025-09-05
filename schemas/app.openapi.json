@@ -28,6 +28,9 @@
       "name": "Users"
     },
     {
+      "name": "Users/Tags"
+    },
+    {
       "name": "Streaks"
     }
   ],
@@ -982,7 +985,7 @@
         "deprecated": false,
         "description": "Retrieves a list of tag assignments for the currently authenticated user",
         "tags": [
-          "Users"
+          "Users/Tags"
         ],
         "parameters": [
           {
@@ -1052,7 +1055,7 @@
         "deprecated": false,
         "description": "Retrieves a specific tag assignment for the currently authenticated user",
         "tags": [
-          "Users"
+          "Users/Tags"
         ],
         "parameters": [
           {

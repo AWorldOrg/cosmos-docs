@@ -22,7 +22,19 @@
       "name": "Missions"
     },
     {
+      "name": "Missions/Tags"
+    },
+    {
+      "name": "Missions/Translations"
+    },
+    {
       "name": "MissionRules"
+    },
+    {
+      "name": "MissionRules/Tags"
+    },
+    {
+      "name": "MissionRules/Translations"
     },
     {
       "name": "MissionAssignments"
@@ -31,13 +43,31 @@
       "name": "Quizzes"
     },
     {
+      "name": "Quizzes/Tags"
+    },
+    {
+      "name": "Quizzes/Translations"
+    },
+    {
       "name": "RewardRules"
     },
     {
       "name": "StreakConfigurations"
     },
     {
+      "name": "StreakConfigurations/Tags"
+    },
+    {
+      "name": "StreakConfigurations/Translations"
+    },
+    {
       "name": "StreakRules"
+    },
+    {
+      "name": "StreakRules/Tags"
+    },
+    {
+      "name": "StreakRules/Translations"
     },
     {
       "name": "Tags"
@@ -46,7 +76,13 @@
       "name": "Users"
     },
     {
+      "name": "Users/Tags"
+    },
+    {
       "name": "VirtualCurrencies"
+    },
+    {
+      "name": "VirtualCurrencies/Translations"
     },
     {
       "name": "VirtualTransactions"
@@ -1524,7 +1560,7 @@
         "deprecated": false,
         "description": "Retrieves a list of tag assignments for a specific mission",
         "tags": [
-          "Missions"
+          "Missions/Tags"
         ],
         "parameters": [
           {
@@ -1904,7 +1940,7 @@
         "deprecated": false,
         "description": "Retrieves a specific tag assignment for a mission",
         "tags": [
-          "Missions"
+          "Missions/Tags"
         ],
         "parameters": [
           {
@@ -2565,7 +2601,7 @@
         "deprecated": false,
         "description": "Retrieves a list of tag assignments for a specific mission rule",
         "tags": [
-          "MissionRules"
+          "MissionRules/Tags"
         ],
         "parameters": [
           {
@@ -2945,7 +2981,7 @@
         "deprecated": false,
         "description": "Retrieves a specific tag assignment for a mission rule",
         "tags": [
-          "MissionRules"
+          "MissionRules/Tags"
         ],
         "parameters": [
           {
@@ -3287,7 +3323,7 @@
         "deprecated": false,
         "description": "Retrieves a list of translations for a specific mission rule",
         "tags": [
-          "MissionRules"
+          "MissionRules/Translations"
         ],
         "parameters": [
           {
@@ -4188,7 +4224,7 @@
         "deprecated": false,
         "description": "Retrieves a list of tag assignments for a specific user",
         "tags": [
-          "Users"
+          "Users/Tags"
         ],
         "parameters": [
           {
@@ -4568,7 +4604,7 @@
         "deprecated": false,
         "description": "Retrieves a specific tag assignment for a user",
         "tags": [
-          "Users"
+          "Users/Tags"
         ],
         "parameters": [
           {
@@ -5589,7 +5625,7 @@
         "deprecated": false,
         "description": "Retrieves a list of tag assignments for a specific quiz",
         "tags": [
-          "Quizzes"
+          "Quizzes/Tags"
         ],
         "parameters": [
           {
@@ -5969,7 +6005,7 @@
         "deprecated": false,
         "description": "Retrieves a specific tag assignment for a quiz",
         "tags": [
-          "Quizzes"
+          "Quizzes/Tags"
         ],
         "parameters": [
           {
@@ -6337,7 +6373,7 @@
         "deprecated": false,
         "description": "Retrieves a list of translations for a specific quiz",
         "tags": [
-          "Quizzes"
+          "Quizzes/Translations"
         ],
         "parameters": [
           {
@@ -6734,7 +6770,7 @@
         "deprecated": false,
         "description": "Retrieves a list of tag assignments for a specific streak configuration",
         "tags": [
-          "StreakConfigurations"
+          "StreakConfigurations/Tags"
         ],
         "parameters": [
           {
@@ -7114,7 +7150,7 @@
         "deprecated": false,
         "description": "Retrieves a specific tag assignment for a streak configuration",
         "tags": [
-          "StreakConfigurations"
+          "StreakConfigurations/Tags"
         ],
         "parameters": [
           {
@@ -7784,7 +7820,7 @@
         "deprecated": false,
         "description": "Retrieves a list of tag assignments for a specific streak rule",
         "tags": [
-          "StreakRules"
+          "StreakRules/Tags"
         ],
         "parameters": [
           {
@@ -8164,7 +8200,7 @@
         "deprecated": false,
         "description": "Retrieves a specific tag assignment for a streak rule",
         "tags": [
-          "StreakRules"
+          "StreakRules/Tags"
         ],
         "parameters": [
           {
@@ -8311,7 +8347,7 @@
                         "deprecated": false,
                         "description": "Retrieves a list of translations for a specific streak rule",
                         "tags": [
-                          "StreakRules"
+                          "StreakRules/Translations"
                         ],
                         "parameters": [
                           {
@@ -8390,7 +8426,7 @@
                         "deprecated": false,
                         "description": "Retrieves a list of translations for a specific virtual currency",
                         "tags": [
-                          "VirtualCurrencies"
+                          "VirtualCurrencies/Translations"
                         ],
                         "parameters": [
                           {
