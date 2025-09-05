@@ -173,6 +173,19 @@
               "type": "integer",
               "default": 20
             }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Additional fields to include (tags, translations)",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["tags", "translations"]
+              }
+            }
           }
         ],
         "responses": {
@@ -233,6 +246,19 @@
             "example": "",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Additional fields to include (tags, translations)",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["tags", "translations"]
+              }
             }
           }
         ],
@@ -1145,6 +1171,85 @@
         }
       }
     },
+    "/activities/{activityId}/translations": {
+      "get": {
+        "summary": "List activity translations",
+        "deprecated": false,
+        "description": "Retrieves a list of translations for a specific activity",
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "Unique identifier of the activity",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of translations retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "lang": {
+                        "type": "string",
+                        "description": "Language code (e.g., 'en', 'it', 'fr')"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "Translated title of the activity"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Translated description of the activity"
+                      },
+                      "content": {
+                        "type": "object",
+                        "description": "Additional translated content specific to the activity",
+                        "additionalProperties": true
+                      }
+                    },
+                    "required": [
+                      "lang",
+                      "title"
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Activity not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Activities"
+        }
+      }
+    },
     "/missions": {
       "get": {
         "summary": "List missions",
@@ -1171,6 +1276,19 @@
             "schema": {
               "type": "integer",
               "default": 20
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Additional fields to include (tags, translations)",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["tags", "translations"]
+              }
             }
           }
         ],
@@ -1281,6 +1399,19 @@
             "example": "",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Additional fields to include (tags, translations)",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["tags", "translations"]
+              }
             }
           }
         ],
@@ -2407,6 +2538,807 @@
           },
           "404": {
             "description": "Mission rule not found.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionRules"
+        }
+      }
+    },
+    "/mission-rules/{missionRuleId}/tags": {
+      "get": {
+        "summary": "List mission rule tag assignments",
+        "deprecated": false,
+        "description": "Retrieves a list of tag assignments for a specific mission rule",
+        "tags": [
+          "MissionRules"
+        ],
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tag assignments retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "value": {
+                            "type": "string",
+                            "description": "The value assigned to the tag for this mission rule"
+                          },
+                          "assignedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Timestamp when the tag was assigned"
+                          }
+                        },
+                        "required": [
+                          "tagId",
+                          "assignedAt"
+                        ]
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for fetching the next set of results"
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionRules"
+        }
+      },
+      "put": {
+        "summary": "Create multiple mission rule tag assignments",
+        "deprecated": false,
+        "description": "Creates multiple tag assignments for a specific mission rule",
+        "tags": [
+          "MissionRules"
+        ],
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag to assign"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The value to assign to the tag (optional)"
+                    }
+                  },
+                  "required": [
+                    "tagId"
+                  ]
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignments created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tagId": {
+                        "type": "string",
+                        "description": "Unique identifier of the tag"
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "The value assigned to the tag"
+                      },
+                      "assignedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the tag was assigned"
+                      }
+                    },
+                    "required": [
+                      "tagId",
+                      "assignedAt"
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionRules"
+        }
+      },
+      "patch": {
+        "summary": "Update multiple mission rule tag assignments",
+        "deprecated": false,
+        "description": "Updates multiple tag assignments for a specific mission rule",
+        "tags": [
+          "MissionRules"
+        ],
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag to update"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The updated value for the tag"
+                    }
+                  },
+                  "required": [
+                    "tagId"
+                  ]
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignments updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tagId": {
+                        "type": "string",
+                        "description": "Unique identifier of the tag"
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "The updated value assigned to the tag"
+                      },
+                      "assignedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the tag was originally assigned"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the tag assignment was last updated"
+                      }
+                    },
+                    "required": [
+                      "tagId",
+                      "assignedAt",
+                      "updatedAt"
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionRules"
+        }
+      },
+      "delete": {
+        "summary": "Delete multiple mission rule tag assignments",
+        "deprecated": false,
+        "description": "Deletes multiple tag assignments for a specific mission rule",
+        "tags": [
+          "MissionRules"
+        ],
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Tag ID to delete"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Tag assignments deleted successfully",
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionRules"
+        }
+      }
+    },
+    "/mission-rules/{missionRuleId}/tags/{tagId}": {
+      "get": {
+        "summary": "Get mission rule tag assignment",
+        "deprecated": false,
+        "description": "Retrieves a specific tag assignment for a mission rule",
+        "tags": [
+          "MissionRules"
+        ],
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag assignment retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The value assigned to the tag for this mission rule"
+                    },
+                    "assignedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp when the tag was assigned"
+                    }
+                  },
+                  "required": [
+                    "tagId",
+                    "assignedAt"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission rule or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionRules"
+        }
+      },
+      "put": {
+        "summary": "Create mission rule tag assignment",
+        "deprecated": false,
+        "description": "Creates a tag assignment for a specific mission rule",
+        "tags": [
+          "MissionRules"
+        ],
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "description": "The value to assign to the tag (optional)"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignment created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The value assigned to the tag"
+                    },
+                    "assignedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp when the tag was assigned"
+                    }
+                  },
+                  "required": [
+                    "tagId",
+                    "assignedAt"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionRules"
+        }
+      },
+      "patch": {
+        "summary": "Update mission rule tag assignment",
+        "deprecated": false,
+        "description": "Updates a tag assignment for a specific mission rule",
+        "tags": [
+          "MissionRules"
+        ],
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "description": "The updated value for the tag"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignment updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The updated value assigned to the tag"
+                    },
+                    "assignedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp when the tag was originally assigned"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp when the tag assignment was last updated"
+                    }
+                  },
+                  "required": [
+                    "tagId",
+                    "assignedAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission rule or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionRules"
+        }
+      },
+      "delete": {
+        "summary": "Delete mission rule tag assignment",
+        "deprecated": false,
+        "description": "Deletes a tag assignment for a specific mission rule",
+        "tags": [
+          "MissionRules"
+        ],
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Tag assignment deleted successfully",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission rule or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "MissionRules"
+        }
+      }
+    },
+    "/mission-rules/{missionRuleId}/translations": {
+      "get": {
+        "summary": "List mission rule translations",
+        "deprecated": false,
+        "description": "Retrieves a list of translations for a specific mission rule",
+        "tags": [
+          "MissionRules"
+        ],
+        "parameters": [
+          {
+            "name": "missionRuleId",
+            "in": "path",
+            "description": "Unique identifier of the mission rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of translations retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "lang": {
+                        "type": "string",
+                        "description": "Language code (e.g., 'en', 'it', 'fr')"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "Translated title of the mission rule"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Translated description of the mission rule"
+                      },
+                      "content": {
+                        "type": "object",
+                        "description": "Additional translated content specific to the mission rule",
+                        "additionalProperties": true
+                      }
+                    },
+                    "required": [
+                      "lang",
+                      "title"
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mission rule not found",
             "headers": {}
           }
         },
@@ -4410,6 +5342,19 @@
               "type": "integer",
               "default": 20
             }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Additional fields to include (tags, translations)",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["tags", "translations"]
+              }
+            }
           }
         ],
         "responses": {
@@ -4519,6 +5464,19 @@
             "example": "",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Additional fields to include (tags, translations)",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["tags", "translations"]
+              }
             }
           }
         ],
@@ -5367,6 +6325,85 @@
         }
       }
     },
+    "/quizzes/{quizId}/translations": {
+      "get": {
+        "summary": "List quiz translations",
+        "deprecated": false,
+        "description": "Retrieves a list of translations for a specific quiz",
+        "tags": [
+          "Quizzes"
+        ],
+        "parameters": [
+          {
+            "name": "quizId",
+            "in": "path",
+            "description": "Unique identifier of the quiz",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of translations retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "lang": {
+                        "type": "string",
+                        "description": "Language code (e.g., 'en', 'it', 'fr')"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "Translated title of the quiz"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Translated description of the quiz"
+                      },
+                      "content": {
+                        "type": "object",
+                        "description": "Quiz questions and answers in the specified language",
+                        "additionalProperties": true
+                      }
+                    },
+                    "required": [
+                      "lang",
+                      "title"
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Quiz not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Quizzes"
+        }
+      }
+    },
     "/streak-configurations": {
       "get": {
         "summary": "List streak configurations",
@@ -5670,6 +6707,728 @@
           },
           "404": {
             "description": "Streak configuration not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakConfigurations"
+        }
+      }
+    },
+    "/streak-configurations/{streakConfigurationId}/tags": {
+      "get": {
+        "summary": "List streak configuration tag assignments",
+        "deprecated": false,
+        "description": "Retrieves a list of tag assignments for a specific streak configuration",
+        "tags": [
+          "StreakConfigurations"
+        ],
+        "parameters": [
+          {
+            "name": "streakConfigurationId",
+            "in": "path",
+            "description": "Unique identifier of the streak configuration",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tag assignments retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "value": {
+                            "type": "string",
+                            "description": "The value assigned to the tag for this streak configuration"
+                          },
+                          "assignedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Timestamp when the tag was assigned"
+                          }
+                        },
+                        "required": [
+                          "tagId",
+                          "assignedAt"
+                        ]
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for fetching the next set of results"
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak configuration not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakConfigurations"
+        }
+      },
+      "put": {
+        "summary": "Create multiple streak configuration tag assignments",
+        "deprecated": false,
+        "description": "Creates multiple tag assignments for a specific streak configuration",
+        "tags": [
+          "StreakConfigurations"
+        ],
+        "parameters": [
+          {
+            "name": "streakConfigurationId",
+            "in": "path",
+            "description": "Unique identifier of the streak configuration",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag to assign"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The value to assign to the tag (optional)"
+                    }
+                  },
+                  "required": [
+                    "tagId"
+                  ]
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignments created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tagId": {
+                        "type": "string",
+                        "description": "Unique identifier of the tag"
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "The value assigned to the tag"
+                      },
+                      "assignedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the tag was assigned"
+                      }
+                    },
+                    "required": [
+                      "tagId",
+                      "assignedAt"
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak configuration not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakConfigurations"
+        }
+      },
+      "patch": {
+        "summary": "Update multiple streak configuration tag assignments",
+        "deprecated": false,
+        "description": "Updates multiple tag assignments for a specific streak configuration",
+        "tags": [
+          "StreakConfigurations"
+        ],
+        "parameters": [
+          {
+            "name": "streakConfigurationId",
+            "in": "path",
+            "description": "Unique identifier of the streak configuration",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag to update"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The updated value for the tag"
+                    }
+                  },
+                  "required": [
+                    "tagId"
+                  ]
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignments updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tagId": {
+                        "type": "string",
+                        "description": "Unique identifier of the tag"
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "The updated value assigned to the tag"
+                      },
+                      "assignedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the tag was originally assigned"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the tag assignment was last updated"
+                      }
+                    },
+                    "required": [
+                      "tagId",
+                      "assignedAt",
+                      "updatedAt"
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak configuration not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakConfigurations"
+        }
+      },
+      "delete": {
+        "summary": "Delete multiple streak configuration tag assignments",
+        "deprecated": false,
+        "description": "Deletes multiple tag assignments for a specific streak configuration",
+        "tags": [
+          "StreakConfigurations"
+        ],
+        "parameters": [
+          {
+            "name": "streakConfigurationId",
+            "in": "path",
+            "description": "Unique identifier of the streak configuration",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Tag ID to delete"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Tag assignments deleted successfully",
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak configuration not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakConfigurations"
+        }
+      }
+    },
+    "/streak-configurations/{streakConfigurationId}/tags/{tagId}": {
+      "get": {
+        "summary": "Get streak configuration tag assignment",
+        "deprecated": false,
+        "description": "Retrieves a specific tag assignment for a streak configuration",
+        "tags": [
+          "StreakConfigurations"
+        ],
+        "parameters": [
+          {
+            "name": "streakConfigurationId",
+            "in": "path",
+            "description": "Unique identifier of the streak configuration",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag assignment retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The value assigned to the tag for this streak configuration"
+                    },
+                    "assignedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp when the tag was assigned"
+                    }
+                  },
+                  "required": [
+                    "tagId",
+                    "assignedAt"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak configuration or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakConfigurations"
+        }
+      },
+      "put": {
+        "summary": "Create streak configuration tag assignment",
+        "deprecated": false,
+        "description": "Creates a tag assignment for a specific streak configuration",
+        "tags": [
+          "StreakConfigurations"
+        ],
+        "parameters": [
+          {
+            "name": "streakConfigurationId",
+            "in": "path",
+            "description": "Unique identifier of the streak configuration",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "description": "The value to assign to the tag (optional)"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignment created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The value assigned to the tag"
+                    },
+                    "assignedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp when the tag was assigned"
+                    }
+                  },
+                  "required": [
+                    "tagId",
+                    "assignedAt"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak configuration not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakConfigurations"
+        }
+      },
+      "patch": {
+        "summary": "Update streak configuration tag assignment",
+        "deprecated": false,
+        "description": "Updates a tag assignment for a specific streak configuration",
+        "tags": [
+          "StreakConfigurations"
+        ],
+        "parameters": [
+          {
+            "name": "streakConfigurationId",
+            "in": "path",
+            "description": "Unique identifier of the streak configuration",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "description": "The updated value for the tag"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignment updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The updated value assigned to the tag"
+                    },
+                    "assignedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp when the tag was originally assigned"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp when the tag assignment was last updated"
+                    }
+                  },
+                  "required": [
+                    "tagId",
+                    "assignedAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak configuration or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakConfigurations"
+        }
+      },
+      "delete": {
+        "summary": "Delete streak configuration tag assignment",
+        "deprecated": false,
+        "description": "Deletes a tag assignment for a specific streak configuration",
+        "tags": [
+          "StreakConfigurations"
+        ],
+        "parameters": [
+          {
+            "name": "streakConfigurationId",
+            "in": "path",
+            "description": "Unique identifier of the streak configuration",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Tag assignment deleted successfully",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak configuration or tag assignment not found",
             "headers": {}
           }
         },
@@ -5998,6 +7757,890 @@
           },
           "404": {
             "description": "Streak rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakRules"
+        }
+      }
+    },
+    "/streak-rules/{streakRuleId}/tags": {
+      "get": {
+        "summary": "List streak rule tag assignments",
+        "deprecated": false,
+        "description": "Retrieves a list of tag assignments for a specific streak rule",
+        "tags": [
+          "StreakRules"
+        ],
+        "parameters": [
+          {
+            "name": "streakRuleId",
+            "in": "path",
+            "description": "Unique identifier of the streak rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination token for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tag assignments retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tagId": {
+                            "type": "string",
+                            "description": "Unique identifier of the tag"
+                          },
+                          "value": {
+                            "type": "string",
+                            "description": "The value assigned to the tag for this streak rule"
+                          },
+                          "assignedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Timestamp when the tag was assigned"
+                          }
+                        },
+                        "required": [
+                          "tagId",
+                          "assignedAt"
+                        ]
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination token for fetching the next set of results"
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakRules"
+        }
+      },
+      "put": {
+        "summary": "Create multiple streak rule tag assignments",
+        "deprecated": false,
+        "description": "Creates multiple tag assignments for a specific streak rule",
+        "tags": [
+          "StreakRules"
+        ],
+        "parameters": [
+          {
+            "name": "streakRuleId",
+            "in": "path",
+            "description": "Unique identifier of the streak rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag to assign"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The value to assign to the tag (optional)"
+                    }
+                  },
+                  "required": [
+                    "tagId"
+                  ]
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignments created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tagId": {
+                        "type": "string",
+                        "description": "Unique identifier of the tag"
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "The value assigned to the tag"
+                      },
+                      "assignedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the tag was assigned"
+                      }
+                    },
+                    "required": [
+                      "tagId",
+                      "assignedAt"
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakRules"
+        }
+      },
+      "patch": {
+        "summary": "Update multiple streak rule tag assignments",
+        "deprecated": false,
+        "description": "Updates multiple tag assignments for a specific streak rule",
+        "tags": [
+          "StreakRules"
+        ],
+        "parameters": [
+          {
+            "name": "streakRuleId",
+            "in": "path",
+            "description": "Unique identifier of the streak rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag to update"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The updated value for the tag"
+                    }
+                  },
+                  "required": [
+                    "tagId"
+                  ]
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignments updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tagId": {
+                        "type": "string",
+                        "description": "Unique identifier of the tag"
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "The updated value assigned to the tag"
+                      },
+                      "assignedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the tag was originally assigned"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the tag assignment was last updated"
+                      }
+                    },
+                    "required": [
+                      "tagId",
+                      "assignedAt",
+                      "updatedAt"
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakRules"
+        }
+      },
+      "delete": {
+        "summary": "Delete multiple streak rule tag assignments",
+        "deprecated": false,
+        "description": "Deletes multiple tag assignments for a specific streak rule",
+        "tags": [
+          "StreakRules"
+        ],
+        "parameters": [
+          {
+            "name": "streakRuleId",
+            "in": "path",
+            "description": "Unique identifier of the streak rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Tag ID to delete"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Tag assignments deleted successfully",
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakRules"
+        }
+      }
+    },
+    "/streak-rules/{streakRuleId}/tags/{tagId}": {
+      "get": {
+        "summary": "Get streak rule tag assignment",
+        "deprecated": false,
+        "description": "Retrieves a specific tag assignment for a streak rule",
+        "tags": [
+          "StreakRules"
+        ],
+        "parameters": [
+          {
+            "name": "streakRuleId",
+            "in": "path",
+            "description": "Unique identifier of the streak rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag assignment retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The value assigned to the tag for this streak rule"
+                    },
+                    "assignedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp when the tag was assigned"
+                    }
+                  },
+                  "required": [
+                    "tagId",
+                    "assignedAt"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak rule or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakRules"
+        }
+      },
+      "put": {
+        "summary": "Create streak rule tag assignment",
+        "deprecated": false,
+        "description": "Creates a tag assignment for a specific streak rule",
+        "tags": [
+          "StreakRules"
+        ],
+        "parameters": [
+          {
+            "name": "streakRuleId",
+            "in": "path",
+            "description": "Unique identifier of the streak rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "description": "The value to assign to the tag (optional)"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignment created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The value assigned to the tag"
+                    },
+                    "assignedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp when the tag was assigned"
+                    },
+                    "/streak-rules/{streakRuleId}/translations": {
+                      "get": {
+                        "summary": "List streak rule translations",
+                        "deprecated": false,
+                        "description": "Retrieves a list of translations for a specific streak rule",
+                        "tags": [
+                          "StreakRules"
+                        ],
+                        "parameters": [
+                          {
+                            "name": "streakRuleId",
+                            "in": "path",
+                            "description": "Unique identifier of the streak rule",
+                            "required": true,
+                            "example": "",
+                            "schema": {
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "responses": {
+                          "200": {
+                            "description": "List of translations retrieved successfully",
+                            "content": {
+                              "application/json": {
+                                "schema": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "lang": {
+                                        "type": "string",
+                                        "description": "Language code (e.g., 'en', 'it', 'fr')"
+                                      },
+                                      "title": {
+                                        "type": "string",
+                                        "description": "Translated title of the streak rule"
+                                      },
+                                      "description": {
+                                        "type": "string",
+                                        "description": "Translated description of the streak rule"
+                                      },
+                                      "content": {
+                                        "type": "object",
+                                        "description": "Additional translated content specific to the streak rule",
+                                        "additionalProperties": true
+                                      }
+                                    },
+                                    "required": [
+                                      "lang",
+                                      "title"
+                                    ]
+                                  }
+                                }
+                              }
+                            },
+                            "headers": {}
+                          },
+                          "401": {
+                            "description": "Unauthorized",
+                            "headers": {}
+                          },
+                          "404": {
+                            "description": "Streak rule not found",
+                            "headers": {}
+                          }
+                        },
+                        "security": [
+                          {
+                            "bearer": []
+                          }
+                        ],
+                        "x-postman-meta": {
+                          "currentHelper": null,
+                          "helperAttributes": null,
+                          "folder": "StreakRules"
+                        }
+                      }
+                    },
+                    "/virtual-currencies/{virtualCurrencyId}/translations": {
+                      "get": {
+                        "summary": "List virtual currency translations",
+                        "deprecated": false,
+                        "description": "Retrieves a list of translations for a specific virtual currency",
+                        "tags": [
+                          "VirtualCurrencies"
+                        ],
+                        "parameters": [
+                          {
+                            "name": "virtualCurrencyId",
+                            "in": "path",
+                            "description": "Unique identifier of the virtual currency",
+                            "required": true,
+                            "example": "",
+                            "schema": {
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "responses": {
+                          "200": {
+                            "description": "List of translations retrieved successfully",
+                            "content": {
+                              "application/json": {
+                                "schema": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "lang": {
+                                        "type": "string",
+                                        "description": "Language code (e.g., 'en', 'it', 'fr')"
+                                      },
+                                      "name": {
+                                        "type": "string",
+                                        "description": "Translated name of the virtual currency"
+                                      },
+                                      "description": {
+                                        "type": "string",
+                                        "description": "Translated description of the virtual currency"
+                                      },
+                                      "symbol": {
+                                        "type": "string",
+                                        "description": "Currency symbol for the specified language"
+                                      },
+                                      "content": {
+                                        "type": "object",
+                                        "description": "Additional translated content specific to the virtual currency",
+                                        "additionalProperties": true
+                                      }
+                                    },
+                                    "required": [
+                                      "lang",
+                                      "name"
+                                    ]
+                                  }
+                                }
+                              }
+                            },
+                            "headers": {}
+                          },
+                          "401": {
+                            "description": "Unauthorized",
+                            "headers": {}
+                          },
+                          "404": {
+                            "description": "Virtual currency not found",
+                            "headers": {}
+                          }
+                        },
+                        "security": [
+                          {
+                            "bearer": []
+                          }
+                        ],
+                        "x-postman-meta": {
+                          "currentHelper": null,
+                          "helperAttributes": null,
+                          "folder": "VirtualCurrencies"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "tagId",
+                    "assignedAt"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak rule not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakRules"
+        }
+      },
+      "patch": {
+        "summary": "Update streak rule tag assignment",
+        "deprecated": false,
+        "description": "Updates a tag assignment for a specific streak rule",
+        "tags": [
+          "StreakRules"
+        ],
+        "parameters": [
+          {
+            "name": "streakRuleId",
+            "in": "path",
+            "description": "Unique identifier of the streak rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "description": "The updated value for the tag"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Tag assignment updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tagId": {
+                      "type": "string",
+                      "description": "Unique identifier of the tag"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The updated value assigned to the tag"
+                    },
+                    "assignedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp when the tag was originally assigned"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp when the tag assignment was last updated"
+                    }
+                  },
+                  "required": [
+                    "tagId",
+                    "assignedAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak rule or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakRules"
+        }
+      },
+      "delete": {
+        "summary": "Delete streak rule tag assignment",
+        "deprecated": false,
+        "description": "Deletes a tag assignment for a specific streak rule",
+        "tags": [
+          "StreakRules"
+        ],
+        "parameters": [
+          {
+            "name": "streakRuleId",
+            "in": "path",
+            "description": "Unique identifier of the streak rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "description": "Unique identifier of the tag",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Tag assignment deleted successfully",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak rule or tag assignment not found",
             "headers": {}
           }
         },
@@ -6897,6 +9540,67 @@
             "type": "string",
             "format": "date-time",
             "description": "Timestamp when the activity was last updated"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Associated tags for categorization and filtering. Only included when 'tags' field is requested.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tagId": {
+                  "type": "string",
+                  "description": "Unique identifier of the tag"
+                },
+                "priority": {
+                  "type": "integer",
+                  "description": "Priority of the tag assignment",
+                  "default": 0
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timestamp when the tag was assigned"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timestamp when the tag assignment was last updated"
+                }
+              },
+              "required": ["tagId", "priority", "createdAt", "updatedAt"]
+            }
+          },
+          "translations": {
+            "type": "array",
+            "description": "Available translations for the activity content. Only included when 'translations' field is requested.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "lang": {
+                  "type": "string",
+                  "description": "Language code (e.g., 'en', 'it', 'fr')"
+                },
+                "label": {
+                  "type": "string",
+                  "description": "Translated label/title of the activity"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Translated description of the activity (optional)"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timestamp when the translation was created"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timestamp when the translation was last updated"
+                }
+              },
+              "required": ["lang", "label", "createdAt", "updatedAt"]
+            }
           }
         }
       },
@@ -7106,6 +9810,67 @@
             "type": "string",
             "format": "date-time",
             "description": "Timestamp when the mission was last updated."
+          },
+          "tags": {
+            "type": "array",
+            "description": "Associated tags for categorization and filtering. Only included when 'tags' field is requested.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tagId": {
+                  "type": "string",
+                  "description": "Unique identifier of the tag"
+                },
+                "priority": {
+                  "type": "integer",
+                  "description": "Priority of the tag assignment",
+                  "default": 0
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timestamp when the tag was assigned"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timestamp when the tag assignment was last updated"
+                }
+              },
+              "required": ["tagId", "priority", "createdAt", "updatedAt"]
+            }
+          },
+          "translations": {
+            "type": "array",
+            "description": "Available translations for the mission content. Only included when 'translations' field is requested.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "lang": {
+                  "type": "string",
+                  "description": "Language code (e.g., 'en', 'it', 'fr')"
+                },
+                "label": {
+                  "type": "string",
+                  "description": "Translated label/title of the mission"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Translated description of the mission (optional)"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timestamp when the translation was created"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timestamp when the translation was last updated"
+                }
+              },
+              "required": ["lang", "label", "createdAt", "updatedAt"]
+            }
           }
         }
       },
@@ -8051,6 +10816,83 @@
             "type": "string",
             "format": "date-time",
             "description": "Timestamp when the quiz was last updated"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Associated tags for categorization and filtering. Only included when 'tags' field is requested.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tagId": {
+                  "type": "string",
+                  "description": "Unique identifier of the tag"
+                },
+                "priority": {
+                  "type": "integer",
+                  "description": "Priority of the tag assignment",
+                  "default": 0
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timestamp when the tag was assigned"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timestamp when the tag assignment was last updated"
+                }
+              },
+              "required": ["tagId", "priority", "createdAt", "updatedAt"]
+            }
+          },
+          "translations": {
+            "type": "array",
+            "description": "Available translations for the quiz content. Only included when 'translations' field is requested.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "lang": {
+                  "type": "string",
+                  "description": "Language code (e.g., 'en', 'it', 'fr')"
+                },
+                "question": {
+                  "type": "string",
+                  "description": "The quiz question in the specified language"
+                },
+                "opt1": {
+                  "type": "string",
+                  "description": "First answer option"
+                },
+                "opt2": {
+                  "type": "string",
+                  "description": "Second answer option"
+                },
+                "opt3": {
+                  "type": "string",
+                  "description": "Third answer option"
+                },
+                "opt4": {
+                  "type": "string",
+                  "description": "Fourth answer option"
+                },
+                "explanation": {
+                  "type": "string",
+                  "description": "Optional explanation for the correct answer"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timestamp when the translation was created"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timestamp when the translation was last updated"
+                }
+              },
+              "required": ["lang", "question", "opt1", "opt2", "opt3", "opt4", "createdAt", "updatedAt"]
+            }
           }
         }
       },
