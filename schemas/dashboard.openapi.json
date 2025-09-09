@@ -13,61 +13,22 @@
       "name": "Activities"
     },
     {
-      "name": "Activities/Tags"
-    },
-    {
-      "name": "Activities/Translations"
-    },
-    {
       "name": "Missions"
-    },
-    {
-      "name": "Missions/Tags"
-    },
-    {
-      "name": "Missions/Translations"
     },
     {
       "name": "MissionRules"
     },
     {
-      "name": "MissionRules/Tags"
-    },
-    {
-      "name": "MissionRules/Translations"
-    },
-    {
       "name": "MissionAssignments"
+    },
+    {
+      "name": "Mobility"
     },
     {
       "name": "Quizzes"
     },
     {
-      "name": "Quizzes/Tags"
-    },
-    {
-      "name": "Quizzes/Translations"
-    },
-    {
       "name": "RewardRules"
-    },
-    {
-      "name": "StreakConfigurations"
-    },
-    {
-      "name": "StreakConfigurations/Tags"
-    },
-    {
-      "name": "StreakConfigurations/Translations"
-    },
-    {
-      "name": "StreakRules"
-    },
-    {
-      "name": "StreakRules/Tags"
-    },
-    {
-      "name": "StreakRules/Translations"
     },
     {
       "name": "Tags"
@@ -76,13 +37,7 @@
       "name": "Users"
     },
     {
-      "name": "Users/Tags"
-    },
-    {
       "name": "VirtualCurrencies"
-    },
-    {
-      "name": "VirtualCurrencies/Translations"
     },
     {
       "name": "VirtualTransactions"
@@ -215,19 +170,6 @@
               "type": "integer",
               "default": 20
             }
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "description": "Additional fields to include (tags, translations)",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": ["tags", "translations"]
-              }
-            }
           }
         ],
         "responses": {
@@ -288,19 +230,6 @@
             "example": "",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "description": "Additional fields to include (tags, translations)",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": ["tags", "translations"]
-              }
             }
           }
         ],
@@ -471,7 +400,7 @@
         "deprecated": false,
         "description": "Retrieves a list of tag assignments for a specific activity",
         "tags": [
-          "Activities/Tags"
+          "Activities"
         ],
         "parameters": [
           {
@@ -526,7 +455,9 @@
                             "description": "Priority of the tag assignment"
                           }
                         },
-                        "required": ["tagId"]
+                        "required": [
+                          "tagId"
+                        ]
                       }
                     },
                     "nextToken": {
@@ -564,7 +495,7 @@
         "deprecated": false,
         "description": "Creates multiple tag assignments for a specific activity",
         "tags": [
-          "Activities/Tags"
+          "Activities"
         ],
         "parameters": [
           {
@@ -598,13 +529,17 @@
                           "description": "Priority of the tag assignment (optional)"
                         }
                       },
-                      "required": ["tagId"]
+                      "required": [
+                        "tagId"
+                      ]
                     },
                     "minItems": 1,
                     "maxItems": 25
                   }
                 },
-                "required": ["assignments"]
+                "required": [
+                  "assignments"
+                ]
               }
             }
           }
@@ -631,7 +566,9 @@
                             "description": "Priority of the tag assignment"
                           }
                         },
-                        "required": ["tagId"]
+                        "required": [
+                          "tagId"
+                        ]
                       }
                     }
                   }
@@ -669,7 +606,7 @@
         "deprecated": false,
         "description": "Updates multiple tag assignments for a specific activity",
         "tags": [
-          "Activities/Tags"
+          "Activities"
         ],
         "parameters": [
           {
@@ -703,13 +640,18 @@
                           "description": "Priority of the tag assignment"
                         }
                       },
-                      "required": ["tagId", "priority"]
+                      "required": [
+                        "tagId",
+                        "priority"
+                      ]
                     },
                     "minItems": 1,
                     "maxItems": 25
                   }
                 },
-                "required": ["assignments"]
+                "required": [
+                  "assignments"
+                ]
               }
             }
           }
@@ -736,7 +678,10 @@
                             "description": "Priority of the tag assignment"
                           }
                         },
-                        "required": ["tagId", "priority"]
+                        "required": [
+                          "tagId",
+                          "priority"
+                        ]
                       }
                     }
                   }
@@ -774,7 +719,7 @@
         "deprecated": false,
         "description": "Deletes multiple tag assignments for a specific activity",
         "tags": [
-          "Activities/Tags"
+          "Activities"
         ],
         "parameters": [
           {
@@ -804,13 +749,17 @@
                           "description": "Unique identifier of the tag"
                         }
                       },
-                      "required": ["tagId"]
+                      "required": [
+                        "tagId"
+                      ]
                     },
                     "minItems": 1,
                     "maxItems": 25
                   }
                 },
-                "required": ["assignments"]
+                "required": [
+                  "assignments"
+                ]
               }
             }
           }
@@ -851,7 +800,7 @@
         "deprecated": false,
         "description": "Retrieves a specific tag assignment for an activity",
         "tags": [
-          "Activities/Tags"
+          "Activities"
         ],
         "parameters": [
           {
@@ -892,7 +841,9 @@
                       "description": "Priority of the tag assignment"
                     }
                   },
-                  "required": ["tagId"]
+                  "required": [
+                    "tagId"
+                  ]
                 }
               }
             },
@@ -923,7 +874,7 @@
         "deprecated": false,
         "description": "Creates a tag assignment for a specific activity",
         "tags": [
-          "Activities/Tags"
+          "Activities"
         ],
         "parameters": [
           {
@@ -979,7 +930,9 @@
                       "description": "Priority of the tag assignment"
                     }
                   },
-                  "required": ["tagId"]
+                  "required": [
+                    "tagId"
+                  ]
                 }
               }
             },
@@ -1014,7 +967,7 @@
         "deprecated": false,
         "description": "Updates a tag assignment for a specific activity",
         "tags": [
-          "Activities/Tags"
+          "Activities"
         ],
         "parameters": [
           {
@@ -1049,7 +1002,9 @@
                     "description": "Priority of the tag assignment"
                   }
                 },
-                "required": ["priority"]
+                "required": [
+                  "priority"
+                ]
               }
             }
           }
@@ -1071,7 +1026,9 @@
                       "description": "Priority of the tag assignment"
                     }
                   },
-                  "required": ["tagId"]
+                  "required": [
+                    "tagId"
+                  ]
                 }
               }
             },
@@ -1106,7 +1063,7 @@
         "deprecated": false,
         "description": "Deletes a tag assignment for a specific activity",
         "tags": [
-          "Activities/Tags"
+          "Activities"
         ],
         "parameters": [
           {
@@ -1213,85 +1170,6 @@
         }
       }
     },
-    "/activities/{activityId}/translations": {
-      "get": {
-        "summary": "List activity translations",
-        "deprecated": false,
-        "description": "Retrieves a list of translations for a specific activity",
-        "tags": [
-          "Activities/Translations"
-        ],
-        "parameters": [
-          {
-            "name": "activityId",
-            "in": "path",
-            "description": "Unique identifier of the activity",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of translations retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "lang": {
-                        "type": "string",
-                        "description": "Language code (e.g., 'en', 'it', 'fr')"
-                      },
-                      "title": {
-                        "type": "string",
-                        "description": "Translated title of the activity"
-                      },
-                      "description": {
-                        "type": "string",
-                        "description": "Translated description of the activity"
-                      },
-                      "content": {
-                        "type": "object",
-                        "description": "Additional translated content specific to the activity",
-                        "additionalProperties": true
-                      }
-                    },
-                    "required": [
-                      "lang",
-                      "title"
-                    ]
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Activity not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "Activities"
-        }
-      }
-    },
     "/missions": {
       "get": {
         "summary": "List missions",
@@ -1318,19 +1196,6 @@
             "schema": {
               "type": "integer",
               "default": 20
-            }
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "description": "Additional fields to include (tags, translations)",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": ["tags", "translations"]
-              }
             }
           }
         ],
@@ -1442,19 +1307,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "description": "Additional fields to include (tags, translations)",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": ["tags", "translations"]
-              }
-            }
           }
         ],
         "responses": {
@@ -1560,7 +1412,7 @@
         "deprecated": false,
         "description": "Retrieves a list of tag assignments for a specific mission",
         "tags": [
-          "Missions/Tags"
+          "Missions"
         ],
         "parameters": [
           {
@@ -1615,7 +1467,9 @@
                             "description": "Priority of the tag assignment"
                           }
                         },
-                        "required": ["tagId"]
+                        "required": [
+                          "tagId"
+                        ]
                       }
                     },
                     "nextToken": {
@@ -1653,7 +1507,7 @@
         "deprecated": false,
         "description": "Creates multiple tag assignments for a specific mission",
         "tags": [
-          "Missions/Tags"
+          "Missions"
         ],
         "parameters": [
           {
@@ -1687,13 +1541,17 @@
                           "description": "Priority of the tag assignment (optional)"
                         }
                       },
-                      "required": ["tagId"]
+                      "required": [
+                        "tagId"
+                      ]
                     },
                     "minItems": 1,
                     "maxItems": 25
                   }
                 },
-                "required": ["assignments"]
+                "required": [
+                  "assignments"
+                ]
               }
             }
           }
@@ -1720,7 +1578,9 @@
                             "description": "Priority of the tag assignment"
                           }
                         },
-                        "required": ["tagId"]
+                        "required": [
+                          "tagId"
+                        ]
                       }
                     }
                   }
@@ -1758,7 +1618,7 @@
         "deprecated": false,
         "description": "Updates multiple tag assignments for a specific mission",
         "tags": [
-          "Missions/Tags"
+          "Missions"
         ],
         "parameters": [
           {
@@ -1792,13 +1652,18 @@
                           "description": "Priority of the tag assignment"
                         }
                       },
-                      "required": ["tagId", "priority"]
+                      "required": [
+                        "tagId",
+                        "priority"
+                      ]
                     },
                     "minItems": 1,
                     "maxItems": 25
                   }
                 },
-                "required": ["assignments"]
+                "required": [
+                  "assignments"
+                ]
               }
             }
           }
@@ -1825,7 +1690,10 @@
                             "description": "Priority of the tag assignment"
                           }
                         },
-                        "required": ["tagId", "priority"]
+                        "required": [
+                          "tagId",
+                          "priority"
+                        ]
                       }
                     }
                   }
@@ -1863,7 +1731,7 @@
         "deprecated": false,
         "description": "Deletes multiple tag assignments for a specific mission",
         "tags": [
-          "Missions/Tags"
+          "Missions"
         ],
         "parameters": [
           {
@@ -1893,13 +1761,17 @@
                           "description": "Unique identifier of the tag"
                         }
                       },
-                      "required": ["tagId"]
+                      "required": [
+                        "tagId"
+                      ]
                     },
                     "minItems": 1,
                     "maxItems": 25
                   }
                 },
-                "required": ["assignments"]
+                "required": [
+                  "assignments"
+                ]
               }
             }
           }
@@ -1940,7 +1812,7 @@
         "deprecated": false,
         "description": "Retrieves a specific tag assignment for a mission",
         "tags": [
-          "Missions/Tags"
+          "Missions"
         ],
         "parameters": [
           {
@@ -1981,7 +1853,9 @@
                       "description": "Priority of the tag assignment"
                     }
                   },
-                  "required": ["tagId"]
+                  "required": [
+                    "tagId"
+                  ]
                 }
               }
             },
@@ -2012,7 +1886,7 @@
         "deprecated": false,
         "description": "Creates a tag assignment for a specific mission",
         "tags": [
-          "Missions/Tags"
+          "Missions"
         ],
         "parameters": [
           {
@@ -2068,7 +1942,9 @@
                       "description": "Priority of the tag assignment"
                     }
                   },
-                  "required": ["tagId"]
+                  "required": [
+                    "tagId"
+                  ]
                 }
               }
             },
@@ -2103,7 +1979,7 @@
         "deprecated": false,
         "description": "Updates a tag assignment for a specific mission",
         "tags": [
-          "Missions/Tags"
+          "Missions"
         ],
         "parameters": [
           {
@@ -2138,7 +2014,9 @@
                     "description": "Priority of the tag assignment"
                   }
                 },
-                "required": ["priority"]
+                "required": [
+                  "priority"
+                ]
               }
             }
           }
@@ -2160,7 +2038,9 @@
                       "description": "Priority of the tag assignment"
                     }
                   },
-                  "required": ["tagId"]
+                  "required": [
+                    "tagId"
+                  ]
                 }
               }
             },
@@ -2195,7 +2075,7 @@
         "deprecated": false,
         "description": "Deletes a tag assignment for a specific mission",
         "tags": [
-          "Missions/Tags"
+          "Missions"
         ],
         "parameters": [
           {
@@ -2595,807 +2475,6 @@
         }
       }
     },
-    "/mission-rules/{missionRuleId}/tags": {
-      "get": {
-        "summary": "List mission rule tag assignments",
-        "deprecated": false,
-        "description": "Retrieves a list of tag assignments for a specific mission rule",
-        "tags": [
-          "MissionRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "missionRuleId",
-            "in": "path",
-            "description": "Unique identifier of the mission rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "nextToken",
-            "in": "query",
-            "description": "Pagination token for fetching the next set of results",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of items to return per page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of tag assignments retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "tagId": {
-                            "type": "string",
-                            "description": "Unique identifier of the tag"
-                          },
-                          "value": {
-                            "type": "string",
-                            "description": "The value assigned to the tag for this mission rule"
-                          },
-                          "assignedAt": {
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "Timestamp when the tag was assigned"
-                          }
-                        },
-                        "required": [
-                          "tagId",
-                          "assignedAt"
-                        ]
-                      }
-                    },
-                    "nextToken": {
-                      "type": "string",
-                      "description": "Pagination token for fetching the next set of results"
-                    }
-                  },
-                  "required": [
-                    "items"
-                  ]
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Mission rule not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "MissionRules"
-        }
-      },
-      "put": {
-        "summary": "Create multiple mission rule tag assignments",
-        "deprecated": false,
-        "description": "Creates multiple tag assignments for a specific mission rule",
-        "tags": [
-          "MissionRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "missionRuleId",
-            "in": "path",
-            "description": "Unique identifier of the mission rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag to assign"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The value to assign to the tag (optional)"
-                    }
-                  },
-                  "required": [
-                    "tagId"
-                  ]
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Tag assignments created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "tagId": {
-                        "type": "string",
-                        "description": "Unique identifier of the tag"
-                      },
-                      "value": {
-                        "type": "string",
-                        "description": "The value assigned to the tag"
-                      },
-                      "assignedAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp when the tag was assigned"
-                      }
-                    },
-                    "required": [
-                      "tagId",
-                      "assignedAt"
-                    ]
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Mission rule not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "MissionRules"
-        }
-      },
-      "patch": {
-        "summary": "Update multiple mission rule tag assignments",
-        "deprecated": false,
-        "description": "Updates multiple tag assignments for a specific mission rule",
-        "tags": [
-          "MissionRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "missionRuleId",
-            "in": "path",
-            "description": "Unique identifier of the mission rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag to update"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The updated value for the tag"
-                    }
-                  },
-                  "required": [
-                    "tagId"
-                  ]
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Tag assignments updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "tagId": {
-                        "type": "string",
-                        "description": "Unique identifier of the tag"
-                      },
-                      "value": {
-                        "type": "string",
-                        "description": "The updated value assigned to the tag"
-                      },
-                      "assignedAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp when the tag was originally assigned"
-                      },
-                      "updatedAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp when the tag assignment was last updated"
-                      }
-                    },
-                    "required": [
-                      "tagId",
-                      "assignedAt",
-                      "updatedAt"
-                    ]
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Mission rule not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "MissionRules"
-        }
-      },
-      "delete": {
-        "summary": "Delete multiple mission rule tag assignments",
-        "deprecated": false,
-        "description": "Deletes multiple tag assignments for a specific mission rule",
-        "tags": [
-          "MissionRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "missionRuleId",
-            "in": "path",
-            "description": "Unique identifier of the mission rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "description": "Tag ID to delete"
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "204": {
-            "description": "Tag assignments deleted successfully",
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Mission rule not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "MissionRules"
-        }
-      }
-    },
-    "/mission-rules/{missionRuleId}/tags/{tagId}": {
-      "get": {
-        "summary": "Get mission rule tag assignment",
-        "deprecated": false,
-        "description": "Retrieves a specific tag assignment for a mission rule",
-        "tags": [
-          "MissionRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "missionRuleId",
-            "in": "path",
-            "description": "Unique identifier of the mission rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tagId",
-            "in": "path",
-            "description": "Unique identifier of the tag",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Tag assignment retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The value assigned to the tag for this mission rule"
-                    },
-                    "assignedAt": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp when the tag was assigned"
-                    }
-                  },
-                  "required": [
-                    "tagId",
-                    "assignedAt"
-                  ]
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Mission rule or tag assignment not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "MissionRules"
-        }
-      },
-      "put": {
-        "summary": "Create mission rule tag assignment",
-        "deprecated": false,
-        "description": "Creates a tag assignment for a specific mission rule",
-        "tags": [
-          "MissionRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "missionRuleId",
-            "in": "path",
-            "description": "Unique identifier of the mission rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tagId",
-            "in": "path",
-            "description": "Unique identifier of the tag",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "description": "The value to assign to the tag (optional)"
-                  }
-                }
-              }
-            }
-          },
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "description": "Tag assignment created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The value assigned to the tag"
-                    },
-                    "assignedAt": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp when the tag was assigned"
-                    }
-                  },
-                  "required": [
-                    "tagId",
-                    "assignedAt"
-                  ]
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Mission rule not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "MissionRules"
-        }
-      },
-      "patch": {
-        "summary": "Update mission rule tag assignment",
-        "deprecated": false,
-        "description": "Updates a tag assignment for a specific mission rule",
-        "tags": [
-          "MissionRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "missionRuleId",
-            "in": "path",
-            "description": "Unique identifier of the mission rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tagId",
-            "in": "path",
-            "description": "Unique identifier of the tag",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "description": "The updated value for the tag"
-                  }
-                }
-              }
-            }
-          },
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "description": "Tag assignment updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The updated value assigned to the tag"
-                    },
-                    "assignedAt": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp when the tag was originally assigned"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp when the tag assignment was last updated"
-                    }
-                  },
-                  "required": [
-                    "tagId",
-                    "assignedAt",
-                    "updatedAt"
-                  ]
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Mission rule or tag assignment not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "MissionRules"
-        }
-      },
-      "delete": {
-        "summary": "Delete mission rule tag assignment",
-        "deprecated": false,
-        "description": "Deletes a tag assignment for a specific mission rule",
-        "tags": [
-          "MissionRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "missionRuleId",
-            "in": "path",
-            "description": "Unique identifier of the mission rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tagId",
-            "in": "path",
-            "description": "Unique identifier of the tag",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Tag assignment deleted successfully",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Mission rule or tag assignment not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "MissionRules"
-        }
-      }
-    },
-    "/mission-rules/{missionRuleId}/translations": {
-      "get": {
-        "summary": "List mission rule translations",
-        "deprecated": false,
-        "description": "Retrieves a list of translations for a specific mission rule",
-        "tags": [
-          "MissionRules/Translations"
-        ],
-        "parameters": [
-          {
-            "name": "missionRuleId",
-            "in": "path",
-            "description": "Unique identifier of the mission rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of translations retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "lang": {
-                        "type": "string",
-                        "description": "Language code (e.g., 'en', 'it', 'fr')"
-                      },
-                      "title": {
-                        "type": "string",
-                        "description": "Translated title of the mission rule"
-                      },
-                      "description": {
-                        "type": "string",
-                        "description": "Translated description of the mission rule"
-                      },
-                      "content": {
-                        "type": "object",
-                        "description": "Additional translated content specific to the mission rule",
-                        "additionalProperties": true
-                      }
-                    },
-                    "required": [
-                      "lang",
-                      "title"
-                    ]
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Mission rule not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "MissionRules"
-        }
-      }
-    },
     "/missionAssignments": {
       "post": {
         "summary": "Create mission assignment (manual)",
@@ -3453,6 +2532,427 @@
           "currentHelper": null,
           "helperAttributes": null,
           "folder": "MissionAssignments"
+        }
+      }
+    },
+    "/mobility/activation": {
+      "get": {
+        "summary": "Get mobility activation status",
+        "deprecated": false,
+        "description": "Retrieves the current mobility tracking activation status for the authenticated user",
+        "tags": [
+          "Mobility"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Mobility activation status retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MobilityActivation"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mobility activation not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Mobility"
+        }
+      },
+      "put": {
+        "summary": "Update mobility activation status",
+        "deprecated": false,
+        "description": "Updates the mobility tracking activation status for the authenticated user",
+        "tags": [
+          "Mobility"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMobilityActivationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Mobility activation status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MobilityActivation"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Mobility"
+        }
+      }
+    },
+    "/mobility/milestones": {
+      "get": {
+        "summary": "List mobility milestones",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of mobility milestones for the authenticated user",
+        "tags": [
+          "Mobility"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of milestones to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of mobility milestones retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/MobilityMilestone"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination cursor for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Mobility"
+        }
+      }
+    },
+    "/mobility/milestones/{mobilityMilestoneId}": {
+      "get": {
+        "summary": "Get mobility milestone by ID",
+        "deprecated": false,
+        "description": "Retrieves a specific mobility milestone by its unique identifier",
+        "tags": [
+          "Mobility"
+        ],
+        "parameters": [
+          {
+            "name": "mobilityMilestoneId",
+            "in": "path",
+            "description": "Unique identifier of the mobility milestone to retrieve",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mobility milestone retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MobilityMilestone"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mobility milestone not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Mobility"
+        }
+      }
+    },
+    "/mobility/milestones/{mobilityMilestoneId}/redeem": {
+      "post": {
+        "summary": "Redeem mobility milestone",
+        "deprecated": false,
+        "description": "Redeems a completed mobility milestone, marking it as redeemed and potentially awarding rewards",
+        "tags": [
+          "Mobility"
+        ],
+        "parameters": [
+          {
+            "name": "mobilityMilestoneId",
+            "in": "path",
+            "description": "Unique identifier of the mobility milestone to redeem",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mobility milestone redeemed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MobilityMilestone"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid request - milestone may not be eligible for redemption",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Mobility milestone not found",
+            "headers": {}
+          },
+          "409": {
+            "description": "Milestone already redeemed or not yet reached",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Mobility"
+        }
+      }
+    },
+    "/mobility/tracking": {
+      "get": {
+        "summary": "List mobility tracking data",
+        "deprecated": false,
+        "description": "Retrieves a paginated list of mobility tracking data for the authenticated user",
+        "tags": [
+          "Mobility"
+        ],
+        "parameters": [
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "Pagination cursor for fetching the next set of results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of tracking records to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of mobility tracking data retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/MobilityTracking"
+                      }
+                    },
+                    "nextToken": {
+                      "type": "string",
+                      "description": "Pagination cursor for the next set of results"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Mobility"
+        }
+      }
+    },
+    "/mobility/motiontag/status": {
+      "get": {
+        "summary": "Get MotionTag integration status",
+        "deprecated": false,
+        "description": "Retrieves the current status of MotionTag integration for the authenticated user",
+        "tags": [
+          "Mobility"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "MotionTag status retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotionTagStatus"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Mobility"
+        }
+      }
+    },
+    "/mobility/motiontag/token": {
+      "get": {
+        "summary": "Get MotionTag authentication token",
+        "deprecated": false,
+        "description": "Retrieves or generates an authentication token for MotionTag integration",
+        "tags": [
+          "Mobility"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "MotionTag token retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotionTagToken"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "Mobility"
         }
       }
     },
@@ -4224,7 +3724,7 @@
         "deprecated": false,
         "description": "Retrieves a list of tag assignments for a specific user",
         "tags": [
-          "Users/Tags"
+          "Users"
         ],
         "parameters": [
           {
@@ -4279,7 +3779,9 @@
                             "description": "Priority of the tag assignment"
                           }
                         },
-                        "required": ["tagId"]
+                        "required": [
+                          "tagId"
+                        ]
                       }
                     },
                     "nextToken": {
@@ -4317,7 +3819,7 @@
         "deprecated": false,
         "description": "Creates multiple tag assignments for a specific user",
         "tags": [
-          "Users/Tags"
+          "Users"
         ],
         "parameters": [
           {
@@ -4351,13 +3853,17 @@
                           "description": "Priority of the tag assignment (optional)"
                         }
                       },
-                      "required": ["tagId"]
+                      "required": [
+                        "tagId"
+                      ]
                     },
                     "minItems": 1,
                     "maxItems": 25
                   }
                 },
-                "required": ["assignments"]
+                "required": [
+                  "assignments"
+                ]
               }
             }
           }
@@ -4384,7 +3890,9 @@
                             "description": "Priority of the tag assignment"
                           }
                         },
-                        "required": ["tagId"]
+                        "required": [
+                          "tagId"
+                        ]
                       }
                     }
                   }
@@ -4422,7 +3930,7 @@
         "deprecated": false,
         "description": "Updates multiple tag assignments for a specific user",
         "tags": [
-          "Users/Tags"
+          "Users"
         ],
         "parameters": [
           {
@@ -4456,13 +3964,18 @@
                           "description": "Priority of the tag assignment"
                         }
                       },
-                      "required": ["tagId", "priority"]
+                      "required": [
+                        "tagId",
+                        "priority"
+                      ]
                     },
                     "minItems": 1,
                     "maxItems": 25
                   }
                 },
-                "required": ["assignments"]
+                "required": [
+                  "assignments"
+                ]
               }
             }
           }
@@ -4489,7 +4002,10 @@
                             "description": "Priority of the tag assignment"
                           }
                         },
-                        "required": ["tagId", "priority"]
+                        "required": [
+                          "tagId",
+                          "priority"
+                        ]
                       }
                     }
                   }
@@ -4527,7 +4043,7 @@
         "deprecated": false,
         "description": "Deletes multiple tag assignments for a specific user",
         "tags": [
-          "Users/Tags"
+          "Users"
         ],
         "parameters": [
           {
@@ -4557,13 +4073,17 @@
                           "description": "Unique identifier of the tag"
                         }
                       },
-                      "required": ["tagId"]
+                      "required": [
+                        "tagId"
+                      ]
                     },
                     "minItems": 1,
                     "maxItems": 25
                   }
                 },
-                "required": ["assignments"]
+                "required": [
+                  "assignments"
+                ]
               }
             }
           }
@@ -4604,7 +4124,7 @@
         "deprecated": false,
         "description": "Retrieves a specific tag assignment for a user",
         "tags": [
-          "Users/Tags"
+          "Users"
         ],
         "parameters": [
           {
@@ -4645,7 +4165,9 @@
                       "description": "Priority of the tag assignment"
                     }
                   },
-                  "required": ["tagId"]
+                  "required": [
+                    "tagId"
+                  ]
                 }
               }
             },
@@ -4676,7 +4198,7 @@
         "deprecated": false,
         "description": "Creates a tag assignment for a specific user",
         "tags": [
-          "Users/Tags"
+          "Users"
         ],
         "parameters": [
           {
@@ -4732,7 +4254,9 @@
                       "description": "Priority of the tag assignment"
                     }
                   },
-                  "required": ["tagId"]
+                  "required": [
+                    "tagId"
+                  ]
                 }
               }
             },
@@ -4767,7 +4291,7 @@
         "deprecated": false,
         "description": "Updates a tag assignment for a specific user",
         "tags": [
-          "Users/Tags"
+          "Users"
         ],
         "parameters": [
           {
@@ -4802,7 +4326,9 @@
                     "description": "Priority of the tag assignment"
                   }
                 },
-                "required": ["priority"]
+                "required": [
+                  "priority"
+                ]
               }
             }
           }
@@ -4824,7 +4350,9 @@
                       "description": "Priority of the tag assignment"
                     }
                   },
-                  "required": ["tagId"]
+                  "required": [
+                    "tagId"
+                  ]
                 }
               }
             },
@@ -4859,7 +4387,7 @@
         "deprecated": false,
         "description": "Deletes a tag assignment for a specific user",
         "tags": [
-          "Users/Tags"
+          "Users"
         ],
         "parameters": [
           {
@@ -5384,19 +4912,6 @@
               "type": "integer",
               "default": 20
             }
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "description": "Additional fields to include (tags, translations)",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": ["tags", "translations"]
-              }
-            }
           }
         ],
         "responses": {
@@ -5507,19 +5022,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "description": "Additional fields to include (tags, translations)",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": ["tags", "translations"]
-              }
-            }
           }
         ],
         "responses": {
@@ -5625,7 +5127,7 @@
         "deprecated": false,
         "description": "Retrieves a list of tag assignments for a specific quiz",
         "tags": [
-          "Quizzes/Tags"
+          "Quizzes"
         ],
         "parameters": [
           {
@@ -5680,7 +5182,9 @@
                             "description": "Priority of the tag assignment"
                           }
                         },
-                        "required": ["tagId"]
+                        "required": [
+                          "tagId"
+                        ]
                       }
                     },
                     "nextToken": {
@@ -5718,7 +5222,7 @@
         "deprecated": false,
         "description": "Creates multiple tag assignments for a specific quiz",
         "tags": [
-          "Quizzes/Tags"
+          "Quizzes"
         ],
         "parameters": [
           {
@@ -5752,13 +5256,17 @@
                           "description": "Priority of the tag assignment (optional)"
                         }
                       },
-                      "required": ["tagId"]
+                      "required": [
+                        "tagId"
+                      ]
                     },
                     "minItems": 1,
                     "maxItems": 25
                   }
                 },
-                "required": ["assignments"]
+                "required": [
+                  "assignments"
+                ]
               }
             }
           }
@@ -5785,7 +5293,9 @@
                             "description": "Priority of the tag assignment"
                           }
                         },
-                        "required": ["tagId"]
+                        "required": [
+                          "tagId"
+                        ]
                       }
                     }
                   }
@@ -5823,7 +5333,7 @@
         "deprecated": false,
         "description": "Updates multiple tag assignments for a specific quiz",
         "tags": [
-          "Quizzes/Tags"
+          "Quizzes"
         ],
         "parameters": [
           {
@@ -5857,13 +5367,18 @@
                           "description": "Priority of the tag assignment"
                         }
                       },
-                      "required": ["tagId", "priority"]
+                      "required": [
+                        "tagId",
+                        "priority"
+                      ]
                     },
                     "minItems": 1,
                     "maxItems": 25
                   }
                 },
-                "required": ["assignments"]
+                "required": [
+                  "assignments"
+                ]
               }
             }
           }
@@ -5890,7 +5405,10 @@
                             "description": "Priority of the tag assignment"
                           }
                         },
-                        "required": ["tagId", "priority"]
+                        "required": [
+                          "tagId",
+                          "priority"
+                        ]
                       }
                     }
                   }
@@ -5928,7 +5446,7 @@
         "deprecated": false,
         "description": "Deletes multiple tag assignments for a specific quiz",
         "tags": [
-          "Quizzes/Tags"
+          "Quizzes"
         ],
         "parameters": [
           {
@@ -5958,13 +5476,17 @@
                           "description": "Unique identifier of the tag"
                         }
                       },
-                      "required": ["tagId"]
+                      "required": [
+                        "tagId"
+                      ]
                     },
                     "minItems": 1,
                     "maxItems": 25
                   }
                 },
-                "required": ["assignments"]
+                "required": [
+                  "assignments"
+                ]
               }
             }
           }
@@ -6005,7 +5527,7 @@
         "deprecated": false,
         "description": "Retrieves a specific tag assignment for a quiz",
         "tags": [
-          "Quizzes/Tags"
+          "Quizzes"
         ],
         "parameters": [
           {
@@ -6046,7 +5568,9 @@
                       "description": "Priority of the tag assignment"
                     }
                   },
-                  "required": ["tagId"]
+                  "required": [
+                    "tagId"
+                  ]
                 }
               }
             },
@@ -6077,7 +5601,7 @@
         "deprecated": false,
         "description": "Creates a tag assignment for a specific quiz",
         "tags": [
-          "Quizzes/Tags"
+          "Quizzes"
         ],
         "parameters": [
           {
@@ -6133,7 +5657,9 @@
                       "description": "Priority of the tag assignment"
                     }
                   },
-                  "required": ["tagId"]
+                  "required": [
+                    "tagId"
+                  ]
                 }
               }
             },
@@ -6168,7 +5694,7 @@
         "deprecated": false,
         "description": "Updates a tag assignment for a specific quiz",
         "tags": [
-          "Quizzes/Tags"
+          "Quizzes"
         ],
         "parameters": [
           {
@@ -6203,7 +5729,9 @@
                     "description": "Priority of the tag assignment"
                   }
                 },
-                "required": ["priority"]
+                "required": [
+                  "priority"
+                ]
               }
             }
           }
@@ -6225,7 +5753,9 @@
                       "description": "Priority of the tag assignment"
                     }
                   },
-                  "required": ["tagId"]
+                  "required": [
+                    "tagId"
+                  ]
                 }
               }
             },
@@ -6260,7 +5790,7 @@
         "deprecated": false,
         "description": "Deletes a tag assignment for a specific quiz",
         "tags": [
-          "Quizzes/Tags"
+          "Quizzes"
         ],
         "parameters": [
           {
@@ -6364,2337 +5894,6 @@
           "currentHelper": null,
           "helperAttributes": null,
           "folder": "Quizzes"
-        }
-      }
-    },
-    "/quizzes/{quizId}/translations": {
-      "get": {
-        "summary": "List quiz translations",
-        "deprecated": false,
-        "description": "Retrieves a list of translations for a specific quiz",
-        "tags": [
-          "Quizzes/Translations"
-        ],
-        "parameters": [
-          {
-            "name": "quizId",
-            "in": "path",
-            "description": "Unique identifier of the quiz",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of translations retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "lang": {
-                        "type": "string",
-                        "description": "Language code (e.g., 'en', 'it', 'fr')"
-                      },
-                      "title": {
-                        "type": "string",
-                        "description": "Translated title of the quiz"
-                      },
-                      "description": {
-                        "type": "string",
-                        "description": "Translated description of the quiz"
-                      },
-                      "content": {
-                        "type": "object",
-                        "description": "Quiz questions and answers in the specified language",
-                        "additionalProperties": true
-                      }
-                    },
-                    "required": [
-                      "lang",
-                      "title"
-                    ]
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Quiz not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "Quizzes"
-        }
-      }
-    },
-    "/streak-configurations": {
-      "get": {
-        "summary": "List streak configurations",
-        "deprecated": false,
-        "description": "Retrieves a paginated list of streak configurations",
-        "tags": [
-          "StreakConfigurations"
-        ],
-        "parameters": [
-          {
-            "name": "fields",
-            "in": "query",
-            "description": "Additional fields to include (tags, translations)",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": ["tags", "translations"]
-              }
-            },
-            "style": "form",
-            "explode": true
-          },
-          {
-            "name": "nextToken",
-            "in": "query",
-            "description": "Pagination cursor for fetching the next set of results",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of items to return per page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of streak configurations retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/StreakConfiguration"
-                      }
-                    },
-                    "nextToken": {
-                      "type": "string",
-                      "description": "Pagination cursor for the next set of results"
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakConfigurations"
-        }
-      },
-      "post": {
-        "summary": "Create streak configuration",
-        "deprecated": false,
-        "description": "Creates a new streak configuration",
-        "tags": [
-          "StreakConfigurations"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateStreakConfigurationRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Streak configuration created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StreakConfiguration"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request - Invalid input or validation errors",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakConfigurations"
-        }
-      }
-    },
-    "/streak-configurations/{streakConfigurationId}": {
-      "get": {
-        "summary": "Get streak configuration",
-        "deprecated": false,
-        "description": "Retrieves a specific streak configuration by ID",
-        "tags": [
-          "StreakConfigurations"
-        ],
-        "parameters": [
-          {
-            "name": "streakConfigurationId",
-            "in": "path",
-            "description": "Unique identifier of the streak configuration",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "description": "Additional fields to include (tags, translations)",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": ["tags", "translations"]
-              }
-            },
-            "style": "form",
-            "explode": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Streak configuration retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StreakConfiguration"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak configuration not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakConfigurations"
-        }
-      },
-      "put": {
-        "summary": "Update streak configuration",
-        "deprecated": false,
-        "description": "Updates an existing streak configuration",
-        "tags": [
-          "StreakConfigurations"
-        ],
-        "parameters": [
-          {
-            "name": "streakConfigurationId",
-            "in": "path",
-            "description": "Unique identifier of the streak configuration to update",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateStreakConfigurationRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Streak configuration updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StreakConfiguration"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request - Invalid input or validation errors",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak configuration not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakConfigurations"
-        }
-      }
-    },
-    "/streak-configurations/{streakConfigurationId}/publish": {
-      "post": {
-        "summary": "Publish streak configuration",
-        "deprecated": false,
-        "description": "Publishes a streak configuration, making it available for use",
-        "tags": [
-          "StreakConfigurations"
-        ],
-        "parameters": [
-          {
-            "name": "streakConfigurationId",
-            "in": "path",
-            "description": "Unique identifier of the streak configuration to publish",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Streak configuration published successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StreakConfiguration"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak configuration not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakConfigurations"
-        }
-      }
-    },
-    "/streak-configurations/{streakConfigurationId}/tags": {
-      "get": {
-        "summary": "List streak configuration tag assignments",
-        "deprecated": false,
-        "description": "Retrieves a list of tag assignments for a specific streak configuration",
-        "tags": [
-          "StreakConfigurations/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakConfigurationId",
-            "in": "path",
-            "description": "Unique identifier of the streak configuration",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "nextToken",
-            "in": "query",
-            "description": "Pagination token for fetching the next set of results",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of items to return per page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of tag assignments retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "tagId": {
-                            "type": "string",
-                            "description": "Unique identifier of the tag"
-                          },
-                          "value": {
-                            "type": "string",
-                            "description": "The value assigned to the tag for this streak configuration"
-                          },
-                          "assignedAt": {
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "Timestamp when the tag was assigned"
-                          }
-                        },
-                        "required": [
-                          "tagId",
-                          "assignedAt"
-                        ]
-                      }
-                    },
-                    "nextToken": {
-                      "type": "string",
-                      "description": "Pagination token for fetching the next set of results"
-                    }
-                  },
-                  "required": [
-                    "items"
-                  ]
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak configuration not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakConfigurations"
-        }
-      },
-      "put": {
-        "summary": "Create multiple streak configuration tag assignments",
-        "deprecated": false,
-        "description": "Creates multiple tag assignments for a specific streak configuration",
-        "tags": [
-          "StreakConfigurations/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakConfigurationId",
-            "in": "path",
-            "description": "Unique identifier of the streak configuration",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag to assign"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The value to assign to the tag (optional)"
-                    }
-                  },
-                  "required": [
-                    "tagId"
-                  ]
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Tag assignments created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "tagId": {
-                        "type": "string",
-                        "description": "Unique identifier of the tag"
-                      },
-                      "value": {
-                        "type": "string",
-                        "description": "The value assigned to the tag"
-                      },
-                      "assignedAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp when the tag was assigned"
-                      }
-                    },
-                    "required": [
-                      "tagId",
-                      "assignedAt"
-                    ]
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak configuration not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakConfigurations"
-        }
-      },
-      "patch": {
-        "summary": "Update multiple streak configuration tag assignments",
-        "deprecated": false,
-        "description": "Updates multiple tag assignments for a specific streak configuration",
-        "tags": [
-          "StreakConfigurations/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakConfigurationId",
-            "in": "path",
-            "description": "Unique identifier of the streak configuration",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag to update"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The updated value for the tag"
-                    }
-                  },
-                  "required": [
-                    "tagId"
-                  ]
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Tag assignments updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "tagId": {
-                        "type": "string",
-                        "description": "Unique identifier of the tag"
-                      },
-                      "value": {
-                        "type": "string",
-                        "description": "The updated value assigned to the tag"
-                      },
-                      "assignedAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp when the tag was originally assigned"
-                      },
-                      "updatedAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp when the tag assignment was last updated"
-                      }
-                    },
-                    "required": [
-                      "tagId",
-                      "assignedAt",
-                      "updatedAt"
-                    ]
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak configuration not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakConfigurations"
-        }
-      },
-      "delete": {
-        "summary": "Delete multiple streak configuration tag assignments",
-        "deprecated": false,
-        "description": "Deletes multiple tag assignments for a specific streak configuration",
-        "tags": [
-          "StreakConfigurations/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakConfigurationId",
-            "in": "path",
-            "description": "Unique identifier of the streak configuration",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "description": "Tag ID to delete"
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "204": {
-            "description": "Tag assignments deleted successfully",
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak configuration not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakConfigurations"
-        }
-      }
-    },
-    "/streak-configurations/{streakConfigurationId}/tags/{tagId}": {
-      "get": {
-        "summary": "Get streak configuration tag assignment",
-        "deprecated": false,
-        "description": "Retrieves a specific tag assignment for a streak configuration",
-        "tags": [
-          "StreakConfigurations/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakConfigurationId",
-            "in": "path",
-            "description": "Unique identifier of the streak configuration",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tagId",
-            "in": "path",
-            "description": "Unique identifier of the tag",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Tag assignment retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The value assigned to the tag for this streak configuration"
-                    },
-                    "assignedAt": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp when the tag was assigned"
-                    }
-                  },
-                  "required": [
-                    "tagId",
-                    "assignedAt"
-                  ]
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak configuration or tag assignment not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakConfigurations"
-        }
-      },
-      "put": {
-        "summary": "Create streak configuration tag assignment",
-        "deprecated": false,
-        "description": "Creates a tag assignment for a specific streak configuration",
-        "tags": [
-          "StreakConfigurations/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakConfigurationId",
-            "in": "path",
-            "description": "Unique identifier of the streak configuration",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tagId",
-            "in": "path",
-            "description": "Unique identifier of the tag",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "description": "The value to assign to the tag (optional)"
-                  }
-                }
-              }
-            }
-          },
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "description": "Tag assignment created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The value assigned to the tag"
-                    },
-                    "assignedAt": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp when the tag was assigned"
-                    }
-                  },
-                  "required": [
-                    "tagId",
-                    "assignedAt"
-                  ]
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak configuration not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakConfigurations"
-        }
-      },
-      "patch": {
-        "summary": "Update streak configuration tag assignment",
-        "deprecated": false,
-        "description": "Updates a tag assignment for a specific streak configuration",
-        "tags": [
-          "StreakConfigurations/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakConfigurationId",
-            "in": "path",
-            "description": "Unique identifier of the streak configuration",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tagId",
-            "in": "path",
-            "description": "Unique identifier of the tag",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "description": "The updated value for the tag"
-                  }
-                }
-              }
-            }
-          },
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "description": "Tag assignment updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The updated value assigned to the tag"
-                    },
-                    "assignedAt": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp when the tag was originally assigned"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp when the tag assignment was last updated"
-                    }
-                  },
-                  "required": [
-                    "tagId",
-                    "assignedAt",
-                    "updatedAt"
-                  ]
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak configuration or tag assignment not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakConfigurations"
-        }
-      },
-      "delete": {
-        "summary": "Delete streak configuration tag assignment",
-        "deprecated": false,
-        "description": "Deletes a tag assignment for a specific streak configuration",
-        "tags": [
-          "StreakConfigurations/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakConfigurationId",
-            "in": "path",
-            "description": "Unique identifier of the streak configuration",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tagId",
-            "in": "path",
-            "description": "Unique identifier of the tag",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Tag assignment deleted successfully",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak configuration or tag assignment not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakConfigurations"
-        }
-      }
-    },
-    "/streak-rules": {
-      "get": {
-        "summary": "List streak rules",
-        "deprecated": false,
-        "description": "Retrieves a paginated list of streak rules",
-        "tags": [
-          "StreakRules"
-        ],
-        "parameters": [
-          {
-            "name": "state",
-            "in": "query",
-            "description": "Filter by streak rule state",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": ["PENDING", "ACTIVE", "ENDED"]
-            }
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "description": "Additional fields to include (tags, translations)",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": ["tags", "translations"]
-              }
-            },
-            "style": "form",
-            "explode": true
-          },
-          {
-            "name": "nextToken",
-            "in": "query",
-            "description": "Pagination cursor for fetching the next set of results",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of items to return per page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of streak rules retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/StreakRule"
-                      }
-                    },
-                    "nextToken": {
-                      "type": "string",
-                      "description": "Pagination cursor for the next set of results"
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakRules"
-        }
-      },
-      "post": {
-        "summary": "Create streak rule",
-        "deprecated": false,
-        "description": "Creates a new streak rule",
-        "tags": [
-          "StreakRules"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateStreakRuleRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Streak rule created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StreakRule"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request - Invalid input or validation errors",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakRules"
-        }
-      }
-    },
-    "/streak-rules/{streakRuleId}": {
-      "get": {
-        "summary": "Get streak rule",
-        "deprecated": false,
-        "description": "Retrieves a specific streak rule by ID",
-        "tags": [
-          "StreakRules"
-        ],
-        "parameters": [
-          {
-            "name": "streakRuleId",
-            "in": "path",
-            "description": "Unique identifier of the streak rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "description": "Additional fields to include (tags, translations)",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": ["tags", "translations"]
-              }
-            },
-            "style": "form",
-            "explode": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Streak rule retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StreakRule"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak rule not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakRules"
-        }
-      },
-      "post": {
-        "summary": "Update streak rule",
-        "deprecated": false,
-        "description": "Updates an existing streak rule",
-        "tags": [
-          "StreakRules"
-        ],
-        "parameters": [
-          {
-            "name": "streakRuleId",
-            "in": "path",
-            "description": "Unique identifier of the streak rule to update",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateStreakRuleRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Streak rule updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StreakRule"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request - Invalid input or validation errors",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak rule not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakRules"
-        }
-      }
-    },
-    "/streak-rules/{streakRuleId}/publish": {
-      "post": {
-        "summary": "Publish streak rule",
-        "deprecated": false,
-        "description": "Publishes a streak rule, making it active for use",
-        "tags": [
-          "StreakRules"
-        ],
-        "parameters": [
-          {
-            "name": "streakRuleId",
-            "in": "path",
-            "description": "Unique identifier of the streak rule to publish",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Streak rule published successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StreakRule"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak rule not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakRules"
-        }
-      }
-    },
-    "/streak-rules/{streakRuleId}/tags": {
-      "get": {
-        "summary": "List streak rule tag assignments",
-        "deprecated": false,
-        "description": "Retrieves a list of tag assignments for a specific streak rule",
-        "tags": [
-          "StreakRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakRuleId",
-            "in": "path",
-            "description": "Unique identifier of the streak rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "nextToken",
-            "in": "query",
-            "description": "Pagination token for fetching the next set of results",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of items to return per page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of tag assignments retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "tagId": {
-                            "type": "string",
-                            "description": "Unique identifier of the tag"
-                          },
-                          "value": {
-                            "type": "string",
-                            "description": "The value assigned to the tag for this streak rule"
-                          },
-                          "assignedAt": {
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "Timestamp when the tag was assigned"
-                          }
-                        },
-                        "required": [
-                          "tagId",
-                          "assignedAt"
-                        ]
-                      }
-                    },
-                    "nextToken": {
-                      "type": "string",
-                      "description": "Pagination token for fetching the next set of results"
-                    }
-                  },
-                  "required": [
-                    "items"
-                  ]
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak rule not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakRules"
-        }
-      },
-      "put": {
-        "summary": "Create multiple streak rule tag assignments",
-        "deprecated": false,
-        "description": "Creates multiple tag assignments for a specific streak rule",
-        "tags": [
-          "StreakRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakRuleId",
-            "in": "path",
-            "description": "Unique identifier of the streak rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag to assign"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The value to assign to the tag (optional)"
-                    }
-                  },
-                  "required": [
-                    "tagId"
-                  ]
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Tag assignments created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "tagId": {
-                        "type": "string",
-                        "description": "Unique identifier of the tag"
-                      },
-                      "value": {
-                        "type": "string",
-                        "description": "The value assigned to the tag"
-                      },
-                      "assignedAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp when the tag was assigned"
-                      }
-                    },
-                    "required": [
-                      "tagId",
-                      "assignedAt"
-                    ]
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak rule not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakRules"
-        }
-      },
-      "patch": {
-        "summary": "Update multiple streak rule tag assignments",
-        "deprecated": false,
-        "description": "Updates multiple tag assignments for a specific streak rule",
-        "tags": [
-          "StreakRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakRuleId",
-            "in": "path",
-            "description": "Unique identifier of the streak rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag to update"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The updated value for the tag"
-                    }
-                  },
-                  "required": [
-                    "tagId"
-                  ]
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Tag assignments updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "tagId": {
-                        "type": "string",
-                        "description": "Unique identifier of the tag"
-                      },
-                      "value": {
-                        "type": "string",
-                        "description": "The updated value assigned to the tag"
-                      },
-                      "assignedAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp when the tag was originally assigned"
-                      },
-                      "updatedAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Timestamp when the tag assignment was last updated"
-                      }
-                    },
-                    "required": [
-                      "tagId",
-                      "assignedAt",
-                      "updatedAt"
-                    ]
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak rule not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakRules"
-        }
-      },
-      "delete": {
-        "summary": "Delete multiple streak rule tag assignments",
-        "deprecated": false,
-        "description": "Deletes multiple tag assignments for a specific streak rule",
-        "tags": [
-          "StreakRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakRuleId",
-            "in": "path",
-            "description": "Unique identifier of the streak rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "description": "Tag ID to delete"
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "204": {
-            "description": "Tag assignments deleted successfully",
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak rule not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakRules"
-        }
-      }
-    },
-    "/streak-rules/{streakRuleId}/tags/{tagId}": {
-      "get": {
-        "summary": "Get streak rule tag assignment",
-        "deprecated": false,
-        "description": "Retrieves a specific tag assignment for a streak rule",
-        "tags": [
-          "StreakRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakRuleId",
-            "in": "path",
-            "description": "Unique identifier of the streak rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tagId",
-            "in": "path",
-            "description": "Unique identifier of the tag",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Tag assignment retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The value assigned to the tag for this streak rule"
-                    },
-                    "assignedAt": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp when the tag was assigned"
-                    }
-                  },
-                  "required": [
-                    "tagId",
-                    "assignedAt"
-                  ]
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak rule or tag assignment not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakRules"
-        }
-      },
-      "put": {
-        "summary": "Create streak rule tag assignment",
-        "deprecated": false,
-        "description": "Creates a tag assignment for a specific streak rule",
-        "tags": [
-          "StreakRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakRuleId",
-            "in": "path",
-            "description": "Unique identifier of the streak rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tagId",
-            "in": "path",
-            "description": "Unique identifier of the tag",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "description": "The value to assign to the tag (optional)"
-                  }
-                }
-              }
-            }
-          },
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "description": "Tag assignment created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The value assigned to the tag"
-                    },
-                    "assignedAt": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp when the tag was assigned"
-                    },
-                    "/streak-rules/{streakRuleId}/translations": {
-                      "get": {
-                        "summary": "List streak rule translations",
-                        "deprecated": false,
-                        "description": "Retrieves a list of translations for a specific streak rule",
-                        "tags": [
-                          "StreakRules/Translations"
-                        ],
-                        "parameters": [
-                          {
-                            "name": "streakRuleId",
-                            "in": "path",
-                            "description": "Unique identifier of the streak rule",
-                            "required": true,
-                            "example": "",
-                            "schema": {
-                              "type": "string"
-                            }
-                          }
-                        ],
-                        "responses": {
-                          "200": {
-                            "description": "List of translations retrieved successfully",
-                            "content": {
-                              "application/json": {
-                                "schema": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "lang": {
-                                        "type": "string",
-                                        "description": "Language code (e.g., 'en', 'it', 'fr')"
-                                      },
-                                      "title": {
-                                        "type": "string",
-                                        "description": "Translated title of the streak rule"
-                                      },
-                                      "description": {
-                                        "type": "string",
-                                        "description": "Translated description of the streak rule"
-                                      },
-                                      "content": {
-                                        "type": "object",
-                                        "description": "Additional translated content specific to the streak rule",
-                                        "additionalProperties": true
-                                      }
-                                    },
-                                    "required": [
-                                      "lang",
-                                      "title"
-                                    ]
-                                  }
-                                }
-                              }
-                            },
-                            "headers": {}
-                          },
-                          "401": {
-                            "description": "Unauthorized",
-                            "headers": {}
-                          },
-                          "404": {
-                            "description": "Streak rule not found",
-                            "headers": {}
-                          }
-                        },
-                        "security": [
-                          {
-                            "bearer": []
-                          }
-                        ],
-                        "x-postman-meta": {
-                          "currentHelper": null,
-                          "helperAttributes": null,
-                          "folder": "StreakRules"
-                        }
-                      }
-                    },
-                    "/virtual-currencies/{virtualCurrencyId}/translations": {
-                      "get": {
-                        "summary": "List virtual currency translations",
-                        "deprecated": false,
-                        "description": "Retrieves a list of translations for a specific virtual currency",
-                        "tags": [
-                          "VirtualCurrencies/Translations"
-                        ],
-                        "parameters": [
-                          {
-                            "name": "virtualCurrencyId",
-                            "in": "path",
-                            "description": "Unique identifier of the virtual currency",
-                            "required": true,
-                            "example": "",
-                            "schema": {
-                              "type": "string"
-                            }
-                          }
-                        ],
-                        "responses": {
-                          "200": {
-                            "description": "List of translations retrieved successfully",
-                            "content": {
-                              "application/json": {
-                                "schema": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "lang": {
-                                        "type": "string",
-                                        "description": "Language code (e.g., 'en', 'it', 'fr')"
-                                      },
-                                      "name": {
-                                        "type": "string",
-                                        "description": "Translated name of the virtual currency"
-                                      },
-                                      "description": {
-                                        "type": "string",
-                                        "description": "Translated description of the virtual currency"
-                                      },
-                                      "symbol": {
-                                        "type": "string",
-                                        "description": "Currency symbol for the specified language"
-                                      },
-                                      "content": {
-                                        "type": "object",
-                                        "description": "Additional translated content specific to the virtual currency",
-                                        "additionalProperties": true
-                                      }
-                                    },
-                                    "required": [
-                                      "lang",
-                                      "name"
-                                    ]
-                                  }
-                                }
-                              }
-                            },
-                            "headers": {}
-                          },
-                          "401": {
-                            "description": "Unauthorized",
-                            "headers": {}
-                          },
-                          "404": {
-                            "description": "Virtual currency not found",
-                            "headers": {}
-                          }
-                        },
-                        "security": [
-                          {
-                            "bearer": []
-                          }
-                        ],
-                        "x-postman-meta": {
-                          "currentHelper": null,
-                          "helperAttributes": null,
-                          "folder": "VirtualCurrencies"
-                        }
-                      }
-                    }
-                  },
-                  "required": [
-                    "tagId",
-                    "assignedAt"
-                  ]
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak rule not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakRules"
-        }
-      },
-      "patch": {
-        "summary": "Update streak rule tag assignment",
-        "deprecated": false,
-        "description": "Updates a tag assignment for a specific streak rule",
-        "tags": [
-          "StreakRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakRuleId",
-            "in": "path",
-            "description": "Unique identifier of the streak rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tagId",
-            "in": "path",
-            "description": "Unique identifier of the tag",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "description": "The updated value for the tag"
-                  }
-                }
-              }
-            }
-          },
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "description": "Tag assignment updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "tagId": {
-                      "type": "string",
-                      "description": "Unique identifier of the tag"
-                    },
-                    "value": {
-                      "type": "string",
-                      "description": "The updated value assigned to the tag"
-                    },
-                    "assignedAt": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp when the tag was originally assigned"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp when the tag assignment was last updated"
-                    }
-                  },
-                  "required": [
-                    "tagId",
-                    "assignedAt",
-                    "updatedAt"
-                  ]
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak rule or tag assignment not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakRules"
-        }
-      },
-      "delete": {
-        "summary": "Delete streak rule tag assignment",
-        "deprecated": false,
-        "description": "Deletes a tag assignment for a specific streak rule",
-        "tags": [
-          "StreakRules/Tags"
-        ],
-        "parameters": [
-          {
-            "name": "streakRuleId",
-            "in": "path",
-            "description": "Unique identifier of the streak rule",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tagId",
-            "in": "path",
-            "description": "Unique identifier of the tag",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Tag assignment deleted successfully",
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Streak rule or tag assignment not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "StreakRules"
         }
       }
     }
@@ -9513,6 +6712,376 @@
           }
         }
       },
+      "MobilityActivation": {
+        "type": "object",
+        "description": "Mobility tracking activation status for a user",
+        "required": [
+          "status",
+          "provider",
+          "userId",
+          "accountId",
+          "workspaceId",
+          "sourceRegion",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "on",
+              "off"
+            ],
+            "description": "Current activation status of mobility tracking"
+          },
+          "provider": {
+            "type": "string",
+            "description": "Mobility tracking provider identifier"
+          },
+          "userId": {
+            "type": "string",
+            "description": "Unique identifier of the user"
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that owns this activation record"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that contains this activation record"
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where the activation record was created"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the activation record was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the activation record was last updated"
+          }
+        }
+      },
+      "UpdateMobilityActivationRequest": {
+        "type": "object",
+        "description": "Data required to update mobility activation status",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "on",
+              "off"
+            ],
+            "description": "New activation status for mobility tracking"
+          }
+        }
+      },
+      "MobilityMilestone": {
+        "type": "object",
+        "description": "Mobility milestone representing a goal or achievement in sustainable transportation",
+        "required": [
+          "mobilityMilestoneId",
+          "date",
+          "userTimezone",
+          "metric",
+          "target",
+          "transportTypes",
+          "goal",
+          "reached",
+          "redeemed",
+          "accountId",
+          "workspaceId",
+          "sourceRegion",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "mobilityMilestoneId": {
+            "type": "string",
+            "description": "Unique identifier for the mobility milestone"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date for which this milestone applies (ISO date format)"
+          },
+          "userTimezone": {
+            "type": "string",
+            "description": "User's timezone for this milestone"
+          },
+          "metric": {
+            "type": "string",
+            "enum": [
+              "minutes",
+              "km",
+              "co2"
+            ],
+            "description": "The metric being measured for this milestone"
+          },
+          "target": {
+            "type": "string",
+            "enum": [
+              "target0",
+              "target1",
+              "target2",
+              "target3",
+              "target4",
+              "target5",
+              "target6",
+              "target7",
+              "target8",
+              "target9"
+            ],
+            "description": "Target level identifier for this milestone"
+          },
+          "transportTypes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "walk",
+                "bicycle",
+                "tram",
+                "train",
+                "subway",
+                "bus"
+              ]
+            },
+            "description": "List of sustainable transport types that contribute to this milestone"
+          },
+          "goal": {
+            "type": "number",
+            "description": "Target value that needs to be reached for this milestone"
+          },
+          "userAmount": {
+            "type": "number",
+            "description": "Current user progress towards the goal"
+          },
+          "reached": {
+            "type": "boolean",
+            "description": "Whether the milestone has been reached"
+          },
+          "reachedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the milestone was reached"
+          },
+          "reachedAtT": {
+            "type": "integer",
+            "description": "Unix timestamp when the milestone was reached"
+          },
+          "redeemed": {
+            "type": "boolean",
+            "description": "Whether the milestone has been redeemed"
+          },
+          "redeemedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the milestone was redeemed"
+          },
+          "redeemedAtT": {
+            "type": "integer",
+            "description": "Unix timestamp when the milestone was redeemed"
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that owns this milestone"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that contains this milestone"
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where the milestone was created"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the milestone was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the milestone was last updated"
+          }
+        }
+      },
+      "MobilityTracking": {
+        "type": "object",
+        "description": "Mobility tracking data representing a user's movement or stay",
+        "required": [
+          "mobilityTrackingId",
+          "date",
+          "userTimezone",
+          "provider",
+          "status",
+          "misdetectedCompletely",
+          "souspicious",
+          "startsAt",
+          "startsAtTimezone",
+          "endsAt",
+          "endsAtTimezone",
+          "co2Emitted",
+          "co2Avoided",
+          "geometry",
+          "accountId",
+          "workspaceId",
+          "sourceRegion"
+        ],
+        "properties": {
+          "mobilityTrackingId": {
+            "type": "string",
+            "description": "Unique identifier for the mobility tracking record"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of the tracked movement (ISO date format)"
+          },
+          "userTimezone": {
+            "type": "string",
+            "description": "User's timezone for this tracking record"
+          },
+          "provider": {
+            "type": "string",
+            "description": "Mobility tracking provider identifier"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "track",
+              "stay"
+            ],
+            "description": "Type of mobility record - movement track or stationary stay"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "airplane",
+              "bicycle",
+              "bus",
+              "cablecar",
+              "car",
+              "ferry",
+              "light_rail",
+              "other",
+              "regional_train",
+              "subway",
+              "train",
+              "tram",
+              "walk"
+            ],
+            "description": "Type of transportation used (only for track status)"
+          },
+          "length": {
+            "type": "number",
+            "description": "Length of the track in appropriate units (only for track status)"
+          },
+          "misdetectedCompletely": {
+            "type": "boolean",
+            "description": "Whether this tracking record was completely misdetected"
+          },
+          "souspicious": {
+            "type": "boolean",
+            "description": "Whether this tracking record is marked as suspicious"
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start timestamp of the tracked period"
+          },
+          "startsAtTimezone": {
+            "type": "string",
+            "description": "Timezone for the start timestamp"
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End timestamp of the tracked period"
+          },
+          "endsAtTimezone": {
+            "type": "string",
+            "description": "Timezone for the end timestamp"
+          },
+          "co2Emitted": {
+            "type": "number",
+            "description": "Amount of CO2 emitted during this movement"
+          },
+          "co2Avoided": {
+            "type": "number",
+            "description": "Amount of CO2 avoided by choosing sustainable transport"
+          },
+          "geometry": {
+            "type": "string",
+            "description": "Geometric representation of the movement path or location"
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID that owns this tracking record"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace ID that contains this tracking record"
+          },
+          "sourceRegion": {
+            "type": "string",
+            "description": "AWS region where the tracking record was created"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Timestamp when the tracking record was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Timestamp when the tracking record was last updated"
+          }
+        }
+      },
+      "MotionTagStatus": {
+        "type": "object",
+        "description": "Status information for MotionTag integration",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Current status of MotionTag integration"
+          },
+          "userId": {
+            "type": "string",
+            "description": "User identifier for MotionTag integration"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Whether MotionTag integration is currently active"
+          }
+        }
+      },
+      "MotionTagToken": {
+        "type": "object",
+        "description": "Authentication token for MotionTag integration",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Authentication token for MotionTag API"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the token expires"
+          },
+          "userId": {
+            "type": "string",
+            "description": "User identifier associated with this token"
+          }
+        }
+      },
       "Activity": {
         "type": "object",
         "description": "Activity entity representing a task or action that users can complete",
@@ -9582,67 +7151,6 @@
             "type": "string",
             "format": "date-time",
             "description": "Timestamp when the activity was last updated"
-          },
-          "tags": {
-            "type": "array",
-            "description": "Associated tags for categorization and filtering. Only included when 'tags' field is requested.",
-            "items": {
-              "type": "object",
-              "properties": {
-                "tagId": {
-                  "type": "string",
-                  "description": "Unique identifier of the tag"
-                },
-                "priority": {
-                  "type": "integer",
-                  "description": "Priority of the tag assignment",
-                  "default": 0
-                },
-                "createdAt": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Timestamp when the tag was assigned"
-                },
-                "updatedAt": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Timestamp when the tag assignment was last updated"
-                }
-              },
-              "required": ["tagId", "priority", "createdAt", "updatedAt"]
-            }
-          },
-          "translations": {
-            "type": "array",
-            "description": "Available translations for the activity content. Only included when 'translations' field is requested.",
-            "items": {
-              "type": "object",
-              "properties": {
-                "lang": {
-                  "type": "string",
-                  "description": "Language code (e.g., 'en', 'it', 'fr')"
-                },
-                "label": {
-                  "type": "string",
-                  "description": "Translated label/title of the activity"
-                },
-                "description": {
-                  "type": "string",
-                  "description": "Translated description of the activity (optional)"
-                },
-                "createdAt": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Timestamp when the translation was created"
-                },
-                "updatedAt": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Timestamp when the translation was last updated"
-                }
-              },
-              "required": ["lang", "label", "createdAt", "updatedAt"]
-            }
           }
         }
       },
@@ -9852,67 +7360,6 @@
             "type": "string",
             "format": "date-time",
             "description": "Timestamp when the mission was last updated."
-          },
-          "tags": {
-            "type": "array",
-            "description": "Associated tags for categorization and filtering. Only included when 'tags' field is requested.",
-            "items": {
-              "type": "object",
-              "properties": {
-                "tagId": {
-                  "type": "string",
-                  "description": "Unique identifier of the tag"
-                },
-                "priority": {
-                  "type": "integer",
-                  "description": "Priority of the tag assignment",
-                  "default": 0
-                },
-                "createdAt": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Timestamp when the tag was assigned"
-                },
-                "updatedAt": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Timestamp when the tag assignment was last updated"
-                }
-              },
-              "required": ["tagId", "priority", "createdAt", "updatedAt"]
-            }
-          },
-          "translations": {
-            "type": "array",
-            "description": "Available translations for the mission content. Only included when 'translations' field is requested.",
-            "items": {
-              "type": "object",
-              "properties": {
-                "lang": {
-                  "type": "string",
-                  "description": "Language code (e.g., 'en', 'it', 'fr')"
-                },
-                "label": {
-                  "type": "string",
-                  "description": "Translated label/title of the mission"
-                },
-                "description": {
-                  "type": "string",
-                  "description": "Translated description of the mission (optional)"
-                },
-                "createdAt": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Timestamp when the translation was created"
-                },
-                "updatedAt": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Timestamp when the translation was last updated"
-                }
-              },
-              "required": ["lang", "label", "createdAt", "updatedAt"]
-            }
           }
         }
       },
@@ -10858,83 +8305,6 @@
             "type": "string",
             "format": "date-time",
             "description": "Timestamp when the quiz was last updated"
-          },
-          "tags": {
-            "type": "array",
-            "description": "Associated tags for categorization and filtering. Only included when 'tags' field is requested.",
-            "items": {
-              "type": "object",
-              "properties": {
-                "tagId": {
-                  "type": "string",
-                  "description": "Unique identifier of the tag"
-                },
-                "priority": {
-                  "type": "integer",
-                  "description": "Priority of the tag assignment",
-                  "default": 0
-                },
-                "createdAt": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Timestamp when the tag was assigned"
-                },
-                "updatedAt": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Timestamp when the tag assignment was last updated"
-                }
-              },
-              "required": ["tagId", "priority", "createdAt", "updatedAt"]
-            }
-          },
-          "translations": {
-            "type": "array",
-            "description": "Available translations for the quiz content. Only included when 'translations' field is requested.",
-            "items": {
-              "type": "object",
-              "properties": {
-                "lang": {
-                  "type": "string",
-                  "description": "Language code (e.g., 'en', 'it', 'fr')"
-                },
-                "question": {
-                  "type": "string",
-                  "description": "The quiz question in the specified language"
-                },
-                "opt1": {
-                  "type": "string",
-                  "description": "First answer option"
-                },
-                "opt2": {
-                  "type": "string",
-                  "description": "Second answer option"
-                },
-                "opt3": {
-                  "type": "string",
-                  "description": "Third answer option"
-                },
-                "opt4": {
-                  "type": "string",
-                  "description": "Fourth answer option"
-                },
-                "explanation": {
-                  "type": "string",
-                  "description": "Optional explanation for the correct answer"
-                },
-                "createdAt": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Timestamp when the translation was created"
-                },
-                "updatedAt": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Timestamp when the translation was last updated"
-                }
-              },
-              "required": ["lang", "question", "opt1", "opt2", "opt3", "opt4", "createdAt", "updatedAt"]
-            }
           }
         }
       },
@@ -11118,604 +8488,6 @@
             "minimum": 1,
             "maximum": 4,
             "description": "The correct answer (1-4)"
-          }
-        }
-      },
-      "StreakConfiguration": {
-        "type": "object",
-        "description": "Configuration for streak tracking",
-        "required": [
-          "streakConfigurationId",
-          "name",
-          "matchType",
-          "matchEntity",
-          "matchCondition",
-          "origin",
-          "defaultLang",
-          "langs",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "streakConfigurationId": {
-            "type": "string",
-            "description": "Unique identifier for the streak configuration"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the streak configuration"
-          },
-          "description": {
-            "type": "string",
-            "description": "Optional description of the streak configuration"
-          },
-          "matchType": {
-            "type": "string",
-            "enum": ["INSTANCE", "ENTITY", "TAG"],
-            "description": "Type of matching for this streak configuration"
-          },
-          "matchEntity": {
-            "type": "string",
-            "enum": ["Mission", "Activity", "Quiz", "Tag"],
-            "description": "Entity type to match against"
-          },
-          "matchEntityId": {
-            "type": "string",
-            "description": "Specific entity ID to match (required for INSTANCE and TAG match types)"
-          },
-          "matchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "Condition logic for matching"
-          },
-          "origin": {
-            "type": "string",
-            "enum": ["CATALOG", "CUSTOM"],
-            "description": "Origin of the streak configuration"
-          },
-          "streakConfigurationCatalogId": {
-            "type": "string",
-            "description": "Optional catalog ID if imported from catalog"
-          },
-          "syncWithCatalog": {
-            "type": "boolean",
-            "description": "Whether to sync with catalog"
-          },
-          "defaultLang": {
-            "type": "string",
-            "description": "Default language for this configuration"
-          },
-          "langs": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "minItems": 1,
-            "maxItems": 10,
-            "description": "Supported languages"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Creation timestamp"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Last update timestamp"
-          }
-        }
-      },
-      "StreakRule": {
-        "type": "object",
-        "description": "Rule for managing streak behavior and lifecycle",
-        "required": [
-          "streakRuleId",
-          "name",
-          "streakConfigurationId",
-          "usersMatchCondition",
-          "timeframeType",
-          "timeframeTimezoneType",
-          "timeframeStartsAt",
-          "cadence",
-          "freezeEnabled",
-          "state",
-          "origin",
-          "defaultLang",
-          "langs",
-          "createdAt",
-          "updatedAt"
-        ],
-        "properties": {
-          "streakRuleId": {
-            "type": "string",
-            "description": "Unique identifier for the streak rule"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the streak rule"
-          },
-          "description": {
-            "type": "string",
-            "description": "Optional description of the streak rule"
-          },
-          "streakConfigurationId": {
-            "type": "string",
-            "description": "ID of the associated streak configuration"
-          },
-          "usersMatchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "Condition to determine which users this rule applies to"
-          },
-          "timeframeType": {
-            "type": "string",
-            "enum": ["PERMANENT", "RANGE"],
-            "description": "Type of timeframe for the streak rule"
-          },
-          "timeframeTimezoneType": {
-            "type": "string",
-            "enum": ["FIXED", "USER"],
-            "description": "How timezone is determined"
-          },
-          "timeframeTimezone": {
-            "type": "string",
-            "description": "Specific timezone (required when timeframeTimezoneType is FIXED)"
-          },
-          "timeframeStartsAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Start time for the streak rule"
-          },
-          "timeframeEndsAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "End time for the streak rule (required for RANGE timeframe)"
-          },
-          "cadence": {
-            "type": "string",
-            "enum": ["DAY", "WEEK"],
-            "description": "Frequency of streak tracking"
-          },
-          "perfectWeekEnabled": {
-            "type": "boolean",
-            "default": false,
-            "description": "Whether perfect week tracking is enabled"
-          },
-          "perfectMonthEnabled": {
-            "type": "boolean",
-            "default": false,
-            "description": "Whether perfect month tracking is enabled"
-          },
-          "perfectYearEnabled": {
-            "type": "boolean",
-            "default": false,
-            "description": "Whether perfect year tracking is enabled"
-          },
-          "freezeEnabled": {
-            "type": "boolean",
-            "default": true,
-            "description": "Whether freeze functionality is enabled"
-          },
-          "freezeVirtualCurrencyId": {
-            "type": "string",
-            "description": "Virtual currency used for freeze purchases (required when freezeEnabled is true)"
-          },
-          "freezeCostExpression": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "Expression determining freeze cost"
-          },
-          "goalTargets": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "description": "Optional goal targets for streak achievements"
-          },
-          "state": {
-            "type": "string",
-            "enum": ["PENDING", "ACTIVE", "ENDED"],
-            "default": "PENDING",
-            "description": "Current state of the streak rule"
-          },
-          "origin": {
-            "type": "string",
-            "enum": ["CATALOG", "CUSTOM"],
-            "description": "Origin of the streak rule"
-          },
-          "streakRuleCatalogId": {
-            "type": "string",
-            "description": "Optional catalog ID if imported from catalog"
-          },
-          "syncWithCatalog": {
-            "type": "boolean",
-            "description": "Whether to sync with catalog"
-          },
-          "defaultLang": {
-            "type": "string",
-            "description": "Default language for this rule"
-          },
-          "langs": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "minItems": 1,
-            "maxItems": 10,
-            "description": "Supported languages"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Creation timestamp"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Last update timestamp"
-          }
-        }
-      },
-      "CreateStreakConfigurationRequest": {
-        "type": "object",
-        "description": "Request body for creating a streak configuration",
-        "required": [
-          "name",
-          "matchType",
-          "matchEntity",
-          "matchCondition",
-          "defaultLang",
-          "translations"
-        ],
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the streak configuration"
-          },
-          "description": {
-            "type": "string",
-            "description": "Optional description"
-          },
-          "matchType": {
-            "type": "string",
-            "enum": ["INSTANCE", "ENTITY", "TAG"],
-            "description": "Type of matching"
-          },
-          "matchEntity": {
-            "type": "string",
-            "enum": ["Mission", "Activity", "Quiz", "Tag"],
-            "description": "Entity type to match"
-          },
-          "matchEntityId": {
-            "type": "string",
-            "description": "Specific entity ID (required for INSTANCE and TAG)"
-          },
-          "matchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "Matching condition logic"
-          },
-          "defaultLang": {
-            "type": "string",
-            "description": "Default language"
-          },
-          "translations": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": ["lang"],
-              "properties": {
-                "lang": {
-                  "type": "string",
-                  "description": "Language code"
-                }
-              }
-            },
-            "minItems": 1,
-            "maxItems": 10,
-            "description": "Translation objects"
-          }
-        }
-      },
-      "UpdateStreakConfigurationRequest": {
-        "type": "object",
-        "description": "Request body for updating a streak configuration",
-        "required": [
-          "name",
-          "matchType",
-          "matchEntity",
-          "matchCondition",
-          "defaultLang",
-          "translations"
-        ],
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the streak configuration"
-          },
-          "description": {
-            "type": "string",
-            "description": "Optional description"
-          },
-          "matchType": {
-            "type": "string",
-            "enum": ["INSTANCE", "ENTITY", "TAG"],
-            "description": "Type of matching"
-          },
-          "matchEntity": {
-            "type": "string",
-            "enum": ["Mission", "Activity", "Quiz", "Tag"],
-            "description": "Entity type to match"
-          },
-          "matchEntityId": {
-            "type": "string",
-            "description": "Specific entity ID"
-          },
-          "matchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "Matching condition logic"
-          },
-          "syncWithCatalog": {
-            "type": "boolean",
-            "description": "Whether to sync with catalog"
-          },
-          "defaultLang": {
-            "type": "string",
-            "description": "Default language"
-          },
-          "translations": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": ["lang"],
-              "properties": {
-                "lang": {
-                  "type": "string",
-                  "description": "Language code"
-                }
-              }
-            },
-            "minItems": 1,
-            "maxItems": 10,
-            "description": "Translation objects"
-          }
-        }
-      },
-      "CreateStreakRuleRequest": {
-        "type": "object",
-        "description": "Request body for creating a streak rule",
-        "required": [
-          "name",
-          "streakConfigurationId",
-          "usersMatchCondition",
-          "timeframeType",
-          "timeframeTimezoneType",
-          "timeframeStartsAt",
-          "cadence",
-          "defaultLang",
-          "translations"
-        ],
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the streak rule"
-          },
-          "description": {
-            "type": "string",
-            "description": "Optional description"
-          },
-          "streakConfigurationId": {
-            "type": "string",
-            "description": "Associated streak configuration ID"
-          },
-          "usersMatchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "User matching condition"
-          },
-          "timeframeType": {
-            "type": "string",
-            "enum": ["PERMANENT", "RANGE"],
-            "description": "Timeframe type"
-          },
-          "timeframeTimezoneType": {
-            "type": "string",
-            "enum": ["FIXED", "USER"],
-            "description": "Timezone type"
-          },
-          "timeframeTimezone": {
-            "type": "string",
-            "description": "Timezone (required for FIXED type)"
-          },
-          "timeframeStartsAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Start time"
-          },
-          "timeframeEndsAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "End time (required for RANGE)"
-          },
-          "cadence": {
-            "type": "string",
-            "enum": ["DAY", "WEEK"],
-            "description": "Streak cadence"
-          },
-          "perfectWeekEnabled": {
-            "type": "boolean",
-            "default": false,
-            "description": "Enable perfect week tracking"
-          },
-          "perfectMonthEnabled": {
-            "type": "boolean",
-            "default": false,
-            "description": "Enable perfect month tracking"
-          },
-          "perfectYearEnabled": {
-            "type": "boolean",
-            "default": false,
-            "description": "Enable perfect year tracking"
-          },
-          "freezeEnabled": {
-            "type": "boolean",
-            "default": true,
-            "description": "Enable freeze functionality"
-          },
-          "freezeVirtualCurrencyId": {
-            "type": "string",
-            "description": "Virtual currency for freezes"
-          },
-          "freezeCostExpression": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "Freeze cost expression"
-          },
-          "goalTargets": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "description": "Goal targets"
-          },
-          "defaultLang": {
-            "type": "string",
-            "description": "Default language"
-          },
-          "translations": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": ["lang"],
-              "properties": {
-                "lang": {
-                  "type": "string",
-                  "description": "Language code"
-                }
-              }
-            },
-            "minItems": 1,
-            "maxItems": 10,
-            "description": "Translation objects"
-          }
-        }
-      },
-      "UpdateStreakRuleRequest": {
-        "type": "object",
-        "description": "Request body for updating a streak rule",
-        "required": [
-          "name",
-          "streakConfigurationId",
-          "usersMatchCondition",
-          "timeframeType",
-          "timeframeTimezoneType",
-          "timeframeStartsAt",
-          "cadence",
-          "defaultLang",
-          "translations"
-        ],
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the streak rule"
-          },
-          "description": {
-            "type": "string",
-            "description": "Optional description"
-          },
-          "streakConfigurationId": {
-            "type": "string",
-            "description": "Associated streak configuration ID"
-          },
-          "usersMatchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "User matching condition"
-          },
-          "timeframeType": {
-            "type": "string",
-            "enum": ["PERMANENT", "RANGE"],
-            "description": "Timeframe type"
-          },
-          "timeframeTimezoneType": {
-            "type": "string",
-            "enum": ["FIXED", "USER"],
-            "description": "Timezone type"
-          },
-          "timeframeTimezone": {
-            "type": "string",
-            "description": "Timezone (required for FIXED type)"
-          },
-          "timeframeStartsAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Start time"
-          },
-          "timeframeEndsAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "End time (required for RANGE)"
-          },
-          "cadence": {
-            "type": "string",
-            "enum": ["DAY", "WEEK"],
-            "description": "Streak cadence"
-          },
-          "perfectWeekEnabled": {
-            "type": "boolean",
-            "default": false,
-            "description": "Enable perfect week tracking"
-          },
-          "perfectMonthEnabled": {
-            "type": "boolean",
-            "default": false,
-            "description": "Enable perfect month tracking"
-          },
-          "perfectYearEnabled": {
-            "type": "boolean",
-            "default": false,
-            "description": "Enable perfect year tracking"
-          },
-          "freezeEnabled": {
-            "type": "boolean",
-            "default": true,
-            "description": "Enable freeze functionality"
-          },
-          "freezeVirtualCurrencyId": {
-            "type": "string",
-            "description": "Virtual currency for freezes"
-          },
-          "freezeCostExpression": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
-            "description": "Freeze cost expression"
-          },
-          "goalTargets": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "description": "Goal targets"
-          },
-          "syncWithCatalog": {
-            "type": "boolean",
-            "description": "Whether to sync with catalog"
-          },
-          "defaultLang": {
-            "type": "string",
-            "description": "Default language"
-          },
-          "translations": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": ["lang"],
-              "properties": {
-                "lang": {
-                  "type": "string",
-                  "description": "Language code"
-                }
-              }
-            },
-            "minItems": 1,
-            "maxItems": 10,
-            "description": "Translation objects"
           }
         }
       }
