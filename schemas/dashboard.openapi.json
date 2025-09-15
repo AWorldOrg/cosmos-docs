@@ -113,25 +113,19 @@
                       "client_credentials"
                     ],
                     "description": "OAuth2 grant type",
-                    "examples": [
-                      "client_credentials"
-                    ],
+                    
                     "example": "client_credentials"
                   },
                   "client_id": {
                     "type": "string",
                     "description": "Your OAuth2 client ID",
-                    "examples": [
-                      "your_client_id"
-                    ],
+                    
                     "example": "your_client_id"
                   },
                   "client_secret": {
                     "type": "string",
                     "description": "Your OAuth2 client secret",
-                    "examples": [
-                      "your_client_secret"
-                    ],
+                    
                     "example": "your_client_secret"
                   }
                 },
@@ -140,8 +134,7 @@
                   "client_id",
                   "client_secret"
                 ]
-              },
-              "examples": {}
+              }
             }
           }
         },
@@ -160,9 +153,7 @@
                     "token_type": {
                       "type": "string",
                       "description": "Token type",
-                      "examples": [
-                        "Bearer"
-                      ]
+                      "example": "Bearer"
                     },
                     "expires_in": {
                       "type": "integer",
@@ -3626,8 +3617,8 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateMissionRequest"
-              },
-              "examples": {}
+              }
+              
             }
           }
         },
@@ -9894,7 +9885,7 @@
               "AUTO",
               "MANUAL"
             ],
-            "description": "Defines wether the transaction is automatically redeemed or not. If redemptionMode is MANUAL, the transaction will be pending until this transaction (if at credit) or the counterpart transaction (if at debit) is redeemed."
+            "description": "Defines weather the transaction is automatically redeemed or not. If redemptionMode is MANUAL, the transaction will be pending until this transaction (if at credit) or the counterpart transaction (if at debit) is redeemed."
           },
           "virtualTransactionGroupId": {
             "type": "string",
@@ -10021,11 +10012,15 @@
             "description": "Target amount required for mission completion."
           },
           "incrementExpression": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "JSON Logic expression defining how progress is incremented for this assignment. Evaluated against: `{ event }` (where event is the specific entity like Activity, Quiz, or Tag that triggered the evaluation)."
           },
           "targetAmountExpression": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "JSON Logic expression defining the target amount for this assignment. Evaluated against: `{ mission, user? }` (user is optional and only present for INDIVIDUAL missions)."
           },
           "accountId": {
@@ -10167,7 +10162,9 @@
             "description": "Required if missionType is 'GROUP'. The tag ID identifying the target group."
           },
           "usersMatchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Required if missionType is 'INDIVIDUAL'. JSON Logic to filter users. Evaluated against: `{ user }`."
           },
           "missionsPool": {
@@ -10178,7 +10175,9 @@
             "description": "Optional pool of mission IDs from which to select."
           },
           "missionsMatchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "JSON Logic to select missions from the pool or all available missions. Every mission is evaluated singularly. Evaluated against: `{ mission }`."
           },
           "timeframeType": {
@@ -10297,7 +10296,9 @@
             "description": "Required for 'EVENT' assignmentMode. Specific ID of the event entity."
           },
           "eventMatchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Required for 'EVENT' assignmentMode. JSON Logic for event conditions. Evaluated against: `{ event }` (where event is the specific entity like Activity, Quiz, Tag, or User that triggered the evaluation)."
           },
           "accountId": {
@@ -10365,7 +10366,9 @@
             "type": "string"
           },
           "usersMatchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Evaluated against: `{ user }`."
           },
           "missionsPool": {
@@ -10375,7 +10378,9 @@
             }
           },
           "missionsMatchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Evaluated against: `{ mission }`."
           },
           "timeframeType": {
@@ -10458,7 +10463,9 @@
             "type": "string"
           },
           "eventMatchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Evaluated against: `{ event }`."
           }
         }
@@ -11028,7 +11035,9 @@
             "type": "string"
           },
           "eventMatchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Evaluated against: `{ event }`."
           },
           "missionsPool": {
@@ -11105,15 +11114,21 @@
             "description": "Specific entity ID for matching (if applicable)."
           },
           "matchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "JSON Logic expression defining the refining conditions that defines if the matched entity contributes to mission progress. Evaluated against: `{ mission }`."
           },
           "incrementExpression": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "JSON Logic expression defining how progress is incremented."
           },
           "targetAmountExpression": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "JSON Logic expression defining the target amount for mission completion. Evaluated against: `{ mission, user? }` (user is optional and only present for INDIVIDUAL missions)."
           },
           "origin": {
@@ -11342,15 +11357,21 @@
             "description": "Specific entity ID for matching (optional)."
           },
           "matchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Condition for mission progress. Evaluated against: `{ mission }`."
           },
           "incrementExpression": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Expression for progress increment."
           },
           "targetAmountExpression": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Expression for target completion amount. Evaluated against: `{ mission, user? }`."
           },
           "defaultLang": {
@@ -11631,7 +11652,9 @@
             "description": "Identifier of the virtual currency to award."
           },
           "expression": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "JSON Logic expression that calculates the amount of virtual currency to award. Evaluated against: `{ event }` (where event is the specific entity like Activity or Quiz that triggered the evaluation)."
           },
           "redemptionMode": {
@@ -11693,7 +11716,9 @@
             "description": "Specific entity ID this rule applies to (if applicable)"
           },
           "matchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "JSON Logic expression that determines whether the rule applies. Evaluated against: `{ event }` (where event is the specific entity like Activity or Quiz that triggered the evaluation)."
           },
           "applicationMode": {
@@ -11818,7 +11843,9 @@
             "description": "Specific entity ID this rule applies to (if applicable)"
           },
           "matchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "JSON Logic expression that determines whether the rule applies. Evaluated against: `{ event }`."
           },
           "applicationMode": {
@@ -11913,7 +11940,9 @@
             "description": "Updated specific entity ID this rule applies to (if applicable)"
           },
           "matchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Updated JSON Logic expression that determines whether the rule applies. Evaluated against: `{ event }`."
           },
           "applicationMode": {
@@ -12504,7 +12533,9 @@
             "description": "Specific entity ID to match (required for INSTANCE and TAG match types)"
           },
           "matchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Condition logic for matching"
           },
           "origin": {
@@ -12583,7 +12614,9 @@
             "description": "ID of the associated streak configuration"
           },
           "usersMatchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Condition to determine which users this rule applies to"
           },
           "timeframeType": {
@@ -12640,7 +12673,9 @@
             "description": "Virtual currency used for freeze purchases (required when freezeEnabled is true)"
           },
           "freezeCostExpression": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Expression determining freeze cost"
           },
           "goalTargets": {
@@ -12734,7 +12769,9 @@
             "description": "Specific entity ID (required for INSTANCE and TAG)"
           },
           "matchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Matching condition logic"
           },
           "defaultLang": {
@@ -12794,7 +12831,9 @@
             "description": "Specific entity ID"
           },
           "matchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Matching condition logic"
           },
           "syncWithCatalog": {
@@ -12855,7 +12894,9 @@
             "description": "Associated streak configuration ID"
           },
           "usersMatchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "User matching condition"
           },
           "timeframeType": {
@@ -12912,7 +12953,9 @@
             "description": "Virtual currency for freezes"
           },
           "freezeCostExpression": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Freeze cost expression"
           },
           "goalTargets": {
@@ -12973,7 +13016,9 @@
             "description": "Associated streak configuration ID"
           },
           "usersMatchCondition": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "User matching condition"
           },
           "timeframeType": {
@@ -13030,7 +13075,9 @@
             "description": "Virtual currency for freezes"
           },
           "freezeCostExpression": {
-            "$ref": "#/components/schemas/JsonLogicExpression",
+            "allOf": [
+              {"$ref": "#/components/schemas/JsonLogicExpression"}
+            ],
             "description": "Freeze cost expression"
           },
           "goalTargets": {
