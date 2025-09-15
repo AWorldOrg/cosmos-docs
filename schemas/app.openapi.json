@@ -757,112 +757,14 @@
       }
     },
     "/activityLogs": {
-      "put": {
+      "post": {
         "summary": "Create activity log",
         "deprecated": false,
-        "description": "Records a user's activity completion by creating a new activity log entry with an auto-generated ID",
+        "description": "Records a user's activity completion by creating an activity log entry. This endpoint is idempotent to ensure the same activity completion is not recorded multiple times.",
         "tags": [
           "ActivityLogs"
         ],
         "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateActivityLogRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Activity log created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActivityLog"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Invalid input - missing required fields or validation errors",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "description": "Error message describing the validation issue"
-                    },
-                    "errors": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "path": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            },
-                            "description": "Path to the field with error"
-                          },
-                          "message": {
-                            "type": "string",
-                            "description": "Error message"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {}
-          },
-          "404": {
-            "description": "Referenced activity not found",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "x-postman-meta": {
-          "currentHelper": null,
-          "helperAttributes": null,
-          "folder": "ActivityLogs"
-        }
-      }
-    },
-    "/activityLogs/{activityLogId}": {
-      "put": {
-        "summary": "Create/update activity log",
-        "deprecated": false,
-        "description": "Records a user's activity completion by creating or updating an activity log entry with the provided ID. This endpoint is useful for idempotent operations when you need to ensure the same activity completion is not recorded multiple times.",
-        "tags": [
-          "ActivityLogs"
-        ],
-        "parameters": [
-          {
-            "name": "activityLogId",
-            "in": "path",
-            "description": "Unique identifier for the activity log. Must be a nanoid string.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1482,10 +1384,13 @@
         "description": "Data required to create a new activity log entry",
         "required": [
           "activityId",
-          "userId",
-          "completedAt"
+          "userId"
         ],
         "properties": {
+          "activityLogId": {
+            "type": "string",
+            "description": "Optional unique identifier for the activity log entry. Must be a nanoid. If not provided, a new ID will be auto-generated. Not recommended for typical usage."
+          },
           "activityId": {
             "type": "string",
             "description": "Identifier of the activity that was completed. Must match an existing activity in the system.",
