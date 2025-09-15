@@ -19,7 +19,7 @@
       "name": "Activities/Translations"
     },
     {
-      "name": "Mission"
+      "name": "Missions"
     },
     {
       "name": "MissionConfigurations"
@@ -3595,7 +3595,7 @@
         "deprecated": false,
         "description": "Manually assigns a mission to a user or a group. This is typically used for specific cases not covered by mission rules.",
         "tags": [
-          "Mission"
+          "Missions"
         ],
         "parameters": [
           {
@@ -3655,7 +3655,7 @@
         "x-postman-meta": {
           "currentHelper": null,
           "helperAttributes": null,
-          "folder": "Mission"
+          "folder": "Missions"
         }
       }
     },
@@ -9917,7 +9917,7 @@
         "type": "object",
         "description": "Represents the assignment of a mission to a user or a group.",
         "required": [
-          "missionAssignmentId",
+          "missionId",
           "missionType",
           "missionConfigurationId",
           "periodId",
@@ -9930,7 +9930,7 @@
           "targetAmountExpression"
         ],
         "properties": {
-          "missionAssignmentId": {
+          "missionId": {
             "type": "string",
             "description": "Unique identifier for the mission (NanoID)."
           },
@@ -10163,7 +10163,7 @@
             ],
             "description": "Required if missionType is 'INDIVIDUAL'. JSON Logic to filter users. Evaluated against: `{ user }`."
           },
-          "missionsPool": {
+          "missionConfigurationsPool": {
             "type": "array",
             "items": {
               "type": "string"
@@ -10367,7 +10367,7 @@
             ],
             "description": "Evaluated against: `{ user }`."
           },
-          "missionsPool": {
+          "missionConfigurationsPool": {
             "type": "array",
             "items": {
               "type": "string"
@@ -10992,7 +10992,7 @@
           "defaultLang",
           "missionType",
           "assignmentMode",
-          "missionsPool",
+          "missionConfigurationsPool",
           "translations"
         ],
         "properties": {
@@ -11036,7 +11036,7 @@
             ],
             "description": "Evaluated against: `{ event }`."
           },
-          "missionsPool": {
+          "missionConfigurationsPool": {
             "type": "array",
             "items": {
               "type": "string"
