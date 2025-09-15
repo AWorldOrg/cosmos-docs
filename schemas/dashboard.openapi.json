@@ -113,19 +113,16 @@
                       "client_credentials"
                     ],
                     "description": "OAuth2 grant type",
-                    
                     "example": "client_credentials"
                   },
                   "client_id": {
                     "type": "string",
                     "description": "Your OAuth2 client ID",
-                    
                     "example": "your_client_id"
                   },
                   "client_secret": {
                     "type": "string",
                     "description": "Your OAuth2 client secret",
-                    
                     "example": "your_client_secret"
                   }
                 },
@@ -3618,7 +3615,6 @@
               "schema": {
                 "$ref": "#/components/schemas/CreateMissionRequest"
               }
-              
             }
           }
         },
@@ -6018,6 +6014,89 @@
           },
           "409": {
             "description": "The virtual currency may already be published or in a state that prevents publishing.",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "VirtualCurrencies"
+        }
+      }
+    },
+    "/virtual-currencies/{virtualCurrencyId}/translations": {
+      "get": {
+        "summary": "List virtual currency translations",
+        "deprecated": false,
+        "description": "Retrieves a list of translations for a specific virtual currency",
+        "tags": [
+          "VirtualCurrencies/Translations"
+        ],
+        "parameters": [
+          {
+            "name": "virtualCurrencyId",
+            "in": "path",
+            "description": "Unique identifier of the virtual currency",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of translations retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "lang": {
+                        "type": "string",
+                        "description": "Language code (e.g., 'en', 'it', 'fr')"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Translated name of the virtual currency"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Translated description of the virtual currency"
+                      },
+                      "symbol": {
+                        "type": "string",
+                        "description": "Currency symbol for the specified language"
+                      },
+                      "content": {
+                        "type": "object",
+                        "description": "Additional translated content specific to the virtual currency",
+                        "additionalProperties": true
+                      }
+                    },
+                    "required": [
+                      "lang",
+                      "name"
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Virtual currency not found",
             "headers": {}
           }
         },
@@ -9267,168 +9346,6 @@
                       "type": "string",
                       "format": "date-time",
                       "description": "Timestamp when the tag was assigned"
-                    },
-                    "/streak-rules/{streakRuleId}/translations": {
-                      "get": {
-                        "summary": "List streak rule translations",
-                        "deprecated": false,
-                        "description": "Retrieves a list of translations for a specific streak rule",
-                        "tags": [
-                          "StreakRules/Translations"
-                        ],
-                        "parameters": [
-                          {
-                            "name": "streakRuleId",
-                            "in": "path",
-                            "description": "Unique identifier of the streak rule",
-                            "required": true,
-                            "example": "",
-                            "schema": {
-                              "type": "string"
-                            }
-                          }
-                        ],
-                        "responses": {
-                          "200": {
-                            "description": "List of translations retrieved successfully",
-                            "content": {
-                              "application/json": {
-                                "schema": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "lang": {
-                                        "type": "string",
-                                        "description": "Language code (e.g., 'en', 'it', 'fr')"
-                                      },
-                                      "title": {
-                                        "type": "string",
-                                        "description": "Translated title of the streak rule"
-                                      },
-                                      "description": {
-                                        "type": "string",
-                                        "description": "Translated description of the streak rule"
-                                      },
-                                      "content": {
-                                        "type": "object",
-                                        "description": "Additional translated content specific to the streak rule",
-                                        "additionalProperties": true
-                                      }
-                                    },
-                                    "required": [
-                                      "lang",
-                                      "title"
-                                    ]
-                                  }
-                                }
-                              }
-                            },
-                            "headers": {}
-                          },
-                          "401": {
-                            "description": "Unauthorized",
-                            "headers": {}
-                          },
-                          "404": {
-                            "description": "Streak rule not found",
-                            "headers": {}
-                          }
-                        },
-                        "security": [
-                          {
-                            "bearer": []
-                          }
-                        ],
-                        "x-postman-meta": {
-                          "currentHelper": null,
-                          "helperAttributes": null,
-                          "folder": "StreakRules"
-                        }
-                      }
-                    },
-                    "/virtual-currencies/{virtualCurrencyId}/translations": {
-                      "get": {
-                        "summary": "List virtual currency translations",
-                        "deprecated": false,
-                        "description": "Retrieves a list of translations for a specific virtual currency",
-                        "tags": [
-                          "VirtualCurrencies/Translations"
-                        ],
-                        "parameters": [
-                          {
-                            "name": "virtualCurrencyId",
-                            "in": "path",
-                            "description": "Unique identifier of the virtual currency",
-                            "required": true,
-                            "example": "",
-                            "schema": {
-                              "type": "string"
-                            }
-                          }
-                        ],
-                        "responses": {
-                          "200": {
-                            "description": "List of translations retrieved successfully",
-                            "content": {
-                              "application/json": {
-                                "schema": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "lang": {
-                                        "type": "string",
-                                        "description": "Language code (e.g., 'en', 'it', 'fr')"
-                                      },
-                                      "name": {
-                                        "type": "string",
-                                        "description": "Translated name of the virtual currency"
-                                      },
-                                      "description": {
-                                        "type": "string",
-                                        "description": "Translated description of the virtual currency"
-                                      },
-                                      "symbol": {
-                                        "type": "string",
-                                        "description": "Currency symbol for the specified language"
-                                      },
-                                      "content": {
-                                        "type": "object",
-                                        "description": "Additional translated content specific to the virtual currency",
-                                        "additionalProperties": true
-                                      }
-                                    },
-                                    "required": [
-                                      "lang",
-                                      "name"
-                                    ]
-                                  }
-                                }
-                              }
-                            },
-                            "headers": {}
-                          },
-                          "401": {
-                            "description": "Unauthorized",
-                            "headers": {}
-                          },
-                          "404": {
-                            "description": "Virtual currency not found",
-                            "headers": {}
-                          }
-                        },
-                        "security": [
-                          {
-                            "bearer": []
-                          }
-                        ],
-                        "x-postman-meta": {
-                          "currentHelper": null,
-                          "helperAttributes": null,
-                          "folder": "VirtualCurrencies"
-                        }
-                      }
                     }
                   },
                   "required": [
@@ -9620,6 +9537,85 @@
           },
           "404": {
             "description": "Streak rule or tag assignment not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-postman-meta": {
+          "currentHelper": null,
+          "helperAttributes": null,
+          "folder": "StreakRules"
+        }
+      }
+    },
+    "/streak-rules/{streakRuleId}/translations": {
+      "get": {
+        "summary": "List streak rule translations",
+        "deprecated": false,
+        "description": "Retrieves a list of translations for a specific streak rule",
+        "tags": [
+          "StreakRules/Translations"
+        ],
+        "parameters": [
+          {
+            "name": "streakRuleId",
+            "in": "path",
+            "description": "Unique identifier of the streak rule",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of translations retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "lang": {
+                        "type": "string",
+                        "description": "Language code (e.g., 'en', 'it', 'fr')"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "Translated title of the streak rule"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Translated description of the streak rule"
+                      },
+                      "content": {
+                        "type": "object",
+                        "description": "Additional translated content specific to the streak rule",
+                        "additionalProperties": true
+                      }
+                    },
+                    "required": [
+                      "lang",
+                      "title"
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {}
+          },
+          "404": {
+            "description": "Streak rule not found",
             "headers": {}
           }
         },
