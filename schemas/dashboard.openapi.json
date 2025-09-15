@@ -280,6 +280,18 @@
         "tags": [
           "Activities"
         ],
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -404,6 +416,16 @@
             "in": "path",
             "description": "Unique identifier of the activity to update",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -567,6 +589,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -668,6 +700,16 @@
             "in": "path",
             "description": "Unique identifier of the activity",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -936,6 +978,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -1023,6 +1075,16 @@
             "in": "path",
             "description": "Unique identifier of the tag",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -1161,6 +1223,16 @@
             "in": "path",
             "description": "Unique identifier of the activity to publish",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -1372,7 +1444,18 @@
         "tags": [
           "MissionConfigurations"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1493,6 +1576,16 @@
             "in": "path",
             "description": "Unique identifier of the mission configuration to update.",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -1656,6 +1749,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -1757,6 +1860,16 @@
             "in": "path",
             "description": "Unique identifier of the mission configuration",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -2025,6 +2138,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -2112,6 +2235,16 @@
             "in": "path",
             "description": "Unique identifier of the tag",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -2254,6 +2387,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2369,7 +2512,18 @@
         "tags": [
           "MissionRules"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2481,6 +2635,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -2543,6 +2707,16 @@
             "in": "path",
             "description": "Unique identifier of the mission rule to publish.",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -2708,6 +2882,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -2807,6 +2991,16 @@
             "in": "path",
             "description": "Unique identifier of the mission rule",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -3074,6 +3268,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -3170,6 +3374,16 @@
             "in": "path",
             "description": "Unique identifier of the tag",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -3395,7 +3609,18 @@
         "tags": [
           "Mission"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3944,7 +4169,18 @@
         "tags": [
           "RewardRules"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4056,6 +4292,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -4118,6 +4364,16 @@
             "in": "path",
             "description": "Unique identifier of the reward rule to publish",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -4237,7 +4493,18 @@
         "tags": [
           "Tags"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4349,6 +4616,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -4411,6 +4688,16 @@
             "in": "path",
             "description": "Unique identifier of the tag to publish",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -4530,7 +4817,18 @@
         "tags": [
           "Users"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4741,6 +5039,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -4842,6 +5150,16 @@
             "in": "path",
             "description": "Unique identifier of the user",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -5110,6 +5428,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -5197,6 +5525,16 @@
             "in": "path",
             "description": "Unique identifier of the tag",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -5572,6 +5910,16 @@
               "maxLength": 30,
               "pattern": "^\\S+$"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -5640,6 +5988,16 @@
               "minLength": 2,
               "maxLength": 30,
               "pattern": "^\\S+$"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -5843,7 +6201,18 @@
         "tags": [
           "Quizzes"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -5964,6 +6333,16 @@
             "in": "path",
             "description": "Unique identifier of the quiz to update",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -6127,6 +6506,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -6228,6 +6617,16 @@
             "in": "path",
             "description": "Unique identifier of the quiz",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -6496,6 +6895,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -6583,6 +6992,16 @@
             "in": "path",
             "description": "Unique identifier of the tag",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -6721,6 +7140,16 @@
             "in": "path",
             "description": "Unique identifier of the quiz to publish",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -7060,6 +7489,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7122,6 +7561,16 @@
             "in": "path",
             "description": "Unique identifier of the streak configuration to publish",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -7283,6 +7732,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7382,6 +7841,16 @@
             "in": "path",
             "description": "Unique identifier of the streak configuration",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -7649,6 +8118,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7745,6 +8224,16 @@
             "in": "path",
             "description": "Unique identifier of the tag",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -8110,6 +8599,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -8172,6 +8671,16 @@
             "in": "path",
             "description": "Unique identifier of the streak rule to publish",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -8333,6 +8842,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -8432,6 +8951,16 @@
             "in": "path",
             "description": "Unique identifier of the streak rule",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
@@ -8699,6 +9228,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -8957,6 +9496,16 @@
             "in": "path",
             "description": "Unique identifier of the tag",
             "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "description": "Optional (but recommended) idempotency key to prevent duplicate processing of the same request. Any string can be used (e.g., a UUID or a nanoid).",
+            "required": false,
             "example": "",
             "schema": {
               "type": "string"
