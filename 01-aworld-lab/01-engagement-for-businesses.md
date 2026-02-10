@@ -1,4 +1,4 @@
-AWorld Engage is an **API platform** designed to **enhance digital engagement** through flexible and scalable gamification mechanics.
+AWorld Lab is an **API platform** designed to **enhance digital engagement** through flexible and scalable gamification mechanics.
 The platform is an **open and modular solution**, adaptable to various sectors: from loyalty programs and corporate training to education and community engagement.
 This document provides an overview of the system’s capabilities, highlighting its strategic value and integration potential.
 
