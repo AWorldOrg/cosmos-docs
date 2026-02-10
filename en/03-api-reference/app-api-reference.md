@@ -1,14 +1,10 @@
-# App Context API Reference
-
-This section documents the API endpoints available in the App context of the AWorld platform.
-
 ## Introduction
 
 The App context provides APIs for integrating with and extending applications built on the AWorld platform. These APIs are designed for use in end-user applications and client-side interfaces.
 
 ## Authentication
 
-The App context uses the common authentication mechanisms described in [Common API Features](../common-features.md#authentication-basics).
+The App context uses the common authentication mechanisms described in [Common Features](apidog://link/pages/1221000).
 
 ### M2M Implementation Details
 

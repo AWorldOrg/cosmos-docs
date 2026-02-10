@@ -1,14 +1,10 @@
-# Dashboard Context API Reference
-
-This section documents the API endpoints available in the Dashboard context of the AWorld platform.
-
 ## Introduction
 
 The Dashboard context provides APIs for administration and management functions, enabling account owners and administrators to configure and monitor their AWorld environments. These APIs are designed for use in administrative interfaces and management tools.
 
 ## Authentication
 
-The Dashboard context uses the common authentication mechanisms described in [Common API Features](../common-features.md#authentication-basics). Dashboard APIs specifically require principal-level or administrator-level permissions.
+The Dashboard context uses the common authentication mechanisms described in [Common Features](apidog://link/pages/1221000). Dashboard APIs specifically require principal-level or administrator-level permissions.
 
 ### M2M Implementation Details
 

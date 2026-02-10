@@ -1,6 +1,4 @@
-# Common API Features
-
-This page documents common features and behaviors shared across all AWorld API contexts (App, Dashboard, and Portal). Refer to the specific context documentation for context-specific details.
+This page documents common features and behaviors shared across all AWorld API contexts (Consumer/App, Admin/Dashboard, and Portal). Refer to the specific context documentation for context-specific details.
 
 ## Authentication Basics
 
@@ -10,7 +8,7 @@ All AWorld APIs require authentication using a valid access token. Requests must
 Authorization: Bearer YOUR_ACCESS_TOKEN
 ```
 
-For information on obtaining access tokens, see the [Authentication Guide](../guides/authentication.md).
+For information on obtaining access tokens, see the [Authentication](apidog://link/pages/1215379).
 
 ### Custom Claims
 

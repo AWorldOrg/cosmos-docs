@@ -1,5 +1,3 @@
-# Working with Workspaces
-
 This guide explains the concept of workspaces in the AWorld platform and how to effectively manage them.
 
 ## What is a Workspace?
@@ -90,8 +88,3 @@ A typical organization might use the following workspace configuration:
 - **QA Workspace**: For quality assurance testing
 - **Staging Workspace**: For final pre-production verification
 - **Production Workspace**: For the live environment used by customers
-
-## Related Topics
-
-- [Understanding Multi-tenancy](./multi-tenancy.md)
-- [Authentication & Authorization](./authentication.md)

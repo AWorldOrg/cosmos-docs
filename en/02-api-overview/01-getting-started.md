@@ -1,7 +1,3 @@
-# Getting Started with AWorld
-
-This guide will help you quickly set up and begin using the AWorld SaaS platform.
-
 ## Overview
 
 AWorld is a multi-tenant SaaS platform that provides a suite of APIs across three contexts: App, Dashboard, and Portal. This guide will walk you through the initial setup and basic integration steps.
@@ -11,7 +7,7 @@ AWorld is a multi-tenant SaaS platform that provides a suite of APIs across thre
 Before you begin, you'll need:
 
 - A AWorld account (provided by your administrator or created through sign-up)
-- Basic understanding of GraphQL (for API interactions)
+- Basic understanding of REST or GraphQL (for API interactions)
 - Development environment with your preferred language/framework
 
 ## Account and Workspace Setup
@@ -26,7 +22,7 @@ Before you begin, you'll need:
 
 ## Authentication
 
-AWorld uses AWS Cognito with a custom domain for authentication. For a complete guide, see [Authentication & Authorization](./authentication.md).
+AWorld uses AWS Cognito with a custom domain for authentication. For a complete guide, see [Authentication](apidog://link/pages/1215379).
 
 ### Quick Authentication Overview
 
@@ -47,8 +43,8 @@ AWorld uses AWS Cognito with a custom domain for authentication. For a complete 
 
 AWorld provides three API contexts:
 
-- **App Context**: For user-facing functionality within a workspace
-- **Dashboard Context**: For management and observability functionality within a workspace
+- **Consumer / App Context**: For user-facing functionality within a workspace
+- **Admin / Dashboard Context**: For management and observability functionality within a workspace
 - **Portal Context**: For platform-level operations across accounts and workspaces (principals only)
 
 ### Making Your First API Call
@@ -108,13 +104,13 @@ async function submitQuizAnswer(quizId, answer, accessToken) {
 After completing the initial setup, here are some recommended next steps:
 
 1. **Explore API References**:
-   - [App Context API Reference](../api-reference/app/README.md)
-   - [Dashboard Context API Reference](../api-reference/dashboard/README.md)
-   - [Portal Context API Reference](../api-reference/portal/README.md)
+   - [Consumer/App API](apidog://link/folders/4112890)
+   - Dashboard API Reference
+   - Portal API Reference
 
 2. **Learn About Key Concepts**:
-   - [Working with Workspaces](./workspaces.md)
-   - [Understanding Multi-tenancy](./multi-tenancy.md)
+   - [Multi-tenancy](apidog://link/pages/1215383)
+   - [Workspaces](apidog://link/pages/1215382)
 
 3. **Integration Best Practices**:
    - Implement proper error handling for API calls

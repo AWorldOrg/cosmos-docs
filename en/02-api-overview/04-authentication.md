@@ -1,7 +1,3 @@
-# Authentication & Authorization
-
-This guide explains how authentication and authorization work in the AWorld platform.
-
 ## Overview
 
 AWorld uses AWS Cognito with a custom domain for authentication, implementing standard OAuth2 flows. The platform supports both user-centric authentication and machine-to-machine (M2M) authorization through client credentials.
@@ -51,11 +47,11 @@ For M2M interactions, AWorld supports the OAuth2 client credentials flow:
 
 ## Authentication Endpoints
 
-| Endpoint                                     | Description                                        |
-| -------------------------------------------- | -------------------------------------------------- |
+| Endpoint | Description |
+|----------|-------------|
 | `https://auth.aworld.cloud/oauth2/authorize` | Authorization endpoint for initiating OAuth2 flows |
-| `https://auth.aworld.cloud/oauth2/token`     | Token endpoint for obtaining access tokens         |
-| `https://auth.aworld.cloud/oauth2/userInfo`  | User info endpoint for obtaining user details      |
+| `https://auth.aworld.cloud/oauth2/token` | Token endpoint for obtaining access tokens |
+| `https://auth.aworld.cloud/oauth2/userInfo` | User info endpoint for obtaining user details |
 
 ## User Contexts and Access Levels
 
@@ -75,7 +71,7 @@ For web applications, we recommend using the authorization code flow with PKCE (
 
 ```javascript
 // Example authorization request
-const authorizationUrl = new URL('https://auth.AWorld.example.com/oauth2/authorize');
+const authorizationUrl = new URL('https://auth.aworld.example.com/oauth2/authorize');
 authorizationUrl.searchParams.append('client_id', 'YOUR_CLIENT_ID');
 authorizationUrl.searchParams.append('response_type', 'code');
 authorizationUrl.searchParams.append('redirect_uri', 'YOUR_REDIRECT_URI');

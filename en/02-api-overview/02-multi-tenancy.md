@@ -1,7 +1,3 @@
-# Understanding Multi-tenancy
-
-This guide explains the multi-tenant architecture of the AWorld platform and how it enables secure resource isolation and scalable service delivery.
-
 ## What is Multi-tenancy?
 
 Multi-tenancy is a software architecture in which a single instance of software serves multiple customers or "tenants." Each tenant's data and configuration remains isolated from other tenants, even though they share the underlying infrastructure and application code.
@@ -57,7 +53,7 @@ All API calls are authenticated and scoped to the appropriate tenant context:
 
 ## Benefits of Multi-tenancy
 
-The multi-tenant architecture of AWorld provides several advantages:
+The multi-tenant architecture of Cosmos provides several advantages:
 
 ### For Service Providers
 
@@ -84,7 +80,7 @@ While multi-tenancy offers many benefits, it also requires careful security impl
 
 ## Multi-tenant API Usage
 
-When interacting with AWorld APIs, the tenant context is established through authentication:
+When interacting with Cosmos APIs, the tenant context is established through authentication:
 
 1. **User Authentication**: Upon login, the user is associated with a specific workspace and account
 2. **Access Token**: The JWT token contains claims about the user's identity and permitted tenant scopes
@@ -105,8 +101,3 @@ When interacting with AWorld APIs, the tenant context is established through aut
 - Review user access permissions regularly
 - Use separate workspaces for development and production
 - Follow the principle of least privilege when assigning roles
-
-## Related Topics
-
-- [Working with Workspaces](./workspaces.md)
-- [Authentication & Authorization](./authentication.md)
