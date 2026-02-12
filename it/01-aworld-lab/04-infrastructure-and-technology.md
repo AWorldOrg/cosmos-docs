@@ -1,20 +1,20 @@
-## 4. Architettura del Prodotto AWorld
+## 4. Architettura del Prodotto AWorld Lab
 
-L'architettura del prodotto AWorld e stata progettata per garantire **scalabilita, sicurezza e modularita**, consentendo alle aziende di integrare la *gamification* nei propri ecosistemi digitali con la massima flessibilita. Il sistema si basa su un'infrastruttura completamente **cloud-native e serverless**, riducendo la complessita operativa e ottimizzando i costi di gestione.
+L'architettura di AWorld Lab garantisce **scalabilità, sicurezza e modularità**, consentendo alle aziende di integrare la *gamification* nei propri ecosistemi digitali con la massima flessibilità. Il sistema si basa su un'infrastruttura completamente **cloud-native e serverless**, riducendo la complessità operativa e ottimizzando i costi di gestione.
 
-Grazie a un **modello API-first**, il sistema consente una gestione sicura e flessibile delle proprie funzionalita, mentre l'**architettura multi-tenant** garantisce un'efficace segregazione dei dati tra i clienti, assicurando che ogni organizzazione abbia accesso esclusivo ai propri dati e configurazioni.
+Attraverso il suo **modello API-first**, AWorld Lab offre una gestione sicura e flessibile delle proprie funzionalità, mentre l'**architettura multi-tenant** garantisce un'efficace segregazione dei dati tra i clienti, assicurando che ogni organizzazione abbia accesso esclusivo ai propri dati e configurazioni.
 
-Questa combinazione di tecnologie consente ad AWorld di offrire una **piattaforma altamente performante e affidabile**, adattabile a un'ampia gamma di casi d'uso e in grado di supportare grandi volumi di utenti senza compromettere la qualita del servizio.
+Questa combinazione di tecnologie consente di offrire una **piattaforma altamente performante e affidabile**, adattabile a un'ampia gamma di casi d'uso e in grado di supportare grandi volumi di utenti senza compromettere la qualità del servizio.
 
-L'infrastruttura di AWorld e interamente **serverless** e sfrutta i servizi AWS per garantire affidabilita, scalabilita automatica e resilienza.
+L'infrastruttura di AWorld Lab è interamente **serverless** e sfrutta i servizi AWS per garantire affidabilità, scalabilità automatica e resilienza.
 
 ### 4.1 Scalabilita e Resilienza con l'Infrastruttura Cloud-Native di AWS
 
-Grazie alla sua **architettura cloud-native su AWS**, AWorld scala automaticamente con il traffico, garantendo prestazioni elevate senza interruzioni. L'approccio serverless elimina il provisioning manuale, ottimizzando i costi e la gestione operativa.
+Grazie alla sua **architettura cloud-native su AWS**, AWorld Lab scala automaticamente con il traffico, garantendo prestazioni elevate senza interruzioni. L'approccio serverless elimina il provisioning manuale, ottimizzando i costi e la gestione operativa.
 
 Il sistema integra **AWS Lambda e API Gateway**, che lavorano insieme per fornire un'elaborazione serverless efficiente e una gestione ottimale delle richieste API. Questa combinazione consente alla piattaforma di gestire elevati volumi di traffico senza la necessita di allocazione statica delle risorse, riducendo i costi operativi.
 
-Per la gestione dei dati, AWorld utilizza **Amazon DynamoDB**, un database **NoSQL** altamente scalabile progettato per fornire prestazioni rapide e affidabili, anche con grandi volumi di dati. Le strutture delle tabelle sono progettate per garantire un accesso sicuro e segmentato, limitato dai permessi definiti per ciascun tenant, assicurando una rigorosa segregazione dei dati.
+Per la gestione dei dati, AWorld Lab utilizza **Amazon DynamoDB**, un database **NoSQL** altamente scalabile progettato per fornire prestazioni rapide e affidabili, anche con grandi volumi di dati. Le strutture delle tabelle sono progettate per garantire un accesso sicuro e segmentato, limitato dai permessi definiti per ciascun tenant, assicurando una rigorosa segregazione dei dati.
 
 In termini di disponibilita e resilienza, l'infrastruttura e distribuita su piu **regioni AWS**, adottando strategie di **disaster recovery e bilanciamento geografico del traffico**. Questa configurazione mantiene il servizio operativo anche in caso di guasto in una specifica regione, garantendo un'esperienza utente fluida indipendentemente dalla posizione geografica.
 
@@ -36,15 +36,15 @@ Questa strategia garantisce la **massima sicurezza dei dati** e la conformita al
 
 ### 4.3 Struttura delle API e Gestione delle Richieste
 
-L'architettura API-first di AWorld consente una facile integrazione delle funzionalita di *gamification* in qualsiasi ecosistema digitale, adattando le funzionalita alle esigenze aziendali specifiche senza modifiche infrastrutturali. Ogni API e progettata per essere efficiente, sicura e compatibile con diversi ambienti, offrendo la massima flessibilita di implementazione.
+L'architettura API-first di AWorld Lab consente una facile integrazione delle funzionalita di *gamification* in qualsiasi ecosistema digitale, adattando le funzionalita alle esigenze aziendali specifiche senza modifiche infrastrutturali. Ogni API e progettata per essere efficiente, sicura e compatibile con diversi ambienti, offrendo la massima flessibilita di implementazione.
 
 #### 4.3.1 Modello API-First
 
-Le API di AWorld consentono ai clienti di gestire tutti gli aspetti della *gamification* — dalla gestione degli utenti al tracciamento dei progressi. Il sistema supporta la **creazione, gestione e autorizzazione degli utenti** tramite integrazione diretta con OAuth2 e AWS Cognito. Endpoint dedicati consentono il tracciamento di missioni, progressi, classifiche e ricompense, fornendo il pieno controllo sulla logica di engagement. L'architettura si adatta a un'ampia gamma di scenari applicativi, consentendo un'**integrazione flessibile e personalizzata**.
+Le API di AWorld Lab consentono ai clienti di gestire tutti gli aspetti della *gamification* — dalla gestione degli utenti al tracciamento dei progressi. Il sistema supporta la **creazione, gestione e autorizzazione degli utenti** tramite integrazione diretta con OAuth2 e AWS Cognito. Endpoint dedicati consentono il tracciamento di missioni, progressi, classifiche e ricompense, fornendo il pieno controllo sulla logica di engagement. L'architettura si adatta a un'ampia gamma di scenari applicativi, consentendo un'**integrazione flessibile e personalizzata**.
 
 Per ottimizzare l'efficienza delle richieste, le API sono costruite utilizzando **GraphQL**, che consente ai clienti di richiedere **solo i dati di cui hanno effettivamente bisogno**, riducendo il carico di rete e migliorando le prestazioni. Rispetto ai modelli REST tradizionali, GraphQL consente di **recuperare piu risorse in una singola richiesta**, evitando chiamate ridondanti e migliorando l'efficienza delle risorse.
 
-Il sistema supporta due principali modelli di interazione API: **Client-to-Server (C2S)** e **Server-to-Server (S2S)**. Nel modello **C2S**, i client chiamano direttamente le API per recuperare dati e aggiornare lo stato delle missioni o delle classifiche. Nel modello **S2S**, i sistemi backend delle organizzazioni clienti si integrano con AWorld per un'automazione completa, senza intervento diretto dell'utente. La **gestione dei JWT** garantisce che ogni richiesta sia autenticata e autorizzata in base ai permessi del tenant o del workspace corrispondente.
+Il sistema supporta due principali modelli di interazione API: **Client-to-Server (C2S)** e **Server-to-Server (S2S)**. Nel modello **C2S**, i client chiamano direttamente le API per recuperare dati e aggiornare lo stato delle missioni o delle classifiche. Nel modello **S2S**, i sistemi backend delle organizzazioni clienti si integrano con AWorld Lab per un'automazione completa, senza intervento diretto dell'utente. La **gestione dei JWT** garantisce che ogni richiesta sia autenticata e autorizzata in base ai permessi del tenant o del workspace corrispondente.
 
 #### 4.3.2 Sicurezza e Autorizzazione delle API
 
@@ -58,19 +58,19 @@ Queste misure forniscono un **elevato livello di sicurezza**, garantendo che tut
 
 #### 4.3.3 Ottimizzazione delle Prestazioni e Gestione del Traffico
 
-Per garantire prestazioni elevate su larga scala, AWorld implementa strategie avanzate per l'ottimizzazione del traffico e delle richieste API. Un elemento chiave e **Amazon ElastiCache (Redis)**, utilizzato per ridurre il carico sulle API e migliorare i tempi di risposta per le richieste frequenti, aumentando l'efficienza del sistema.
+Per garantire prestazioni elevate su larga scala, AWorld Lab implementa strategie avanzate per l'ottimizzazione del traffico e delle richieste API. Un elemento chiave e **Amazon ElastiCache (Redis)**, utilizzato per ridurre il carico sulle API e migliorare i tempi di risposta per le richieste frequenti, aumentando l'efficienza del sistema.
 
 Parallelamente, la piattaforma applica **meccanismi di rate limiting e protezione dagli abusi**, con politiche di throttling per prevenire il sovraccarico e mitigare i rischi di DDoS. Questo garantisce una distribuzione equa delle risorse e prestazioni costanti anche sotto carichi elevati.
 
 Un ulteriore livello di ottimizzazione e il **load balancing multi-regione**, che instrada dinamicamente le richieste API verso la regione piu vicina. Questo riduce al minimo la latenza e migliora l'esperienza utente garantendo tempi di risposta piu rapidi.
 
-AWorld combina **AWS Route 53** per il load balancing DNS con una gestione dinamica del traffico API per assicurare che le richieste vengano instradate verso la regione piu vicina. Unitamente al **rate limiting e al throttling a livello di tenant**, questo impedisce la monopolizzazione delle risorse e garantisce un accesso equo a tutti i clienti.
+AWorld Lab combina **AWS Route 53** per il load balancing DNS con una gestione dinamica del traffico API per assicurare che le richieste vengano instradate verso la regione piu vicina. Unitamente al **rate limiting e al throttling a livello di tenant**, questo impedisce la monopolizzazione delle risorse e garantisce un accesso equo a tutti i clienti.
 
 Queste strategie offrono un'esperienza reattiva e fluida, minimizzando la latenza e garantendo la scalabilita per supportare la crescita degli utenti e delle operazioni.
 
 ### 4.4 Gestione dei Dati e Conformita alla Privacy
 
-AWorld adotta un approccio **privacy by design e by default**, assicurando che i dati degli utenti siano gestiti in piena conformita con le normative globali come il **GDPR**. Per proteggere le informazioni, la piattaforma applica tecniche di crittografia avanzate — sia a riposo che in transito — utilizzando algoritmi sicuri per prevenire accessi non autorizzati o violazioni dei dati.
+AWorld Lab adotta un approccio **privacy by design e by default**, assicurando che i dati degli utenti siano gestiti in piena conformita con le normative globali come il **GDPR**. Per proteggere le informazioni, la piattaforma applica tecniche di crittografia avanzate — sia a riposo che in transito — utilizzando algoritmi sicuri per prevenire accessi non autorizzati o violazioni dei dati.
 
 Per ridurre i rischi di esposizione dei dati, la piattaforma implementa processi di **anonimizzazione e pseudonimizzazione**, minimizzando il volume dei dati personali raccolti e trattati. Inoltre, ogni operazione del sistema e registrata tramite un **log di audit dettagliato**, che consente di tracciare e verificare in modo trasparente tutte le interazioni API.
 
@@ -78,8 +78,8 @@ L'architettura multi-regione fornisce un ulteriore livello di sicurezza e confor
 
 ---
 
-In sintesi, l'architettura di AWorld rappresenta una soluzione robusta e avanzata per la gestione della *gamification* in contesti aziendali e di engagement. Con un'**infrastruttura cloud-native**, un **modello API-first** e un **approccio multi-tenant**, la piattaforma offre un sistema scalabile, sicuro e ad alte prestazioni, adattabile a qualsiasi settore.
+In sintesi, l'architettura di AWorld Lab fornisce una soluzione robusta e avanzata per la gestione della *gamification* in contesti aziendali e di engagement. Con un'**infrastruttura cloud-native**, un **modello API-first** e un **approccio multi-tenant**, la piattaforma offre un sistema scalabile, sicuro e ad alte prestazioni, adattabile a qualsiasi settore.
 
-La sua infrastruttura **completamente serverless** garantisce la **massima scalabilita**, supportando elevati volumi di utenti senza degradazione delle prestazioni. La sicurezza e gestita attraverso un controllo granulare dei permessi, assicurando la **conformita al GDPR e una protezione avanzata dei dati**. L'ottimizzazione della latenza e il caching intelligente migliorano ulteriormente l'**efficienza e la reattivita delle API**, garantendo un'esperienza utente fluida.
+La sua infrastruttura **completamente serverless** garantisce la **massima scalabilità**, supportando elevati volumi di utenti senza degradazione delle prestazioni. La sicurezza è gestita attraverso un controllo granulare dei permessi, assicurando la **conformità al GDPR e una protezione avanzata dei dati**. L'ottimizzazione della latenza e il caching intelligente migliorano ulteriormente l'**efficienza e la reattività delle API**, garantendo un'esperienza utente fluida.
 
-Infine, l'utilizzo di GraphQL come modello di interazione consente un'**integrazione flessibile e personalizzabile**, permettendo ai clienti di adattare senza difficolta le funzionalita di *gamification* ai propri sistemi. Questa combinazione di tecnologie posiziona AWorld come piattaforma leader nel panorama della *gamification*, pronta a supportare organizzazioni di qualsiasi dimensione e settore.
+L'utilizzo di GraphQL come modello di interazione consente un'**integrazione flessibile e personalizzabile**, permettendo ai clienti di adattare senza difficoltà le funzionalità di *gamification* ai propri sistemi. Questa combinazione di tecnologie posiziona AWorld Lab come piattaforma leader nel panorama della *gamification*, pronta a supportare organizzazioni di qualsiasi dimensione e settore.

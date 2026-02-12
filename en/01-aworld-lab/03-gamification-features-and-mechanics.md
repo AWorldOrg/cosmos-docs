@@ -1,4 +1,4 @@
-The AWorld *gamification* infrastructure is designed to offer an **engaging and customizable experience**, allowing companies to integrate game-like dynamics into their digital ecosystems. This layer of the platform, known as the **Gamification Layer**, provides a set of key tools to encourage user interaction, stimulate active participation, and enhance user loyalty.
+AWorld Lab's *gamification* infrastructure is designed to offer an **engaging and customizable experience**, allowing companies to integrate game-like dynamics into their digital ecosystems. This layer of the platform, known as the **Gamification Layer**, provides a set of key tools to encourage user interaction, stimulate active participation, and enhance user loyalty.
 
 The architecture of this layer is based on **modularity and flexibility principles**, enabling clients to select and combine different features based on their needs. The provided APIs allow management of missions, points, leaderboards, notifications, and other elements, making each *gamification* experience highly configurable.
 
@@ -6,21 +6,21 @@ The platform's main features are structured around the following elements:
 
 ## 3.1 Activities and **Missions**
 
-At the core of AWorld's **Gamification Layer** are two key elements: **Activities** and **Missions**. These components work together to create structured, scalable, and customizable *gamification* experiences.
+At the core of AWorld Lab's **Gamification Layer** are two key elements: **Activities** and **Missions**. These components work together to create structured, scalable, and customizable *gamification* experiences.
 
-**Activities** represent the trackable actions performed by users, such as reading content, participating in quizzes, or tracking daily habits. AWorld doesn’t merely log generic events: the platform includes an **Activity Plugin Layer**, which provides clients with a set of pre-configured, tested activities ready to be integrated into their digital ecosystems. However, the platform also allows for the configuration of **custom activities**, enabling clients to track specific events within their own digital touchpoints.
+**Activities** represent the trackable actions performed by users, such as reading content, participating in quizzes, or tracking daily habits. AWorld Lab doesn't merely log generic events: the platform includes an **Activity Plugin Layer**, which provides clients with a set of pre-configured, tested activities ready to be integrated into their digital ecosystems. However, the platform also allows for the configuration of **custom activities**, enabling clients to track specific events within their own digital touchpoints.
 
 **Missions**, on the other hand, turn activities into achievable goals, encouraging users to complete certain actions to earn rewards, badges, or level progression. Thanks to the platform's flexibility, missions can be configured based on thresholds, time rules, or activity combinations, adapting to various use cases from community engagement and corporate training to customer loyalty programs.
 
-This synergy between activities and missions represents the **engine of AWorld’s gamification**, providing a robust and adaptable system to maximize user engagement and support clients’ digital strategies.
+This synergy between activities and missions represents the **engine of AWorld Lab's gamification**, providing a robust and adaptable system to maximize user engagement and support clients’ digital strategies.
 
-The AWorld **Gamification Layer** offers **predefined activity types** designed to engage users and encourage active participation. In addition, the platform allows the integration of custom events, ensuring maximum flexibility for clients.
+AWorld Lab's **Gamification Layer** offers **predefined activity types** designed to engage users and encourage active participation. In addition, the platform allows the integration of custom events, ensuring maximum flexibility for clients.
 
 ### **3.1.1 Stories**
 
 *Stories* are dynamic content, similar to Instagram Stories, used to inform, raise awareness, and guide users through interactive experiences. Each story can be enriched with a short **final quiz** to assess the user’s understanding or engagement level.
 
-AWorld provides a **pre-existing catalog of Stories**, which clients can immediately use or customize to fit their context. Additionally, the platform supports the **creation of custom Stories**, facilitated by AI-assisted generation tools (described in another section of the documentation).
+AWorld Lab provides a **pre-existing catalog of Stories**, which clients can immediately use or customize to fit their context. Additionally, the platform supports the **creation of custom Stories**, facilitated by AI-assisted generation tools (described in another section of the documentation).
 
 ### **3.1.2 Quiz**
 
@@ -37,27 +37,27 @@ This plugin allows users to log **daily actions** related to sustainability goal
 
 ### **3.1.4 Mobility Assistant**
 
-If AWorld is integrated into a mobile app, the client can activate the **Mobility Assistant**, a module that **tracks users' sustainable movements**. This tool automatically detects the use of public transport, bicycles, and walking, incentivizing more sustainable behavior through the *gamification* system.
+If AWorld Lab is integrated into a mobile app, the client can activate the **Mobility Assistant**, a module that **tracks users' sustainable movements**. This tool automatically detects the use of public transport, bicycles, and walking, incentivizing more sustainable behavior through the *gamification* system.
 
 ### **3.1.5 Wellness Assistant**
 
-AWorld supports **physical activity tracking**, allowing users to log their steps and time spent exercising. The system allows for the configuration of **daily goals** to encourage consistent physical activity and tie progress into *gamification* missions. Reaching specific thresholds, such as "10,000 steps per day" or "30 minutes of exercise", can trigger rewards and incentives.
+AWorld Lab supports **physical activity tracking**, allowing users to log their steps and time spent exercising. The system allows for the configuration of **daily goals** to encourage consistent physical activity and tie progress into *gamification* missions. Reaching specific thresholds, such as "10,000 steps per day" or "30 minutes of exercise", can trigger rewards and incentives.
 
 ### **3.1.6 Survey**
 
-AWorld enables clients to engage users through **interactive surveys**, incentivizing responses using *gamification* mechanics. Survey completion can be recognized as a valid activity within a mission, enabling clients to reward participation.
+AWorld Lab enables clients to engage users through **interactive surveys**, incentivizing responses using *gamification* mechanics. Survey completion can be recognized as a valid activity within a mission, enabling clients to reward participation.
 
-Currently, surveys are managed through integration with **Typeform**, offering a scalable and versatile solution. However, the platform does not yet provide a native survey editor within the dashboard. Despite this, AWorld’s infrastructure allows tracking and association of responses with the mission system, making this feature fully integrated into the *gamification* logic.
+Currently, surveys are managed through integration with **Typeform**, offering a scalable and versatile solution. However, the platform does not yet provide a native survey editor within the dashboard. Despite this, AWorld Lab's infrastructure allows tracking and association of responses with the mission system, making this feature fully integrated into the *gamification* logic.
 
 ### **3.1.7 Member Get Member (MGM)**
 
-AWorld offers an advanced **Member Get Member (MGM)** feature, a referral system that goes beyond traditional "Invite a friend" mechanics. This feature introduces a **follower/following logic**, enabling users to invite others and build a network of direct connections.
+AWorld Lab offers an advanced **Member Get Member (MGM)** feature, a referral system that goes beyond traditional "Invite a friend" mechanics. This feature introduces a **follower/following logic**, enabling users to invite others and build a network of direct connections.
 
 This allows clients to activate more sophisticated *gamification* dynamics, rewarding both the inviter and the invitee through configurable incentive mechanisms. Integrating an MGM system directly into the platform enables companies to leverage a powerful organic growth tool without developing custom solutions.
 
 ### **3.1.8 Custom Activities and Third-Party Event Integration**
 
-Beyond standard activities, AWorld allows clients to define **custom activities**, tailored to their specific needs. The system can track a wide variety of events, including:
+Beyond standard activities, AWorld Lab allows clients to define **custom activities**, tailored to their specific needs. The system can track a wide variety of events, including:
 
 - user actions within client digital touchpoints, such as posting content or leaving reviews;
 - interactions with external devices or platforms, like QR code scans;
@@ -69,15 +69,15 @@ For instance, a mission like **"Walk 50,000 steps in a week"** is completed once
 
 Thanks to the platform’s flexibility, missions can be customized for various contexts and goals. Clients can define **static or dynamic completion rules** and combine multiple activities in a single mission to create complex, progressive engagement paths.
 
-Missions and activities work in perfect synergy to form the **core of AWorld’s gamification**. This integration transforms every interaction into an engagement opportunity, offering users a motivating and structured experience. With its modular system, companies can build flexible engagement strategies adaptable to multiple contexts and easily scalable over time.
+Missions and activities work in perfect synergy to form the **core of AWorld Lab's gamification**. This integration transforms every interaction into an engagement opportunity, offering users a motivating and structured experience. With its modular system, companies can build flexible engagement strategies adaptable to multiple contexts and easily scalable over time.
 
 ## 3.2 Points, Leaderboards, Incentives and **Reward System**
 
-The AWorld system of **points, leaderboards, and incentives** allows companies to drive user participation through *gamification* mechanics based on progression and recognition. Users can accumulate points, compete in leaderboards, and receive rewards based on their platform activities.
+AWorld Lab's system of **points, leaderboards, and incentives** allows companies to drive user participation through *gamification* mechanics based on progression and recognition. Users can accumulate points, compete in leaderboards, and receive rewards based on their platform activities.
 
 ### 3.2.1 Multi-Line Point Management
 
-AWorld’s point management system stands out for its ability to create **multiple point lines**, tailoring point accumulation and usage to different client needs. Unlike traditional models with a single progression metric, AWorld enables differentiating point value based on strategic goals, whether for leaderboards, reward systems, or virtual credit wallets.
+AWorld Lab's point management system stands out for its ability to create **multiple point lines**, tailoring point accumulation and usage to different client needs. Unlike traditional models with a single progression metric, AWorld Lab enables differentiating point value based on strategic goals, whether for leaderboards, reward systems, or virtual credit wallets.
 
 Points are assigned based on completed user activities, according to configurable rules. However, the system’s flexibility allows adjusting the value of points depending on the intended outcome. In some scenarios, point accumulation may solely affect leaderboard placement, while in others, it may power a reward and incentive system.
 
@@ -93,9 +93,9 @@ Each client retains full control over how points are generated, distributed, and
 
 ### **3.2.2 Leaderboards: Global and Community Rankings**
 
-AWorld leaderboards turn point accumulation into a motivating competitive experience, letting users compare scores in real time. The system uses a Redis-based stack to ensure **instant updates**, so user rankings are always current.
+AWorld Lab leaderboards turn point accumulation into a motivating competitive experience, letting users compare scores in real time. The system uses a Redis-based stack to ensure **instant updates**, so user rankings are always current.
 
-While the framework allows for extensive customization of leaderboard calculations, AWorld emphasizes segmenting leaderboards by **user type and game context**, offering optimized rankings for three key segments:
+While the framework allows for extensive customization of leaderboard calculations, AWorld Lab emphasizes segmenting leaderboards by **user type and game context**, offering optimized rankings for three key segments:
 
 - **Global leaderboard**: shows user rankings across the entire app, encouraging broad competition.
 - **Community leaderboard**: displays rankings limited to members of a specific community, enabling targeted contests.
@@ -105,9 +105,9 @@ This structure adapts competition to various engagement levels, letting users co
 
 ### **3.2.3 Achievements: Badges, Levels, and Recognition**
 
-The **Achievements** system in AWorld offers a progression layer that rewards users for completing specific activities or reaching significant milestones. Beyond points and leaderboards, achievements provide **visible and progressive recognition**, motivating participation and strengthening user attachment to the platform or community.
+The **Achievements** system in AWorld Lab offers a progression layer that rewards users for completing specific activities or reaching significant milestones. Beyond points and leaderboards, achievements provide **visible and progressive recognition**, motivating participation and strengthening user attachment to the platform or community.
 
-AWorld distinguishes between **badges** and **levels**, which serve different purposes:
+AWorld Lab distinguishes between **badges** and **levels**, which serve different purposes:
 
 - **Badges** are static rewards given when a user hits specific goals, like completing a series of missions, attending an event, or logging a number of actions. Once earned, the badge remains in the user profile as proof of achievement.
 - **Levels**, on the other hand, are configurable and assigned based on **accumulated points** within a specific scoring line. For example, users may level up after earning a set number of experience points, differentiating participants by their engagement level.
@@ -118,7 +118,7 @@ In addition to badges and levels, the **Achievements** system can be configured 
 
 ### **3.2.4 Streaks: Encouraging Consistency**
 
-AWorld’s **Streak** system is designed to reward users’ consistency over time, promoting regular participation in platform activities. Unlike a basic counter for consecutive actions, the *streak system* doesn’t require performing the same action daily—it tracks **how often the user engages with the system** within a given timeframe.
+AWorld Lab's **Streak** system is designed to reward users’ consistency over time, promoting regular participation in platform activities. Unlike a basic counter for consecutive actions, the *streak system* doesn’t require performing the same action daily—it tracks **how often the user engages with the system** within a given timeframe.
 
 Each time a user completes a valid streak-related action, the streak is extended. If the user skips participation for a set period, the streak can be reset or reduced, depending on the configured rules. This encourages continuous involvement without punishing short breaks.
 
@@ -130,7 +130,7 @@ This logic fosters engaging, lasting experiences, turning continued participatio
 
 ### **3.2.5 Communities and Collaborative Structures**
 
-AWorld’s **Communities** feature enables dividing the user base into distinct groups, allowing users to join **thematic or corporate communities** based on their interests and goals. This setup fosters collaboration among members, creating a sense of belonging and encouraging collective achievements through **group missions and shared challenges**.
+AWorld Lab's **Communities** feature enables dividing the user base into distinct groups, allowing users to join **thematic or corporate communities** based on their interests and goals. This setup fosters collaboration among members, creating a sense of belonging and encouraging collective achievements through **group missions and shared challenges**.
 
 Each client can configure **communities** to fit their needs, integrating them into their digital ecosystems to provide a more personalized and engaging experience. The system allows grouping users using different logic—from internal company initiatives and thematic projects to exclusive environments for premium users or specific segments.
 
@@ -140,17 +140,17 @@ Beyond shared activities, the system includes tools for **feedback collection an
 
 Thanks to this flexibility, community management can fit various models. Some companies may build **internal networks** for team collaboration, while others might focus on **public campaigns**, engaging external users in loyalty or awareness programs.
 
-AWorld provides a **versatile framework**, allowing every client to shape their community vision and embed it in their digital environment, enhancing collaboration, competition, and active participation dynamics.
+AWorld Lab provides a **versatile framework**, allowing every client to shape their community vision and embed it in their digital environment, enhancing collaboration, competition, and active participation dynamics.
 
 ### **3.2.6 Progress Tracking and Impact Measurement**
 
-A defining feature of AWorld’s *Gamification Layer* is the ability to **monitor user progress in detail** and measure the impact of completed actions. This is key to maintaining high engagement, giving users a clear view of their results, and encouraging ongoing interaction with the platform.
+A defining feature of AWorld Lab's *Gamification Layer* is the ability to **monitor user progress in detail** and measure the impact of completed actions. This is key to maintaining high engagement, giving users a clear view of their results, and encouraging ongoing interaction with the platform.
 
 Tracking occurs through various tools that follow the user’s evolution at both individual and collective levels. The system logs every completed activity, points earned, mission progress, and achievement unlocks—providing useful data to both users and client organizations.
 
 ### **3.2.7 Personalized Notifications and Progress Updates**
 
-To enhance tracking, AWorld allows sending **personalized notifications** to users, updating them in real time on their progress. Notifications can inform users about mission completions, level-ups, or reward unlocks—boosting satisfaction and prompting further interaction.
+To enhance tracking, AWorld Lab allows sending **personalized notifications** to users, updating them in real time on their progress. Notifications can inform users about mission completions, level-ups, or reward unlocks—boosting satisfaction and prompting further interaction.
 
 Notifications can also be configured to remind users to maintain their streak, suggest new activities, or encourage participation in upcoming missions and challenges. In this way, tracking isn’t passive but becomes a core part of the engagement experience.
 
@@ -160,6 +160,6 @@ Beyond tracking, the gamification system can integrate a **Marketplace** where u
 
 This feature turns user progress into tangible value, encouraging participation and long-term loyalty. Each client can personalize the reward system to align with their strategic goals, making progress tracking not just motivational but a powerful tool for retention and engagement.
 
-The **AWorld Gamification Layer** delivers a **complete set of tools to boost user participation**, built around **missions, leaderboards, rewards, and interactive notifications**. Its **API-first integration** enables companies to implement a tailored, scalable *gamification* system aligned with their platforms.
+The **AWorld Lab Gamification Layer** delivers a **complete set of tools to boost user participation**, built around **missions, leaderboards, rewards, and interactive notifications**. Its **API-first integration** enables companies to implement a tailored, scalable *gamification* system aligned with their platforms.
 
 Through this layer, the platform not only increases **user engagement** but also provides **detailed metrics on the impact of user actions**, turning *gamification* into a powerful growth lever for businesses and organizations.

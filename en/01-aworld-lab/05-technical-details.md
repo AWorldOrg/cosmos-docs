@@ -6,11 +6,11 @@ One of the main advantages is **automatic scalability**, which allows the platfo
 
 From an economic perspective, **cost optimization** is another key aspect. AWS's *pay-per-use* model means resources are billed only when actually used, avoiding waste related to server over-provisioning. In a traditional solution, a company would need to provision extra computing capacity to handle peaks, incurring fixed costs regardless of actual usage. With serverless, this logic is reversed, reducing operational expenses and ensuring a highly efficient infrastructure.
 
-From an **operational management** perspective, serverless infrastructure drastically reduces maintenance needs. Updates, *patching*, and infrastructure-level security are managed directly by AWS, allowing AWorld's technical teams to focus on developing *gamification* features without managing provisioning or manual server monitoring operations.
+From an **operational management** perspective, serverless infrastructure drastically reduces maintenance needs. Updates, *patching*, and infrastructure-level security are managed directly by AWS, allowing AWorld Lab's technical teams to focus on developing *gamification* features without managing provisioning or manual server monitoring operations.
 
 ## **5.2 API Model: GraphQL and REST Support**
 
-AWorld adopts **GraphQL** as its primary interaction model for its APIs, offering customers a more efficient, flexible, and scalable solution. Thanks to its declarative nature, GraphQL allows clients to get exactly the data they need in a single request, reducing bandwidth consumption and improving overall performance.
+AWorld Lab adopts **GraphQL** as its primary interaction model for its APIs, offering customers a more efficient, flexible, and scalable solution. Thanks to its declarative nature, GraphQL allows clients to get exactly the data they need in a single request, reducing bandwidth consumption and improving overall performance.
 
 One of the main advantages of GraphQL is greater **control over returned data**. Developers can request only necessary fields, avoiding overly large responses and thus reducing bandwidth consumption and request processing time.
 
@@ -18,13 +18,13 @@ Another fundamental aspect is the **reduction in the number of API requests**. T
 
 GraphQL also ensures **greater flexibility in API evolution**. New fields and features can be added without impacting existing versions, maintaining compatibility with clients already in use and facilitating the integration of new features without operational disruptions.
 
-However, to facilitate adoption and ensure compatibility with pre-existing infrastructures, AWorld **also offers REST interfaces**, allowing customers to choose the API format best suited to their technology stack. This way, the platform retains all the advantages of GraphQL without sacrificing the ease of use of REST for those who need it.
+However, to facilitate adoption and ensure compatibility with pre-existing infrastructures, AWorld Lab **also offers REST interfaces**, allowing customers to choose the API format best suited to their technology stack. This way, the platform retains all the advantages of GraphQL without sacrificing the ease of use of REST for those who need it.
 
-Thanks to this architecture, companies can integrate AWorld flexibly, creating more dynamic and reactive *gamification* experiences, with an API model designed to adapt to different technological contexts.
+Thanks to this architecture, companies can integrate AWorld Lab flexibly, creating more dynamic and reactive *gamification* experiences, with an API model designed to adapt to different technological contexts.
 
 ## **5.3 Permissions Management and RBAC / ABAC Transition**
 
-Data security and access management are fundamental elements of AWorld's infrastructure, particularly to ensure proper isolation between different clients in the **multi-*tenant*** model. For this reason, the platform implements an access control system based on **RBAC (Role-Based Access Control)**, with the possibility of evolving towards a more flexible and granular model like **ABAC (Attribute-Based Access Control)**.
+Data security and access management are fundamental elements of AWorld Lab's infrastructure, particularly to ensure proper isolation between different clients in the **multi-*tenant*** model. For this reason, the platform implements an access control system based on **RBAC (Role-Based Access Control)**, with the possibility of evolving towards a more flexible and granular model like **ABAC (Attribute-Based Access Control)**.
 
 ### **5.3.1 RBAC: Role-Based Control**
 
@@ -34,7 +34,7 @@ This model is particularly useful in contexts where roles and responsibilities a
 
 ### **5.3.2 ABAC: Attribute-Based Control**
 
-To overcome these limitations, **AWorld supports an ABAC authorization model**, which allows permissions to be determined dynamically based on a combination of user, resource, and operational context attributes.
+To overcome these limitations, **AWorld Lab supports an ABAC authorization model**, which allows permissions to be determined dynamically based on a combination of user, resource, and operational context attributes.
 
 Unlike the RBAC model, which assigns rigid permissions based on roles, ABAC allows for the definition of more flexible rules. For example, a user might only have access to missions they created, while some advanced features might be reserved for users with Premium status. Furthermore, access to certain resources could vary based on contextual conditions, such as time of day or the progress status of a mission.
 
@@ -42,7 +42,7 @@ This transition offers several advantages. On one hand, it makes the system more
 
 ## **5.4 Performance Optimization and Workload Management**
 
-To ensure a smooth and scalable user experience, AWorld implements various performance optimization strategies, including distributed caching, efficient API request management, and load balancing. These mechanisms help improve platform responsiveness, reduce latency, and optimize resource usage.
+To ensure a smooth and scalable user experience, AWorld Lab implements various performance optimization strategies, including distributed caching, efficient API request management, and load balancing. These mechanisms help improve platform responsiveness, reduce latency, and optimize resource usage.
 
 ### **5.4.1 Distributed Caching to Reduce Latency**
 
@@ -54,17 +54,17 @@ Highly dynamic data such as **scores and leaderboards** are not cached, as they 
 
 ### **5.4.2 Load Balancing to Improve Traffic Distribution**
 
-To ensure high availability and system responsiveness, AWorld uses a distributed architecture capable of balancing the load of API requests across multiple instances and data centers. This optimizes resource allocation and routes requests efficiently, reducing response times and improving the overall scalability of the platform.
+To ensure high availability and system responsiveness, AWorld Lab uses a distributed architecture capable of balancing the load of API requests across multiple instances and data centers. This optimizes resource allocation and routes requests efficiently, reducing response times and improving the overall scalability of the platform.
 
 In case of usage peaks or high load on a specific geographical area, the system can automatically distribute traffic across multiple nodes, **ensuring operational continuity and smooth request management even under high concurrency conditions**.
 
 ## **5.5 Disaster Recovery and Business Continuity**
 
-To ensure platform resilience, AWorld adopts a distributed architecture and an advanced **disaster recovery** and **business continuity** strategy, ensuring rapid system restoration in case of critical failures or unforeseen events. This approach reduces the risk of service interruptions, protecting data availability and ensuring a stable user experience even in emergency conditions.
+To ensure platform resilience, AWorld Lab adopts a distributed architecture and an advanced **disaster recovery** and **business continuity** strategy, ensuring rapid system restoration in case of critical failures or unforeseen events. This approach reduces the risk of service interruptions, protecting data availability and ensuring a stable user experience even in emergency conditions.
 
 ### **5.5.1 Multi-Region Replication and Redundancy**
 
-AWorld utilizes an **active-active** configuration across multiple cloud regions, ensuring that data and services are always accessible even if a specific geographical area malfunctions. All key infrastructure components are automatically replicated to ensure operational continuity.
+AWorld Lab utilizes an **active-active** configuration across multiple cloud regions, ensuring that data and services are always accessible even if a specific geographical area malfunctions. All key infrastructure components are automatically replicated to ensure operational continuity.
 
 Application data is distributed across multiple regions through **real-time replicated databases**, avoiding the risk of information loss and ensuring consistency between different instances. Static files are synchronized across multiple data centers to ensure immediate recovery, while APIs and application services are distributed across multiple nodes, ensuring a significant reduction in downtime.
 
@@ -76,17 +76,17 @@ Thanks to real-time replication, critical platform information can be recovered 
 
 ### **5.5.3 Monitoring and Automatic Anomaly Detection**
 
-To ensure high reliability, AWorld implements a **proactive monitoring** system that constantly analyzes usage metrics and API behavior. An infrastructure of **event logging and tracing** allows for the timely detection of any anomalies, preventing potential failures or security threats.
+To ensure high reliability, AWorld Lab implements a **proactive monitoring** system that constantly analyzes usage metrics and API behavior. An infrastructure of **event logging and tracing** allows for the timely detection of any anomalies, preventing potential failures or security threats.
 
 In case of performance degradation or suspicious access attempts, the system automatically activates mitigation measures, such as **failover to an alternative region** or limiting access for potentially malicious users. These strategies help maintain high standards of security and operational continuity, minimizing the impact of any service disruptions.
 
 ## **5.6 Advanced Security Strategies and Data Protection**
 
-Data protection and API security are fundamental elements for ensuring regulatory compliance and protecting users from unauthorized access. AWorld implements a multi-layered security architecture that combines advanced encryption, threat prevention, and timely incident response.
+Data protection and API security are fundamental elements for ensuring regulatory compliance and protecting users from unauthorized access. AWorld Lab implements a multi-layered security architecture that combines advanced encryption, threat prevention, and timely incident response.
 
 ### **5.6.1 Encryption and Protection of Sensitive Information**
 
-All data managed by the platform is encrypted both **in transit** and **at rest**, ensuring maximum protection against unauthorized access or interception. **TLS 1.2/1.3** encryption protects all API communications, preventing *man-in-the-middle* attacks and ensuring the integrity of transmissions. For **encryption key management** and the protection of sensitive data, AWorld uses a centralized system, reducing the risk of exposure and ensuring that all data is automatically encrypted.
+All data managed by the platform is encrypted both **in transit** and **at rest**, ensuring maximum protection against unauthorized access or interception. **TLS 1.2/1.3** encryption protects all API communications, preventing *man-in-the-middle* attacks and ensuring the integrity of transmissions. For **encryption key management** and the protection of sensitive data, AWorld Lab uses a centralized system, reducing the risk of exposure and ensuring that all data is automatically encrypted.
 
 ### **5.6.2 Attack Prevention and API Protection**
 
@@ -96,7 +96,7 @@ Each API is subject to **rate limiting** policies, which limit the number of req
 
 ### **5.6.3 Security Breach Management and Incident Response**
 
-In the event of a security breach, AWorld has an **incident response plan** that provides for structured management of anomalies to minimize impact and quickly restore service. The system automatically identifies and isolates suspicious activities, preventing the spread of potential threats.
+In the event of a security breach, AWorld Lab has an **incident response plan** that provides for structured management of anomalies to minimize impact and quickly restore service. The system automatically identifies and isolates suspicious activities, preventing the spread of potential threats.
 
 Security alerts are forwarded in real-time to platform managers, ensuring timely intervention. Once the incident is resolved, a thorough analysis is conducted to identify the cause of the problem and implement corrective measures, reducing the risk of similar events in the future.
 
