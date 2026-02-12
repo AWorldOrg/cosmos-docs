@@ -1,0 +1,48 @@
+{
+  "branches": {
+    "en": "800258",
+    "it": "1194163"
+  },
+  "docs": [
+    {
+      "doc_id": "1959727",
+      "path": "01-aworld-lab/01-engagement-for-businesses.md",
+      "title": {
+        "en": "Engagement for Businesses and Organizations",
+        "it": "Engagement per le aziende e le organizzazioni"
+      }
+    },
+    {
+      "doc_id": "1215192",
+      "path": "01-aworld-lab/02-api-first-for-gamification.md",
+      "title": {
+        "en": "API-first for Gamification",
+        "it": "API-first per la gamification"
+      }
+    },
+    {
+      "doc_id": "1215194",
+      "path": "01-aworld-lab/03-gamification-features-and-mechanics.md",
+      "title": {
+        "en": "Gamification Features and Mechanics",
+        "it": "Funzionalità e meccaniche di gamification"
+      }
+    },
+    {
+      "doc_id": "1215195",
+      "path": "01-aworld-lab/04-infrastructure-and-technology.md",
+      "title": {
+        "en": "Infrastructure and Technology",
+        "it": "Infrastruttura e tecnologia"
+      }
+    },
+    {
+      "doc_id": "1215196",
+      "path": "01-aworld-lab/05-technical-details.md",
+      "title": {
+        "en": "Technical Details",
+        "it": "Dettagli tecnici"
+      }
+    }
+  ]
+}

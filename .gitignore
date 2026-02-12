@@ -2,5 +2,4 @@
 .vscode
 .DS_Store
 publish.md
-/mapping.json
 .env
