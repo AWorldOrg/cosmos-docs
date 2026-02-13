@@ -8,19 +8,15 @@ From an economic perspective, **cost optimization** is another key aspect. AWS's
 
 From an **operational management** perspective, serverless infrastructure drastically reduces maintenance needs. Updates, *patching*, and infrastructure-level security are managed directly by AWS, allowing AWorld Lab's technical teams to focus on developing *gamification* features without managing provisioning or manual server monitoring operations.
 
-## **5.2 API Model: GraphQL and REST Support**
+## **5.2 API Model: REST with GraphQL-Ready Architecture**
 
-AWorld Lab adopts **GraphQL** as its primary interaction model for its APIs, offering customers a more efficient, flexible, and scalable solution. Thanks to its declarative nature, GraphQL allows clients to get exactly the data they need in a single request, reducing bandwidth consumption and improving overall performance.
+AWorld Lab exposes its APIs through **REST endpoints**, providing a well-established, widely adopted interface model that ensures straightforward integration with any technology stack. REST offers simplicity, broad tooling support, and immediate compatibility with existing client infrastructures.
 
-One of the main advantages of GraphQL is greater **control over returned data**. Developers can request only necessary fields, avoiding overly large responses and thus reducing bandwidth consumption and request processing time.
+The platform's REST APIs follow a consistent structure organized by domain, with clear endpoint naming conventions and standard HTTP methods. Each service exposes its own set of endpoints, enabling clients to interact with specific *gamification* features — such as missions, leaderboards, activities, and rewards — through dedicated and well-documented interfaces.
 
-Another fundamental aspect is the **reduction in the number of API requests**. Thanks to the ability to aggregate data from different sources in a single call, latency is reduced, and client-server communication efficiency is optimized.
+The underlying architecture is **designed to support GraphQL** as an additional API layer in the future. This means that as client needs evolve, AWorld Lab can expose GraphQL interfaces alongside REST, offering developers greater control over returned data, the ability to aggregate information from multiple sources in a single request, and reduced bandwidth consumption.
 
-GraphQL also ensures **greater flexibility in API evolution**. New fields and features can be added without impacting existing versions, maintaining compatibility with clients already in use and facilitating the integration of new features without operational disruptions.
-
-However, to facilitate adoption and ensure compatibility with pre-existing infrastructures, AWorld Lab **also offers REST interfaces**, allowing customers to choose the API format best suited to their technology stack. This way, the platform retains all the advantages of GraphQL without sacrificing the ease of use of REST for those who need it.
-
-Thanks to this architecture, companies can integrate AWorld Lab flexibly, creating more dynamic and reactive *gamification* experiences, with an API model designed to adapt to different technological contexts.
+This approach ensures that companies can integrate AWorld Lab today using familiar REST patterns, with the confidence that the platform's architecture is ready to support more advanced API models as their requirements grow.
 
 ## **5.3 Permissions Management and RBAC / ABAC Transition**
 

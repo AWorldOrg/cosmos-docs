@@ -14,7 +14,7 @@ La base della piattaforma, responsabile della gestione degli utenti, dei permess
 
 ### **2.1.2 Gamification Layer**
 
-Il cuore del sistema di *engagement*, che fornisce le meccaniche di gioco essenziali. Include funzionalità come attività, missioni, progressione di livello, *leaderboard*, sistema a punti, *achievements* e notifiche. Questo *layer* consente alle aziende di personalizzare l'esperienza utente introducendo dinamiche di competizione e ricompensa allineate ai propri obiettivi.
+Il cuore del sistema di *engagement*, che fornisce le meccaniche di gioco essenziali. Include funzionalità come attività, missioni, progressione di livello, *leaderboard*, sistema a punti e *achievements*. Questo *layer* consente alle aziende di personalizzare l'esperienza utente introducendo dinamiche di competizione e ricompensa allineate ai propri obiettivi.
 
 > Il sistema di *gamification* di AWorld Lab si basa su un principio fondamentale: **l'utente deve poter compiere un'azione significativa**, che diventa il motore del suo engagement. Questa azione, chiamata ***Tractable Digital Activity (TDA)***, rappresenta qualsiasi attività tracciabile che può essere utilizzata per attivare le dinamiche di gioco.
 
@@ -26,9 +26,9 @@ Ogni **TDA** alimenta il sistema, contribuendo all'accumulo di punti, al progres
 
 Questo *layer* abilita e fornisce accesso a **modelli di attività predefiniti**, sviluppati e validati attraverso anni di utilizzo sul campo. Sebbene ogni cliente possa definire le proprie **Tractable Digital Activities (TDAs)** personalizzate, AWorld Lab offre un set di **modelli di attività ottimizzati** che possono essere utilizzati immediatamente per accelerare l'implementazione della *gamification*.
 
-Tra questi, le **Stories** coinvolgono gli utenti attraverso contenuti interattivi, mentre i **Quizzes** propongono domande a risposta multipla per stimolare l'apprendimento e l'engagement. Le **Routines** sono sequenze di azioni ricorrenti che gli utenti devono completare nel tempo.
+Tra questi, le **Stories** coinvolgono gli utenti attraverso contenuti interattivi, mentre i **Quizzes** propongono domande a risposta multipla per stimolare l'apprendimento e l'engagement.
 
-Inoltre, il sistema include modelli basati su dati di mobilità e benessere, come i **Mobility Milestones**, che tracciano i comportamenti di mobilità sostenibile, e i **Wellness Milestones**, che monitorano passi e minuti di attività fisica. Questi sono disponibili solo se il punto di contatto dell'utente è un **dispositivo mobile**, consentendo l'integrazione con i sensori dello smartphone o con i dati provenienti da app di monitoraggio della salute.
+Inoltre, il sistema include modelli basati su dati di mobilità, come i **Mobility Milestones**, che tracciano i comportamenti di mobilità sostenibile. Questi sono disponibili solo se il punto di contatto dell'utente è un **dispositivo mobile**, consentendo l'integrazione con i sensori dello smartphone.
 
 Grazie all'*Activity Plugin Layer*, i clienti possono **combinare le proprie attività con le soluzioni collaudate di AWorld Lab**, accelerando il deployment della *gamification* e garantendo al contempo un'esperienza utente efficace e coinvolgente fin dal primo giorno.
 
