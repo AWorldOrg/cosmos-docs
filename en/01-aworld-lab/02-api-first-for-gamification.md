@@ -14,7 +14,7 @@ The platform's foundation, responsible for managing users, permissions, and auth
 
 ### **2.1.2 Gamification Layer**
 
-The core of the *engagement* system, providing the essential game mechanics. It includes features such as activities, missions, level progression, *leaderboards*, points system, *achievements*, and notifications. This layer enables companies to tailor the user experience by introducing competition and reward dynamics aligned with their goals.
+The core of the *engagement* system, providing the essential game mechanics. It includes features such as activities, missions, level progression, *leaderboards*, points system, and *achievements*. This layer enables companies to tailor the user experience by introducing competition and reward dynamics aligned with their goals.
 
 > AWorld Lab's *gamification* system is built on a core principle: **the user must be able to perform a meaningful action**, which becomes the driver of their engagement. This action, called a ***Tractable Digital Activity (TDA)***, represents any trackable activity that can be used to trigger game dynamics.
 
@@ -26,9 +26,9 @@ Each **TDA** fuels the system, contributing to point accumulation, mission progr
 
 This layer enables and provides access to **predefined activity models**, developed and validated through years of real-world usage. While every client can define their own custom **Tractable Digital Activities (TDAs)**, AWorld Lab offers a set of **optimized activity models** that can be used immediately to speed up *gamification* implementation.
 
-Among these, **Stories** engage users through interactive content, while **Quizzes** provide multiple-choice questions to stimulate learning and engagement. **Routines** are recurring action sequences that users must complete over time.
+Among these, **Stories** engage users through interactive content, while **Quizzes** provide multiple-choice questions to stimulate learning and engagement.
 
-Additionally, the system includes models based on mobility and wellness data, such as **Mobility Milestones**, which track sustainable mobility behaviors, and **Wellness Milestones**, which monitor steps and minutes of physical activity. These are only available if the user's touchpoint is a **mobile device**, allowing integration with smartphone sensors or data from health-tracking apps.
+Additionally, the system includes models based on mobility data, such as **Mobility Milestones**, which track sustainable mobility behaviors. These are only available if the user's touchpoint is a **mobile device**, allowing integration with smartphone sensors.
 
 Thanks to the *Activity Plugin Layer*, clients can **combine their own activities with AWorld Lab's proven solutions**, accelerating *gamification* deployment while ensuring an effective and engaging user experience from day one.
 

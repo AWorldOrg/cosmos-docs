@@ -1,6 +1,6 @@
 AWorld Lab's *gamification* infrastructure is designed to offer an **engaging and customizable experience**, allowing companies to integrate game-like dynamics into their digital ecosystems. This layer of the platform, known as the **Gamification Layer**, provides a set of key tools to encourage user interaction, stimulate active participation, and enhance user loyalty.
 
-The architecture of this layer is based on **modularity and flexibility principles**, enabling clients to select and combine different features based on their needs. The provided APIs allow management of missions, points, leaderboards, notifications, and other elements, making each *gamification* experience highly configurable.
+The architecture of this layer is based on **modularity and flexibility principles**, enabling clients to select and combine different features based on their needs. The provided APIs allow management of missions, points, leaderboards, and other elements, making each *gamification* experience highly configurable.
 
 The platform's main features are structured around the following elements:
 
@@ -31,31 +31,11 @@ The **quiz plugin** enables clients to deliver interactive questions to users, e
 
 Thanks to its modularity, the plugin can be integrated into missions, educational journeys, or corporate training programs.
 
-### **3.1.3 Routines and Daily Actions**
-
-This plugin allows users to log **daily actions** related to sustainability goals, well-being, or other client-relevant themes. Through a preconfigured catalog of **tips and suggestions**, users can confirm the completion of specific daily tasks, supporting habit-building and sustained engagement over time.
-
-### **3.1.4 Mobility Assistant**
+### **3.1.3 Mobility Assistant**
 
 If AWorld Lab is integrated into a mobile app, the client can activate the **Mobility Assistant**, a module that **tracks users' sustainable movements**. This tool automatically detects the use of public transport, bicycles, and walking, incentivizing more sustainable behavior through the *gamification* system.
 
-### **3.1.5 Wellness Assistant**
-
-AWorld Lab supports **physical activity tracking**, allowing users to log their steps and time spent exercising. The system allows for the configuration of **daily goals** to encourage consistent physical activity and tie progress into *gamification* missions. Reaching specific thresholds, such as "10,000 steps per day" or "30 minutes of exercise", can trigger rewards and incentives.
-
-### **3.1.6 Survey**
-
-AWorld Lab enables clients to engage users through **interactive surveys**, incentivizing responses using *gamification* mechanics. Survey completion can be recognized as a valid activity within a mission, enabling clients to reward participation.
-
-Currently, surveys are managed through integration with **Typeform**, offering a scalable and versatile solution. However, the platform does not yet provide a native survey editor within the dashboard. Despite this, AWorld Lab's infrastructure allows tracking and association of responses with the mission system, making this feature fully integrated into the *gamification* logic.
-
-### **3.1.7 Member Get Member (MGM)**
-
-AWorld Lab offers an advanced **Member Get Member (MGM)** feature, a referral system that goes beyond traditional "Invite a friend" mechanics. This feature introduces a **follower/following logic**, enabling users to invite others and build a network of direct connections.
-
-This allows clients to activate more sophisticated *gamification* dynamics, rewarding both the inviter and the invitee through configurable incentive mechanisms. Integrating an MGM system directly into the platform enables companies to leverage a powerful organic growth tool without developing custom solutions.
-
-### **3.1.8 Custom Activities and Third-Party Event Integration**
+### **3.1.4 Custom Activities and Third-Party Event Integration**
 
 Beyond standard activities, AWorld Lab allows clients to define **custom activities**, tailored to their specific needs. The system can track a wide variety of events, including:
 
@@ -128,19 +108,19 @@ To enhance the system’s effectiveness, **progressive rewards** can be linked t
 
 This logic fosters engaging, lasting experiences, turning continued participation into a core *gamification* component. It’s not just about rewarding single actions but creating a **virtuous cycle of interaction**, encouraging users to return regularly to maintain progress and earn increasing benefits.
 
-### **3.2.5 Communities and Collaborative Structures**
+### **3.2.5 Groups and User Clusters**
 
-AWorld Lab's **Communities** feature enables dividing the user base into distinct groups, allowing users to join **thematic or corporate communities** based on their interests and goals. This setup fosters collaboration among members, creating a sense of belonging and encouraging collective achievements through **group missions and shared challenges**.
+AWorld Lab provides a **tag-based grouping system** that allows clients to organize users into distinct clusters based on attributes, roles, or organizational criteria. Through **Tags**, companies can segment their user base and deliver targeted *gamification* experiences to specific groups.
 
-Each client can configure **communities** to fit their needs, integrating them into their digital ecosystems to provide a more personalized and engaging experience. The system allows grouping users using different logic—from internal company initiatives and thematic projects to exclusive environments for premium users or specific segments.
+Tags can represent any meaningful classification: departments within a company, project teams, user tiers, geographic regions, or participation levels. The system supports **assigning multiple tags to each user**, enabling flexible and overlapping group structures.
 
-Communities can be used to **measure the collective impact** of user actions, offering a clear view of contributions made by members. The system also supports **collaborative missions**, where users work together toward shared goals, or **internal challenges**, enabling healthy competition within each group.
+This grouping mechanism integrates directly with other *gamification* features:
 
-Beyond shared activities, the system includes tools for **feedback collection and internal communication**. Communities may include **surveys and polls**, helping tailor the user experience and adjust engagement strategies. Each community can also feature a content section for **news, updates, or initiatives**, offering users a central hub to stay informed.
+- **Group-targeted missions**: missions can be assigned to users matching specific tag combinations, enabling differentiated engagement paths for different segments.
+- **Community leaderboards**: leaderboards can be scoped to users within a specific group, fostering competition among peers rather than across the entire user base.
+- **Collective progress tracking**: clients can measure the aggregate impact and participation of tagged user clusters.
 
-Thanks to this flexibility, community management can fit various models. Some companies may build **internal networks** for team collaboration, while others might focus on **public campaigns**, engaging external users in loyalty or awareness programs.
-
-AWorld Lab provides a **versatile framework**, allowing every client to shape their community vision and embed it in their digital environment, enhancing collaboration, competition, and active participation dynamics.
+Thanks to this flexibility, the grouping system adapts to various organizational models—from **internal corporate initiatives** segmented by team or department, to **public programs** targeting specific user categories. Each client retains full control over how groups are defined and how they interact with the broader *gamification* system.
 
 ### **3.2.6 Progress Tracking and Impact Measurement**
 
@@ -148,18 +128,6 @@ A defining feature of AWorld Lab's *Gamification Layer* is the ability to **moni
 
 Tracking occurs through various tools that follow the user’s evolution at both individual and collective levels. The system logs every completed activity, points earned, mission progress, and achievement unlocks—providing useful data to both users and client organizations.
 
-### **3.2.7 Personalized Notifications and Progress Updates**
-
-To enhance tracking, AWorld Lab allows sending **personalized notifications** to users, updating them in real time on their progress. Notifications can inform users about mission completions, level-ups, or reward unlocks—boosting satisfaction and prompting further interaction.
-
-Notifications can also be configured to remind users to maintain their streak, suggest new activities, or encourage participation in upcoming missions and challenges. In this way, tracking isn’t passive but becomes a core part of the engagement experience.
-
-### **3.2.8 Marketplace and Point Redemption**
-
-Beyond tracking, the gamification system can integrate a **Marketplace** where users redeem accumulated points for prizes, perks, or exclusive experiences. The marketplace can be customized to offer various rewards, such as **discounts, vouchers, premium content access, or corporate benefits**.
-
-This feature turns user progress into tangible value, encouraging participation and long-term loyalty. Each client can personalize the reward system to align with their strategic goals, making progress tracking not just motivational but a powerful tool for retention and engagement.
-
-The **AWorld Lab Gamification Layer** delivers a **complete set of tools to boost user participation**, built around **missions, leaderboards, rewards, and interactive notifications**. Its **API-first integration** enables companies to implement a tailored, scalable *gamification* system aligned with their platforms.
+The **AWorld Lab Gamification Layer** delivers a **complete set of tools to boost user participation**, built around **missions, leaderboards, rewards, and progress tracking**. Its **API-first integration** enables companies to implement a tailored, scalable *gamification* system aligned with their platforms.
 
 Through this layer, the platform not only increases **user engagement** but also provides **detailed metrics on the impact of user actions**, turning *gamification* into a powerful growth lever for businesses and organizations.
