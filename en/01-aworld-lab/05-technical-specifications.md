@@ -66,10 +66,10 @@ This document describes the AWorld infrastructure, implemented security measures
 ### Quick thematic links
 - 🔒 [EMAIL_OTP Authentication](#email_otp-passwordless-authentication-end-users)
 - 🤖 [OAuth2 Machine-to-Machine](#oauth2-client-credentials-machine-to-machine)
-- 📊 [Performance Metrics](#guaranteed-performance-metrics)
-- 🌍 [GDPR and Compliance](#gdpr-compliance)
+- 📊 [Performance Metrics](#51-performance-metrics)
+- 🌍 [GDPR and Compliance](#31-gdpr-compliance)
 - 🔐 [AWS Verified Permissions](#aws-verified-permissions)
-- ⚡ [Idempotency](#idempotency-and-operation-resilience)
+- ⚡ [Idempotency](#56-idempotency-and-operation-resilience)
 
 
 ## 1. Cloud infrastructure and architecture

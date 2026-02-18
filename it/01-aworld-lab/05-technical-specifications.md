@@ -64,12 +64,12 @@ Questo documento descrive l'infrastruttura AWorld, le misure di sicurezza implem
 - [6.6 Middleware e errori](#66-middleware-stack-e-gestione-errori)
 
 ### Link rapidi tematici
-- 🔒 [Autenticazione EMAIL_OTP](#autenticazione-email_otp-passwordless)
-- 🤖 [OAuth2 Machine-to-Machine](#integrazioni-machine-to-machine-oauth2)
-- 📊 [Metriche Performance](#metriche-di-performance-garantite)
-- 🌍 [GDPR e Compliance](#conformità-gdpr)
+- 🔒 [Autenticazione EMAIL_OTP](#email_otp-passwordless-utenti-finali)
+- 🤖 [OAuth2 Machine-to-Machine](#oauth2-client-credentials-machine-to-machine)
+- 📊 [Metriche Performance](#51-metriche-di-performance)
+- 🌍 [GDPR e Compliance](#31-conformità-gdpr)
 - 🔐 [AWS Verified Permissions](#aws-verified-permissions)
-- ⚡ [Idempotency](#idempotency-e-resilienza-operazioni)
+- ⚡ [Idempotency](#56-idempotency-e-resilienza-operazioni)
 
 
 ## 1. Infrastruttura cloud e architettura
