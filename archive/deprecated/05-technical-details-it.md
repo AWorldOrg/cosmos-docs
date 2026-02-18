@@ -1,3 +1,13 @@
+> ⚠️ **DOCUMENTO DEPRECATO**
+>
+> Questo documento è stato consolidato nella nuova struttura documentale:
+> - [Architettura del Prodotto](../it/01-aworld-lab/04-product-architecture.md) - Panoramica architetturale di alto livello
+> - [Specifiche Tecniche](../it/01-aworld-lab/05-technical-specifications.md) - Approfondimento tecnico completo
+>
+> Si prega di fare riferimento ai nuovi documenti per informazioni aggiornate.
+
+---
+
 ## **5.1 Vantaggi dell'infrastruttura *Serverless***
 
 L'adozione di un'architettura **serverless** è una scelta strategica che massimizza l'efficienza operativa e riduce i costi infrastrutturali. Con questo modello, le risorse computazionali vengono allocate **dinamicamente in base alla domanda**, eliminando la necessità di gestire manualmente server fisici o macchine virtuali dedicate.

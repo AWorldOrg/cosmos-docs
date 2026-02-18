@@ -1,3 +1,13 @@
+> ⚠️ **DOCUMENTO DEPRECATO**
+>
+> Questo documento è stato consolidato nella nuova struttura documentale:
+> - [Architettura del Prodotto](../it/01-aworld-lab/04-product-architecture.md) - Panoramica architetturale di alto livello
+> - [Specifiche Tecniche](../it/01-aworld-lab/05-technical-specifications.md) - Approfondimento tecnico completo
+>
+> Si prega di fare riferimento ai nuovi documenti per informazioni aggiornate.
+
+---
+
 ## 4. Architettura del prodotto AWorld Lab
 
 L'architettura di AWorld Lab garantisce **scalabilità, sicurezza e modularità**, consentendo alle aziende di integrare la *gamification* nei propri ecosistemi digitali con la massima flessibilità. Il sistema si basa su un'infrastruttura completamente **cloud-native e serverless**, riducendo la complessità operativa e ottimizzando i costi di gestione.
