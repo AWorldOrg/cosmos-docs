@@ -1,4 +1,4 @@
-# Documentazione tecnica della piattaforma AWorld Evolve
+# Documentazione tecnica della piattaforma AWorld
 
 **Architettura, sicurezza, conformità e affidabilità**
 
@@ -10,9 +10,9 @@
 
 ## Introduzione
 
-AWorld Evolve è una soluzione SaaS enterprise per l'engagement aziendale e la formazione continua attraverso meccaniche di gamification. Il prodotto è costruito sulla piattaforma tecnologica AWorld, un'infrastruttura cloud-native API-first completamente serverless, progettata con approccio security-first e conformità GDPR by design.
+AWorld è una soluzione SaaS enterprise per l'engagement aziendale e la formazione continua attraverso meccaniche di gamification. Il prodotto è costruito sulla piattaforma tecnologica AWorld, un'infrastruttura cloud-native API-first completamente serverless, progettata con approccio security-first e conformità GDPR by design.
 
-Questo documento descrive l'infrastruttura AWorld, le misure di sicurezza implementate, la conformità normativa e le garanzie di affidabilità che costituiscono le fondamenta tecnologiche di AWorld Evolve.
+Questo documento descrive l'infrastruttura AWorld, le misure di sicurezza implementate, la conformità normativa e le garanzie di affidabilità che costituiscono le fondamenta tecnologiche di AWorld.
 
 
 ## 1. Infrastruttura cloud e architettura
