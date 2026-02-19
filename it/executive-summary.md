@@ -2,8 +2,6 @@
 
 **Executive Summary - Architettura, sicurezza e affidabilità**
 
----
-
 ## 1. Prodotto e architettura
 
 ### 1.1 Infrastruttura cloud
@@ -87,9 +85,3 @@ La piattaforma garantisce elevati standard di affidabilità con un uptime annual
 Il tasso di errore è mantenuto al di sotto dello 0,5%, garantendo stabilità e prevedibilità del servizio. In caso di anomalie, il sistema di supporto tecnico è strutturato per rispondere tempestivamente: gli incidenti critici (P1) vengono presi in carico entro 4 ore lavorative, mentre le richieste standard (P2) ricevono risposta entro 1 giorno lavorativo.
 
 Il monitoraggio in tempo reale e l'analisi proattiva delle metriche permettono di identificare potenziali problemi prima che impattino gli utenti, assicurando un'esperienza d'uso fluida e affidabile per tutti i clienti enterprise.
-
----
-
-**Versione**: 1.0
-**Data**: Febbraio 2026
-**Società**: AWorld S.r.l. Società Benefit

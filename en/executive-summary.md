@@ -2,8 +2,6 @@
 
 **Executive Summary - Architecture, security, and reliability**
 
----
-
 ## 1. Product and architecture
 
 ### 1.1 Cloud infrastructure
@@ -87,9 +85,3 @@ The platform guarantees high reliability standards with an annual uptime greater
 The error rate is maintained below 0.5%, ensuring service stability and predictability. In case of anomalies, the technical support system is structured to respond promptly: critical incidents (P1) are handled within 4 business hours, while standard requests (P2) receive a response within 1 business day.
 
 Real-time monitoring and proactive metric analysis enable identification of potential problems before they impact users, ensuring a smooth and reliable user experience for all enterprise customers.
-
----
-
-**Version**: 1.0
-**Date**: February 2026
-**Company**: AWorld S.r.l. Società Benefit

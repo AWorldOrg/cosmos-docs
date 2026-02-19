@@ -19,7 +19,7 @@ Questo documento descrive l'infrastruttura AWorld, le misure di sicurezza implem
 
 ### [1. Infrastruttura cloud e architettura](#1-infrastruttura-cloud-e-architettura)
 - [1.1 Panoramica dell'architettura](#11-panoramica-dellarchitettura)
-- [1.2 Stack tecnologico AWS](#12-stack-tecnologico-aws)
+- [1.2 Stack tecnologico](#12-stack-tecnologico)
 - [1.3 Database e persistenza dati](#13-database-e-persistenza-dati)
 - [1.4 Modello multi-tenant](#14-modello-multi-tenant-con-isolamento-dati)
 - [1.5 Distribuzione multi-regione](#15-distribuzione-multi-regione)
@@ -84,9 +84,9 @@ AWorld implementa un'architettura cloud-native completamente serverless su Amazo
 
 L'architettura multi-tenant garantisce rigoroso isolamento dei dati tra clienti, con ogni workspace che opera in completa indipendenza logica pur condividendo l'infrastruttura fisica sottostante per efficienza operativa.
 
-### 1.2 Stack tecnologico AWS
+### 1.2 Stack tecnologico
 
-La piattaforma si basa su servizi AWS gestiti, che garantiscono elevati standard di sicurezza, affidabilità e riduzione delle esigenze di manutenzione infrastrutturale.
+La piattaforma si basa per la maggiorparte su servizi AWS che garantiscono elevati standard di sicurezza, affidabilità e riduzione delle esigenze di manutenzione infrastrutturale.
 
 | Componente | Servizio AWS | Funzione |
 |------------|--------------|----------|
@@ -107,7 +107,7 @@ La piattaforma si basa su servizi AWS gestiti, che garantiscono elevati standard
 
 #### Infrastructure as Code
 
-L'intera infrastruttura è definita come codice (Infrastructure as Code) utilizzando SST (Serverless Stack) versione 3 con backend Pulumi, garantendo:
+L'intera infrastruttura è definita come codice (Infrastructure as Code, IaC) utilizzando SST (Serverless Stack) versione 3 con backend Pulumi, garantendo:
 
 - **Definizione dichiarativa**: Infrastructure scritta in TypeScript per type safety e validazione compile-time
 - **Deployment automatizzato**: Processo di deployment riproducibile e versionato

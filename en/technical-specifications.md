@@ -19,7 +19,7 @@ This document describes the AWorld infrastructure, implemented security measures
 
 ### [1. Cloud infrastructure and architecture](#1-cloud-infrastructure-and-architecture)
 - [1.1 Architecture overview](#11-architecture-overview)
-- [1.2 AWS technology stack](#12-aws-technology-stack)
+- [1.2 Technology stack](#12-technology-stack)
 - [1.3 Database and data persistence](#13-database-and-data-persistence)
 - [1.4 Multi-tenant model](#14-multi-tenant-model-with-data-isolation)
 - [1.5 Multi-region distribution](#15-multi-region-distribution)
@@ -84,9 +84,9 @@ AWorld implements a fully serverless cloud-native architecture on Amazon Web Ser
 
 The multi-tenant architecture guarantees rigorous data isolation between clients, with each workspace operating in complete logical independence while sharing the underlying physical infrastructure for operational efficiency.
 
-### 1.2 AWS technology stack
+### 1.2 Technology stack
 
-The platform is based on AWS managed services, which guarantee high standards of security, reliability, and reduced infrastructure maintenance requirements.
+The platform is based on AWS services, which guarantee high standards of security, reliability, and reduced infrastructure maintenance requirements.
 
 | Component | AWS Service | Function |
 |-----------|-------------|----------|
