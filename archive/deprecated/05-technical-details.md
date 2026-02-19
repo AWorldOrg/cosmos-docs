@@ -1,3 +1,13 @@
+> ⚠️ **DEPRECATED DOCUMENT**
+>
+> This document has been consolidated into the new documentation structure:
+> - [Product Architecture](../en/01-aworld-lab/04-product-architecture.md) - High-level architectural overview
+> - [Technical Specifications](../en/01-aworld-lab/05-technical-specifications.md) - Complete technical deep-dive
+>
+> Please refer to the new documents for updated information.
+
+---
+
 ## **5.1 Benefits of *Serverless* Infrastructure**
 
 Adopting a **serverless** architecture is a strategic choice that maximizes operational efficiency and reduces infrastructure costs. With this model, computational resources are allocated **dynamically based on demand**, eliminating the need to manually manage physical servers or dedicated virtual machines.

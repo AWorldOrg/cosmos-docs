@@ -1,4 +1,4 @@
-# Documentazione tecnica della piattaforma AWorld
+# Piattaforma AWorld
 
 **Architettura, sicurezza, conformità e affidabilità**
 
@@ -15,6 +15,63 @@ AWorld è una soluzione SaaS enterprise per l'engagement aziendale e la formazio
 Questo documento descrive l'infrastruttura AWorld, le misure di sicurezza implementate, la conformità normativa e le garanzie di affidabilità che costituiscono le fondamenta tecnologiche di AWorld.
 
 
+## Indice
+
+### [1. Infrastruttura cloud e architettura](#1-infrastruttura-cloud-e-architettura)
+- [1.1 Panoramica dell'architettura](#11-panoramica-dellarchitettura)
+- [1.2 Stack tecnologico](#12-stack-tecnologico)
+- [1.3 Database e persistenza dati](#13-database-e-persistenza-dati)
+- [1.4 Modello multi-tenant](#14-modello-multi-tenant-con-isolamento-dati)
+- [1.5 Distribuzione multi-regione](#15-distribuzione-multi-regione)
+- [1.6 Vantaggi serverless](#16-vantaggi-dellarchitettura-serverless)
+
+### [2. Sicurezza e cybersecurity](#2-sicurezza-e-cybersecurity)
+- [2.1 Crittografia dei dati](#21-crittografia-dei-dati)
+- [2.2 Protezione delle API](#22-protezione-delle-api)
+- [2.3 Autenticazione](#23-autenticazione)
+- [2.4 Autorizzazione](#24-autorizzazione)
+- [2.5 Struttura token JWT](#25-struttura-token-jwt)
+- [2.6 Gestione incidenti](#26-gestione-incidenti-di-sicurezza)
+
+### [3. Compliance e certificazioni](#3-compliance-e-certificazioni)
+- [3.1 Conformità GDPR](#31-conformità-gdpr)
+- [3.2 Audit e tracciabilità](#32-audit-e-tracciabilità)
+- [3.3 Residenza dei dati](#33-residenza-dei-dati)
+- [3.4 ISMS](#34-sistema-di-gestione-della-sicurezza-isms)
+- [3.5 Conformità contrattuale](#35-conformità-contrattuale)
+
+### [4. Disaster recovery e business continuity](#4-disaster-recovery-e-business-continuity)
+- [4.1 Architettura di resilienza](#41-architettura-di-resilienza)
+- [4.2 Replica dei dati](#42-replica-dei-dati)
+- [4.3 Obiettivi di recupero](#43-obiettivi-di-recupero)
+- [4.4 Monitoraggio proattivo](#44-monitoraggio-proattivo)
+- [4.5 Procedure di ripristino](#45-procedure-di-ripristino)
+
+### [5. Performance e scalabilità](#5-performance-e-scalabilità)
+- [5.1 Metriche di performance](#51-metriche-di-performance)
+- [5.2 Scalabilità automatica](#52-scalabilità-automatica)
+- [5.3 Strategie di caching](#53-strategie-di-caching-e-storage-media)
+- [5.4 Load balancing](#54-load-balancing-e-distribuzione-traffico)
+- [5.5 Capacità e limiti](#55-capacità-e-limiti)
+- [5.6 Idempotency](#56-idempotency-e-resilienza-operazioni)
+
+### [6. Modalità di accesso e integrazione](#6-modalità-di-accesso-e-integrazione)
+- [6.1 API REST](#61-api-rest)
+- [6.2 Pre-provisioning utenti](#62-pre-provisioning-e-accesso-utenti)
+- [6.3 Modalità trigger](#63-modalità-trigger-accesso)
+- [6.4 Futuri protocolli](#64-supporto-futuri-protocolli)
+- [6.5 SSO e SAML](#65-single-sign-on-sso-e-saml)
+- [6.6 Middleware e errori](#66-middleware-stack-e-gestione-errori)
+
+### Link rapidi tematici
+- 🔒 [Autenticazione EMAIL_OTP](#email_otp-passwordless-utenti-finali)
+- 🤖 [OAuth2 Machine-to-Machine](#oauth2-client-credentials-machine-to-machine)
+- 📊 [Metriche Performance](#51-metriche-di-performance)
+- 🌍 [GDPR e Compliance](#31-conformità-gdpr)
+- 🔐 [AWS Verified Permissions](#aws-verified-permissions)
+- ⚡ [Idempotency](#56-idempotency-e-resilienza-operazioni)
+
+
 ## 1. Infrastruttura cloud e architettura
 
 ### 1.1 Panoramica dell'architettura
@@ -27,9 +84,9 @@ AWorld implementa un'architettura cloud-native completamente serverless su Amazo
 
 L'architettura multi-tenant garantisce rigoroso isolamento dei dati tra clienti, con ogni workspace che opera in completa indipendenza logica pur condividendo l'infrastruttura fisica sottostante per efficienza operativa.
 
-### 1.2 Stack tecnologico AWS
+### 1.2 Stack tecnologico
 
-La piattaforma si basa su servizi AWS gestiti, che garantiscono elevati standard di sicurezza, affidabilità e riduzione delle esigenze di manutenzione infrastrutturale.
+La piattaforma si basa per la maggiorparte su servizi AWS che garantiscono elevati standard di sicurezza, affidabilità e riduzione delle esigenze di manutenzione infrastrutturale.
 
 | Componente | Servizio AWS | Funzione |
 |------------|--------------|----------|
@@ -50,7 +107,7 @@ La piattaforma si basa su servizi AWS gestiti, che garantiscono elevati standard
 
 #### Infrastructure as Code
 
-L'intera infrastruttura è definita come codice (Infrastructure as Code) utilizzando SST (Serverless Stack) versione 3 con backend Pulumi, garantendo:
+L'intera infrastruttura è definita come codice (Infrastructure as Code, IaC) utilizzando SST (Serverless Stack) versione 3 con backend Pulumi, garantendo:
 
 - **Definizione dichiarativa**: Infrastructure scritta in TypeScript per type safety e validazione compile-time
 - **Deployment automatizzato**: Processo di deployment riproducibile e versionato
