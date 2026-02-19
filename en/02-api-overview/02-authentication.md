@@ -2,9 +2,7 @@ AWorld Lab uses AWS Cognito with multi-tenant architecture. Each workspace has i
 
 **Auth Domain**: `https://auth.aworld.cloud`
 
-**API Domain**: `https://api.eu-west-1.aworld.cloud`
-
-> **Note**: The API domain will migrate to `https://api.aworld.cloud` on March 1, 2026. Both domains will work during the transition period.
+**API Domain**: `https://api.aworld.cloud`
 
 ## Authentication Methods
 
@@ -123,7 +121,7 @@ async function getM2MToken(clientId, clientSecret) {
 **User Impersonation**: M2M tokens can impersonate users by including `x-user-id` header in API calls:
 
 ```javascript
-const response = await fetch('https://api.eu-west-1.aworld.cloud/app/v1/missions', {
+const response = await fetch('https://api.aworld.cloud/app/v1/missions', {
   headers: {
     'Authorization': `Bearer ${m2mAccessToken}`,
     'x-user-id': userId // Impersonate this user
@@ -317,7 +315,7 @@ async function getValidAccessToken() {
 ## Endpoint Reference
 
 - **Auth Domain**: `https://auth.aworld.cloud`
-- **API Domain**: `https://api.eu-west-1.aworld.cloud` (migrates to `https://api.aworld.cloud` on March 1, 2026)
+- **API Domain**: `https://api.aworld.cloud` (migrates to `https://api.aworld.cloud` on March 1, 2026)
 - **Cognito Region**: `eu-west-1` (Ireland)
 - **Cognito IDP**: `https://cognito-idp.eu-west-1.amazonaws.com/`
 - **Token Endpoint**: `https://auth.aworld.cloud/oauth2/token`

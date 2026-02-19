@@ -28,9 +28,7 @@ Example: `abc_123-xyz`
 ## API Domains
 
 - **Auth**: `https://auth.aworld.cloud`
-- **API**: `https://api.eu-west-1.aworld.cloud`
-
-> **Migration Note**: The API domain will change to `https://api.eu-west-1.aworld.cloud` on March 1, 2026. Both domains will work during the transition.
+- **API**: `https://api.aworld.cloud`
 
 ## Authentication
 
@@ -77,7 +75,7 @@ AWorld Lab exposes two API contexts with different base URLs:
 
 ```javascript
 async function getMissions(accessToken) {
-  const response = await fetch('https://api.eu-west-1.aworld.cloud/app/v1/missions', {
+  const response = await fetch('https://api.aworld.cloud/app/v1/missions', {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${accessToken}`,
@@ -100,7 +98,7 @@ async function getMissions(accessToken) {
 ```javascript
 async function getMission(missionId, accessToken) {
   const response = await fetch(
-    `https://api.eu-west-1.aworld.cloud/app/v1/missions/${missionId}`,
+    `https://api.aworld.cloud/app/v1/missions/${missionId}`,
     {
       headers: {
         'Authorization': `Bearer ${accessToken}`
@@ -124,7 +122,7 @@ async function getMission(missionId, accessToken) {
 ```javascript
 async function submitQuiz(quizId, answers, accessToken) {
   const response = await fetch(
-    `https://api.eu-west-1.aworld.cloud/app/v1/quiz/${quizId}/submit`,
+    `https://api.aworld.cloud/app/v1/quiz/${quizId}/submit`,
     {
       method: 'POST',
       headers: {
@@ -153,7 +151,7 @@ async function submitQuiz(quizId, answers, accessToken) {
 ```javascript
 async function createMission(missionData, accessToken) {
   const response = await fetch(
-    'https://api.eu-west-1.aworld.cloud/dashboard/v1/missions',
+    'https://api.aworld.cloud/dashboard/v1/missions',
     {
       method: 'POST',
       headers: {
@@ -189,7 +187,7 @@ async function getAllMissions(accessToken) {
   const limit = 20;
 
   do {
-    const url = new URL('https://api.eu-west-1.aworld.cloud/app/v1/missions');
+    const url = new URL('https://api.aworld.cloud/app/v1/missions');
     url.searchParams.set('limit', limit);
     if (nextToken) {
       url.searchParams.set('nextToken', nextToken);
@@ -409,7 +407,7 @@ function getWorkspaceFromToken(accessToken) {
 
 **Auth Domain**: `https://auth.aworld.cloud`
 
-**API Domain**: `https://api.eu-west-1.aworld.cloud`
+**API Domain**: `https://api.aworld.cloud`
 _(Migrates to `https://api.aworld.cloud` on March 1, 2026)_
 
 **API Contexts**:

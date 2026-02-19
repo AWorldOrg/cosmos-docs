@@ -1,11 +1,7 @@
 ## API Domains
 
 - **Auth**: `https://auth.aworld.cloud`
-- **API**: `https://api.eu-west-1.aworld.cloud`
-
-> **Migration Note**: The API domain will migrate to `https://api.aworld.cloud` on March 1, 2026. Both domains will work during the transition period.
-
-**Note**: Code examples in this document use generic URLs (`https://api.aworld.cloud`). Use `https://api.eu-west-1.aworld.cloud` until March 1, 2026.
+- **API**: `https://api.aworld.cloud`
 
 ## Multi-Tenant Architecture
 
