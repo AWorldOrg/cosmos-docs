@@ -76,7 +76,7 @@ This document describes the AWorld infrastructure, implemented security measures
 
 ### 1.1 Architecture overview
 
-AWorld implements a fully serverless cloud-native architecture on Amazon Web Services (AWS), designed to guarantee unlimited scalability, high availability, and optimized costs. The architecture is organized in functional layers that separate responsibilities and facilitate platform evolution:
+AWorld implements a fully serverless cloud-native architecture on Amazon Web Services (AWS), designed to guarantee unlimited scalability and high availability. The architecture is organized in functional layers that separate responsibilities and facilitate platform evolution:
 
 - **Account & user layer**: identity management, permissions, authentication (AWS Cognito), and server-to-server integration
 - **Gamification layer**: core engine for engagement mechanics (missions, levels, leaderboards, badges, points)

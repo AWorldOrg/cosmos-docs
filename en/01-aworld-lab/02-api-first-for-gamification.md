@@ -1,6 +1,6 @@
 AWorld Lab offers companies a *gamification* system that is fully integrable into their digital ecosystems. Through its *API-first* architecture, the platform provides direct access to a comprehensive set of *engagement* tools that clients can adapt to their specific needs and digital environments.
 
-## 2.1 Architecture
+## Architecture
 
 Adopting an *API-first* architecture means turning *gamification* into a modular and scalable service, easily integrable into existing applications, websites, and enterprise systems, without infrastructure constraints. This approach ensures scalability and flexibility, allowing organizations to leverage the platform's potential without needing to develop complex internal systems for *engagement* management.
 
@@ -8,11 +8,11 @@ The platform acts as an application *layer* that enhances the user experience th
 
 AWorld Lab's software is built on a modular architecture organized into four main layers, allowing companies to independently integrate *gamification* elements in a scalable manner while ensuring maximum operational flexibility. Each *layer* has a specific function:
 
-### **2.1.1 Account & User Layer**
+### **Account & User Layer**
 
 The platform's foundation, responsible for managing users, permissions, and authentication. This component ensures a scalable infrastructure, allowing multiple organizations to use the service while maintaining proper data separation and customization. It includes tools such as *JWT management* and *Server-to-Server management*, which are essential for integration with clients' existing systems.
 
-### **2.1.2 Gamification Layer**
+### **Gamification Layer**
 
 The core of the *engagement* system, providing the essential game mechanics. It includes features such as activities, missions, level progression, *leaderboards*, points system, and *achievements*. This layer enables companies to tailor the user experience by introducing competition and reward dynamics aligned with their goals.
 
@@ -22,7 +22,7 @@ The client is free to define what constitutes a **TDA**, adapting it to their co
 
 Each **TDA** fuels the system, contributing to point accumulation, mission progress, and reward triggers—turning user actions into a measurable and personalized engagement journey.
 
-### **2.1.3 Activity Plugin Layer**
+### **Activity Plugin Layer**
 
 This layer enables and provides access to **predefined activity models**, developed and validated through years of real-world usage. While every client can define their own custom **Tractable Digital Activities (TDAs)**, AWorld Lab offers a set of **optimized activity models** that can be used immediately to speed up *gamification* implementation.
 
@@ -32,7 +32,7 @@ Additionally, the system includes models based on mobility data, such as **Mobil
 
 Thanks to the *Activity Plugin Layer*, clients can **combine their own activities with AWorld Lab's proven solutions**, accelerating *gamification* deployment while ensuring an effective and engaging user experience from day one.
 
-### **2.1.4 Catalog Layer**
+### **Catalog Layer**
 
 The *Catalog Layer* manages the organization and distribution of content available on the platform, offering clients access to predefined resources or the ability to customize their own activities.
 
@@ -42,7 +42,7 @@ This layer not only speeds up *gamification* integration but also ensures high-q
 
 The layered architecture improves the platform's technical efficiency and broadens its applicability across different target audiences and market segments.
 
-### **2.1.5 *AI Content Generation*: support for creating interactive *Stories***
+### ***AI Content Generation*: support for creating interactive *Stories***
 
 Many clients want to personalize the platform but often face an **operational barrier: content creation requires time and specific expertise**. To address this challenge, AWorld Lab integrates AI capabilities to **support the creation of interactive content**, starting with the **Stories** activity model.
 

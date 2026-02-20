@@ -5,7 +5,7 @@ AWorld Lab nasce dall'esperienza di **AWorld**, leader riconosciuto nell'engagem
 
 Questa documentazione funge da riferimento per le aziende interessate a integrare strumenti di *engagement* nei propri servizi digitali, così come per i team responsabili dell'integrazione *API*. È inoltre destinata a product manager e decisori aziendali che desiderano comprendere il potenziale della soluzione sia da una prospettiva strategica sia in termini di implementazione tecnica.
 
-## **1.1 Le fondamenta di AWorld: dalla sostenibilità all'engagement universale**
+## Le fondamenta di AWorld: dalla sostenibilità all'engagement universale
 
 AWorld è stata fondata con la missione di **motivare e coinvolgere persone e organizzazioni ad AGIRE ORA per avere un impatto positivo sul mondo**. Attraverso soluzioni digitali innovative basate sulla *gamification*, AWorld ha sviluppato strumenti capaci di incentivare comportamenti sostenibili e promuovere la consapevolezza ambientale, rendendo la sostenibilità un processo naturale e intuitivo.
 
@@ -15,7 +15,7 @@ L'esperienza di AWorld ha dimostrato che **le meccaniche di *gamification* effic
 
 Questa consapevolezza ha portato alla creazione di AWorld Lab: una piattaforma che rende disponibili queste comprovate capacità di engagement a qualsiasi organizzazione, attraverso un'architettura *API-first* flessibile.
 
-## **1.2 Una piattaforma *API-first* per l'engagement scalabile**
+## Una piattaforma *API-first* per l'engagement scalabile
 
 AWorld Lab offre un sistema avanzato di *gamification* e *engagement*, progettato per essere altamente scalabile, personalizzabile e integrabile nei diversi ecosistemi digitali dei clienti. La piattaforma è un servizio aperto e modulare, pensato per adattarsi a contesti eterogenei in cui vi è la necessità di incentivare comportamenti attivi e partecipazione consapevole.
 
@@ -23,11 +23,11 @@ Grazie alla sua architettura *API-first*, AWorld Lab rende disponibile l'intera 
 
 > Le meccaniche di gioco non sono limitate a un singolo ambito di applicazione. Possono essere integrate in contesti diversi, dall'educazione alla salute, dalla gestione delle risorse umane ai programmi di loyalty.
 
-## **1.3 Risultati comprovati in diversi settori**
+## Risultati comprovati in diversi settori
 
 Le meccaniche di *gamification* di AWorld Lab trasformano l'interazione degli utenti in esperienze coinvolgenti e misurabili. Grazie alla sua modularità, la piattaforma si adatta a diversi settori, rispondendo alle specifiche esigenze di engagement di aziende, istituzioni e organizzazioni. La piattaforma è stata implementata con successo in settori quali **benessere aziendale, educazione, intrattenimento e loyalty**, con risultati concreti e misurabili.
 
-### **1.3.1 Engagement dei dipendenti e formazione**
+### Engagement dei dipendenti e formazione
 
 La piattaforma ha dimostrato un forte impatto nell'engagement dei dipendenti e nella formazione aziendale. **Juventus, Fondazione Milano Cortina 2026 e KPMG** hanno utilizzato la piattaforma per sensibilizzare e attivare la propria forza lavoro, attraverso sfide mirate e percorsi di apprendimento personalizzati. Le aziende hanno potuto:
 
@@ -37,7 +37,7 @@ La piattaforma ha dimostrato un forte impatto nell'engagement dei dipendenti e n
 
 Nel caso di **Fondazione Milano Cortina 2026**, il 79,4% dei dipendenti coinvolti ha completato almeno un'azione positiva, mentre nel progetto **Juventus Black, White & More**, i partecipanti hanno completato migliaia di missioni, rendendo la strategia di sostenibilità dell'azienda un processo condiviso e misurabile.
 
-### **1.3.2 Educazione e sensibilizzazione pubblica**
+### Educazione e sensibilizzazione pubblica
 
 La piattaforma è stata utilizzata per **educare e sensibilizzare il pubblico** su temi ambientali, sociali e culturali. Organizzazioni come **Regione Umbria, MotoGP e VeChain** hanno adottato la piattaforma per trasformare il proprio pubblico da spettatori passivi a partecipanti attivi.
 
@@ -47,7 +47,7 @@ La piattaforma è stata utilizzata per **educare e sensibilizzare il pubblico** 
 
 Questi risultati dimostrano che la piattaforma non è solo uno strumento di sensibilizzazione, ma un vero e proprio catalizzatore di azioni concrete, capace di consentire alle organizzazioni di generare un impatto misurabile.
 
-### **1.3.3 Loyalty e *customer engagement***
+### Loyalty e *customer engagement*
 
 In un mercato sempre più competitivo, **i brand cercano modi innovativi per rafforzare le relazioni con i clienti**, trasformando l'esperienza di loyalty in un processo interattivo.
 
@@ -57,7 +57,7 @@ La piattaforma è stata adottata con successo nei programmi di loyalty di brand 
 - **Lavazza – Piacere Lavazza** ha sfruttato le meccaniche di *gamification* per incentivare la fruizione di contenuti educativi e azioni sostenibili, con **172.558 azioni registrate in 8 mesi** e un **aumento del tasso di engagement del 74%**.
 - **Pulsee Play** ha connesso la piattaforma al proprio programma di *loyalty*, aumentando il numero di azioni sostenibili registrate del **+752%** e il numero di utenti attivi del **+659%**.
 
-### **1.3.4 Caratteristiche chiave della piattaforma**
+### Caratteristiche chiave della piattaforma
 
 AWorld Lab è un **motore di engagement trasversale**, applicabile a contesti molto diversi tra loro e integrabile in ecosistemi digitali su scala globale. Che si tratti di **coinvolgere i dipendenti, educare il pubblico o rafforzare le relazioni con i clienti**, la piattaforma offre una soluzione scalabile e adattabile, con risultati concreti e misurabili.
 

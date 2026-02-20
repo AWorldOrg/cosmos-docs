@@ -1,28 +1,26 @@
-## 4. AWorld Product Architecture
+## AWorld Product Architecture
 
-AWorld's architecture ensures **scalability, security, and modularity**, enabling companies to integrate *gamification* into their digital ecosystems with maximum flexibility. The system leverages a fully **cloud-native and serverless** infrastructure on AWS, reducing operational complexity and optimizing management costs.
+AWorld's architecture ensures **scalability, security, and modularity**, enabling companies to integrate *gamification* into their digital ecosystems with maximum flexibility. The system leverages a fully **cloud-native and serverless** infrastructure on AWS, reducing operational complexity.
 
 Through its **API-first model**, AWorld provides secure and flexible management of its features, while the **multi-tenant architecture** ensures effective data segregation across clients, guaranteeing that each organization has exclusive access to its data and configurations.
 
 This combination of technologies delivers a **highly performant and reliable platform**, adaptable to a wide range of use cases and capable of supporting large user volumes without compromising service quality.
 
-### 4.1 Cloud-Native Serverless Infrastructure
+### Cloud-Native Serverless Infrastructure
 
-Thanks to its **cloud-native architecture on AWS**, AWorld automatically scales with traffic, ensuring high performance without interruptions. The serverless approach eliminates manual provisioning, optimizing cost and operational management.
+Thanks to its **cloud-native architecture on AWS**, AWorld automatically scales with traffic, ensuring high performance without interruptions. The serverless approach eliminates manual provisioning, simplifying operational management.
 
-Adopting a **serverless** architecture is a strategic choice that maximizes operational efficiency and reduces infrastructure costs. Computational resources are allocated **dynamically based on demand**, eliminating the need to manually manage physical servers or dedicated virtual machines.
+Adopting a **serverless** architecture is a strategic choice that maximizes operational efficiency. Computational resources are allocated **dynamically based on demand**, eliminating the need to manually manage physical servers or dedicated virtual machines.
 
 #### Key Benefits of Serverless
 
 **Automatic Scalability**: One of the main advantages is the ability to handle load peaks without compromising performance. When the number of API requests suddenly increases, AWS Lambda activates additional function instances without manual intervention, ensuring an immediate response to variable load. This is particularly useful for scenarios where users interact with the platform unpredictably, such as *engagement* campaigns or high-traffic initiative launches.
 
-**Cost Optimization**: AWS's *pay-per-use* model means resources are billed only when actually used, avoiding waste related to server over-provisioning. In a traditional solution, companies would need to provision extra computing capacity to handle peaks, incurring fixed costs regardless of actual usage. With serverless, this logic is reversed, reducing operational expenses and ensuring highly efficient infrastructure.
-
 **Reduced Operational Management**: Serverless infrastructure drastically reduces maintenance needs. Updates, *patching*, and infrastructure-level security are managed directly by AWS, allowing AWorld's technical teams to focus on developing *gamification* features without managing provisioning or manual server monitoring operations.
 
 #### Core AWS Services
 
-The system integrates **AWS Lambda and API Gateway**, working together to provide efficient serverless computing and optimal API request handling. This combination enables the platform to handle high volumes of traffic without the need for static resource allocation, reducing operational costs.
+The system integrates **AWS Lambda and API Gateway**, working together to provide efficient serverless computing and optimal API request handling. This combination enables the platform to handle high volumes of traffic without the need for static resource allocation.
 
 For data management, AWorld uses **Amazon DynamoDB**, a highly scalable **NoSQL database** designed to provide fast and reliable performance, even with large volumes of data. Table structures are designed to ensure secure, segmented access, restricted by permissions defined per tenant, ensuring strict data segregation.
 
@@ -30,7 +28,7 @@ In terms of availability and resilience, the infrastructure is distributed acros
 
 The cloud-native approach minimizes the need for manual infrastructure management, providing an **optimized product lifecycle** and continuously updated performance and security.
 
-### 4.2 Multi-Tenant Architecture and Data Isolation
+### Multi-Tenant Architecture and Data Isolation
 
 The system implements an advanced data segregation model to ensure each organization operates in an isolated environment, preventing unauthorized access between tenants. This isolation is achieved through a combination of access management strategies and technologies.
 
@@ -56,7 +54,7 @@ Beyond data and access segregation, the system supports an advanced **multi-tena
 
 This strategy guarantees **maximum data security** and compliance with data protection regulations, ensuring all operations align with established security policies.
 
-### 4.3 API-First Integration Model
+### API-First Integration Model
 
 AWorld's API-first architecture enables easy integration of *gamification* features into any digital ecosystem, adapting functionalities to specific business needs without infrastructure changes. Each API is designed to be efficient, secure, and compatible with different environments, providing maximum implementation flexibility.
 
@@ -88,7 +86,7 @@ For permission control, **AWS Lambda Authorizer** is used to apply dynamic polic
 
 Authentication is centralized via a **shared user pool**, ensuring secure identity management while maintaining tenant-level isolation. API authentication, however, is **fully isolated per tenant**, with a **dedicated Lambda Authorizer for each tenant**, ensuring access policies are never shared across clients.
 
-### 4.4 Performance and Scalability
+### Performance and Scalability
 
 To ensure a smooth and scalable user experience, AWorld implements various performance optimization strategies, including distributed caching, efficient API request management, and load balancing. These mechanisms help improve platform responsiveness, reduce latency, and optimize resource usage.
 
@@ -110,7 +108,7 @@ An additional optimization layer is the **multi-region load balancing**, which d
 
 In case of usage peaks or high load on a specific geographical area, the system can automatically distribute traffic across multiple nodes, ensuring operational continuity and smooth request management even under high concurrency conditions. Combined with **rate limiting and tenant-level throttling**, this prevents resource monopolization and ensures fair access across all clients.
 
-### 4.5 Security and Compliance
+### Security and Compliance
 
 AWorld adopts a **privacy by design and by default** approach, ensuring user data is managed in full compliance with global regulations such as the **GDPR**. To protect information, the platform applies advanced security measures across multiple layers of the infrastructure.
 
@@ -134,7 +132,7 @@ Multi-region architecture provides another layer of security and compliance, sup
 
 In the event of a security breach, AWorld has an **incident response plan** that provides for structured management of anomalies to minimize impact and quickly restore service. The system automatically identifies and isolates suspicious activities, preventing the spread of potential threats. Security alerts are forwarded in real-time to platform managers, ensuring timely intervention.
 
-### 4.6 Disaster Recovery and Business Continuity
+### Disaster Recovery and Business Continuity
 
 To ensure platform resilience, AWorld adopts a distributed architecture and an advanced **disaster recovery** and **business continuity** strategy, ensuring rapid system restoration in case of critical failures or unforeseen events. This approach reduces the risk of service interruptions, protecting data availability and ensuring a stable user experience even in emergency conditions.
 

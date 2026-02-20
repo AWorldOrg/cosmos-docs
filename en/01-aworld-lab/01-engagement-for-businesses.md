@@ -5,7 +5,7 @@ AWorld Lab builds on the expertise of **AWorld**, a recognized leader in digital
 
 This documentation serves as a reference for companies interested in incorporating *engagement* tools into their digital services, as well as for teams responsible for *API* integration. It is also intended for product managers and business decision-makers who want to understand the solution's potential both from a strategic perspective and in terms of technical implementation.
 
-## **1.1 The AWorld foundation: from sustainability to universal engagement**
+## The AWorld foundation: from sustainability to universal engagement
 
 AWorld was founded with the mission to **motivate and engage people and organisations to ACT NOW to make a positive impact on the world**. Through innovative digital solutions based on *gamification*, AWorld developed tools capable of encouraging sustainable behaviors and promoting environmental awareness, making sustainability a natural and intuitive process.
 
@@ -15,7 +15,7 @@ AWorld's experience demonstrated that **effective *gamification* mechanics are u
 
 This insight led to the creation of AWorld Lab: a platform that makes these proven engagement capabilities available to any organization, through a flexible *API-first* architecture.
 
-## **1.2 An *API-first* platform for scalable engagement**
+## An *API-first* platform for scalable engagement
 
 AWorld Lab provides an advanced *gamification* and *engagement* system, designed to be highly scalable, customisable, and integrable into clients' diverse digital ecosystems. The platform is an open and modular service, built to adapt to heterogeneous contexts where there is a need to incentivise active behaviors and conscious participation.
 
@@ -23,11 +23,11 @@ Through its *API-first* architecture, AWorld Lab makes its entire engagement inf
 
 > Game mechanics are not limited to a single domain of application. They can be integrated into diverse contexts, from education to health, human resource management, and loyalty programs.
 
-## **1.3 Proven results across industries**
+## Proven results across industries
 
 AWorld Lab's *gamification* mechanics turn user interaction into engaging and measurable experiences. Thanks to its modularity, the platform adapts to various sectors, addressing the specific engagement needs of companies, institutions, and organisations. The platform has been successfully deployed in sectors such as **corporate wellbeing, education, entertainment, and customer loyalty**, delivering concrete and measurable results.
 
-### **1.3.1 Employee engagement and training**
+### Employee engagement and training
 
 The platform has demonstrated strong impact in employee engagement and corporate training. **Juventus, Fondazione Milano Cortina 2026, and KPMG** have used the platform to raise awareness and activate their workforce, through targeted challenges and personalised learning paths. Companies have been able to:
 
@@ -37,7 +37,7 @@ The platform has demonstrated strong impact in employee engagement and corporate
 
 In the case of **Fondazione Milano Cortina 2026**, 79.4% of involved employees completed at least one positive action, while in the **Juventus Black, White & More** project, participants completed thousands of missions, making the company's sustainability strategy a shared and measurable process.
 
-### **1.3.2 Education and public awareness**
+### Education and public awareness
 
 The platform has been used to **educate and raise public awareness** on environmental, social, and cultural topics. Organisations such as **Regione Umbria, MotoGP, and VeChain** have adopted the platform to transform their audiences from passive spectators into active participants.
 
@@ -47,7 +47,7 @@ The platform has been used to **educate and raise public awareness** on environm
 
 These results demonstrate that the platform is not only a tool for raising awareness but a true catalyst for concrete actions, enabling organisations to generate measurable impact.
 
-### **1.3.3 Loyalty and *customer engagement***
+### Loyalty and *customer engagement*
 
 In an increasingly competitive market, **brands seek innovative ways to strengthen relationships with customers**, transforming the loyalty experience into an interactive process.
 
@@ -57,7 +57,7 @@ The platform has been successfully adopted in the loyalty programs of brands suc
 - **Lavazza – Piacere Lavazza** leveraged *gamification* mechanics to encourage consumption of educational content and sustainable actions, with **172,558 actions recorded in 8 months** and a **74% increase in engagement rate**.
 - **Pulsee Play** connected the platform to its *loyalty* program, increasing the number of recorded sustainable actions by **+752%** and the number of active users by **+659%**.
 
-### **1.3.4 Key platform characteristics**
+### Key platform characteristics
 
 AWorld Lab is a **cross-cutting engagement engine**, applicable to highly diverse contexts and integrable into digital ecosystems at global scale. Whether it's about **engaging employees, educating the public, or strengthening customer relationships**, the platform delivers a scalable and adaptable solution with concrete and measurable results.
 

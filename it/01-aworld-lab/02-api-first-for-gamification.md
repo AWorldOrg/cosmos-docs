@@ -1,6 +1,6 @@
 AWorld Lab offre alle aziende un sistema di *gamification* completamente integrabile nei loro ecosistemi digitali. Grazie alla sua architettura *API-first*, la piattaforma fornisce accesso diretto a un set completo di strumenti di *engagement* che i clienti possono adattare alle proprie esigenze e ai propri ambienti digitali.
 
-## 2.1 Architettura
+## Architettura
 
 Adottare un'architettura *API-first* significa trasformare la *gamification* in un servizio modulare e scalabile, facilmente integrabile in applicazioni, siti web e sistemi aziendali esistenti, senza vincoli infrastrutturali. Questo approccio garantisce scalabilità e flessibilità, permettendo alle organizzazioni di sfruttare il potenziale della piattaforma senza dover sviluppare complessi sistemi interni per la gestione dell'*engagement*.
 
@@ -8,11 +8,11 @@ La piattaforma agisce come un *layer* applicativo che migliora l'esperienza uten
 
 Il software di AWorld Lab è costruito su un'architettura modulare organizzata in quattro *layer* principali, che consentono alle aziende di integrare in modo indipendente e scalabile gli elementi di *gamification*, garantendo al contempo la massima flessibilità operativa. Ogni *layer* ha una funzione specifica:
 
-### **2.1.1 Account & User Layer**
+### **Account & User Layer**
 
 La base della piattaforma, responsabile della gestione degli utenti, dei permessi e dell'autenticazione. Questo componente garantisce un'infrastruttura scalabile, permettendo a più organizzazioni di utilizzare il servizio mantenendo un'adeguata separazione dei dati e possibilità di personalizzazione. Include strumenti come la gestione *JWT* e la gestione *Server-to-Server*, essenziali per l'integrazione con i sistemi esistenti dei clienti.
 
-### **2.1.2 Gamification Layer**
+### **Gamification Layer**
 
 Il cuore del sistema di *engagement*, che fornisce le meccaniche di gioco essenziali. Include funzionalità come attività, missioni, progressione di livello, *leaderboard*, sistema a punti e *achievements*. Questo *layer* consente alle aziende di personalizzare l'esperienza utente introducendo dinamiche di competizione e ricompensa allineate ai propri obiettivi.
 
@@ -22,7 +22,7 @@ Il cliente è libero di definire cosa costituisce una **TDA**, adattandola al pr
 
 Ogni **TDA** alimenta il sistema, contribuendo all'accumulo di punti, al progresso delle missioni e all'attivazione delle ricompense, trasformando le azioni degli utenti in un percorso di engagement misurabile e personalizzato.
 
-### **2.1.3 Activity Plugin Layer**
+### **Activity Plugin Layer**
 
 Questo *layer* abilita e fornisce accesso a **modelli di attività predefiniti**, sviluppati e validati attraverso anni di utilizzo sul campo. Sebbene ogni cliente possa definire le proprie **Tractable Digital Activities (TDAs)** personalizzate, AWorld Lab offre un set di **modelli di attività ottimizzati** che possono essere utilizzati immediatamente per accelerare l'implementazione della *gamification*.
 
@@ -32,7 +32,7 @@ Inoltre, il sistema include modelli basati su dati di mobilità, come i **Mobili
 
 Grazie all'*Activity Plugin Layer*, i clienti possono **combinare le proprie attività con le soluzioni collaudate di AWorld Lab**, accelerando il deployment della *gamification* e garantendo al contempo un'esperienza utente efficace e coinvolgente fin dal primo giorno.
 
-### **2.1.4 Catalog Layer**
+### **Catalog Layer**
 
 Il *Catalog Layer* gestisce l'organizzazione e la distribuzione dei contenuti disponibili sulla piattaforma, offrendo ai clienti l'accesso a risorse predefinite o la possibilità di personalizzare le proprie attività.
 
@@ -42,7 +42,7 @@ Questo *layer* non solo accelera l'integrazione della *gamification*, ma garanti
 
 L'architettura a livelli migliora l'efficienza tecnica della piattaforma e ne amplia l'applicabilità a diversi target e segmenti di mercato.
 
-### **2.1.5 *AI Content Generation*: supporto alla creazione di *Stories* interattive**
+### ***AI Content Generation*: supporto alla creazione di *Stories* interattive**
 
 Molti clienti desiderano personalizzare la piattaforma ma spesso si trovano di fronte a una **barriera operativa: la creazione di contenuti richiede tempo e competenze specifiche**. Per affrontare questa sfida, AWorld Lab integra funzionalità di intelligenza artificiale per **supportare la creazione di contenuti interattivi**, a partire dal modello di attività **Stories**.
 

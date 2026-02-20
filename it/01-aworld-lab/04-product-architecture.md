@@ -1,28 +1,26 @@
-## 4. Architettura del prodotto AWorld
+## Architettura del prodotto AWorld
 
-L'architettura di AWorld garantisce **scalabilità, sicurezza e modularità**, consentendo alle aziende di integrare la *gamification* nei propri ecosistemi digitali con la massima flessibilità. Il sistema si basa su un'infrastruttura completamente **cloud-native e serverless** su AWS, riducendo la complessità operativa e ottimizzando i costi di gestione.
+L'architettura di AWorld garantisce **scalabilità, sicurezza e modularità**, consentendo alle aziende di integrare la *gamification* nei propri ecosistemi digitali con la massima flessibilità. Il sistema si basa su un'infrastruttura completamente **cloud-native e serverless** su AWS, riducendo la complessità operativa.
 
 Attraverso il suo **modello API-first**, AWorld offre una gestione sicura e flessibile delle proprie funzionalità, mentre l'**architettura multi-tenant** garantisce un'efficace segregazione dei dati tra i clienti, assicurando che ogni organizzazione abbia accesso esclusivo ai propri dati e configurazioni.
 
 Questa combinazione di tecnologie consente di offrire una **piattaforma altamente performante e affidabile**, adattabile a un'ampia gamma di casi d'uso e in grado di supportare grandi volumi di utenti senza compromettere la qualità del servizio.
 
-### 4.1 Infrastruttura cloud-native serverless
+### Infrastruttura cloud-native serverless
 
-Grazie alla sua **architettura cloud-native su AWS**, AWorld scala automaticamente con il traffico, garantendo prestazioni elevate senza interruzioni. L'approccio serverless elimina il provisioning manuale, ottimizzando i costi e la gestione operativa.
+Grazie alla sua **architettura cloud-native su AWS**, AWorld scala automaticamente con il traffico, garantendo prestazioni elevate senza interruzioni. L'approccio serverless elimina il provisioning manuale, semplificando la gestione operativa.
 
-L'adozione di un'architettura **serverless** è una scelta strategica che massimizza l'efficienza operativa e riduce i costi infrastrutturali. Le risorse computazionali vengono allocate **dinamicamente in base alla domanda**, eliminando la necessità di gestire manualmente server fisici o macchine virtuali dedicate.
+L'adozione di un'architettura **serverless** è una scelta strategica che massimizza l'efficienza operativa. Le risorse computazionali vengono allocate **dinamicamente in base alla domanda**, eliminando la necessità di gestire manualmente server fisici o macchine virtuali dedicate.
 
 #### Vantaggi chiave del serverless
 
 **Scalabilità automatica**: Uno dei principali vantaggi è la capacità di gestire picchi di carico senza compromettere le prestazioni. Quando il numero di richieste API aumenta improvvisamente, AWS Lambda attiva istanze di funzioni aggiuntive senza intervento manuale, garantendo una risposta immediata al carico variabile. Ciò è particolarmente utile per scenari in cui gli utenti interagiscono con la piattaforma in modo imprevedibile, come durante campagne di *engagement* o lanci di iniziative ad alto traffico.
 
-**Ottimizzazione dei costi**: Il modello *pay-per-use* di AWS significa che le risorse vengono fatturate solo quando effettivamente utilizzate, evitando sprechi legati al sovra-dimensionamento dei server. In una soluzione tradizionale, le aziende dovrebbero predisporre capacità computazionale extra per gestire i picchi, sostenendo costi fissi indipendentemente dall'utilizzo effettivo. Con il serverless, questa logica viene invertita, riducendo le spese operative e garantendo un'infrastruttura altamente efficiente.
-
 **Ridotta gestione operativa**: L'infrastruttura serverless riduce drasticamente le esigenze di manutenzione. Gli aggiornamenti, il *patching* e la sicurezza a livello infrastrutturale sono gestiti direttamente da AWS, consentendo ai team tecnici di AWorld di concentrarsi sullo sviluppo di funzionalità di *gamification* senza gestire operazioni di provisioning o monitoraggio manuale dei server.
 
 #### Servizi AWS principali
 
-Il sistema integra **AWS Lambda e API Gateway**, che lavorano insieme per fornire un'elaborazione serverless efficiente e una gestione ottimale delle richieste API. Questa combinazione consente alla piattaforma di gestire elevati volumi di traffico senza la necessità di allocazione statica delle risorse, riducendo i costi operativi.
+Il sistema integra **AWS Lambda e API Gateway**, che lavorano insieme per fornire un'elaborazione serverless efficiente e una gestione ottimale delle richieste API. Questa combinazione consente alla piattaforma di gestire elevati volumi di traffico senza la necessità di allocazione statica delle risorse.
 
 Per la gestione dei dati, AWorld utilizza **Amazon DynamoDB**, un database **NoSQL** altamente scalabile progettato per fornire prestazioni rapide e affidabili, anche con grandi volumi di dati. Le strutture delle tabelle sono progettate per garantire un accesso sicuro e segmentato, limitato dai permessi definiti per ciascun tenant, assicurando una rigorosa segregazione dei dati.
 
@@ -30,7 +28,7 @@ In termini di disponibilità e resilienza, l'infrastruttura è distribuita su pi
 
 L'approccio cloud-native riduce al minimo la necessità di gestione manuale dell'infrastruttura, fornendo un **ciclo di vita del prodotto ottimizzato** e prestazioni e sicurezza costantemente aggiornate.
 
-### 4.2 Architettura multi-tenant e isolamento dati
+### Architettura multi-tenant e isolamento dati
 
 Il sistema implementa un modello avanzato di segregazione dei dati per garantire che ogni organizzazione operi in un ambiente isolato, impedendo accessi non autorizzati tra tenant. Questo isolamento è ottenuto attraverso una combinazione di strategie e tecnologie di gestione degli accessi.
 
@@ -56,7 +54,7 @@ Oltre alla segregazione dei dati e degli accessi, il sistema supporta un'archite
 
 Questa strategia garantisce la **massima sicurezza dei dati** e la conformità alle normative sulla protezione dei dati, assicurando che tutte le operazioni siano allineate alle politiche di sicurezza stabilite.
 
-### 4.3 Modello di integrazione API-first
+### Modello di integrazione API-first
 
 L'architettura API-first di AWorld consente una facile integrazione delle funzionalità di *gamification* in qualsiasi ecosistema digitale, adattando le funzionalità alle esigenze aziendali specifiche senza modifiche infrastrutturali. Ogni API è progettata per essere efficiente, sicura e compatibile con diversi ambienti, offrendo la massima flessibilità di implementazione.
 
@@ -88,7 +86,7 @@ Per il controllo dei permessi, viene utilizzato **AWS Lambda Authorizer** per ap
 
 L'autenticazione è centralizzata tramite un **pool utenti condiviso**, garantendo una gestione sicura delle identità mantenendo al contempo l'isolamento a livello di tenant. L'autenticazione API, tuttavia, è **completamente isolata per tenant**, con un **Lambda Authorizer dedicato per ciascun tenant**, garantendo che le politiche di accesso non vengano mai condivise tra i client.
 
-### 4.4 Performance e scalabilità
+### Performance e scalabilità
 
 Per garantire un'esperienza utente fluida e scalabile, AWorld implementa varie strategie di ottimizzazione delle prestazioni, tra cui caching distribuito, gestione efficiente delle richieste API e bilanciamento del carico. Questi meccanismi contribuiscono a migliorare la reattività della piattaforma, ridurre la latenza e ottimizzare l'utilizzo delle risorse.
 
@@ -110,7 +108,7 @@ Un ulteriore livello di ottimizzazione è il **bilanciamento del carico multi-re
 
 In caso di picchi di utilizzo o di carico elevato su un'area geografica specifica, il sistema può distribuire automaticamente il traffico su più nodi, garantendo continuità operativa e gestione fluida delle richieste anche in condizioni di alta concorrenza. Combinato con **rate limiting e throttling a livello di tenant**, questo previene la monopolizzazione delle risorse e garantisce un accesso equo per tutti i client.
 
-### 4.5 Sicurezza e conformità
+### Sicurezza e conformità
 
 AWorld adotta un approccio **privacy by design e by default**, garantendo che i dati degli utenti siano gestiti in piena conformità con le normative globali come il **GDPR**. Per proteggere le informazioni, la piattaforma applica misure di sicurezza avanzate su più livelli dell'infrastruttura.
 
@@ -134,7 +132,7 @@ L'architettura multi-regione fornisce un ulteriore livello di sicurezza e confor
 
 In caso di violazione della sicurezza, AWorld dispone di un **piano di risposta agli incidenti** che prevede una gestione strutturata delle anomalie per minimizzare l'impatto e ripristinare rapidamente il servizio. Il sistema identifica e isola automaticamente le attività sospette, prevenendo la diffusione di potenziali minacce. Gli avvisi di sicurezza vengono inoltrati in tempo reale ai responsabili della piattaforma, garantendo un intervento tempestivo.
 
-### 4.6 Disaster recovery e business continuity
+### Disaster recovery e business continuity
 
 Per garantire la resilienza della piattaforma, AWorld adotta un'architettura distribuita e una strategia avanzata di **disaster recovery** e **business continuity**, garantendo un rapido ripristino del sistema in caso di guasti critici o eventi imprevisti. Questo approccio riduce il rischio di interruzioni del servizio, proteggendo la disponibilità dei dati e garantendo un'esperienza utente stabile anche in condizioni di emergenza.
 

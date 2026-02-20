@@ -29,19 +29,19 @@
       }
     },
     {
-      "doc_id": "GENERATE_NEW_ID",
+      "doc_id": "1215195",
       "path": "01-aworld-lab/04-product-architecture.md",
       "title": {
         "en": "Product Architecture",
-        "it": "Architettura del Prodotto"
+        "it": "Architettura del prodotto"
       }
     },
     {
-      "doc_id": "GENERATE_NEW_ID",
+      "doc_id": "1215196",
       "path": "01-aworld-lab/05-technical-specifications.md",
       "title": {
         "en": "Technical Specifications",
-        "it": "Specifiche Tecniche"
+        "it": "Specifiche tecniche"
       }
     }
   ]

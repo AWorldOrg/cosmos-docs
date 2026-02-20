@@ -1,8 +1,8 @@
-## 1. Cloud infrastructure and architecture
+## Cloud infrastructure and architecture
 
-### 1.1 Architecture overview
+### Architecture overview
 
-AWorld implements a fully serverless cloud-native architecture on Amazon Web Services (AWS), designed to guarantee unlimited scalability, high availability, and optimized costs. The architecture is organized in functional layers that separate responsibilities and facilitate platform evolution:
+AWorld implements a fully serverless cloud-native architecture on Amazon Web Services (AWS), designed to guarantee unlimited scalability and high availability. The architecture is organized in functional layers that separate responsibilities and facilitate platform evolution:
 
 - **Account & user layer**: identity management, permissions, authentication (AWS Cognito), and server-to-server integration
 - **Gamification layer**: core engine for engagement mechanics (missions, levels, leaderboards, badges, points)
@@ -10,9 +10,9 @@ AWorld implements a fully serverless cloud-native architecture on Amazon Web Ser
 
 The multi-tenant architecture guarantees rigorous data isolation between clients, with each workspace operating in complete logical independence while sharing the underlying physical infrastructure for operational efficiency.
 
-### 1.2 AWS technology stack
+### Technology stack
 
-The platform is based on AWS managed services, which guarantee high standards of security, reliability, and reduced infrastructure maintenance requirements.
+The platform is based on AWS services, which guarantee high standards of security, reliability, and reduced infrastructure maintenance requirements.
 
 | Component | AWS Service | Function |
 |-----------|-------------|----------|
@@ -43,7 +43,7 @@ The entire infrastructure is defined as code (Infrastructure as Code) using SST 
 
 This approach eliminates error-prone manual configurations and guarantees consistency between development, staging, and production environments.
 
-### 1.3 Database and data persistence
+### Database and data persistence
 
 #### Amazon DynamoDB
 
@@ -62,7 +62,7 @@ Dedicated database alongside DynamoDB to fulfill specific application functions:
 - **Usage**: indexing and complex queries
 - **Integration**: alongside primary database to optimize specific operations
 
-### 1.4 Multi-tenant model with data isolation
+### Multi-tenant model with data isolation
 
 AWorld implements a multi-tenant architecture with rigorous logical isolation that guarantees complete data separation between different clients.
 
@@ -94,7 +94,7 @@ Platform (AWorld)
 
 > **⚠️ Critical security note**: The `workspaceId` in the JWT token is the fundamental mechanism for multi-tenant isolation. Each API request validates that the `workspaceId` in the token matches the workspace of the requested resources, preventing cross-tenant access at the API Gateway level before the request reaches the backend.
 
-### 1.5 Multi-region distribution
+### Multi-region distribution
 
 To guarantee high availability and disaster recovery, the AWorld infrastructure is distributed across multiple AWS regions in active-active configuration.
 
@@ -112,7 +112,7 @@ AWS Route 53 manages intelligent traffic routing:
 - **Automatic failover**: in case of regional failure, traffic is automatically diverted to the backup region
 - **Latency-based routing**: automatic optimization for lower latency
 
-### 1.6 Advantages of serverless architecture
+### Advantages of serverless architecture
 
 Adopting a serverless architecture offers significant benefits in operational and reliability terms.
 
@@ -133,9 +133,9 @@ Adopting a serverless architecture offers significant benefits in operational an
 - Significant reduction in single point of failure risk
 
 
-## 2. Security and cybersecurity
+## Security and cybersecurity
 
-### 2.1 Data encryption
+### Data encryption
 
 AWorld implements end-to-end encryption to protect data both in transit and at rest, using recognized industry standards.
 
@@ -158,7 +158,7 @@ Data stored on persistent storage is protected through encryption with centraliz
 - **Key rotation**: automatic according to AWS policies
 - **Benefits**: data protection in case of unauthorized physical access to data centers
 
-### 2.2 API protection
+### API protection
 
 API protection is articulated on multiple levels of complementary defense.
 
@@ -212,7 +212,7 @@ Structured vulnerability management system:
 - **Penetration testing**: semi-annual security tests conducted by third parties (source: ISMS security policies)
 - **Continuous scanning**: continuous monitoring via Aikido Security
 
-### 2.3 Authentication
+### Authentication
 
 AWorld supports multiple authentication modes for different use cases.
 
@@ -297,7 +297,7 @@ The platform implements sophisticated caching for the OAuth2 Client Credentials 
 - Improved performance (cache response in ~10ms vs ~100ms Cognito)
 - Security: Secrets never stored in plaintext
 
-### 2.4 Authorization
+### Authorization
 
 #### Lambda Authorizer
 
@@ -362,7 +362,7 @@ The Lambda Authorizer integrates Verified Permissions for decision-making:
 - **Scalability**: Adding new resource types without application code changes
 - **Testing**: Policies testable independently from the application
 
-### 2.5 JWT token structure
+### JWT token structure
 
 #### Access token (TTL: 1 hour)
 
@@ -414,7 +414,7 @@ The middleware enriches the original M2M claims with user information:
 - Workspace membership validation mandatory
 - Rate limiting applied both at M2M client level and impersonated user
 
-### 2.6 Security incident management
+### Security incident management
 
 Structured incident response plan for managing anomalies and security violations:
 
@@ -450,9 +450,9 @@ Even during security incident management, the platform maintains service continu
 - **Business continuity**: service maintenance even during incident response
 
 
-## 3. Compliance and certifications
+## Compliance and certifications
 
-### 3.1 GDPR compliance
+### GDPR compliance
 
 AWorld is designed with GDPR compliance integrated from the architecture.
 
@@ -483,7 +483,7 @@ The platform implements mechanisms to guarantee that each personal data processi
 - **Granularity**: granular consent for different processing purposes
 - **Revocation**: possibility to revoke consent at any time
 
-### 3.2 Audit and traceability
+### Audit and traceability
 
 The platform implements a complete audit logging system that guarantees traceability of all operations for compliance and security purposes.
 
@@ -515,7 +515,7 @@ The system maintains an immutable trace of all critical events for security and 
   - Permission and role changes
   - Data exports and downloads
 
-### 3.3 Data residency
+### Data residency
 
 AWorld guarantees data residency in European data centers to ensure compliance with GDPR jurisdictional requirements.
 
@@ -543,7 +543,7 @@ Sub-processor management is transparent and compliant with GDPR requirements:
 - **Compliance**: all sub-processors GDPR compliant
 - **Transparency**: DPA documentation available with sub-processors
 
-### 3.4 Information Security Management System (ISMS)
+### Information Security Management System (ISMS)
 
 #### ISO 27001:2022 compliance
 
@@ -579,7 +579,7 @@ The platform architecture follows best practices defined by the five pillars of 
 - **Cost optimization**: serverless, auto-scaling, rightsizing
 - **Operational excellence**: monitoring, alerting, automation
 
-### 3.5 Contractual compliance
+### Contractual compliance
 
 #### Data Processing Agreement (DPA)
 
@@ -602,9 +602,9 @@ Formal guarantees on uptime and performance:
   - P1 Status Updates: every 2 hours (100% compliance)
 
 
-## 4. Disaster recovery and business continuity
+## Disaster recovery and business continuity
 
-### 4.1 Resilience architecture
+### Resilience architecture
 
 AWorld is designed to guarantee operational continuity even in disaster scenarios.
 
@@ -625,7 +625,7 @@ Each architectural component is replicated to guarantee continuous availability:
 - **API and services**: distribution across multiple nodes per region
 - **DNS**: Route 53 with health checks and automatic failover
 
-### 4.2 Data replication
+### Data replication
 
 The data replication strategy guarantees continuous synchronization between regions and rapid recovery capability.
 
@@ -646,7 +646,7 @@ In addition to real-time replication, the system implements periodic backups for
 - **Point-in-time recovery (PITR)**: recovery at any time point in the last 35 days
 - **Retention**: configurable based on client requirements
 
-### 4.3 Recovery objectives
+### Recovery objectives
 
 Formal disaster recovery objectives tested annually.
 
@@ -666,7 +666,7 @@ The Recovery Point Objective defines the maximum amount of data that can be lost
 - **Continuous replication**: databases replicated in real-time
 - **Backup**: point-in-time recovery to minimize data loss
 
-### 4.4 Proactive monitoring
+### Proactive monitoring
 
 A continuous monitoring system enables early detection of anomalies and automatic activation of countermeasures.
 
@@ -696,7 +696,7 @@ Upon anomaly detection, the system automatically activates corrective measures:
 - **Auto-scaling**: automatic resource increase in case of spikes
 - **Access limitation**: throttling of suspicious users
 
-### 4.5 Recovery procedures
+### Recovery procedures
 
 #### Automatic DNS failover
 
@@ -725,9 +725,9 @@ Disaster recovery procedures are regularly tested to guarantee effectiveness:
 - **Continuous improvement**: procedure refinement based on test results
 
 
-## 5. Performance and scalability
+## Performance and scalability
 
-### 5.1 Performance metrics
+### Performance metrics
 
 The platform guarantees specific performance objectives, continuously monitored and formalized in SLA.
 
@@ -765,7 +765,7 @@ The API error rate is maintained below rigorous thresholds:
 - **Monitoring**: error rate tracked per endpoint
 - **Alerting**: automatic notifications on threshold exceeding
 
-### 5.2 Automatic scalability
+### Automatic scalability
 
 #### AWS Lambda
 
@@ -784,7 +784,7 @@ The NoSQL database is configured in on-demand mode to dynamically adapt to load:
 - **Automatic partitioning**: load distribution for consistent performance
 - **Unlimited throughput**: theoretically unlimited capacity (proportional costs)
 
-### 5.3 Caching strategies and media storage
+### Caching strategies and media storage
 
 The system is optimized to guarantee high performance through intelligent caching and distributed storage of multimedia content.
 
@@ -819,7 +819,7 @@ This solution offers significant benefits:
 - Optimized costs for storage and bandwidth
 - Automatic geographic content distribution
 
-### 5.4 Load balancing and traffic distribution
+### Load balancing and traffic distribution
 
 #### AWS Route 53
 
@@ -838,7 +838,7 @@ Computational load is automatically distributed between multiple instances:
 - **Fair distribution**: intelligent execution allocation
 - **High concurrency management**: no bottleneck for traffic spikes
 
-### 5.5 Capacity and limits
+### Capacity and limits
 
 #### Configurable rate limiting
 
@@ -855,7 +855,7 @@ Configurable on request for enterprise clients:
 - **Payload size**: 6MB max per request
 - **Throttling**: dynamic based on client plan
 
-### 5.6 Idempotency and operation resilience
+### Idempotency and operation resilience
 
 To guarantee resilience in retry scenarios and network instability, the platform implements native idempotency through AWS Lambda Powertools:
 
@@ -892,11 +892,11 @@ Request → CORS → Logger → M2M Delegation → Parser → Idempotency Check 
 - Mobile apps with unstable connectivity
 
 
-## 6. Access methods and integration
+## Access methods and integration
 
 AWorld exposes functionality through REST API with dual-context architecture to separate administrative and end-user access.
 
-### 6.1 REST API
+### REST API
 
 #### Endpoint domains
 
@@ -953,7 +953,7 @@ The platform supports various integration patterns to adapt to different use sce
 - `x-idempotency-key` header for duplicate prevention
 - Idempotency keys cached for 5 minutes
 
-### 6.2 Pre-provisioning and user access
+### Pre-provisioning and user access
 
 > **Note**: Functionality available on request as configurable option for enterprise clients.
 
@@ -983,7 +983,7 @@ Pre-provisioning acts as a security filter that verifies authorization in real-t
 - System blocks OTP sending to email addresses not in whitelist
 - Pre-provisioning acts as "security gate" for authorized user perimeter
 
-### 6.3 Trigger access mode
+### Trigger access mode
 
 > **Note**: Functionality available on request as configurable option for enterprise clients.
 
@@ -1006,7 +1006,7 @@ For scenarios requiring greater privacy, email can be transmitted via HTTP heade
 - Email injected in agreed HTTP header (e.g., `X-AWorld-User-Email`)
 - API Gateway configured to extract email from header
 
-### 6.4 Support for future protocols
+### Support for future protocols
 
 The architecture is designed for future evolution with support for modern protocols like GraphQL.
 
@@ -1019,7 +1019,7 @@ Architecture designed to support GraphQL as additional API layer:
 - **Bandwidth reduction**: optimization for mobile clients
 - **Timeline**: 2026-2027 product roadmap
 
-### 6.5 Single sign-on (SSO) and SAML
+### Single sign-on (SSO) and SAML
 
 #### Native Cognito support
 
@@ -1042,7 +1042,7 @@ SSO integration is particularly useful for organizations that want:
 - Single sign-on to simplify employee access
 - Centralized identity management
 
-### 6.6 Middleware stack and error handling
+### Middleware stack and error handling
 
 The platform uses a standardized middleware pipeline based on Middy to guarantee consistent behavior across all API endpoints.
 
