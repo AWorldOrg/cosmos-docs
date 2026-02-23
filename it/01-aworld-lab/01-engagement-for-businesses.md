@@ -67,4 +67,4 @@ Tre caratteristiche chiave definiscono la piattaforma:
 - **Flessibilità**: i clienti possono personalizzare l'esperienza di *engagement* in base alle proprie esigenze. Le *API* permettono di selezionare e combinare le funzionalità più adatte per gli utenti finali, mentre il sistema multi-*tenant* consente la gestione dinamica delle configurazioni per ciascuna organizzazione.
 - **Indipendenza tematica**: il sistema consente alle aziende di applicare le meccaniche di gioco a molteplici ambiti, dalla formazione interna al benessere aziendale, dalla gestione delle risorse umane alla loyalty.
 
-AWorld Lab si posiziona come un'**infrastruttura di *gamification* versatile**, capace di rispondere alle esigenze di engagement di qualsiasi settore. I capitoli seguenti esaminano nel dettaglio i componenti chiave di questa infrastruttura.
+AWorld Lab si posiziona come un'**infrastruttura di *gamification* versatile**, capace di rispondere alle esigenze di engagement di qualsiasi settore. Le sezioni successive della documentazione esaminano nel dettaglio i componenti chiave di questa infrastruttura.

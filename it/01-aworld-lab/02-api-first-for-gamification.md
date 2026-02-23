@@ -26,7 +26,7 @@ Ogni **TDA** alimenta il sistema, contribuendo all'accumulo di punti, al progres
 
 Questo *layer* abilita e fornisce accesso a **modelli di attività predefiniti**, sviluppati e validati attraverso anni di utilizzo sul campo. Sebbene ogni cliente possa definire le proprie **Tractable Digital Activities (TDAs)** personalizzate, AWorld Lab offre un set di **modelli di attività ottimizzati** che possono essere utilizzati immediatamente per accelerare l'implementazione della *gamification*.
 
-Tra questi, le **Stories** coinvolgono gli utenti attraverso contenuti interattivi, mentre i **Quizzes** propongono domande a risposta multipla per stimolare l'apprendimento e l'engagement.
+Il modello principale di contenuto è il **Learning Path (LP)**, un'esperienza lineare di microlearning organizzata in sezioni chiamate **Learning Path Group (LPG)**. Ogni gruppo contiene due tipi di elementi: le **Slide**, che presentano contenuto testuale, e i **Quiz**, domande a scelta singola con una sola risposta corretta, pensati per consolidare l'apprendimento e stimolare l'engagement.
 
 Inoltre, il sistema include modelli basati su dati di mobilità, come i **Mobility Milestones**, che tracciano i comportamenti di mobilità sostenibile. Questi sono disponibili solo se il punto di contatto dell'utente è un **dispositivo mobile**, consentendo l'integrazione con i sensori dello smartphone.
 
@@ -36,14 +36,14 @@ Grazie all'*Activity Plugin Layer*, i clienti possono **combinare le proprie att
 
 Il *Catalog Layer* gestisce l'organizzazione e la distribuzione dei contenuti disponibili sulla piattaforma, offrendo ai clienti l'accesso a risorse predefinite o la possibilità di personalizzare le proprie attività.
 
-Sebbene i clienti possano configurare le proprie **TDA**, AWorld Lab fornisce un catalogo strutturato di **contenuti validati**, che consente un deployment più rapido della *gamification*. Ad esempio, un cliente che adotta il modello **Stories** può creare i propri contenuti oppure selezionarli dal catalogo **Stories**, che offre una raccolta curata di articoli e materiali pronti all'uso. Lo stesso vale per i **Quizzes**, che dispongono di una banca di domande e test interattivi, e per le **Missioni**, con sfide precostituite basate su anni di esperienza sulla piattaforma.
+Sebbene i clienti possano configurare le proprie **TDA**, AWorld Lab fornisce un catalogo strutturato di **contenuti validati**, che consente un deployment più rapido della *gamification*. Ad esempio, un cliente che adotta il modello **Learning Path** può creare i propri contenuti oppure selezionarli dal catalogo, che offre una raccolta curata di slide e quiz pronti all'uso. Lo stesso vale per le **Missioni**, con sfide precostituite basate su anni di esperienza sulla piattaforma.
 
 Questo *layer* non solo accelera l'integrazione della *gamification*, ma garantisce anche attività di alta qualità, fornendo un solido punto di partenza per i clienti che desiderano lanciare rapidamente esperienze coinvolgenti.
 
 L'architettura a livelli migliora l'efficienza tecnica della piattaforma e ne amplia l'applicabilità a diversi target e segmenti di mercato.
 
-### ***AI Content Generation*: supporto alla creazione di *Stories* interattive**
+### ***AI Content Generation*: supporto alla creazione di *Learning Path***
 
-Molti clienti desiderano personalizzare la piattaforma ma spesso si trovano di fronte a una **barriera operativa: la creazione di contenuti richiede tempo e competenze specifiche**. Per affrontare questa sfida, AWorld Lab integra funzionalità di intelligenza artificiale per **supportare la creazione di contenuti interattivi**, a partire dal modello di attività **Stories**.
+Molti clienti desiderano personalizzare la piattaforma ma spesso si trovano di fronte a una **barriera operativa: la creazione di contenuti richiede tempo e competenze specifiche**. Per affrontare questa sfida, AWorld Lab integra funzionalità di intelligenza artificiale per **supportare la creazione di contenuti interattivi**.
 
-AWorld Lab fornisce un sistema assistito dall'intelligenza artificiale che aiuta i clienti a **generare Stories interattive** basate sui propri temi e obiettivi specifici. L'AI gestisce la strutturazione dei contenuti, la generazione del testo e la creazione dei quiz, permettendo ai clienti di produrre contenuti di qualità in modo rapido ed efficiente, senza necessità di risorse editoriali specializzate.
+AWorld Lab fornisce un sistema assistito dall'intelligenza artificiale che aiuta i clienti a **generare Learning Path completi** basati sui propri temi e obiettivi specifici. L'AI gestisce la strutturazione dei contenuti, la generazione del testo delle slide e la creazione dei quiz, permettendo ai clienti di produrre esperienze di microlearning di qualità in modo rapido ed efficiente, senza necessità di risorse editoriali specializzate.
