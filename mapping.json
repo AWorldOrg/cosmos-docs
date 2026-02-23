@@ -19,56 +19,70 @@
       }
     },
     {
-      "path": "01-aworld-lab/03-gamification-features-and-mechanics.md",
+      "path": "01-aworld-lab/03-activities-learning-and-content.md",
       "langs": {
-        "en": { "doc_id": "1215194", "title": "Gamification Features and Mechanics" },
-        "it": { "doc_id": "1215194", "title": "Funzionalità e meccaniche di gamification" }
+        "en": { "doc_id": "1215194", "title": "Activities, Learning, and Content" },
+        "it": { "doc_id": "1215194", "title": "Attività, apprendimento e contenuti" }
       }
     },
     {
-      "path": "01-aworld-lab/04-cloud-infrastructure.md",
+      "path": "01-aworld-lab/04-missions-rewards-and-progression.md",
+      "langs": {
+        "en": { "doc_id": "1967903", "title": "Missions, Rewards, and Progression" },
+        "it": { "doc_id": "1967905", "title": "Missioni, ricompense e progressione" }
+      }
+    },
+    {
+      "path": "01-aworld-lab/05-leaderboards-streaks-and-competitive-mechanics.md",
+      "langs": {
+        "en": { "doc_id": "1967904", "title": "Leaderboards, Streaks, and Competitive Mechanics" },
+        "it": { "doc_id": "1967906", "title": "Leaderboard, streak e meccaniche competitive" }
+      }
+    },
+    {
+      "path": "01-aworld-lab/06-cloud-infrastructure.md",
       "langs": {
         "en": { "doc_id": "1215195", "title": "Cloud Infrastructure and Architecture" },
         "it": { "doc_id": "1215195", "title": "Infrastruttura cloud e architettura" }
       }
     },
     {
-      "path": "01-aworld-lab/05-security-and-cybersecurity.md",
+      "path": "01-aworld-lab/07-security-and-cybersecurity.md",
       "langs": {
         "en": { "doc_id": "1215196", "title": "Security and Cybersecurity" },
         "it": { "doc_id": "1215196", "title": "Sicurezza e cybersecurity" }
       }
     },
     {
-      "path": "01-aworld-lab/06-compliance-and-certifications.md",
+      "path": "01-aworld-lab/08-compliance-and-certifications.md",
       "langs": {
         "en": { "doc_id": "1967401", "title": "Compliance and Certifications" },
         "it": { "doc_id": "1967408", "title": "Compliance e certificazioni" }
       }
     },
     {
-      "path": "01-aworld-lab/07-disaster-recovery.md",
+      "path": "01-aworld-lab/09-disaster-recovery.md",
       "langs": {
         "en": { "doc_id": "1967403", "title": "Disaster Recovery and Business Continuity" },
         "it": { "doc_id": "1967409", "title": "Disaster recovery e business continuity" }
       }
     },
     {
-      "path": "01-aworld-lab/08-performance-and-scalability.md",
+      "path": "01-aworld-lab/10-performance-and-scalability.md",
       "langs": {
         "en": { "doc_id": "1967404", "title": "Performance and Scalability" },
         "it": { "doc_id": "1967410", "title": "Performance e scalabilità" }
       }
     },
     {
-      "path": "01-aworld-lab/09-access-methods-and-integration.md",
+      "path": "01-aworld-lab/11-access-methods-and-integration.md",
       "langs": {
         "en": { "doc_id": "1967405", "title": "Access Methods and Integration" },
         "it": { "doc_id": "1967411", "title": "Modalità di accesso e integrazione" }
       }
     },
     {
-      "path": "01-aworld-lab/10-technical-glossary.md",
+      "path": "01-aworld-lab/12-technical-glossary.md",
       "langs": {
         "en": { "doc_id": "1967406", "title": "Technical Glossary" },
         "it": { "doc_id": "1967412", "title": "Glossario tecnico" }
