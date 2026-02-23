@@ -67,4 +67,4 @@ Three key characteristics define the platform:
 - **Flexibility**: clients can customise the *engagement* experience according to their needs. The *API* allows selecting and combining the most suitable features for end users, while the multi-*tenant* system enables dynamic configuration management for each organisation.
 - **Thematic independence**: the system allows companies to apply game mechanics to multiple domains, from internal training to corporate wellbeing, human resources management, and customer loyalty.
 
-AWorld Lab positions itself as a **versatile *gamification* infrastructure**, capable of responding to engagement needs across any sector. The following chapters examine the key components of this infrastructure in detail.
+AWorld Lab positions itself as a **versatile *gamification* infrastructure**, capable of responding to engagement needs across any sector. The following sections of the documentation examine the key components of this infrastructure in detail.

@@ -5,43 +5,73 @@
   },
   "docs": [
     {
-      "doc_id": "1959727",
       "path": "01-aworld-lab/01-engagement-for-businesses.md",
-      "title": {
-        "en": "Engagement for Businesses and Organizations",
-        "it": "Engagement per le aziende e le organizzazioni"
+      "langs": {
+        "en": { "doc_id": "1959727", "title": "Engagement for Businesses and Organizations" },
+        "it": { "doc_id": "1959727", "title": "Engagement per le aziende e le organizzazioni" }
       }
     },
     {
-      "doc_id": "1215192",
       "path": "01-aworld-lab/02-api-first-for-gamification.md",
-      "title": {
-        "en": "API-first for Gamification",
-        "it": "API-first per la gamification"
+      "langs": {
+        "en": { "doc_id": "1215192", "title": "API-first for Gamification" },
+        "it": { "doc_id": "1215192", "title": "API-first per la gamification" }
       }
     },
     {
-      "doc_id": "1215194",
       "path": "01-aworld-lab/03-gamification-features-and-mechanics.md",
-      "title": {
-        "en": "Gamification Features and Mechanics",
-        "it": "Funzionalità e meccaniche di gamification"
+      "langs": {
+        "en": { "doc_id": "1215194", "title": "Gamification Features and Mechanics" },
+        "it": { "doc_id": "1215194", "title": "Funzionalità e meccaniche di gamification" }
       }
     },
     {
-      "doc_id": "1215195",
-      "path": "01-aworld-lab/04-product-architecture.md",
-      "title": {
-        "en": "Product Architecture",
-        "it": "Architettura del prodotto"
+      "path": "01-aworld-lab/04-cloud-infrastructure.md",
+      "langs": {
+        "en": { "doc_id": "1215195", "title": "Cloud Infrastructure and Architecture" },
+        "it": { "doc_id": "1215195", "title": "Infrastruttura cloud e architettura" }
       }
     },
     {
-      "doc_id": "1215196",
-      "path": "01-aworld-lab/05-technical-specifications.md",
-      "title": {
-        "en": "Technical Specifications",
-        "it": "Specifiche tecniche"
+      "path": "01-aworld-lab/05-security-and-cybersecurity.md",
+      "langs": {
+        "en": { "doc_id": "1215196", "title": "Security and Cybersecurity" },
+        "it": { "doc_id": "1215196", "title": "Sicurezza e cybersecurity" }
+      }
+    },
+    {
+      "path": "01-aworld-lab/06-compliance-and-certifications.md",
+      "langs": {
+        "en": { "doc_id": "1967401", "title": "Compliance and Certifications" },
+        "it": { "doc_id": "1967408", "title": "Compliance e certificazioni" }
+      }
+    },
+    {
+      "path": "01-aworld-lab/07-disaster-recovery.md",
+      "langs": {
+        "en": { "doc_id": "1967403", "title": "Disaster Recovery and Business Continuity" },
+        "it": { "doc_id": "1967409", "title": "Disaster recovery e business continuity" }
+      }
+    },
+    {
+      "path": "01-aworld-lab/08-performance-and-scalability.md",
+      "langs": {
+        "en": { "doc_id": "1967404", "title": "Performance and Scalability" },
+        "it": { "doc_id": "1967410", "title": "Performance e scalabilità" }
+      }
+    },
+    {
+      "path": "01-aworld-lab/09-access-methods-and-integration.md",
+      "langs": {
+        "en": { "doc_id": "1967405", "title": "Access Methods and Integration" },
+        "it": { "doc_id": "1967411", "title": "Modalità di accesso e integrazione" }
+      }
+    },
+    {
+      "path": "01-aworld-lab/10-technical-glossary.md",
+      "langs": {
+        "en": { "doc_id": "1967406", "title": "Technical Glossary" },
+        "it": { "doc_id": "1967412", "title": "Glossario tecnico" }
       }
     }
   ]

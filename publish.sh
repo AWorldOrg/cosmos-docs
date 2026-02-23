@@ -71,8 +71,6 @@ SUCCESS=0
 FAILED=0
 
 for i in $(seq 0 $((TOTAL - 1))); do
-  DOC_ID=$(jq -r ".docs[$i].doc_id" "$MAPPING_FILE")
-
   DOC_PATH=$(jq -r ".docs[$i].path" "$MAPPING_FILE")
 
   # If --doc is specified, skip non-matching entries
@@ -81,8 +79,9 @@ for i in $(seq 0 $((TOTAL - 1))); do
   fi
 
   for CURRENT_LANG in "${LANGS[@]}"; do
-    # Title for this language, fallback to EN
-    TITLE=$(jq -r ".docs[$i].title.$CURRENT_LANG // .docs[$i].title.en" "$MAPPING_FILE")
+    # Read doc_id and title for current language, fallback to EN
+    DOC_ID=$(jq -r ".docs[$i].langs.$CURRENT_LANG.doc_id // .docs[$i].langs.en.doc_id" "$MAPPING_FILE")
+    TITLE=$(jq -r ".docs[$i].langs.$CURRENT_LANG.title // .docs[$i].langs.en.title" "$MAPPING_FILE")
 
     # Select branch ID
     if [[ "$CURRENT_LANG" == "en" ]]; then
