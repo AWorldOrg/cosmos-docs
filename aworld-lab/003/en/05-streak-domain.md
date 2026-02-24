@@ -1,6 +1,6 @@
 The streak system tracks user engagement over time. It answers questions like _"Has this user been active every day for the past 30 days?"_ or _"How many weeks in a row has this user completed at least one quiz?"_
 
-This section covers the full streak model: configuration and matching, cadence and metric dimensions, goal tracking, freeze mechanics, and the record system. It is relevant for anyone configuring engagement streaks or integrating them via API. For a high-level overview, see the Gamification Fundamentals. For shared patterns (JsonLogic expressions, timeframes, entity matching), see Cross-Cutting Patterns.
+> This section covers the full streak model: configuration and matching, cadence and metric dimensions, goal tracking, freeze mechanics, and the record system. It is relevant for anyone configuring engagement streaks or integrating them via API. For a high-level overview, see the Gamification Fundamentals. For shared patterns (JsonLogic expressions, timeframes, entity matching), see Cross-Cutting Patterns.
 
 The domain is built around three entities that form a clear hierarchy:
 

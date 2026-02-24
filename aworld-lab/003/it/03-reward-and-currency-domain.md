@@ -1,6 +1,6 @@
 Il sistema di reward distribuisce automaticamente valuta virtuale quando gli utenti eseguono azioni. Risponde a domande come _"Quanti punti dovrebbe ricevere questo utente per aver completato un quiz difficile?"_ e _"L'utente ha abbastanza crediti per riscattare questa ricompensa?"_
 
-Questa sezione copre il modello completo dei reward: valutazione delle regole con risoluzione per priorità (ALWAYS/FALLBACK), gestione delle valute, ciclo di vita delle transazioni e tracciamento dei saldi. È rilevante per chiunque configuri le regole di reward o integri l'economia virtuale via API. Per una panoramica di alto livello, vedi i Fondamenti della Gamification. Per i pattern condivisi (espressioni JsonLogic, entity matching), vedi i Pattern Trasversali.
+> Questa sezione copre il modello completo dei reward: valutazione delle regole con risoluzione per priorità (ALWAYS/FALLBACK), gestione delle valute, ciclo di vita delle transazioni e tracciamento dei saldi. È rilevante per chiunque configuri le regole di reward o integri l'economia virtuale via API. Per una panoramica di alto livello, vedi i Fondamenti della Gamification. Per i pattern condivisi (espressioni JsonLogic, entity matching), vedi i Pattern Trasversali.
 
 Il dominio collega la valutazione delle regole a un'economia virtuale:
 

@@ -1,6 +1,6 @@
 Il sistema di contenuti di apprendimento gestisce esperienze educative strutturate. Risponde a domande come _"Quali percorsi di apprendimento sono assegnati a questo utente?"_, _"Quanto è progredito l'utente?"_ e _"Il prossimo percorso dovrebbe sbloccarsi ora che il precedente è completato?"_
 
-Questa sezione copre il modello di configurazione completo: gerarchie di contenuti, assegnazione e sblocco basati su regole, gestione della visibilità e tracciamento dei progressi. È rilevante per chiunque progetti esperienze di apprendimento o le integri via API. Per una panoramica di alto livello, vedi i Fondamenti della Gamification. Per i pattern condivisi (espressioni JsonLogic, timeframe, entity matching), vedi i Pattern Trasversali.
+> Questa sezione copre il modello di configurazione completo: gerarchie di contenuti, assegnazione e sblocco basati su regole, gestione della visibilità e tracciamento dei progressi. È rilevante per chiunque progetti esperienze di apprendimento o le integri via API. Per una panoramica di alto livello, vedi i Fondamenti della Gamification. Per i pattern condivisi (espressioni JsonLogic, timeframe, entity matching), vedi i Pattern Trasversali.
 
 Il dominio è costruito attorno a una gerarchia di contenitori di contenuto, un sistema di regole per l'assegnazione e il controllo degli accessi, e un livello di tracciamento dei progressi:
 

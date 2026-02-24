@@ -1,6 +1,6 @@
 The reward system automatically distributes virtual currency when users perform actions. It answers questions like _"How many points should this user receive for completing a hard quiz?"_ and _"Does the user have enough credits to redeem this reward?"_
 
-This section covers the full reward model: rule evaluation with priority resolution (ALWAYS/FALLBACK), currency management, transaction lifecycle, and balance tracking. It is relevant for anyone configuring reward rules or integrating the virtual economy via API. For a high-level overview, see the Gamification Fundamentals. For shared patterns (JsonLogic expressions, entity matching), see Cross-Cutting Patterns.
+> This section covers the full reward model: rule evaluation with priority resolution (ALWAYS/FALLBACK), currency management, transaction lifecycle, and balance tracking. It is relevant for anyone configuring reward rules or integrating the virtual economy via API. For a high-level overview, see the Gamification Fundamentals. For shared patterns (JsonLogic expressions, entity matching), see Cross-Cutting Patterns.
 
 The domain connects rule evaluation to a virtual economy:
 

@@ -3,7 +3,7 @@ La piattaforma è una **soluzione aperta e modulare**, adattabile a diversi sett
 
 AWorld Lab nasce dall'esperienza di **AWorld**, leader riconosciuto nell'engagement digitale per la sostenibilità, selezionata dalle **Nazioni Unite** come piattaforma ufficiale a supporto degli Obiettivi di Sviluppo Sostenibile. Questa comprovata capacità di motivare gli utenti attraverso la *gamification* è il fondamento su cui AWorld Lab offre le proprie funzionalità di engagement in qualsiasi ambito.
 
-Questa documentazione funge da riferimento per le aziende interessate a integrare strumenti di *engagement* nei propri servizi digitali, così come per i team responsabili dell'integrazione *API*. È inoltre destinata a product manager e decisori aziendali che desiderano comprendere il potenziale della soluzione sia da una prospettiva strategica sia in termini di implementazione tecnica.
+> Questa documentazione funge da riferimento per le aziende interessate a integrare strumenti di *engagement* nei propri servizi digitali, così come per i team responsabili dell'integrazione *API*. È inoltre destinata a product manager e decisori aziendali che desiderano comprendere il potenziale della soluzione sia da una prospettiva strategica sia in termini di implementazione tecnica.
 
 ## Le fondamenta di AWorld: dalla sostenibilità all'engagement universale
 

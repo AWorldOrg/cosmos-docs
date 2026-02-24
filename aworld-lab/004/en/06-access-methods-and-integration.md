@@ -7,10 +7,7 @@ AWorld exposes functionality through REST API with dual-context architecture to 
 The platform exposes two main domains for authentication and API:
 
 - **Auth domain**: `https://auth.aworld.cloud`
-- **API domain (current)**: `https://api.eu-west-1.aworld.cloud`
-- **API domain (future)**: `https://api.aworld.cloud` (migration planned March 1, 2026)
-
-> **Note**: During the transition period both domains will be functional.
+- **API domain**: `https://api.aworld.cloud`
 
 #### Two API contexts
 
@@ -213,7 +210,7 @@ Each error returns structured JSON response:
   "requestId": "abc-123-def-456",
   "timestamp": "2026-02-18T10:30:00Z",
   "path": "/app/v1/missions",
-  "url": "https://api.eu-west-1.aworld.cloud/app/v1/missions",
+  "url": "https://api.aworld.cloud/app/v1/missions",
   "docs": "https://docs.aworld.cloud/errors/auth/invalid_token"
 }
 ```

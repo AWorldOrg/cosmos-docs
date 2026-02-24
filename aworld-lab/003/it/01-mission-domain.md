@@ -1,6 +1,6 @@
 Il sistema di mission trasforma le azioni degli utenti in obiettivi strutturati. Risponde a domande come _"Questo utente ha completato 10 quiz questa settimana?"_ oppure _"Il team marketing ha collettivamente terminato 50 attività questo mese?"_
 
-Questa sezione copre il modello di configurazione completo: gerarchie di entità, logica di matching, modalità di assegnazione e gestione del ciclo di vita. È rilevante per chiunque configuri le mission tramite la dashboard o le integri via API. Per una panoramica di alto livello su cosa fanno le mission, vedi i Fondamenti della Gamification. Per i pattern condivisi tra tutti i domini (espressioni JsonLogic, timeframe, entity matching), vedi i Pattern Trasversali.
+> Questa sezione copre il modello di configurazione completo: gerarchie di entità, logica di matching, modalità di assegnazione e gestione del ciclo di vita. È rilevante per chiunque configuri le mission tramite la dashboard o le integri via API. Per una panoramica di alto livello su cosa fanno le mission, vedi i Fondamenti della Gamification. Per i pattern condivisi tra tutti i domini (espressioni JsonLogic, timeframe, entity matching), vedi i Pattern Trasversali.
 
 Il dominio è costruito attorno a quattro entità che formano una gerarchia chiara:
 

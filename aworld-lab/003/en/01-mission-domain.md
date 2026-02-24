@@ -1,6 +1,6 @@
 The mission system turns user actions into structured goals. It answers questions like _"Has this user completed 10 quizzes this week?"_ or _"Has the marketing team collectively finished 50 activities this month?"_
 
-This section covers the full configuration model: entity hierarchies, matching logic, assignment modes, and lifecycle management. It is relevant for anyone configuring missions through the dashboard or integrating them via API. For a high-level overview of what missions do, see the Gamification Fundamentals. For shared patterns used across all domains (JsonLogic expressions, timeframes, entity matching), see Cross-Cutting Patterns.
+> This section covers the full configuration model: entity hierarchies, matching logic, assignment modes, and lifecycle management. It is relevant for anyone configuring missions through the dashboard or integrating them via API. For a high-level overview of what missions do, see the Gamification Fundamentals. For shared patterns used across all domains (JsonLogic expressions, timeframes, entity matching), see Cross-Cutting Patterns.
 
 The domain is built around four entities that form a clear hierarchy:
 

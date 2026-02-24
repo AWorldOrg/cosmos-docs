@@ -3,7 +3,7 @@ The platform is an **open and modular solution**, adaptable to various sectors: 
 
 AWorld Lab builds on the expertise of **AWorld**, a recognized leader in digital engagement for sustainability, selected by the **United Nations** as an official platform to support the Sustainable Development Goals. This proven track record in motivating users through *gamification* is the foundation on which AWorld Lab delivers its engagement capabilities across any domain.
 
-This documentation serves as a reference for companies interested in incorporating *engagement* tools into their digital services, as well as for teams responsible for *API* integration. It is also intended for product managers and business decision-makers who want to understand the solution's potential both from a strategic perspective and in terms of technical implementation.
+> This documentation serves as a reference for companies interested in incorporating *engagement* tools into their digital services, as well as for teams responsible for *API* integration. It is also intended for product managers and business decision-makers who want to understand the solution's potential both from a strategic perspective and in terms of technical implementation.
 
 ## The AWorld foundation: from sustainability to universal engagement
 

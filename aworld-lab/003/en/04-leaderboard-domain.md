@@ -1,6 +1,6 @@
 The leaderboard system turns virtual currency accumulation into competitive rankings. It answers questions like _"Who are the top 10 users in the marketing department this week?"_ and _"What is my current rank?"_
 
-This section covers the full leaderboard model: configuration templates, query-based ranking computation, recurring instance chains, and timezone handling. It is relevant for anyone setting up competitive mechanics or integrating leaderboards via API. For a high-level overview, see the Gamification Fundamentals. For shared patterns (timeframes, state lifecycle), see Cross-Cutting Patterns.
+> This section covers the full leaderboard model: configuration templates, query-based ranking computation, recurring instance chains, and timezone handling. It is relevant for anyone setting up competitive mechanics or integrating leaderboards via API. For a high-level overview, see the Gamification Fundamentals. For shared patterns (timeframes, state lifecycle), see Cross-Cutting Patterns.
 
 The domain is built on a two-layer architecture that separates _what_ is ranked from _when_ it is ranked:
 

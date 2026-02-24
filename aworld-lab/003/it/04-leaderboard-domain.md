@@ -1,6 +1,6 @@
 Il sistema di leaderboard trasforma l'accumulo di valuta virtuale in classifiche competitive. Risponde a domande come _"Chi sono i primi 10 utenti nel reparto marketing questa settimana?"_ e _"Qual è la mia posizione attuale?"_
 
-Questa sezione copre il modello completo delle leaderboard: template di configurazione, calcolo dei ranking basato su query, catene di istanze ricorrenti e gestione dei fusi orari. È rilevante per chiunque configuri meccaniche competitive o integri le leaderboard via API. Per una panoramica di alto livello, vedi i Fondamenti della Gamification. Per i pattern condivisi (timeframe, ciclo di vita dello stato), vedi i Pattern Trasversali.
+> Questa sezione copre il modello completo delle leaderboard: template di configurazione, calcolo dei ranking basato su query, catene di istanze ricorrenti e gestione dei fusi orari. È rilevante per chiunque configuri meccaniche competitive o integri le leaderboard via API. Per una panoramica di alto livello, vedi i Fondamenti della Gamification. Per i pattern condivisi (timeframe, ciclo di vita dello stato), vedi i Pattern Trasversali.
 
 Il dominio si basa su un'architettura a due livelli che separa _cosa_ viene classificato da _quando_ viene classificato:
 

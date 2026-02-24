@@ -1,6 +1,6 @@
 The learning content system manages structured educational experiences. It answers questions like _"What learning paths are assigned to this user?"_, _"How far has the user progressed?"_, and _"Should the next path unlock now that the previous one is complete?"_
 
-This section covers the full configuration model: content hierarchies, rule-based assignment and unlocking, visibility management, and progress tracking. It is relevant for anyone designing learning experiences or integrating them via API. For a high-level overview, see the Gamification Fundamentals. For shared patterns (JsonLogic expressions, timeframes, entity matching), see Cross-Cutting Patterns.
+> This section covers the full configuration model: content hierarchies, rule-based assignment and unlocking, visibility management, and progress tracking. It is relevant for anyone designing learning experiences or integrating them via API. For a high-level overview, see the Gamification Fundamentals. For shared patterns (JsonLogic expressions, timeframes, entity matching), see Cross-Cutting Patterns.
 
 The domain is built around a hierarchy of content containers, a rule system for assignment and access control, and a progress tracking layer:
 
