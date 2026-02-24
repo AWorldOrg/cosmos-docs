@@ -1,5 +1,6 @@
 .idea
 .vscode
 .DS_Store
-publish.md
-.env
+aworld-lab/.env
+api-reference/.env
+api-reference/publish-notes.md
