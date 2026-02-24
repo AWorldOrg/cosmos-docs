@@ -78,8 +78,7 @@ AWorld Lab provides a powerful **rules engine** for automating Learning Path del
 Rules operate in different **assignment modes**:
 
 - **Lazy**: assignments are created on-demand when the user browses available content, if they match the rule's conditions.
-- **Event**: assignments are triggered in real time by user actions (such as completing another Learning Path or earning a specific achievement).
-- **Scheduled**: assignments are pushed to users at a predetermined time.
+- **Event**: assignments are triggered in real time by user actions (such as completing another Learning Path or earning a specific achievement). Combined with recurring timeframes, this also enables scheduled delivery at predetermined intervals.
 
 ### Custom Completion Rules
 

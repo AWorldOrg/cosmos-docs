@@ -78,8 +78,7 @@ AWorld Lab mette a disposizione un potente **motore di regole** per automatizzar
 Le regole operano in diverse **modalità di assegnazione**:
 
 - **Lazy**: le assegnazioni vengono create on-demand quando l'utente esplora i contenuti disponibili, se corrisponde alle condizioni della regola.
-- **Event**: le assegnazioni vengono attivate in tempo reale dalle azioni dell'utente (come il completamento di un altro Learning Path o l'ottenimento di uno specifico achievement).
-- **Scheduled**: le assegnazioni vengono inviate agli utenti a un orario predeterminato.
+- **Event**: le assegnazioni vengono attivate in tempo reale dalle azioni dell'utente (come il completamento di un altro Learning Path o l'ottenimento di uno specifico achievement). Combinato con timeframe ricorrenti, consente anche la distribuzione programmata a intervalli predeterminati.
 
 ### Regole di completamento personalizzate
 

@@ -68,3 +68,12 @@ Tre caratteristiche chiave definiscono la piattaforma:
 - **Indipendenza tematica**: il sistema consente alle aziende di applicare le meccaniche di gioco a molteplici ambiti, dalla formazione interna al benessere aziendale, dalla gestione delle risorse umane alla loyalty.
 
 AWorld Lab si posiziona come un'**infrastruttura di *gamification* versatile**, capace di rispondere alle esigenze di engagement di qualsiasi settore. Le sezioni successive della documentazione esaminano nel dettaglio i componenti chiave di questa infrastruttura.
+
+## Come navigare questa documentazione
+
+Questa documentazione è organizzata in quattro sezioni, ciascuna con un diverso livello di approfondimento. In base al tuo ruolo, puoi seguire il percorso più adatto alle tue esigenze:
+
+- **Stakeholder e decisori aziendali**: inizia con questa sezione (Fondamenti della Gamification) e prosegui con gli Scenari di Engagement per vedere come le funzionalità si combinano in casi d'uso reali.
+- **Product manager e configuratori**: leggi i Fondamenti e gli Scenari, poi passa ai Domain Deep-Dive per capire come ogni funzionalità è configurata — gerarchie di entità, sistemi di regole, modalità di assegnazione e gestione del ciclo di vita.
+- **Engineer di integrazione e backend**: dopo i Fondamenti, concentrati sui Domain Deep-Dive per le specifiche complete delle entità, poi consulta Infrastruttura e Sicurezza per i pattern di accesso API e i dettagli architetturali.
+- **Team DevOps, sicurezza e compliance**: la sezione Infrastruttura e Sicurezza è autonoma e può essere letta indipendentemente.
