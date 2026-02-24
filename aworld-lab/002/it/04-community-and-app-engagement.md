@@ -1,5 +1,3 @@
-## Community e *engagement* nell'app
-
 Una piattaforma digitale vuole costruire una community attiva dove gli utenti creano contenuti, partecipano a sfide e formano un ecosistema di *engagement* autosufficiente.
 
 ### Configurazione dei contenuti

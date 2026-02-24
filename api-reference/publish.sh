@@ -3,45 +3,43 @@ set -euo pipefail
 
 # Publish Script for API Reference Documentation
 # ===============================================
-# This script publishes API reference docs (02-api-overview) to ApiDog.
-# It's separate from publish.sh which handles product docs (01-aworld-lab).
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-ENV_FILE="$SCRIPT_DIR/.env.api"
-MAPPING_FILE="$SCRIPT_DIR/mapping-api.json"
+ENV_FILE="$SCRIPT_DIR/.env"
+MAPPING_FILE="$SCRIPT_DIR/mapping.json"
 
-# Load .env.api
+# Load .env
 if [[ ! -f "$ENV_FILE" ]]; then
-  echo "Error: .env.api file not found"
-  echo "Please create .env.api with APIDOG_TOKEN and PROJECT_ID"
+  echo "Error: .env file not found"
+  echo "Please create .env with APIDOG_TOKEN and PROJECT_ID"
   exit 1
 fi
 source "$ENV_FILE"
 
 if [[ -z "${APIDOG_TOKEN:-}" ]]; then
-  echo "Error: APIDOG_TOKEN not set in .env.api"
+  echo "Error: APIDOG_TOKEN not set in .env"
   exit 1
 fi
 
 if [[ "$APIDOG_TOKEN" == "YOUR_APIDOG_TOKEN_HERE" ]]; then
-  echo "Error: APIDOG_TOKEN in .env.api is still a placeholder"
+  echo "Error: APIDOG_TOKEN in .env is still a placeholder"
   echo "Please replace YOUR_APIDOG_TOKEN_HERE with actual token"
   exit 1
 fi
 
 if [[ -z "${PROJECT_ID:-}" ]]; then
-  echo "Error: PROJECT_ID not set in .env.api"
+  echo "Error: PROJECT_ID not set in .env"
   exit 1
 fi
 
 if [[ "$PROJECT_ID" == "YOUR_PROJECT_ID_HERE" ]]; then
-  echo "Error: PROJECT_ID in .env.api is still a placeholder"
+  echo "Error: PROJECT_ID in .env is still a placeholder"
   echo "Please replace YOUR_PROJECT_ID_HERE with actual project ID"
   exit 1
 fi
 
 if [[ ! -f "$MAPPING_FILE" ]]; then
-  echo "Error: mapping-api.json not found"
+  echo "Error: mapping.json not found"
   exit 1
 fi
 
@@ -69,7 +67,7 @@ done
 BRANCH_EN=$(jq -r '.branches.en' "$MAPPING_FILE")
 
 if [[ "$BRANCH_EN" == "YOUR_ENGLISH_BRANCH_ID_HERE" ]]; then
-  echo "Error: Branch ID in mapping-api.json is still a placeholder"
+  echo "Error: Branch ID in mapping.json is still a placeholder"
   echo "Please replace YOUR_ENGLISH_BRANCH_ID_HERE with actual branch ID"
   exit 1
 fi

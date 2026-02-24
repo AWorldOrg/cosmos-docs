@@ -5,21 +5,21 @@
   "docs": [
     {
       "doc_id": "1963860",
-      "path": "02-api-overview/01-getting-started.md",
+      "path": "01-getting-started.md",
       "title": {
         "en": "Getting Started"
       }
     },
     {
       "doc_id": "1960903",
-      "path": "02-api-overview/02-authentication.md",
+      "path": "02-authentication.md",
       "title": {
         "en": "Authentication"
       }
     },
     {
       "doc_id": "1963861",
-      "path": "02-api-overview/03-api-architecture.md",
+      "path": "03-api-architecture.md",
       "title": {
         "en": "API Architecture"
       }

@@ -1,5 +1,3 @@
-## Piattaforma educativa
-
 Un ente di formazione vuole erogare corsi strutturati con progressione chiara, valutazioni e certificazioni — trasformando l'apprendimento in un'esperienza misurabile e motivante per gli studenti.
 
 ### Configurazione dei contenuti

@@ -1,7 +1,5 @@
 AWorld Lab's *gamification* features are designed to work together, combining content, goals, rewards, and competitive mechanics into cohesive engagement programs. This section presents four scenarios that illustrate how the platform's capabilities can be assembled to address different business contexts. Each scenario is a blueprint that clients can adapt to their specific needs.
 
-## Employee Engagement and Training
-
 A company with over 1,000 employees wants to build a structured onboarding program for new hires and an ongoing training initiative to keep the workforce engaged and up to date.
 
 ### Content setup

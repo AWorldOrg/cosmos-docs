@@ -1,5 +1,3 @@
-## Education Platform
-
 An education provider wants to deliver structured courses with clear progression, assessments, and certifications — turning learning into a measurable and motivating experience for students.
 
 ### Content setup

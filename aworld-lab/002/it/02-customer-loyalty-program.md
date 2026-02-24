@@ -1,5 +1,3 @@
-## Programma di fidelizzazione clienti
-
 Un brand consumer con un'app mobile vuole trasformare il proprio programma di fidelizzazione da un sistema passivo di raccolta punti in un'esperienza di *engagement* interattiva che stimoli gli acquisti ripetuti e l'affinità con il marchio.
 
 ### Configurazione dei contenuti

@@ -90,11 +90,14 @@ for i in $(seq 0 $((TOTAL - 1))); do
       BRANCH_ID="$BRANCH_IT"
     fi
 
-    FILE_PATH="$SCRIPT_DIR/$CURRENT_LANG/$DOC_PATH"
+    # Path format: "section/filename.md" → resolve as "section/lang/filename.md"
+    DOC_DIR=$(dirname "$DOC_PATH")
+    DOC_FILE=$(basename "$DOC_PATH")
+    FILE_PATH="$SCRIPT_DIR/$DOC_DIR/$CURRENT_LANG/$DOC_FILE"
     LABEL="[$CURRENT_LANG] $TITLE"
 
     if [[ ! -f "$FILE_PATH" ]]; then
-      echo -e "${RED}SKIP${NC} $LABEL — file not found: $CURRENT_LANG/$DOC_PATH"
+      echo -e "${RED}SKIP${NC} $LABEL — file not found: $DOC_DIR/$CURRENT_LANG/$DOC_FILE"
       FAILED=$((FAILED + 1))
       continue
     fi
@@ -102,7 +105,7 @@ for i in $(seq 0 $((TOTAL - 1))); do
     CONTENT=$(cat "$FILE_PATH")
 
     if [[ "$DRY_RUN" == true ]]; then
-      echo -e "${YELLOW}DRY-RUN${NC} $LABEL (ID: $DOC_ID, branch: $BRANCH_ID) ← $CURRENT_LANG/$DOC_PATH"
+      echo -e "${YELLOW}DRY-RUN${NC} $LABEL (ID: $DOC_ID, branch: $BRANCH_ID) ← $DOC_DIR/$CURRENT_LANG/$DOC_FILE"
       continue
     fi
 
