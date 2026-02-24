@@ -1,7 +1,5 @@
 Le funzionalità di *gamification* di AWorld Lab sono progettate per lavorare insieme, combinando contenuti, obiettivi, ricompense e meccaniche competitive in programmi di *engagement* coerenti. Questa sezione presenta quattro scenari che illustrano come le capacità della piattaforma possano essere assemblate per rispondere a diversi contesti di business. Ogni scenario è un modello che i clienti possono adattare alle proprie esigenze specifiche.
 
-## *Engagement* e formazione dei dipendenti
-
 Un'azienda con oltre 1.000 dipendenti vuole costruire un programma di onboarding strutturato per i nuovi assunti e un'iniziativa di formazione continua per mantenere la forza lavoro coinvolta e aggiornata.
 
 ### Configurazione dei contenuti

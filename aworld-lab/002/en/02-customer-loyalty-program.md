@@ -1,5 +1,3 @@
-## Customer Loyalty Program
-
 A consumer brand with a mobile app wants to transform its loyalty program from a passive point-collection system into an interactive engagement experience that drives repeat purchases and brand affinity.
 
 ### Content setup

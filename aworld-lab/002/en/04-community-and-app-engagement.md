@@ -1,5 +1,3 @@
-## Community and App Engagement
-
 A digital platform wants to build an active community where users create content, participate in challenges, and form a self-sustaining engagement ecosystem.
 
 ### Content setup
