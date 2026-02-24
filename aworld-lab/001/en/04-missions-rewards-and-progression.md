@@ -49,8 +49,7 @@ Rather than manually assigning missions to individual users, AWorld Lab provides
 Rules support different **assignment modes**:
 
 - **Lazy**: missions are created on-demand when a user browses available missions. If the user matches the rule's conditions, the mission is generated in real time. This is ideal for discovery-driven experiences.
-- **Event**: missions are assigned automatically when a specific event occurs — for example, assigning a follow-up mission when the user completes a Learning Path.
-- **Scheduled**: missions are pushed to qualifying users at a predetermined time, enabling campaign-style deployment.
+- **Event**: missions are assigned automatically when a specific event occurs — for example, assigning a follow-up mission when the user completes a Learning Path. Combined with recurring timeframes, this also enables campaign-style deployment at predetermined intervals.
 
 Each rule includes **user targeting conditions** that determine which users are eligible, allowing precise segmentation by tags, attributes, or behavior.
 

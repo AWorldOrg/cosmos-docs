@@ -49,8 +49,7 @@ Invece di assegnare manualmente le missioni ai singoli utenti, AWorld Lab fornis
 Le regole supportano diverse **modalità di assegnazione**:
 
 - **Lazy**: le missioni vengono create on-demand quando un utente esplora le missioni disponibili. Se l'utente soddisfa le condizioni della regola, la missione viene generata in tempo reale. Ideale per esperienze basate sulla scoperta.
-- **Event**: le missioni vengono assegnate automaticamente quando si verifica un evento specifico — ad esempio, assegnando una missione di follow-up quando l'utente completa un Learning Path.
-- **Scheduled**: le missioni vengono inviate agli utenti qualificati a un orario predeterminato, abilitando un deployment in stile campagna.
+- **Event**: le missioni vengono assegnate automaticamente quando si verifica un evento specifico — ad esempio, assegnando una missione di follow-up quando l'utente completa un Learning Path. Combinato con timeframe ricorrenti, consente anche il deployment in stile campagna a intervalli predeterminati.
 
 Ogni regola include **condizioni di targeting utente** che determinano quali utenti sono idonei, consentendo una segmentazione precisa per tag, attributi o comportamento.
 

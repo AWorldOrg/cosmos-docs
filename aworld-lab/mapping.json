@@ -68,49 +68,91 @@
       }
     },
     {
-      "path": "003/01-cloud-infrastructure.md",
+      "path": "003/01-mission-domain.md",
+      "langs": {
+        "en": { "doc_id": "1973897", "title": "Mission Domain" },
+        "it": { "doc_id": "1973903", "title": "Dominio Mission" }
+      }
+    },
+    {
+      "path": "003/02-learning-content-domain.md",
+      "langs": {
+        "en": { "doc_id": "1973898", "title": "Learning Content Domain" },
+        "it": { "doc_id": "1973904", "title": "Dominio Learning Content" }
+      }
+    },
+    {
+      "path": "003/03-reward-and-currency-domain.md",
+      "langs": {
+        "en": { "doc_id": "1973899", "title": "Reward and Currency Domain" },
+        "it": { "doc_id": "1973905", "title": "Dominio Reward e Currency" }
+      }
+    },
+    {
+      "path": "003/04-leaderboard-domain.md",
+      "langs": {
+        "en": { "doc_id": "1973900", "title": "Leaderboard Domain" },
+        "it": { "doc_id": "1973906", "title": "Dominio Leaderboard" }
+      }
+    },
+    {
+      "path": "003/05-streak-domain.md",
+      "langs": {
+        "en": { "doc_id": "1973901", "title": "Streak Domain" },
+        "it": { "doc_id": "1973907", "title": "Dominio Streak" }
+      }
+    },
+    {
+      "path": "003/06-cross-cutting-patterns.md",
+      "langs": {
+        "en": { "doc_id": "1973902", "title": "Cross-Cutting Patterns" },
+        "it": { "doc_id": "1973908", "title": "Pattern trasversali" }
+      }
+    },
+    {
+      "path": "004/01-cloud-infrastructure.md",
       "langs": {
         "en": { "doc_id": "1215195", "title": "Cloud Infrastructure and Architecture" },
         "it": { "doc_id": "1215195", "title": "Infrastruttura cloud e architettura" }
       }
     },
     {
-      "path": "003/02-security-and-cybersecurity.md",
+      "path": "004/02-security-and-cybersecurity.md",
       "langs": {
         "en": { "doc_id": "1215196", "title": "Security and Cybersecurity" },
         "it": { "doc_id": "1215196", "title": "Sicurezza e cybersecurity" }
       }
     },
     {
-      "path": "003/03-compliance-and-certifications.md",
+      "path": "004/03-compliance-and-certifications.md",
       "langs": {
         "en": { "doc_id": "1967401", "title": "Compliance and Certifications" },
         "it": { "doc_id": "1967408", "title": "Compliance e certificazioni" }
       }
     },
     {
-      "path": "003/04-disaster-recovery.md",
+      "path": "004/04-disaster-recovery.md",
       "langs": {
         "en": { "doc_id": "1967403", "title": "Disaster Recovery and Business Continuity" },
         "it": { "doc_id": "1967409", "title": "Disaster recovery e business continuity" }
       }
     },
     {
-      "path": "003/05-performance-and-scalability.md",
+      "path": "004/05-performance-and-scalability.md",
       "langs": {
         "en": { "doc_id": "1967404", "title": "Performance and Scalability" },
         "it": { "doc_id": "1967410", "title": "Performance e scalabilità" }
       }
     },
     {
-      "path": "003/06-access-methods-and-integration.md",
+      "path": "004/06-access-methods-and-integration.md",
       "langs": {
         "en": { "doc_id": "1967405", "title": "Access Methods and Integration" },
         "it": { "doc_id": "1967411", "title": "Modalità di accesso e integrazione" }
       }
     },
     {
-      "path": "003/07-technical-glossary.md",
+      "path": "004/07-technical-glossary.md",
       "langs": {
         "en": { "doc_id": "1967406", "title": "Technical Glossary" },
         "it": { "doc_id": "1967412", "title": "Glossario tecnico" }

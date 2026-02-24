@@ -61,7 +61,7 @@ The platform is natively protected against distributed denial of service attacks
 
 An active monitoring system constantly analyzes traffic to identify and block suspicious activity:
 
-- **Aikido Security**: continuous security monitoring platform (source: ISMS security policies)
+- **Continuous security monitoring**: dedicated platform for real-time threat detection (source: ISMS security policies)
 - **Automatic detection**: behavioral analysis of API traffic
 - **Real-time alerting**: immediate notifications on suspicious activity
 - **Incident response**: automatic activation of countermeasures (e.g., IP blocking, aggressive throttling)
@@ -73,7 +73,7 @@ Structured vulnerability management system:
 - **Critical vulnerabilities**: remediation within ≤ 15 days from identification (source: ISMS KPI list)
 - **High vulnerabilities**: remediation within ≤ 30 days from identification (source: ISMS KPI list)
 - **Penetration testing**: semi-annual security tests conducted by third parties (source: ISMS security policies)
-- **Continuous scanning**: continuous monitoring via Aikido Security
+- **Continuous scanning**: automated vulnerability monitoring via dedicated security platform
 
 ### Authentication
 

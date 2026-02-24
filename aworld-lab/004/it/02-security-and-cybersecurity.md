@@ -61,7 +61,7 @@ La piattaforma è protetta nativamente contro attacchi distribuiti di negazione 
 
 Un sistema di monitoring attivo analizza costantemente il traffico per identificare e bloccare attività sospette:
 
-- **Aikido Security**: piattaforma di continuous security monitoring (fonte: ISMS security policies)
+- **Monitoraggio continuo della sicurezza**: piattaforma dedicata per il rilevamento delle minacce in tempo reale (fonte: ISMS security policies)
 - **Rilevamento automatico**: analisi comportamentale del traffico API
 - **Alerting real-time**: notifiche immediate su attività sospette
 - **Incident response**: attivazione automatica contromisure (es. blocco IP, throttling aggressivo)
@@ -73,7 +73,7 @@ Sistema strutturato di vulnerability management:
 - **Vulnerabilità Critical**: remediation entro ≤ 15 giorni dalla identificazione (fonte: ISMS KPI list)
 - **Vulnerabilità High**: remediation entro ≤ 30 giorni dalla identificazione (fonte: ISMS KPI list)
 - **Penetration testing**: test di sicurezza semestrali condotti da terze parti (fonte: ISMS security policies)
-- **Continuous scanning**: monitoraggio continuo via Aikido Security
+- **Continuous scanning**: monitoraggio automatizzato delle vulnerabilità tramite piattaforma di sicurezza dedicata
 
 ### Autenticazione
 
