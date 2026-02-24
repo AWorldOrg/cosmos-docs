@@ -1,4 +1,4 @@
-Questa sezione copre il **motore** del sistema di *gamification* di AWorld Lab: le regole, le ricompense e le meccaniche di progressione che danno significato alle azioni degli utenti. Le missioni trasformano le attività in obiettivi, le valute virtuali quantificano il progresso e le regole di ricompensa automatizzano gli incentivi — creando un ciclo di *engagement* completo. Per le attività e i contenuti fondamentali che alimentano queste meccaniche, fare riferimento alla documentazione sulle attività e i contenuti.
+Questa sezione copre il **motore** del sistema di *gamification* di AWorld Lab: le regole, le ricompense e le meccaniche di progressione che danno significato alle azioni degli utenti. Le missioni trasformano le attività in obiettivi, le streak premiano la costanza nel tempo, le valute virtuali quantificano il progresso e le regole di ricompensa automatizzano gli incentivi — creando un ciclo di *engagement* completo. Per le attività e i contenuti fondamentali che alimentano queste meccaniche, fare riferimento alla documentazione sulle attività e i contenuti.
 
 ## Missioni
 
@@ -166,6 +166,80 @@ I **badge** sono riconoscimenti statici assegnati quando un utente raggiunge tra
 I **livelli** rappresentano un sistema di progressione configurabile legato alla **valuta virtuale accumulata** all'interno di una specifica linea di valuta. Man mano che gli utenti guadagnano punti, avanzano attraverso i livelli, ciascuno dei quali rappresenta un livello superiore di *engagement*. I livelli possono sbloccare nuove funzionalità, garantire l'accesso a contenuti esclusivi o fornire benefici aggiuntivi all'interno del sistema di *gamification*.
 
 I clienti possono progettare percorsi di progressione strutturati definendo le soglie dei livelli, fornendo agli utenti obiettivi chiari e un senso visibile di avanzamento.
+
+## Streak
+
+Il sistema di **streak** di AWorld Lab è progettato per premiare la **costanza degli utenti nel tempo**, promuovendo la partecipazione regolare alle attività della piattaforma. A differenza di un semplice contatore di azioni consecutive, il sistema di streak traccia la frequenza con cui l'utente interagisce con il sistema all'interno di cadenze configurabili, offrendo un ricco set di meccaniche per incentivare un'interazione sostenuta.
+
+### Concetto di streak e cadenza
+
+Una streak rappresenta una **catena continua di engagement dell'utente** misurata secondo una cadenza definita:
+
+- **Cadenza giornaliera**: l'utente deve eseguire un'azione qualificante ogni giorno per mantenere la streak.
+- **Cadenza settimanale**: l'utente deve eseguire un'azione qualificante ogni settimana.
+
+La **metrica** definisce cosa rappresenta il contatore della streak:
+
+- **Giorni**: conteggio del numero di giorni consecutivi con attività.
+- **Settimane**: conteggio del numero di settimane consecutive con attività.
+
+Questa flessibilità consente ai programmi di promuovere un coinvolgimento giornaliero o cicli settimanali più rilassati, a seconda della strategia di engagement.
+
+### Ciclo di vita e stati della streak
+
+Ogni streak segue un **ciclo di vita basato su stati**:
+
+- **Active**: la streak è in corso — l'utente sta rispettando i requisiti di cadenza.
+- **Completed**: la streak ha raggiunto l'obiettivo definito.
+- **Broken**: l'utente ha mancato la cadenza richiesta — la catena della streak è interrotta.
+- **Ended**: l'intervallo temporale della regola di streak è scaduto.
+
+Le transizioni di stato della streak vengono valutate automaticamente in base all'attività dell'utente e alla cadenza configurata, garantendo un'accuratezza in tempo reale.
+
+### Tipologie di streak: Regular, Freeze e combined
+
+Il sistema supporta diverse **tipologie di streak** che determinano come vengono conteggiati i periodi di engagement:
+
+- **Regular**: solo i giorni/settimane con attività effettiva dell'utente contano per la streak.
+- **Freeze**: i giorni/settimane in cui l'utente ha attivato un freeze (vedi sotto) vengono conteggiati come mantenuti.
+- **Any**: sia l'attività regolare che i giorni di freeze contano — fornendo una visione combinata della continuità della streak.
+
+### Perfect period e obiettivi
+
+Le streak possono tracciare i **perfect period** — attività ininterrotta lungo interi periodi di calendario:
+
+- **Perfect Week**: l'utente ha mantenuto la streak ogni giorno richiesto della settimana.
+- **Perfect Month**: attività sostenuta per l'intero mese.
+- **Perfect Year**: un anno intero di engagement costante.
+
+Inoltre, le streak supportano **obiettivi multipli a soglie progressive**, creando achievements a livelli all'interno di una singola streak. Ad esempio, una streak potrebbe avere obiettivi a 7 giorni, 30 giorni e 100 giorni — ciascuno che sblocca ricompense progressivamente maggiori.
+
+### Meccanismo di freeze della streak
+
+Una caratteristica distintiva del sistema di streak di AWorld Lab è il **meccanismo di freeze**, che consente agli utenti di mettere temporaneamente in pausa la propria streak senza interromperla. Questo è progettato per evitare che occasionali interruzioni distruggano i progressi a lungo termine.
+
+Il freeze funziona attraverso il **sistema di valuta virtuale**:
+
+- Gli utenti spendono una quantità definita di valuta virtuale per attivare un freeze per un periodo.
+- Il costo del freeze viene calcolato utilizzando un'**espressione configurabile**, consentendo una tariffazione dinamica — ad esempio, aumentando il costo per streak più lunghe per mantenere la sfida.
+- Durante il freeze, il contatore della streak non si incrementa ma la catena viene preservata.
+
+Questa meccanica aggiunge profondità strategica all'esperienza di engagement: gli utenti devono valutare il costo del freeze rispetto al rischio di perdere la propria streak, creando decisioni significative all'interno del sistema di *gamification*.
+
+### Regole e configurazione delle streak
+
+Le streak sono gestite attraverso un **sistema basato su regole** simile a quello delle missioni:
+
+- Le **Streak Configuration** definiscono cosa conta come contributo valido — quali attività, quiz o azioni taggate mantengono la streak.
+- Le **Streak Rule** determinano come le streak vengono assegnate agli utenti, con **condizioni di targeting degli utenti** per la segmentazione.
+
+Le configurazioni utilizzano lo stesso **motore di matching** delle missioni — matching per istanza specifica, tipo di entità o tag — garantendo coerenza tra i sistemi di regole della piattaforma.
+
+Le regole possono abilitare o disabilitare funzionalità specifiche per ogni streak:
+
+- Tracciamento dei perfect period (settimana, mese, anno).
+- Funzionalità di freeze con integrazione della valuta virtuale.
+- Obiettivi a soglie progressive.
 
 ## Tag e targeting delle entità
 

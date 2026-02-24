@@ -1,4 +1,4 @@
-This section covers the **engine** of AWorld Lab's *gamification* system: the rules, rewards, and progression mechanics that give meaning to user actions. Missions turn activities into goals, virtual currencies quantify progress, and reward rules automate incentives — creating a complete engagement loop. For the foundational activities and content that feed into these mechanics, refer to the activities and content documentation.
+This section covers the **engine** of AWorld Lab's *gamification* system: the rules, rewards, and progression mechanics that give meaning to user actions. Missions turn activities into goals, streaks reward consistency over time, virtual currencies quantify progress, and reward rules automate incentives — creating a complete engagement loop. For the foundational activities and content that feed into these mechanics, refer to the activities and content documentation.
 
 ## Missions
 
@@ -166,6 +166,80 @@ The **Achievements** system provides visible progression and recognition, motiva
 **Levels** represent a configurable progression system tied to **accumulated virtual currency** within a specific currency line. As users earn points, they advance through levels, each representing a higher engagement tier. Levels can unlock new features, grant access to exclusive content, or provide additional benefits within the *gamification* system.
 
 Clients can design structured progression paths by defining level thresholds, providing users with clear targets and a visible sense of advancement.
+
+## Streaks
+
+AWorld Lab's **Streak** system is designed to reward users' **consistency over time**, promoting regular participation in platform activities. Unlike a basic counter for consecutive actions, the streak system tracks how often the user engages with the system within configurable cadences, offering a rich set of mechanics to encourage sustained interaction.
+
+### Streak Concept and Cadence
+
+A streak represents a **continuous chain of user engagement** measured at a defined cadence:
+
+- **Daily cadence**: the user must perform a qualifying action each day to maintain the streak.
+- **Weekly cadence**: the user must perform a qualifying action each week.
+
+The **metric** defines what the streak counter represents:
+
+- **Days**: counting the number of consecutive days with activity.
+- **Weeks**: counting the number of consecutive weeks with activity.
+
+This flexibility allows programs to promote daily involvement or more relaxed weekly cycles, depending on the engagement strategy.
+
+### Streak Lifecycle and Statuses
+
+Each streak follows a **state-based lifecycle**:
+
+- **Active**: the streak is ongoing — the user has been meeting the cadence requirements.
+- **Completed**: the streak has reached its defined goal target.
+- **Broken**: the user missed the required cadence — the streak chain is interrupted.
+- **Ended**: the streak rule's timeframe has expired.
+
+Streak status transitions are evaluated automatically based on the user's activity and the configured cadence, ensuring real-time accuracy.
+
+### Streak Types: Regular, Freeze, and Combined
+
+The system supports different **streak kinds** that determine how engagement periods are counted:
+
+- **Regular**: only days/weeks with actual user activity count toward the streak.
+- **Freeze**: days/weeks where the user activated a freeze (see below) count as maintained.
+- **Any**: both regular activity and freeze days count — providing a combined view of streak continuity.
+
+### Perfect Periods and Goals
+
+Streaks can track **perfect periods** — unbroken activity across full calendar periods:
+
+- **Perfect Week**: the user maintained the streak every required day of the week.
+- **Perfect Month**: sustained activity throughout an entire month.
+- **Perfect Year**: a full year of consistent engagement.
+
+Additionally, streaks support **multiple goal targets**, creating tiered achievements within a single streak. For example, a streak might have goals at 7 days, 30 days, and 100 days — each unlocking progressively greater rewards.
+
+### Streak Freeze Mechanism
+
+A distinctive feature of AWorld Lab's streak system is the **freeze mechanism**, which allows users to temporarily pause their streak without breaking it. This is designed to prevent occasional lapses from destroying long-term progress.
+
+The freeze works through the **virtual currency system**:
+
+- Users spend a defined amount of virtual currency to activate a freeze for a period.
+- The freeze cost is calculated using a **configurable expression**, allowing dynamic pricing — for instance, increasing the cost for longer streaks to maintain challenge.
+- While frozen, the streak counter does not increment but the chain is preserved.
+
+This mechanic adds strategic depth to the engagement experience: users must weigh the cost of freezing against the risk of losing their streak, creating meaningful decisions within the *gamification* system.
+
+### Streak Rules and Configuration
+
+Streaks are managed through a **rules-based system** similar to missions:
+
+- **Streak Configurations** define what counts as a valid contribution — which activities, quizzes, or tagged actions maintain the streak.
+- **Streak Rules** determine how streaks are assigned to users, with **user targeting conditions** for segmentation.
+
+Configurations use the same **matching engine** as missions — matching by specific instance, entity type, or tag — ensuring consistency across the platform's rule systems.
+
+Rules can enable or disable specific features per streak:
+
+- Perfect period tracking (week, month, year).
+- Freeze functionality with virtual currency integration.
+- Goal targets with progressive thresholds.
 
 ## Tags and Entity Targeting
 
