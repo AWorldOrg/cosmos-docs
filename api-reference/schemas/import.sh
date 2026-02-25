@@ -19,7 +19,7 @@ fi
 source "$ENV_FILE"
 
 # Validate required variables
-for VAR in APIDOG_TOKEN PROJECT_ID MODULE_ID_APP MODULE_ID_DASHBOARD BRANCH_ID_SCHEMAS; do
+for VAR in APIDOG_TOKEN_SCHEMAS PROJECT_ID MODULE_ID_APP MODULE_ID_DASHBOARD BRANCH_ID_SCHEMAS; do
   if [[ -z "${!VAR:-}" ]]; then
     echo "Error: $VAR not set in .env"
     exit 1
@@ -78,7 +78,7 @@ import_schema() {
   RESPONSE=$(curl -s -w "\n%{http_code}" \
     -X POST "$API_URL" \
     -H "X-Apidog-Api-Version: ${API_VERSION}" \
-    -H "Authorization: Bearer ${APIDOG_TOKEN}" \
+    -H "Authorization: Bearer ${APIDOG_TOKEN_SCHEMAS}" \
     -H "Content-Type: application/json" \
     --data-raw "{
       \"input\": {
@@ -95,10 +95,13 @@ import_schema() {
 
   HTTP_CODE=$(echo "$RESPONSE" | tail -1)
   BODY=$(echo "$RESPONSE" | sed '$d')
-  API_SUCCESS=$(echo "$BODY" | jq -r '.success // false' 2>/dev/null || echo "false")
 
-  if [[ "$HTTP_CODE" == "200" && "$API_SUCCESS" == "true" ]]; then
-    echo -e "${GREEN}OK${NC} $name (module: $module_id)"
+  if [[ "$HTTP_CODE" == "200" ]]; then
+    # Extract counters from response
+    CREATED=$(echo "$BODY" | jq -r '.data.counters.endpointCreated // 0' 2>/dev/null || echo "0")
+    UPDATED=$(echo "$BODY" | jq -r '.data.counters.endpointUpdated // 0' 2>/dev/null || echo "0")
+    SCHEMAS=$(echo "$BODY" | jq -r '.data.counters.schemaUpdated // 0' 2>/dev/null || echo "0")
+    echo -e "${GREEN}OK${NC} $name (module: $module_id) — endpoints: ${CREATED} created, ${UPDATED} updated | schemas: ${SCHEMAS} updated"
     SUCCESS=$((SUCCESS + 1))
   else
     echo -e "${RED}FAIL${NC} $name (module: $module_id) — HTTP $HTTP_CODE"
