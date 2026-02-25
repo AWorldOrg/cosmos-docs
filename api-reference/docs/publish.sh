@@ -5,7 +5,8 @@ set -euo pipefail
 # ===============================================
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-ENV_FILE="$SCRIPT_DIR/.env"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+ENV_FILE="$ROOT_DIR/.env"
 MAPPING_FILE="$SCRIPT_DIR/mapping.json"
 
 # Load .env
