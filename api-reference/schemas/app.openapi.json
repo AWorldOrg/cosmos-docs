@@ -135,6 +135,17 @@
         "description": "Retrieves a list of learning groups available to the user.\n    Supports filtering, pagination, and sorting options.",
         "parameters": [
           {
+            "name": "catalogWorkspaceId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 10,
+              "minLength": 10,
+              "pattern": "^[A-Za-z0-9_-]{10}$"
+            }
+          },
+          {
             "name": "fields",
             "in": "query",
             "required": false,
@@ -174,6 +185,35 @@
                 "null"
               ],
               "example": "eyJwayI6IndvcmtzcGFjZUlkI3pPR0JndVctQWoiLCJxdWl6SWQiOiItRktBdDZfbXM4M3RvSUZaLWVjeFQifQ=="
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order. Defaults to desc",
+            "required": false,
+            "schema": {
+              "description": "Sort order. Defaults to desc",
+              "type": "string",
+              "example": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "description": "Field to sort results by",
+              "type": "string",
+              "example": "updatedAt",
+              "enum": [
+                "updatedAt"
+              ]
             }
           }
         ],
@@ -459,6 +499,21 @@
             }
           },
           {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order. Defaults to desc",
+            "required": false,
+            "schema": {
+              "description": "Sort order. Defaults to desc",
+              "type": "string",
+              "example": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
             "name": "progressStatus",
             "in": "query",
             "required": false,
@@ -468,6 +523,20 @@
                 "NOT_STARTED",
                 "IN_PROGRESS",
                 "COMPLETED"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "description": "Field to sort results by",
+              "type": "string",
+              "example": "updatedAt",
+              "enum": [
+                "updatedAt"
               ]
             }
           },
@@ -563,418 +632,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/GetLearningPathAssignmentResponse"
-                    },
-                    {
-                      "properties": {
-                        "learningPathId": {
-                          "type": "string"
-                        },
-                        "origin": {
-                          "type": "string",
-                          "enum": [
-                            "CATALOG",
-                            "AI",
-                            "CUSTOM"
-                          ]
-                        },
-                        "learningPathCatalogId": {
-                          "type": "string"
-                        },
-                        "legacyLearningPathId": {
-                          "type": "string"
-                        },
-                        "syncWithCatalog": {
-                          "type": "boolean"
-                        },
-                        "title": {
-                          "type": "string",
-                          "minLength": 1
-                        },
-                        "description": {
-                          "type": "string"
-                        },
-                        "image": {
-                          "type": "string",
-                          "format": "uri"
-                        },
-                        "estimatedDuration": {
-                          "type": "number"
-                        },
-                        "defaultLang": {
-                          "$ref": "#/components/schemas/Lang"
-                        },
-                        "langs": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/Lang"
-                          },
-                          "maxItems": 10,
-                          "minItems": 1
-                        },
-                        "items": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "itemId": {
-                                "type": "string"
-                              },
-                              "itemType": {
-                                "type": "string",
-                                "enum": [
-                                  "activity",
-                                  "game",
-                                  "quiz",
-                                  "story",
-                                  "slide",
-                                  "learningGroup"
-                                ]
-                              },
-                              "itemData": {}
-                            },
-                            "required": [
-                              "itemId",
-                              "itemType"
-                            ]
-                          },
-                          "default": []
-                        },
-                        "activities": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "itemId": {
-                                "type": "string"
-                              },
-                              "itemType": {
-                                "type": "string",
-                                "enum": [
-                                  "activity",
-                                  "game",
-                                  "quiz",
-                                  "story",
-                                  "slide",
-                                  "learningGroup"
-                                ]
-                              },
-                              "languages": {
-                                "type": "array",
-                                "items": {
-                                  "$ref": "#/components/schemas/Lang"
-                                }
-                              }
-                            },
-                            "required": [
-                              "itemId",
-                              "itemType"
-                            ]
-                          }
-                        },
-                        "completionRule": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/JsonLogicExpression"
-                            },
-                            {
-                              "type": [
-                                "object",
-                                "null"
-                              ]
-                            }
-                          ]
-                        },
-                        "outcomeRule": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/JsonLogicExpression"
-                            },
-                            {
-                              "type": [
-                                "object",
-                                "null"
-                              ]
-                            }
-                          ]
-                        },
-                        "startRule": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/JsonLogicExpression"
-                            },
-                            {
-                              "type": [
-                                "object",
-                                "null"
-                              ]
-                            }
-                          ]
-                        },
-                        "learningPathAssignmentId": {
-                          "type": "string"
-                        },
-                        "userId": {
-                          "type": "string"
-                        },
-                        "learningPathRuleId": {
-                          "type": "string"
-                        },
-                        "groupId": {
-                          "type": "string",
-                          "minLength": 1
-                        },
-                        "periodId": {
-                          "type": "string",
-                          "minLength": 1
-                        },
-                        "timeframeType": {
-                          "type": "string",
-                          "enum": [
-                            "PERMANENT",
-                            "RANGE",
-                            "RECURRING"
-                          ]
-                        },
-                        "startsAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "endsAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "state": {
-                          "type": "string",
-                          "enum": [
-                            "PENDING",
-                            "ACTIVE",
-                            "ENDED"
-                          ]
-                        },
-                        "visibility": {
-                          "type": "string",
-                          "enum": [
-                            "LOCKED",
-                            "UNLOCKED"
-                          ]
-                        },
-                        "unlockedAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "unlockedByRuleId": {
-                          "type": "string"
-                        },
-                        "createdAt": {
-                          "description": "Creation date in ISO format (UTC Timezone)",
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "updatedAt": {
-                          "description": "Creation date in ISO format (UTC Timezone)",
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "tags": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "tagId": {
-                                "type": "string",
-                                "minLength": 1
-                              },
-                              "priority": {
-                                "type": "integer",
-                                "default": 0,
-                                "minimum": 0
-                              },
-                              "createdAt": {
-                                "description": "Creation date in ISO format (UTC Timezone)",
-                                "type": "string",
-                                "format": "date-time"
-                              },
-                              "updatedAt": {
-                                "description": "Creation date in ISO format (UTC Timezone)",
-                                "type": "string",
-                                "format": "date-time"
-                              }
-                            },
-                            "required": [
-                              "tagId",
-                              "createdAt",
-                              "updatedAt"
-                            ]
-                          }
-                        },
-                        "translation": {
-                          "type": "object",
-                          "properties": {
-                            "workspaceId": {
-                              "type": "string",
-                              "maxLength": 10,
-                              "minLength": 10,
-                              "pattern": "^[A-Za-z0-9_-]{10}$"
-                            },
-                            "learningPathId": {
-                              "type": "string"
-                            },
-                            "lang": {
-                              "$ref": "#/components/schemas/Lang"
-                            },
-                            "title": {
-                              "type": "string",
-                              "minLength": 1
-                            },
-                            "image": {
-                              "type": "string",
-                              "format": "uri"
-                            },
-                            "description": {
-                              "type": "string"
-                            },
-                            "accountId": {
-                              "type": "string",
-                              "maxLength": 10,
-                              "minLength": 10,
-                              "pattern": "^[A-Za-z0-9_-]{10}$"
-                            },
-                            "sourceRegion": {
-                              "$ref": "#/components/schemas/SourceRegion"
-                            },
-                            "createdAt": {
-                              "description": "Creation date in ISO format (UTC Timezone)",
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "updatedAt": {
-                              "description": "Creation date in ISO format (UTC Timezone)",
-                              "type": "string",
-                              "format": "date-time"
-                            }
-                          },
-                          "required": [
-                            "workspaceId",
-                            "learningPathId",
-                            "lang",
-                            "title",
-                            "accountId",
-                            "sourceRegion",
-                            "createdAt",
-                            "updatedAt"
-                          ]
-                        },
-                        "progress": {
-                          "type": "object",
-                          "properties": {
-                            "status": {
-                              "type": "string",
-                              "enum": [
-                                "NOT_STARTED",
-                                "IN_PROGRESS",
-                                "COMPLETED"
-                              ]
-                            },
-                            "outcome": {
-                              "type": "string",
-                              "enum": [
-                                "SUCCESS",
-                                "FAIL"
-                              ]
-                            },
-                            "progress": {
-                              "type": "object",
-                              "properties": {
-                                "total": {
-                                  "type": "number"
-                                },
-                                "completed": {
-                                  "type": "number"
-                                },
-                                "percentage": {
-                                  "type": "number"
-                                }
-                              },
-                              "required": [
-                                "total",
-                                "completed",
-                                "percentage"
-                              ]
-                            },
-                            "items": {
-                              "type": "array",
-                              "items": {
-                                "type": "object",
-                                "properties": {
-                                  "itemId": {
-                                    "type": "string"
-                                  },
-                                  "itemType": {
-                                    "type": "string",
-                                    "enum": [
-                                      "activity",
-                                      "game",
-                                      "quiz",
-                                      "story",
-                                      "slide",
-                                      "learningGroup"
-                                    ]
-                                  },
-                                  "progress": {
-                                    "type": "string",
-                                    "enum": [
-                                      "START",
-                                      "IN_PROGRESS",
-                                      "COMPLETE"
-                                    ]
-                                  },
-                                  "outcome": {
-                                    "type": "string",
-                                    "enum": [
-                                      "SUCCESS",
-                                      "FAIL"
-                                    ]
-                                  }
-                                },
-                                "required": [
-                                  "itemId",
-                                  "itemType"
-                                ]
-                              }
-                            },
-                            "currentItemId": {
-                              "type": "string"
-                            },
-                            "currentItemType": {
-                              "type": "string",
-                              "enum": [
-                                "activity",
-                                "game",
-                                "quiz",
-                                "story",
-                                "slide",
-                                "learningGroup"
-                              ]
-                            },
-                            "startedAt": {
-                              "type": "string"
-                            },
-                            "completedAt": {
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "status",
-                            "progress",
-                            "items"
-                          ]
-                        }
-                      }
-                    }
-                  ]
+                  "$ref": "#/components/schemas/GetLearningPathAssignmentResponse"
                 }
               }
             }
@@ -1029,6 +687,35 @@
                 "null"
               ],
               "example": "eyJwayI6IndvcmtzcGFjZUlkI3pPR0JndVctQWoiLCJxdWl6SWQiOiItRktBdDZfbXM4M3RvSUZaLWVjeFQifQ=="
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order. Defaults to desc",
+            "required": false,
+            "schema": {
+              "description": "Sort order. Defaults to desc",
+              "type": "string",
+              "example": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "description": "Field to sort results by",
+              "type": "string",
+              "example": "updatedAt",
+              "enum": [
+                "updatedAt"
+              ]
             }
           }
         ],
@@ -1254,6 +941,21 @@
             }
           },
           {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order. Defaults to desc",
+            "required": false,
+            "schema": {
+              "description": "Sort order. Defaults to desc",
+              "type": "string",
+              "example": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
             "name": "progressStatus",
             "in": "query",
             "required": false,
@@ -1263,6 +965,20 @@
                 "NOT_STARTED",
                 "IN_PROGRESS",
                 "COMPLETED"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "description": "Field to sort results by",
+              "type": "string",
+              "example": "updatedAt",
+              "enum": [
+                "updatedAt"
               ]
             }
           },
@@ -1350,6 +1066,35 @@
                 "null"
               ],
               "example": "eyJwayI6IndvcmtzcGFjZUlkI3pPR0JndVctQWoiLCJxdWl6SWQiOiItRktBdDZfbXM4M3RvSUZaLWVjeFQifQ=="
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order. Defaults to desc",
+            "required": false,
+            "schema": {
+              "description": "Sort order. Defaults to desc",
+              "type": "string",
+              "example": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "description": "Field to sort results by",
+              "type": "string",
+              "example": "updatedAt",
+              "enum": [
+                "updatedAt"
+              ]
             }
           }
         ],
@@ -1484,6 +1229,35 @@
               ],
               "example": "eyJwayI6IndvcmtzcGFjZUlkI3pPR0JndVctQWoiLCJxdWl6SWQiOiItRktBdDZfbXM4M3RvSUZaLWVjeFQifQ=="
             }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order. Defaults to desc",
+            "required": false,
+            "schema": {
+              "description": "Sort order. Defaults to desc",
+              "type": "string",
+              "example": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "description": "Field to sort results by",
+              "type": "string",
+              "example": "updatedAt",
+              "enum": [
+                "updatedAt"
+              ]
+            }
           }
         ],
         "responses": {
@@ -1573,6 +1347,17 @@
         "description": "Retrieves a list of available quizzes for the authenticated user. \n    Quizzes are educational content that users can complete to test their knowledge.",
         "parameters": [
           {
+            "name": "catalogWorkspaceId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 10,
+              "minLength": 10,
+              "pattern": "^[A-Za-z0-9_-]{10}$"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "Size of the page",
@@ -1596,6 +1381,35 @@
                 "null"
               ],
               "example": "eyJwayI6IndvcmtzcGFjZUlkI3pPR0JndVctQWoiLCJxdWl6SWQiOiItRktBdDZfbXM4M3RvSUZaLWVjeFQifQ=="
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order. Defaults to desc",
+            "required": false,
+            "schema": {
+              "description": "Sort order. Defaults to desc",
+              "type": "string",
+              "example": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "description": "Field to sort results by",
+              "type": "string",
+              "example": "updatedAt",
+              "enum": [
+                "updatedAt"
+              ]
             }
           }
         ],
@@ -1965,6 +1779,35 @@
             }
           },
           {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order. Defaults to desc",
+            "required": false,
+            "schema": {
+              "description": "Sort order. Defaults to desc",
+              "type": "string",
+              "example": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "description": "Field to sort results by",
+              "type": "string",
+              "example": "updatedAt",
+              "enum": [
+                "updatedAt"
+              ]
+            }
+          },
+          {
             "name": "state",
             "in": "query",
             "required": false,
@@ -2161,6 +2004,17 @@
         "description": "Retrieves a list of available slides for the authenticated user. \n    Stories are educational content that users can read and engage with.",
         "parameters": [
           {
+            "name": "catalogWorkspaceId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 10,
+              "minLength": 10,
+              "pattern": "^[A-Za-z0-9_-]{10}$"
+            }
+          },
+          {
             "name": "fields",
             "in": "query",
             "required": false,
@@ -2199,6 +2053,35 @@
                 "null"
               ],
               "example": "eyJwayI6IndvcmtzcGFjZUlkI3pPR0JndVctQWoiLCJxdWl6SWQiOiItRktBdDZfbXM4M3RvSUZaLWVjeFQifQ=="
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order. Defaults to desc",
+            "required": false,
+            "schema": {
+              "description": "Sort order. Defaults to desc",
+              "type": "string",
+              "example": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "description": "Field to sort results by",
+              "type": "string",
+              "example": "updatedAt",
+              "enum": [
+                "updatedAt"
+              ]
             }
           }
         ],
@@ -2558,6 +2441,35 @@
               ],
               "example": "eyJwayI6IndvcmtzcGFjZUlkI3pPR0JndVctQWoiLCJxdWl6SWQiOiItRktBdDZfbXM4M3RvSUZaLWVjeFQifQ=="
             }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order. Defaults to desc",
+            "required": false,
+            "schema": {
+              "description": "Sort order. Defaults to desc",
+              "type": "string",
+              "example": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "description": "Field to sort results by",
+              "type": "string",
+              "example": "updatedAt",
+              "enum": [
+                "updatedAt"
+              ]
+            }
           }
         ],
         "responses": {
@@ -2865,6 +2777,20 @@
         "description": "Retrieves a list of streaks for the authenticated user. \n    Streaks track consecutive user activities and achievements over time.",
         "parameters": [
           {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "translation"
+                ]
+              }
+            }
+          },
+          {
             "name": "from",
             "in": "query",
             "required": false,
@@ -2918,6 +2844,21 @@
             }
           },
           {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order. Defaults to desc",
+            "required": false,
+            "schema": {
+              "description": "Sort order. Defaults to desc",
+              "type": "string",
+              "example": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
             "name": "periodType",
             "in": "query",
             "required": true,
@@ -2930,6 +2871,20 @@
                 "YEAR",
                 "ITERATION",
                 "GOAL"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "description": "Field to sort results by",
+              "type": "string",
+              "example": "updatedAt",
+              "enum": [
+                "updatedAt"
               ]
             }
           },
@@ -3161,6 +3116,35 @@
               ],
               "example": "eyJwayI6IndvcmtzcGFjZUlkI3pPR0JndVctQWoiLCJxdWl6SWQiOiItRktBdDZfbXM4M3RvSUZaLWVjeFQifQ=="
             }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order. Defaults to desc",
+            "required": false,
+            "schema": {
+              "description": "Sort order. Defaults to desc",
+              "type": "string",
+              "example": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "description": "Field to sort results by",
+              "type": "string",
+              "example": "updatedAt",
+              "enum": [
+                "updatedAt"
+              ]
+            }
           }
         ],
         "responses": {
@@ -3267,6 +3251,35 @@
               ],
               "example": "eyJwayI6IndvcmtzcGFjZUlkI3pPR0JndVctQWoiLCJxdWl6SWQiOiItRktBdDZfbXM4M3RvSUZaLWVjeFQifQ=="
             }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order. Defaults to desc",
+            "required": false,
+            "schema": {
+              "description": "Sort order. Defaults to desc",
+              "type": "string",
+              "example": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "description": "Field to sort results by",
+              "type": "string",
+              "example": "updatedAt",
+              "enum": [
+                "updatedAt"
+              ]
+            }
           }
         ],
         "responses": {
@@ -3371,6 +3384,35 @@
                 "null"
               ],
               "example": "eyJwayI6IndvcmtzcGFjZUlkI3pPR0JndVctQWoiLCJxdWl6SWQiOiItRktBdDZfbXM4M3RvSUZaLWVjeFQifQ=="
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order. Defaults to desc",
+            "required": false,
+            "schema": {
+              "description": "Sort order. Defaults to desc",
+              "type": "string",
+              "example": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "description": "Field to sort results by",
+              "type": "string",
+              "example": "updatedAt",
+              "enum": [
+                "updatedAt"
+              ]
             }
           }
         ],
@@ -3883,24 +3925,10 @@
             "format": "uri"
           },
           "lang": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Lang"
-              },
-              {
-                "default": "en"
-              }
-            ]
+            "$ref": "#/components/schemas/Lang"
           },
           "timezone": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timezone"
-              },
-              {
-                "default": "UTC"
-              }
-            ]
+            "$ref": "#/components/schemas/Timezone"
           },
           "accountId": {
             "type": "string",
@@ -4165,7 +4193,13 @@
           "legacyLearningGroupId": {
             "type": "string"
           },
-          "learningGroupCatalogId": {
+          "catalogWorkspaceId": {
+            "type": "string",
+            "maxLength": 10,
+            "minLength": 10,
+            "pattern": "^[A-Za-z0-9_-]{10}$"
+          },
+          "catalogLearningGroupId": {
             "type": "string"
           },
           "syncWithCatalog": {
@@ -4597,7 +4631,13 @@
               "CUSTOM"
             ]
           },
-          "learningPathCatalogId": {
+          "catalogWorkspaceId": {
+            "type": "string",
+            "maxLength": 10,
+            "minLength": 10,
+            "pattern": "^[A-Za-z0-9_-]{10}$"
+          },
+          "catalogLearningPathId": {
             "type": "string"
           },
           "legacyLearningPathId": {
@@ -4692,7 +4732,17 @@
             }
           },
           "completionRule": {
-            "$ref": "#/components/schemas/JsonLogicExpression"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JsonLogicExpression"
+              },
+              {
+                "type": [
+                  "object",
+                  "null"
+                ]
+              }
+            ]
           },
           "outcomeRule": {
             "allOf": [
@@ -5077,7 +5127,13 @@
               "CUSTOM"
             ]
           },
-          "learningPathCatalogId": {
+          "catalogWorkspaceId": {
+            "type": "string",
+            "maxLength": 10,
+            "minLength": 10,
+            "pattern": "^[A-Za-z0-9_-]{10}$"
+          },
+          "catalogLearningPathId": {
             "type": "string"
           },
           "legacyLearningPathId": {
@@ -5696,7 +5752,13 @@
               "AI"
             ]
           },
-          "quizCatalogId": {
+          "catalogWorkspaceId": {
+            "type": "string",
+            "maxLength": 10,
+            "minLength": 10,
+            "pattern": "^[A-Za-z0-9_-]{10}$"
+          },
+          "catalogQuizId": {
             "type": "string"
           },
           "syncWithCatalog": {
@@ -6013,7 +6075,13 @@
               "AI"
             ]
           },
-          "quizCatalogId": {
+          "catalogWorkspaceId": {
+            "type": "string",
+            "maxLength": 10,
+            "minLength": 10,
+            "pattern": "^[A-Za-z0-9_-]{10}$"
+          },
+          "catalogQuizId": {
             "type": "string"
           },
           "syncWithCatalog": {
@@ -6134,13 +6202,19 @@
                   "type": "integer",
                   "exclusiveMinimum": 0
                 },
-                "userId": {
+                "entityId": {
                   "type": "string"
                 },
-                "nickname": {
+                "entityType": {
                   "type": "string"
                 },
-                "profileImageUrl": {
+                "primaryEntityName": {
+                  "type": "string"
+                },
+                "secondaryEntityName": {
+                  "type": "string"
+                },
+                "entityImageUrl": {
                   "type": "string",
                   "format": "uri"
                 },
@@ -6150,7 +6224,8 @@
               },
               "required": [
                 "rank",
-                "userId",
+                "entityId",
+                "entityType",
                 "score"
               ]
             }
@@ -6159,20 +6234,26 @@
             "type": "integer",
             "minimum": 0
           },
-          "currentUserRank": {
+          "currentEntityRank": {
             "type": "object",
             "properties": {
               "rank": {
                 "type": "integer",
                 "exclusiveMinimum": 0
               },
-              "userId": {
+              "entityId": {
                 "type": "string"
               },
-              "nickname": {
+              "entityType": {
                 "type": "string"
               },
-              "profileImageUrl": {
+              "primaryEntityName": {
+                "type": "string"
+              },
+              "secondaryEntityName": {
+                "type": "string"
+              },
+              "entityImageUrl": {
                 "type": "string",
                 "format": "uri"
               },
@@ -6182,7 +6263,8 @@
             },
             "required": [
               "rank",
-              "userId",
+              "entityId",
+              "entityType",
               "score"
             ]
           },
@@ -6202,7 +6284,7 @@
                 "type": "integer",
                 "exclusiveMinimum": 0
               },
-              "showUserScore": {
+              "showScore": {
                 "type": "boolean"
               }
             },
@@ -6210,7 +6292,7 @@
               "runtimeLeaderboardId",
               "name",
               "displayTopN",
-              "showUserScore"
+              "showScore"
             ]
           }
         },
@@ -6348,6 +6430,18 @@
               "AI",
               "CUSTOM"
             ]
+          },
+          "catalogWorkspaceId": {
+            "type": "string",
+            "maxLength": 10,
+            "minLength": 10,
+            "pattern": "^[A-Za-z0-9_-]{10}$"
+          },
+          "catalogSlideId": {
+            "type": "string"
+          },
+          "syncWithCatalog": {
+            "type": "boolean"
           },
           "defaultLang": {
             "$ref": "#/components/schemas/Lang"
@@ -6878,7 +6972,13 @@
                     "AI"
                   ]
                 },
-                "quizCatalogId": {
+                "catalogWorkspaceId": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "minLength": 10,
+                  "pattern": "^[A-Za-z0-9_-]{10}$"
+                },
+                "catalogQuizId": {
                   "type": "string"
                 },
                 "syncWithCatalog": {
@@ -7129,7 +7229,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "virtualCurrencyCatalogId": {
+              "catalogVirtualCurrencyId": {
                 "type": "string",
                 "maxLength": 30,
                 "minLength": 2
@@ -7991,8 +8091,228 @@
             "default": {},
             "additionalProperties": {},
             "properties": {
+              "learningPaths": {
+                "description": "Learning paths, learning groups, and learning path rules feature flag.",
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "enabled"
+                    ],
+                    "additionalProperties": {}
+                  }
+                ]
+              },
+              "activities": {
+                "description": "Custom activities, quizzes, and slides feature flag.",
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "enabled"
+                    ],
+                    "additionalProperties": {}
+                  }
+                ]
+              },
+              "missions": {
+                "description": "Mission configurations and mission rules feature flag.",
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "enabled"
+                    ],
+                    "additionalProperties": {}
+                  }
+                ]
+              },
+              "streak": {
+                "description": "Streak configurations and streak rules feature flag.",
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "enabled"
+                    ],
+                    "additionalProperties": {}
+                  }
+                ]
+              },
               "mobility": {
                 "description": "Mobility feature flag.",
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "enabled"
+                    ],
+                    "additionalProperties": {}
+                  }
+                ]
+              },
+              "mediaLibrary": {
+                "description": "Media library feature flag.",
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "enabled"
+                    ],
+                    "additionalProperties": {}
+                  }
+                ]
+              },
+              "leaderboards": {
+                "description": "Leaderboards feature flag.",
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "enabled"
+                    ],
+                    "additionalProperties": {}
+                  }
+                ]
+              },
+              "tags": {
+                "description": "Tags feature flag.",
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "enabled"
+                    ],
+                    "additionalProperties": {}
+                  }
+                ]
+              },
+              "rewardRules": {
+                "description": "Reward rules feature flag.",
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "enabled"
+                    ],
+                    "additionalProperties": {}
+                  }
+                ]
+              },
+              "virtualCurrencies": {
+                "description": "Virtual currencies feature flag.",
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "enabled"
+                    ],
+                    "additionalProperties": {}
+                  }
+                ]
+              },
+              "virtualTransactions": {
+                "description": "Virtual transactions feature flag.",
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "enabled"
+                    ],
+                    "additionalProperties": {}
+                  }
+                ]
+              },
+              "users": {
+                "description": "Users feature flag.",
                 "anyOf": [
                   {
                     "type": "boolean"
@@ -8105,6 +8425,7 @@
       "Lang": {
         "description": "Supported Locale",
         "type": "string",
+        "default": "en",
         "enum": [
           "aa",
           "ab",
@@ -8555,7 +8876,13 @@
                 "legacyLearningGroupId": {
                   "type": "string"
                 },
-                "learningGroupCatalogId": {
+                "catalogWorkspaceId": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "minLength": 10,
+                  "pattern": "^[A-Za-z0-9_-]{10}$"
+                },
+                "catalogLearningGroupId": {
                   "type": "string"
                 },
                 "syncWithCatalog": {
@@ -8861,7 +9188,13 @@
                     "CUSTOM"
                   ]
                 },
-                "learningPathCatalogId": {
+                "catalogWorkspaceId": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "minLength": 10,
+                  "pattern": "^[A-Za-z0-9_-]{10}$"
+                },
+                "catalogLearningPathId": {
                   "type": "string"
                 },
                 "legacyLearningPathId": {
@@ -9353,7 +9686,13 @@
                     "CUSTOM"
                   ]
                 },
-                "learningPathCatalogId": {
+                "catalogWorkspaceId": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "minLength": 10,
+                  "pattern": "^[A-Za-z0-9_-]{10}$"
+                },
+                "catalogLearningPathId": {
                   "type": "string"
                 },
                 "legacyLearningPathId": {
@@ -10055,7 +10394,13 @@
                     "AI"
                   ]
                 },
-                "quizCatalogId": {
+                "catalogWorkspaceId": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "minLength": 10,
+                  "pattern": "^[A-Za-z0-9_-]{10}$"
+                },
+                "catalogQuizId": {
                   "type": "string"
                 },
                 "syncWithCatalog": {
@@ -10366,6 +10711,18 @@
                     "AI",
                     "CUSTOM"
                   ]
+                },
+                "catalogWorkspaceId": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "minLength": 10,
+                  "pattern": "^[A-Za-z0-9_-]{10}$"
+                },
+                "catalogSlideId": {
+                  "type": "string"
+                },
+                "syncWithCatalog": {
+                  "type": "boolean"
                 },
                 "defaultLang": {
                   "$ref": "#/components/schemas/Lang"
@@ -10979,14 +11336,120 @@
                   "$ref": "#/components/schemas/Timezone"
                 },
                 "createdAt": {
-                  "description": "Creation date in ISO format (UTC Timezone)",
                   "type": "string",
                   "format": "date-time"
                 },
                 "updatedAt": {
-                  "description": "Creation date in ISO format (UTC Timezone)",
                   "type": "string",
                   "format": "date-time"
+                },
+                "streakConfiguration": {
+                  "type": "object",
+                  "properties": {
+                    "streakConfigurationId": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "matchType": {
+                      "type": "string",
+                      "enum": [
+                        "INSTANCE",
+                        "ENTITY",
+                        "TAG"
+                      ]
+                    },
+                    "matchEntity": {
+                      "type": "string",
+                      "enum": [
+                        "Mission",
+                        "Activity",
+                        "Quiz",
+                        "Tag"
+                      ]
+                    },
+                    "matchEntityId": {
+                      "type": "string"
+                    },
+                    "matchCondition": {
+                      "$ref": "#/components/schemas/JsonLogicExpression"
+                    },
+                    "origin": {
+                      "type": "string",
+                      "enum": [
+                        "CATALOG",
+                        "CUSTOM"
+                      ]
+                    },
+                    "streakConfigurationCatalogId": {
+                      "type": "string"
+                    },
+                    "syncWithCatalog": {
+                      "type": "boolean"
+                    },
+                    "defaultLang": {
+                      "$ref": "#/components/schemas/Lang"
+                    },
+                    "langs": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Lang"
+                      },
+                      "maxItems": 10,
+                      "minItems": 1
+                    },
+                    "icon": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "createdAt": {
+                      "description": "Creation date in ISO format (UTC Timezone)",
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "description": "Creation date in ISO format (UTC Timezone)",
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "streakConfigurationId",
+                    "name",
+                    "matchType",
+                    "matchEntity",
+                    "matchCondition",
+                    "origin",
+                    "defaultLang",
+                    "langs",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                },
+                "translation": {
+                  "type": "object",
+                  "properties": {
+                    "lang": {
+                      "$ref": "#/components/schemas/Lang"
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "lang",
+                    "label"
+                  ]
                 }
               },
               "required": [
@@ -10998,9 +11461,7 @@
                 "cadence",
                 "metric",
                 "count",
-                "periodType",
-                "createdAt",
-                "updatedAt"
+                "periodType"
               ]
             }
           },
@@ -11057,7 +11518,7 @@
                       "type": "string",
                       "minLength": 1
                     },
-                    "virtualCurrencyCatalogId": {
+                    "catalogVirtualCurrencyId": {
                       "type": "string",
                       "maxLength": 30,
                       "minLength": 2
@@ -11693,6 +12154,7 @@
       "Timezone": {
         "description": "Supported timezones",
         "type": "string",
+        "default": "UTC",
         "enum": [
           "Europe/Andorra",
           "Asia/Dubai",
@@ -12138,24 +12600,10 @@
             "format": "uri"
           },
           "lang": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Lang"
-              },
-              {
-                "default": "en"
-              }
-            ]
+            "$ref": "#/components/schemas/Lang"
           },
           "timezone": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Timezone"
-              },
-              {
-                "default": "UTC"
-              }
-            ]
+            "$ref": "#/components/schemas/Timezone"
           },
           "createdAt": {
             "description": "Creation date in ISO format (UTC Timezone)",
