@@ -83,9 +83,9 @@ for i in $(seq 0 $((TOTAL - 1))); do
     DOC_ID=$(jq -r ".docs[$i].langs.$CURRENT_LANG.doc_id // .docs[$i].langs.en.doc_id" "$MAPPING_FILE")
     TITLE=$(jq -r ".docs[$i].langs.$CURRENT_LANG.title // .docs[$i].langs.en.title" "$MAPPING_FILE")
 
-    # Select branch ID
+    # Select branch ID (EN uses default branch, no branchId param needed)
     if [[ "$CURRENT_LANG" == "en" ]]; then
-      BRANCH_ID="$BRANCH_EN"
+      BRANCH_ID=""
     else
       BRANCH_ID="$BRANCH_IT"
     fi
@@ -105,7 +105,7 @@ for i in $(seq 0 $((TOTAL - 1))); do
     CONTENT=$(cat "$FILE_PATH")
 
     if [[ "$DRY_RUN" == true ]]; then
-      echo -e "${YELLOW}DRY-RUN${NC} $LABEL (ID: $DOC_ID, branch: $BRANCH_ID) ← $DOC_DIR/$CURRENT_LANG/$DOC_FILE"
+      echo -e "${YELLOW}DRY-RUN${NC} $LABEL (ID: $DOC_ID, branch: ${BRANCH_ID:-default}) ← $DOC_DIR/$CURRENT_LANG/$DOC_FILE"
       continue
     fi
 
@@ -115,13 +115,23 @@ for i in $(seq 0 $((TOTAL - 1))); do
       --arg content "$CONTENT" \
       '{name: $name, content: $content}')
 
-    RESPONSE=$(curl -s -w "\n%{http_code}" \
-      -X PUT "${BASE_URL}/${DOC_ID}?locale=en-US" \
-      -H "Content-Type: application/json;charset=UTF-8" \
-      -H "Authorization: Bearer ${APIDOG_TOKEN}" \
-      -H "x-project-id: ${PROJECT_ID}" \
-      -H "x-branch-id: ${BRANCH_ID}" \
-      --data-raw "$PAYLOAD")
+    # Build request: include x-branch-id header only for non-default branches (IT)
+    if [[ -n "$BRANCH_ID" ]]; then
+      RESPONSE=$(curl -s -w "\n%{http_code}" \
+        -X PUT "${BASE_URL}/${DOC_ID}?locale=en-US" \
+        -H "Content-Type: application/json;charset=UTF-8" \
+        -H "Authorization: Bearer ${APIDOG_TOKEN}" \
+        -H "x-project-id: ${PROJECT_ID}" \
+        -H "x-branch-id: ${BRANCH_ID}" \
+        --data-raw "$PAYLOAD")
+    else
+      RESPONSE=$(curl -s -w "\n%{http_code}" \
+        -X PUT "${BASE_URL}/${DOC_ID}?locale=en-US" \
+        -H "Content-Type: application/json;charset=UTF-8" \
+        -H "Authorization: Bearer ${APIDOG_TOKEN}" \
+        -H "x-project-id: ${PROJECT_ID}" \
+        --data-raw "$PAYLOAD")
+    fi
 
     HTTP_CODE=$(echo "$RESPONSE" | tail -1)
     BODY=$(echo "$RESPONSE" | sed '$d')

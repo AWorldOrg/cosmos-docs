@@ -1,4 +1,4 @@
-This section covers the **engine** of AWorld Lab's *gamification* system: the rules, rewards, and progression mechanics that give meaning to user actions. Missions turn activities into goals, streaks reward consistency over time, virtual currencies quantify progress, and reward rules automate incentives — creating a complete engagement loop. For the foundational activities and content that feed into these mechanics, refer to the activities and content documentation.
+This section covers the **engine** of AWorld Lab's *gamification* system: the rules, rewards, and progression mechanics that give meaning to user actions. Missions turn activities into goals, streaks reward consistency over time, virtual currencies quantify progress, reward rules automate incentives, and badges provide visible recognition for milestones reached — creating a complete engagement loop. For the foundational activities and content that feed into these mechanics, refer to the activities and content documentation.
 
 ## Missions
 
@@ -161,7 +161,23 @@ Like other platform elements, reward rules support both **catalog** (pre-built) 
 
 The **Achievements** system provides visible progression and recognition, motivating users beyond points and rewards.
 
-**Badges** are static recognitions awarded when a user reaches specific milestones — completing a series of missions, participating in an event, or logging a certain number of actions. Once earned, a badge remains in the user's profile as permanent proof of achievement.
+### Badges
+
+**Badges** are visual recognitions awarded when a user reaches a specific milestone — completing a learning path, finishing a series of missions, or achieving a recurring goal. Once earned, a badge remains in the user's profile as a permanent proof of achievement, and can be awarded multiple times if the triggering condition recurs.
+
+Each badge is defined by a **Badge Configuration** that specifies:
+
+- **Image**: a visual asset that represents the achievement — required for every badge.
+- **Translations**: a localized label and description explaining what the badge represents and how to earn it.
+- **Progress source**: the specific Mission Configuration or Learning Path whose completion drives the badge — the frontend uses this to display a progress bar before the badge is earned.
+
+Badges are awarded automatically through **Reward Rules**: when a user completes the linked mission or learning path, the reward engine evaluates the rule and assigns the badge. The assignment happens only upon **full completion** — not during partial progress.
+
+The platform tracks the full history of each badge assignment, including how many times it has been earned (`count`), when it was first and most recently awarded, and a log of each individual assignment with the source entity and rule that triggered it.
+
+Like other platform entities, Badge Configurations support a publish/archive lifecycle and can originate from the AWorld **catalog** (pre-built configurations) or be created as **custom** badges by the client.
+
+### Levels
 
 **Levels** represent a configurable progression system tied to **accumulated virtual currency** within a specific currency line. As users earn points, they advance through levels, each representing a higher engagement tier. Levels can unlock new features, grant access to exclusive content, or provide additional benefits within the *gamification* system.
 

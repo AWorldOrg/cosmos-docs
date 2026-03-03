@@ -110,6 +110,13 @@
       }
     },
     {
+      "path": "003/07-badge-domain.md",
+      "langs": {
+        "en": { "doc_id": "1991184", "title": "Badge Domain" },
+        "it": { "doc_id": "1991268", "title": "Dominio Badge" }
+      }
+    },
+    {
       "path": "004/01-cloud-infrastructure.md",
       "langs": {
         "en": { "doc_id": "1215195", "title": "Cloud Infrastructure and Architecture" },

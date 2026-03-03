@@ -1,4 +1,4 @@
-Questa sezione copre il **motore** del sistema di *gamification* di AWorld Lab: le regole, le ricompense e le meccaniche di progressione che danno significato alle azioni degli utenti. Le missioni trasformano le attività in obiettivi, le streak premiano la costanza nel tempo, le valute virtuali quantificano il progresso e le regole di ricompensa automatizzano gli incentivi — creando un ciclo di *engagement* completo. Per le attività e i contenuti fondamentali che alimentano queste meccaniche, fare riferimento alla documentazione sulle attività e i contenuti.
+Questa sezione copre il **motore** del sistema di *gamification* di AWorld Lab: le regole, le ricompense e le meccaniche di progressione che danno significato alle azioni degli utenti. Le missioni trasformano le attività in obiettivi, le streak premiano la costanza nel tempo, le valute virtuali quantificano il progresso, le regole di ricompensa automatizzano gli incentivi e i badge forniscono riconoscimenti visibili per i traguardi raggiunti — creando un ciclo di *engagement* completo. Per le attività e i contenuti fondamentali che alimentano queste meccaniche, fare riferimento alla documentazione sulle attività e i contenuti.
 
 ## Missioni
 
@@ -161,7 +161,23 @@ Come altri elementi della piattaforma, le regole di ricompensa supportano sia or
 
 Il sistema di **achievements** fornisce progressione visibile e riconoscimento, motivando gli utenti oltre i punti e le ricompense.
 
-I **badge** sono riconoscimenti statici assegnati quando un utente raggiunge traguardi specifici — completando una serie di missioni, partecipando a un evento o registrando un certo numero di azioni. Una volta ottenuto, un badge resta nel profilo dell'utente come prova permanente del risultato raggiunto.
+### Badge
+
+I **badge** sono riconoscimenti visivi assegnati quando un utente raggiunge un traguardo specifico — completando un learning path, portando a termine una serie di missioni o raggiungendo un obiettivo ricorrente. Una volta ottenuto, un badge resta nel profilo dell'utente come prova permanente del risultato raggiunto, e può essere assegnato più volte se la condizione che lo innesca si ripete.
+
+Ogni badge è definito da una **Badge Configuration** che specifica:
+
+- **Immagine**: un asset visivo che rappresenta il traguardo — obbligatorio per ogni badge.
+- **Traduzioni**: label e descrizione localizzate che spiegano cosa rappresenta il badge e come guadagnarlo.
+- **Sorgente di progresso**: la Mission Configuration o il Learning Path specifico il cui completamento guida il badge — il frontend utilizza questa informazione per mostrare una barra di progresso prima che il badge venga guadagnato.
+
+I badge vengono assegnati automaticamente tramite le **Reward Rule**: quando un utente completa la missione o il learning path collegato, il motore delle ricompense valuta la regola e assegna il badge. L'assegnamento avviene solo al **completamento definitivo** — non durante il progresso parziale.
+
+La piattaforma tiene traccia dello storico completo di ogni assegnamento badge, incluso quante volte è stato guadagnato (`count`), quando è stato assegnato per la prima e più recente volta, e un log di ogni singolo assegnamento con l'entità sorgente e la regola che lo ha innescato.
+
+Come le altre entità della piattaforma, le Badge Configuration supportano un lifecycle di pubblicazione/archiviazione e possono provenire dal **catalogo** AWorld (configurazioni precostruite) o essere create come badge **personalizzati** dal cliente.
+
+### Livelli
 
 I **livelli** rappresentano un sistema di progressione configurabile legato alla **valuta virtuale accumulata** all'interno di una specifica linea di valuta. Man mano che gli utenti guadagnano punti, avanzano attraverso i livelli, ciascuno dei quali rappresenta un livello superiore di *engagement*. I livelli possono sbloccare nuove funzionalità, garantire l'accesso a contenuti esclusivi o fornire benefici aggiuntivi all'interno del sistema di *gamification*.
 

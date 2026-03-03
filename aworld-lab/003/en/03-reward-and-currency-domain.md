@@ -101,10 +101,13 @@ The `matchCondition` receives `{ event, previousEvent }` as context, where `prev
 
 ### Rewards Array
 
-Each rule contains 1–10 reward definitions. A single rule can award multiple currencies simultaneously:
+Each rule contains 1–10 reward definitions. A single rule can award multiple rewards simultaneously — currencies, badges, or a combination. There are two reward types:
+
+#### Virtual Currency Reward
 
 | Field | Type | Description |
 |-------|------|-------------|
+| `rewardType` | `VIRTUAL_CURRENCY` | Identifies this as a currency reward |
 | `virtualCurrencyId` | nanoid | Which currency to award |
 | `redemptionMode` | `AUTO` \| `MANUAL` | How the transaction is finalized |
 | `expression` | JsonLogic | Evaluates to the amount to award |
@@ -130,6 +133,33 @@ Each rule contains 1–10 reward definitions. A single rule can award multiple c
 ```
 
 The expression receives `{ event }` as context. If it evaluates to `0` or a non-numeric value, the transaction is silently skipped.
+
+#### Badge Reward
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `rewardType` | `BADGE` | Identifies this as a badge reward |
+| `badgeConfigurationId` | nanoid | Which badge to award |
+
+Badge rewards are simpler than currency rewards: there is no expression to evaluate and no redemption mode. When the rule fires, the badge is automatically assigned to the user. The badge must be in `PUBLISHED` state to be awarded.
+
+A single rule can combine both types — for example, awarding XP and a badge simultaneously when a mission is completed:
+
+```json
+{
+  "rewards": [
+    {
+      "rewardType": "VIRTUAL_CURRENCY",
+      "virtualCurrencyId": "vc-xp",
+      "redemptionMode": "AUTO",
+      "expression": 100
+    },
+    {
+      "rewardType": "BADGE",
+      "badgeConfigurationId": "bc-mission-master"
+    }
+  ]
+}
 
 ### Event Remapping
 
@@ -365,7 +395,7 @@ If a non-tagged activity is completed → 5 XP (no ALWAYS rules match, FALLBACK 
 | **VirtualTransaction** | Ledger entry: CREDIT or DEBIT, with lifecycle (PENDING→COMPLETED/EXPIRED/REJECTED) |
 | **VirtualBalance** | User's current balance per currency (total vs. available) |
 | **applicationMode** | `ALWAYS` (primary) vs `FALLBACK` (backup if no ALWAYS matched) vs `DISABLED` |
-| **rewards array** | 1–10 payouts per rule, each with a currency, mode, and expression |
+| **rewards array** | 1–10 payouts per rule — `VIRTUAL_CURRENCY` (currency + mode + expression) or `BADGE` (badge ID only) |
 | **redemptionMode** | `AUTO` (instant) vs `MANUAL` (requires explicit redemption) |
 | **initiatorType** | What caused the transaction: `USER`, `REWARD_RULE`, `STREAK_RULE`, `SYSTEM`, `ADMIN` |
 | **Event remapping** | Log entities (ActivityLog, etc.) are mapped to parent entities for rule matching |
@@ -375,6 +405,7 @@ If a non-tagged activity is completed → 5 XP (no ALWAYS rules match, FALLBACK 
 
 - **Mission Domain**: mission completion is one of the key events that triggers reward rules.
 - **Learning Content Domain**: learning path and learning group completions trigger reward payouts.
+- **Badge Domain**: badge reward rules use `rewardType: BADGE` to assign badges upon mission or learning path completion.
 - **Streak Domain**: the freeze mechanism deducts virtual currency to preserve streaks.
 - **Leaderboard Domain**: leaderboards rank users by virtual currency accumulation (e.g., XP).
 - **Cross-Cutting Patterns**: JsonLogic expressions and entity matching patterns used throughout this domain.
