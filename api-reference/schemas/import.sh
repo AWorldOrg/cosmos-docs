@@ -89,7 +89,8 @@ import_schema() {
         \"targetBranchId\": ${BRANCH_ID_SCHEMAS},
         \"endpointOverwriteBehavior\": \"OVERWRITE_EXISTING\",
         \"schemaOverwriteBehavior\": \"OVERWRITE_EXISTING\",
-        \"prependBasePath\": false
+        \"prependBasePath\": false,
+        \"deleteUnmatchedResources\": true
       }
     }")
 
