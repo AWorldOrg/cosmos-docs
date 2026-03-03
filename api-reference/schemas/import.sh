@@ -110,8 +110,8 @@ import_schema() {
   fi
 }
 
-import_schema "App API" "app.openapi.json" "$MODULE_ID_APP"
-import_schema "Dashboard API" "dashboard.openapi.json" "$MODULE_ID_DASHBOARD"
+import_schema "App API" "released/app.openapi.json" "$MODULE_ID_APP"
+import_schema "Dashboard API" "released/dashboard.openapi.json" "$MODULE_ID_DASHBOARD"
 
 echo ""
 echo "=== Done: $SUCCESS ok, $FAILED failed ==="
